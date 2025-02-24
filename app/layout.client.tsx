@@ -33,6 +33,18 @@ const componentsMenuItems = [
     title: "Prompt Input",
     url: "/docs/prompt-input",
   },
+  {
+    title: "Message",
+    url: "/docs/message",
+  },
+  {
+    title: "Markdown",
+    url: "/docs/markdown",
+  },
+  {
+    title: "Code Block",
+    url: "/docs/code-block",
+  },
 ]
 
 const socialMenuItems = [

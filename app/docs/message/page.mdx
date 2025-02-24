@@ -1,0 +1,108 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { MessageBasic } from "./message-basic"
+import { MessageWithActions } from "./message-with-actions"
+
+# Message
+
+A component for displaying messages in a conversation interface, with support for avatars, markdown content, and interactive actions.
+
+## Examples
+
+### Basic Message
+
+<ComponentCodePreview
+  component={<MessageBasic />}
+  filePath="app/docs/message/message-basic.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### Message with Actions
+
+You can use `MessageActions` and `MessageAction` to add interactive elements to your messages.
+
+<ComponentCodePreview
+  component={<MessageWithActions />}
+  filePath="app/docs/message/message-with-actions.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/message.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/message.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### Message
+
+| Prop      | Type                              | Default | Description                |
+| :-------- | :-------------------------------- | :------ | :------------------------- |
+| children  | React.ReactNode                   |         | Child components to render |
+| className | string                            |         | Additional CSS classes     |
+| ...props  | `React.HTMLProps<HTMLDivElement>` |         | All other div props        |
+
+### MessageAvatar
+
+| Prop      | Type   | Default | Description                            |
+| :-------- | :----- | :------ | :------------------------------------- |
+| src       | string |         | URL of the avatar image                |
+| alt       | string |         | Alt text for the avatar image          |
+| fallback  | string |         | Text to display if image fails to load |
+| delayMs   | number |         | Delay before showing fallback (in ms)  |
+| className | string |         | Additional CSS classes                 |
+
+### MessageContent
+
+| Prop      | Type                              | Default | Description                           |
+| :-------- | :-------------------------------- | :------ | :------------------------------------ |
+| children  | React.ReactNode                   |         | Content to display in the message     |
+| markdown  | boolean                           | false   | Whether to render content as markdown |
+| className | string                            |         | Additional CSS classes                |
+| ...props  | `React.HTMLProps<HTMLDivElement>` |         | All other div props                   |
+
+### MessageActions
+
+| Prop      | Type                              | Default | Description                |
+| :-------- | :-------------------------------- | :------ | :------------------------- |
+| children  | React.ReactNode                   |         | Child components to render |
+| className | string                            |         | Additional CSS classes     |
+| ...props  | `React.HTMLProps<HTMLDivElement>` |         | All other div props        |
+
+### MessageAction
+
+| Prop      | Type                                   | Default | Description                                     |
+| :-------- | :------------------------------------- | :------ | :---------------------------------------------- |
+| tooltip   | React.ReactNode                        |         | Content to show in the tooltip                  |
+| children  | React.ReactNode                        |         | Child component to trigger the tooltip          |
+| className | string                                 |         | Additional CSS classes for the tooltip          |
+| side      | "top" \| "bottom" \| "left" \| "right" | "top"   | Position of the tooltip relative to the trigger |
+| ...props  | `React.ComponentProps<typeof Tooltip>` |         | All other Tooltip component props               |
