@@ -78,6 +78,30 @@ You can customize how different Markdown elements are rendered by providing cust
 | components | `Partial<Components>`                        | INITIAL_COMPONENTS | Custom components to override default rendering |
 | ...props   | `React.ComponentProps<typeof ReactMarkdown>` |                    | All other ReactMarkdown props                   |
 
+## Performance Optimization
+
+The Markdown component employs advanced memoization techniques to optimize rendering performance, especially in streaming AI response scenarios. This approach is crucial when rendering chat interfaces where new tokens are continuously streamed.
+
+### How Memoization Works
+
+Our implementation:
+
+1. Splits Markdown content into discrete semantic blocks using the `marked` library
+2. Memoizes each block individually with React's `memo`
+3. Only re-renders blocks that have actually changed when new content arrives
+4. Preserves already rendered blocks to prevent unnecessary re-parsing and re-rendering
+
+This pattern significantly improves performance in chat applications by preventing the entire message history from re-rendering with each new token, which becomes increasingly important as conversations grow longer.
+
+For AI chat interfaces using streaming responses, always provide a unique `id` prop (typically the message ID) to ensure proper block caching:
+
+<CodeBlock
+  code={`<Markdown id={message.id}>{message.content}</Markdown>`}
+  language="tsx"
+/>
+
+This memoization implementation is based on the [Vercel AI SDK Cookbook](https://sdk.vercel.ai/cookbook/next/markdown-chatbot-with-memoization) with enhancements for better React integration.
+
 ## Customizing Components
 
 You can customize how different Markdown elements are rendered by providing a `components` prop. This is an object where keys are HTML element names and values are React components.
