@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils"
 import ReactMarkdown, { Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { CodeBlock, CodeBlockCode } from "./code-block"
@@ -15,11 +16,30 @@ const extractLanguage = (className?: string) => {
 }
 
 const INITIAL_COMPONENTS: Partial<Components> = {
-  code: ({ ...props }) => {
-    const language = extractLanguage(props.className)
+  code: ({ className, children, ...props }: any) => {
+    const isInline =
+      !props.node?.position?.start.line ||
+      props.node?.position?.start.line === props.node?.position?.end.line
+
+    if (isInline) {
+      return (
+        <span
+          className={cn(
+            "bg-primary-foreground rounded-sm px-1 font-mono text-sm",
+            className
+          )}
+          {...props}
+        >
+          {children}
+        </span>
+      )
+    }
+
+    const language = extractLanguage(className)
+
     return (
-      <CodeBlock className={props.className}>
-        <CodeBlockCode code={props.children as string} language={language} />
+      <CodeBlock className={className}>
+        <CodeBlockCode code={children as string} language={language} />
       </CodeBlock>
     )
   },
@@ -37,6 +57,7 @@ export function Markdown({
       remarkPlugins={[remarkGfm]}
       components={components}
       className={className}
+      {...props}
     >
       {children}
     </ReactMarkdown>

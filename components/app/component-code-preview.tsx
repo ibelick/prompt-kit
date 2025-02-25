@@ -1,4 +1,5 @@
 import { extractCodeFromFilePath } from "@/lib/code"
+import { cn } from "@/lib/utils"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs"
 import CodePreview from "./code-preview"
 import { CodeRenderer } from "./code-renderer"
@@ -9,6 +10,8 @@ type ComponentCodePreview = {
   filePath: string
   hasReTrigger?: boolean
   classNameComponentContainer?: string
+  classNameContainer?: string
+  disableNotProse?: boolean
 }
 
 export default function ComponentCodePreview({
@@ -16,11 +19,19 @@ export default function ComponentCodePreview({
   filePath,
   hasReTrigger,
   classNameComponentContainer,
+  classNameContainer,
+  disableNotProse = false,
 }: ComponentCodePreview) {
   const fileContent = extractCodeFromFilePath(filePath)
 
   return (
-    <div className="not-prose relative z-0 flex items-center justify-between pb-3">
+    <div
+      className={cn(
+        !disableNotProse && "not-prose",
+        "relative z-0 flex items-center justify-between pb-3",
+        classNameContainer
+      )}
+    >
       <Tabs defaultValue="preview" className="relative mr-auto w-full">
         <TabsList>
           <TabsTrigger value="preview">Preview</TabsTrigger>

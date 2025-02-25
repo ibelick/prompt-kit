@@ -41,7 +41,7 @@ export default function CodePreview({ code, children }: CodePreviewProps) {
           <Check className="h-4 w-4 text-zinc-400" />
         </div>
       </div>
-      <div className="max-h-[650px] overflow-auto overflow-x-auto p-4 text-[13px]">
+      <div className="not-prose max-h-[650px] overflow-auto overflow-x-auto p-4 text-[13px]">
         {children}
       </div>
     </div>

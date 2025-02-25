@@ -1,0 +1,132 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { MarkdownBasic } from "./markdown-basic"
+import { MarkdownCustomComponents } from "./markdown-custom-components"
+
+# Markdown
+
+A component for rendering Markdown content with support for GitHub Flavored Markdown (GFM) and custom component styling.
+
+## Examples
+
+### Basic Markdown
+
+Render basic Markdown with support for bold, italics, lists, code blocks and more.
+
+<ComponentCodePreview
+  component={<MarkdownBasic />}
+  filePath="app/docs/markdown/markdown-basic.tsx"
+  classNameComponentContainer="p-8"
+  disableNotProse
+/>
+
+### Markdown with Custom Components
+
+You can customize how different Markdown elements are rendered by providing custom components.
+
+<ComponentCodePreview
+  component={<MarkdownCustomComponents />}
+  filePath="app/docs/markdown/markdown-custom-components.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/markdown.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/markdown.tsx" language="tsx" />
+
+<Step>Install the required dependencies.</Step>
+
+<CodeBlock code={`npm install react-markdown remark-gfm`} language="bash" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### Markdown
+
+| Prop       | Type                                         | Default            | Description                                     |
+| :--------- | :------------------------------------------- | :----------------- | :---------------------------------------------- |
+| children   | string                                       |                    | Markdown content to render                      |
+| className  | string                                       |                    | Additional CSS classes                          |
+| components | `Partial<Components>`                        | INITIAL_COMPONENTS | Custom components to override default rendering |
+| ...props   | `React.ComponentProps<typeof ReactMarkdown>` |                    | All other ReactMarkdown props                   |
+
+## Customizing Components
+
+You can customize how different Markdown elements are rendered by providing a `components` prop. This is an object where keys are HTML element names and values are React components.
+
+<CodeBlock code={`const customComponents = {
+    h1: ({ children }) => <h1 className="text-2xl font-bold text-blue-500">{children}</h1>,
+    a: ({ href, children }) => <a href={href} className="text-purple-500 underline">{children}</a>,
+    // ... other components
+}
+
+<Markdown components={customComponents}>{markdownContent}</Markdown>
+`} language="tsx" />
+
+## Supported Markdown Features
+
+The Markdown component uses [react-markdown](https://github.com/remarkjs/react-markdown) with [remark-gfm](https://github.com/remarkjs/remark-gfm) to support GitHub Flavored Markdown, which includes:
+
+- Tables
+- Strikethrough
+- Tasklists
+- Literal URLs
+- Footnotes
+
+Additionally, the component includes built-in code block highlighting through the `CodeBlock` component.
+
+## Styling with Tailwind Typography
+
+For the best typography styling experience, we recommend using the [@tailwindcss/typography](https://github.com/tailwindlabs/tailwindcss-typography) plugin. This plugin provides a set of `prose` classes that add beautiful typographic defaults to your markdown content.
+
+<CodeBlock code={`npm install -D @tailwindcss/typography`} language="bash" />
+
+When using the Markdown component with Tailwind Typography, you can apply the `prose` class:
+
+<CodeBlock
+  code={`<Markdown className="prose dark:prose-invert">{markdownContent}</Markdown>`}
+  language="tsx"
+/>
+
+### Handling Code Blocks
+
+As you've seen in our examples, code blocks within prose content can sometimes cause styling conflicts. The Tailwind Typography plugin provides a `not-prose` class to exclude elements from prose styling:
+
+<CodeBlock code={`<article className="prose">
+    <h1>My Content</h1>
+    <p>Regular content with prose styling...</p>
+
+    <div className="not-prose">
+      <!-- Code blocks or other elements that shouldn't inherit prose styles -->
+    </div>
+
+</article>
+`} language="tsx" />

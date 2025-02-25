@@ -142,7 +142,7 @@ export default function Home() {
           </AnimatedBackground>
         </div>
       </div>
-      <CodeBlock className="relative mb-20 rounded" language="tsx">
+      <CodeBlock className="relative mb-20 rounded">
         <CodeBlockGroup className="absolute top-4 right-4">
           <button
             onClick={onCopy}
@@ -151,7 +151,7 @@ export default function Home() {
             <TextMorph>{hasCopyLabel ? "Copied" : "Copy"}</TextMorph>
           </button>
         </CodeBlockGroup>
-        <CodeBlockCode code={CODE_SAMPLE} />
+        <CodeBlockCode code={CODE_SAMPLE} language="tsx" />
       </CodeBlock>
     </>
   )
