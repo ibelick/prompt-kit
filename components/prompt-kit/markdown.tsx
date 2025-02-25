@@ -1,22 +1,30 @@
 import { cn } from "@/lib/utils"
+import { marked } from "marked"
+import { memo, useId, useMemo } from "react"
 import ReactMarkdown, { Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { CodeBlock, CodeBlockCode } from "./code-block"
 
 export type MarkdownProps = {
   children: string
+  id?: string
   className?: string
-  components?: Components
-} & React.ComponentProps<typeof ReactMarkdown>
+  components?: Partial<Components>
+}
 
-const extractLanguage = (className?: string) => {
+function parseMarkdownIntoBlocks(markdown: string): string[] {
+  const tokens = marked.lexer(markdown)
+  return tokens.map((token) => token.raw)
+}
+
+function extractLanguage(className?: string): string {
   if (!className) return "plaintext"
   const match = className.match(/language-(\w+)/)
   return match ? match[1] : "plaintext"
 }
 
 const INITIAL_COMPONENTS: Partial<Components> = {
-  code: ({ className, children, ...props }: any) => {
+  code: function CodeComponent({ className, children, ...props }) {
     const isInline =
       !props.node?.position?.start.line ||
       props.node?.position?.start.line === props.node?.position?.end.line
@@ -43,23 +51,63 @@ const INITIAL_COMPONENTS: Partial<Components> = {
       </CodeBlock>
     )
   },
-  pre: ({ children }) => <>{children}</>,
+  pre: function PreComponent({ children }) {
+    return <>{children}</>
+  },
 }
 
-export function Markdown({
+const MemoizedMarkdownBlock = memo(
+  function MarkdownBlock({
+    content,
+    components = INITIAL_COMPONENTS,
+    className,
+  }: {
+    content: string
+    components?: Partial<Components>
+    className?: string
+  }) {
+    return (
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        components={components}
+        className={className}
+      >
+        {content}
+      </ReactMarkdown>
+    )
+  },
+  function propsAreEqual(prevProps, nextProps) {
+    return prevProps.content === nextProps.content
+  }
+)
+
+MemoizedMarkdownBlock.displayName = "MemoizedMarkdownBlock"
+
+function MarkdownComponent({
   children,
+  id,
   className,
   components = INITIAL_COMPONENTS,
-  ...props
 }: MarkdownProps) {
+  const generatedId = useId()
+  const blockId = id ?? generatedId
+  const blocks = useMemo(() => parseMarkdownIntoBlocks(children), [children])
+
   return (
-    <ReactMarkdown
-      remarkPlugins={[remarkGfm]}
-      components={components}
-      className={className}
-      {...props}
-    >
-      {children}
-    </ReactMarkdown>
+    <>
+      {blocks.map((block, index) => (
+        <MemoizedMarkdownBlock
+          key={`${blockId}-block-${index}`}
+          content={block}
+          components={components}
+          className={className}
+        />
+      ))}
+    </>
   )
 }
+
+const Markdown = memo(MarkdownComponent)
+Markdown.displayName = "Markdown"
+
+export { Markdown }
