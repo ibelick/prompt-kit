@@ -10,10 +10,12 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
+  useSidebar,
 } from "@/components/ui/sidebar"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useEffect } from "react"
 import { Footer } from "./footer"
 import { Header } from "./header"
 
@@ -60,10 +62,15 @@ const socialMenuItems = [
 
 function AppSidebar() {
   const currentPath = usePathname()
+  const { setOpenMobile } = useSidebar()
+  const pathname = usePathname()
+
+  useEffect(() => {
+    setOpenMobile(false)
+  }, [pathname, setOpenMobile])
 
   return (
     <Sidebar className="h-full border-none bg-white shadow-none">
-      {/* @todo: need to be viewport no sm: */}
       <SidebarContent className="border-none bg-white pt-0 pl-0 min-[1184px]:pt-[7.4rem] min-[1184px]:pl-20">
         <SidebarGroup className="border-none bg-white">
           <SidebarGroupLabel className="text-lg min-[1184px]:text-sm">
