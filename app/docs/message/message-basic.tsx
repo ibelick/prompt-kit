@@ -1,5 +1,3 @@
-"use client"
-
 import {
   Message,
   MessageAvatar,
