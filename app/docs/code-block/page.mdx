@@ -1,0 +1,193 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { CodeBlockBasic } from "./code-block-basic"
+import { CodeBlockCSS } from "./code-block-css"
+import { CodeBlockNord } from "./code-block-nord"
+import { CodeBlockPython } from "./code-block-python"
+import { CodeBlockThemed } from "./code-block-themed"
+import { CodeBlockWithHeader } from "./code-block-with-header"
+
+# Code Block
+
+A component for displaying code snippets with syntax highlighting and customizable styling.
+
+## Examples
+
+### Basic Code Block
+
+<ComponentCodePreview
+  component={<CodeBlockBasic />}
+  filePath="app/docs/code-block/code-block-basic.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### Code Block with Header
+
+You can use `CodeBlockGroup` to add a header with metadata and actions to your code blocks.
+
+<ComponentCodePreview
+  component={<CodeBlockWithHeader />}
+  filePath="app/docs/code-block/code-block-with-header.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### Different Languages
+
+You can highlight code in various languages by changing the `language` prop.
+
+#### Python Example
+
+<ComponentCodePreview
+  component={<CodeBlockPython />}
+  filePath="app/docs/code-block/code-block-python.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+#### CSS Example
+
+<ComponentCodePreview
+  component={<CodeBlockCSS />}
+  filePath="app/docs/code-block/code-block-css.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### Different Themes
+
+Shiki supports many popular themes. Here are some examples:
+
+#### GitHub Dark Theme
+
+<ComponentCodePreview
+  component={<CodeBlockThemed />}
+  filePath="app/docs/code-block/code-block-themed.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+#### Nord Theme
+
+<ComponentCodePreview
+  component={<CodeBlockNord />}
+  filePath="app/docs/code-block/code-block-nord.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/code-block.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/code-block.tsx" language="tsx" />
+
+<Step>Install the required dependencies.</Step>
+
+<CodeBlock code={`npm install shiki`} language="bash" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### CodeBlock
+
+| Prop      | Type                              | Default | Description                |
+| :-------- | :-------------------------------- | :------ | :------------------------- |
+| children  | React.ReactNode                   |         | Child components to render |
+| className | string                            |         | Additional CSS classes     |
+| ...props  | `React.HTMLProps<HTMLDivElement>` |         | All other div props        |
+
+### CodeBlockCode
+
+| Prop      | Type                              | Default        | Description                          |
+| :-------- | :-------------------------------- | :------------- | :----------------------------------- |
+| code      | string                            |                | The code to display and highlight    |
+| language  | string                            | "tsx"          | The language for syntax highlighting |
+| theme     | string                            | "github-light" | The theme for syntax highlighting    |
+| className | string                            |                | Additional CSS classes               |
+| ...props  | `React.HTMLProps<HTMLDivElement>` |                | All other div props                  |
+
+### CodeBlockGroup
+
+| Prop      | Type                                   | Default | Description                |
+| :-------- | :------------------------------------- | :------ | :------------------------- |
+| children  | React.ReactNode                        |         | Child components to render |
+| className | string                                 |         | Additional CSS classes     |
+| ...props  | `React.HTMLAttributes<HTMLDivElement>` |         | All other div props        |
+
+## Usage with Markdown
+
+The `CodeBlock` component is used internally by the `Markdown` component to render code blocks in markdown content. When used within the `Markdown` component, code blocks are automatically wrapped with the `not-prose` class to prevent conflicts with prose styling.
+
+<CodeBlock
+  code={`import { Markdown } from "@/components/prompt-kit/markdown"
+
+function MyComponent() {
+const markdownContent = \` # Example
+
+    \\\`\\\`\\\`javascript
+    function greet(name) {
+
+    return \`Hello, \\\${name}!\\\`;
+    }
+    \\\`\\\`\\\`
+
+    return <Markdown className="prose">{markdownContent}</Markdown>
+
+}`}
+language="tsx"
+/>
+
+## Tailwind Typography and not-prose
+
+The `CodeBlock` component includes the `not-prose` class by default to prevent Tailwind Typography's prose styling from affecting code blocks. This is important when using the [@tailwindcss/typography](https://github.com/tailwindlabs/tailwindcss-typography) plugin, which provides beautiful typography defaults but can interfere with code block styling.
+
+Since code blocks are styled with Shiki for syntax highlighting, they should not inherit Tailwind Typography styles. The `not-prose` class ensures that code blocks maintain their intended appearance regardless of the surrounding typography context.
+
+<CodeBlock
+  code={`<article className="prose">
+  <h1>My Content</h1>
+  <p>This content has prose styling applied.</p>
+  
+  {/* The CodeBlock has not-prose to prevent prose styling */}
+  <CodeBlock>
+    <CodeBlockCode code={code} language="javascript" />
+  </CodeBlock>
+</article>`}
+  language="tsx"
+/>
+
+## Customizing Syntax Highlighting
+
+The `CodeBlockCode` component uses [Shiki](https://shiki.matsu.io/) for syntax highlighting. You can customize the theme by passing a different theme name to the `theme` prop.
+
+Shiki supports many popular themes including:
+
+- github-light (default)
+- github-dark
+- dracula
+- nord
+- and more.
+
+For a complete list of supported themes, refer to the [Shiki documentation](https://github.com/shikijs/shiki/blob/main/docs/themes.md).
