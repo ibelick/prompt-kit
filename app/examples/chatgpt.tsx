@@ -55,6 +55,7 @@ export function PromptInputChatGPT() {
             <Button
               variant="ghost"
               size="icon"
+              aria-label="Attach files"
               className="border-input bg-background text-secondary-foreground hover:bg-secondary h-9 w-9 rounded-full border p-1 text-xs font-semibold focus-visible:outline-black [&_svg]:size-[18px]"
             >
               <Plus />
@@ -75,6 +76,7 @@ export function PromptInputChatGPT() {
             <Button
               variant="ghost"
               size="icon"
+              aria-label="Search the web"
               className="border-input bg-background text-secondary-foreground hover:bg-secondary h-9 w-auto rounded-full border p-2 text-xs font-semibold focus-visible:outline-black [&_svg]:size-[18px]"
             >
               <Globe />
@@ -96,6 +98,7 @@ export function PromptInputChatGPT() {
             <Button
               variant="ghost"
               size="icon"
+              aria-label="View tools"
               className="border-input bg-background text-secondary-foreground hover:bg-secondary h-9 w-9 rounded-full border p-1 text-xs font-semibold focus-visible:outline-black [&_svg]:size-[18px]"
             >
               <Ellipsis />
@@ -117,6 +120,7 @@ export function PromptInputChatGPT() {
           <Button
             variant="default"
             size="icon"
+            aria-label={isLoading ? "Stop generation" : "Send message"}
             className="h-9 w-9 rounded-full p-1 [&_svg]:size-6"
             onClick={handleSubmit}
           >

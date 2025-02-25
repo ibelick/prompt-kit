@@ -49,6 +49,7 @@ export function PromptInputMistralAI() {
         <div className="flex gap-1 px-0.5 text-xs">
           <Button
             variant="ghost"
+            aria-label="Attach files"
             className="ring-offset-background hover:bg-muted hover:text-muted-foreground flex h-8 w-auto items-center justify-center gap-1.5 rounded bg-transparent px-2 py-0 text-[12px] font-normal text-[hsl(240_5%_65%)] transition-colors [&_svg]:size-4"
           >
             <FileText />
@@ -57,6 +58,7 @@ export function PromptInputMistralAI() {
 
           <Button
             variant="ghost"
+            aria-label="Web search"
             className="ring-offset-background hover:bg-muted hover:text-muted-foreground flex h-8 w-auto items-center justify-center gap-1.5 rounded bg-transparent px-2 py-0 text-[12px] font-normal text-[hsl(240_5%_65%)] transition-colors [&_svg]:size-4"
           >
             <Globe />
@@ -65,6 +67,7 @@ export function PromptInputMistralAI() {
 
           <Button
             variant="ghost"
+            aria-label="Image generation"
             className="ring-offset-background hover:bg-muted hover:text-muted-foreground hidden h-8 w-auto items-center justify-center gap-1.5 rounded bg-transparent px-2 py-0 text-[12px] font-normal text-[hsl(240_5%_65%)] transition-colors sm:flex [&_svg]:size-4"
           >
             <Image />
@@ -87,6 +90,7 @@ export function PromptInputMistralAI() {
             <Button
               variant="ghost"
               size="icon"
+              aria-label="Attach files"
               className="h-10 w-10 rounded-lg rounded-bl-xl p-1 text-xs font-semibold text-[hsl(240_4%_46%)] hover:bg-transparent hover:text-[hsl(240_6%_10%)] focus-visible:outline-black dark:focus-visible:outline-white [&_svg]:size-5"
             >
               <Paperclip />
@@ -95,6 +99,7 @@ export function PromptInputMistralAI() {
           <Button
             variant="ghost"
             size="icon"
+            aria-label={isLoading ? "Stop generation" : "Send message"}
             className="h-10 w-10 rounded-none bg-[hsl(26_100%_92%)] p-1 text-[hsl(25_95%_53%)] hover:bg-[hsl(26_100%_92%)] hover:text-[hsl(25_95%_53%)] [&_svg]:size-5 [&_svg]:text-[hsl(25_95%_53%)] [&_svg]:hover:text-[hsl(25_95%_53%)]"
             onClick={handleSubmit}
             disabled={!input}

@@ -55,6 +55,7 @@ export function PromptInputDeepSeek() {
           >
             <Button
               variant="ghost"
+              aria-label="Use DeepThink (R1) to solve reasoning problems"
               className="h-7 w-auto gap-1 rounded-[14px] border border-[#0000001f] bg-[#fff] p-1 px-1.5 py-0 text-xs font-normal text-[#4c4c4c] hover:bg-[#E0E4ED] focus-visible:outline-black dark:focus-visible:outline-white [&_svg]:size-5"
             >
               <Atom />
@@ -75,6 +76,7 @@ export function PromptInputDeepSeek() {
           >
             <Button
               variant="ghost"
+              aria-label="Search the web when necessary"
               className="h-7 w-auto gap-1 rounded-[14px] border border-[#0000001f] bg-[#fff] p-1 px-1.5 py-0 text-xs font-normal text-[#4c4c4c] hover:bg-[#E0E4ED] focus-visible:outline-black dark:focus-visible:outline-white [&_svg]:size-5"
             >
               <Globe />
@@ -98,6 +100,7 @@ export function PromptInputDeepSeek() {
             <Button
               variant="ghost"
               size="icon"
+              aria-label="Attach files"
               className="h-8 w-8 rounded-lg p-1 text-xs font-semibold hover:bg-black/10 focus-visible:outline-black dark:focus-visible:outline-white [&_svg]:size-6"
             >
               <Paperclip className="[transform:rotateZ(45deg)_rotateY(180deg)]" />
@@ -118,6 +121,7 @@ export function PromptInputDeepSeek() {
             <Button
               variant="default"
               size="icon"
+              aria-label={isLoading ? "Stop generation" : "Send message"}
               className="h-8 w-8 rounded-full bg-[#4d6bfe] p-1 text-white hover:bg-[#2563eb] [&_svg]:size-6"
               onClick={handleSubmit}
               disabled={!input}

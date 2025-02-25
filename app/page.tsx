@@ -134,7 +134,11 @@ export default function Home() {
                 type="button"
               >
                 <span className="flex flex-row items-center gap-1">
-                  <img src={tab.img} alt={tab.label} className="h-auto w-4" />
+                  <img
+                    src={tab.img}
+                    alt={`${tab.label} logo`}
+                    className="h-auto w-4"
+                  />
                   {tab.label}
                 </span>
               </button>
