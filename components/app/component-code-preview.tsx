@@ -1,7 +1,7 @@
 import { extractCodeFromFilePath } from "@/lib/code"
 import { cn } from "@/lib/utils"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs"
-import CodePreview from "./code-preview"
+import { ClientCodeWrapper } from "./client-code-wrapper"
 import { CodeRenderer } from "./code-renderer"
 import ComponentPreview from "./component-preview"
 
@@ -45,9 +45,9 @@ export default function ComponentCodePreview({
           />
         </TabsContent>
         <TabsContent value="code">
-          <CodePreview code={fileContent}>
+          <ClientCodeWrapper code={fileContent}>
             <CodeRenderer code={fileContent} lang="tsx" />
-          </CodePreview>
+          </ClientCodeWrapper>
         </TabsContent>
       </Tabs>
     </div>

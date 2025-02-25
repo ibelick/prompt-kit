@@ -1,14 +1,15 @@
 "use client"
 
+import { cn } from "@/lib/utils"
 import { Check, Copy } from "lucide-react"
 import { useState } from "react"
 
-type CodePreviewProps = {
+type ClientCodeWrapperProps = {
   code: string
   children: React.ReactNode
 }
 
-export default function CodePreview({ code, children }: CodePreviewProps) {
+export function ClientCodeWrapper({ code, children }: ClientCodeWrapperProps) {
   const [hasCheckIcon, setHasCheckIcon] = useState(false)
 
   const onCopy = () => {
@@ -21,29 +22,31 @@ export default function CodePreview({ code, children }: CodePreviewProps) {
   }
 
   return (
-    <div className="relative rounded-md border border-zinc-200">
-      <div
-        className="absolute top-4 right-4 cursor-pointer bg-transparent p-2"
+    <div className="group relative">
+      <button
+        className="absolute top-3 right-3 p-2 opacity-0 transition-opacity group-hover:opacity-100"
         onClick={onCopy}
+        type="button"
+        aria-label="Copy code"
       >
         <div
-          className={`absolute inset-0 transform transition-all duration-300 ${
+          className={cn(
+            "absolute inset-0 transform transition-all duration-300",
             hasCheckIcon ? "scale-0 opacity-0" : "scale-100 opacity-100"
-          }`}
+          )}
         >
           <Copy className="h-4 w-4 text-zinc-400" />
         </div>
         <div
-          className={`absolute inset-0 transform transition-all duration-300 ${
+          className={cn(
+            "absolute inset-0 transform transition-all duration-300",
             hasCheckIcon ? "scale-100 opacity-100" : "scale-0 opacity-0"
-          }`}
+          )}
         >
           <Check className="h-4 w-4 text-zinc-400" />
         </div>
-      </div>
-      <div className="not-prose max-h-[650px] overflow-auto overflow-x-auto p-4 text-[13px]">
-        {children}
-      </div>
+      </button>
+      {children}
     </div>
   )
 }

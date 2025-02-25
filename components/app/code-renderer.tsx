@@ -9,5 +9,9 @@ export async function CodeRenderer({
 }) {
   const html = await codeToHtml({ code, lang })
 
-  return <div dangerouslySetInnerHTML={{ __html: html }} />
+  return (
+    <div className="not-prose max-h-[650px] overflow-auto overflow-x-auto rounded-md border border-zinc-200 p-4 text-[13px]">
+      <div dangerouslySetInnerHTML={{ __html: html }} />
+    </div>
+  )
 }

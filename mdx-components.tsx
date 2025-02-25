@@ -1,3 +1,4 @@
+import { ClientCodeWrapper } from "@/components/app/client-code-wrapper"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { codeToHtml } from "@/lib/shiki"
 import { cn } from "@/lib/utils"
@@ -22,11 +23,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       const html = await codeToHtml({ code: fileContent, lang: language })
 
       return (
-        <div
-          dangerouslySetInnerHTML={{ __html: html }}
-          className="not-prose bg-background overflow-scroll rounded-md border border-zinc-200 p-2 text-[13px]"
-          {...props}
-        />
+        <ClientCodeWrapper code={fileContent}>
+          <div
+            dangerouslySetInnerHTML={{ __html: html }}
+            className="not-prose bg-background overflow-scroll rounded-md border border-zinc-200 p-2 text-[13px]"
+            {...props}
+          />
+        </ClientCodeWrapper>
       )
     },
     Step: ({ className, children, ...props }: React.ComponentProps<"h3">) => (
