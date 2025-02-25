@@ -17,6 +17,26 @@ if (!fs.existsSync(registryHooks)) {
 for (const component of components) {
   const content = fs.readFileSync(component.path, "utf8")
 
+  const files = [
+    {
+      path: `${component.name}.tsx`,
+      content,
+      type: "registry:ui" as const,
+    },
+  ]
+
+  // Add additional files if specified in the component definition
+  if (component.files && component.files.length > 0) {
+    for (const file of component.files) {
+      const fileContent = fs.readFileSync(file.path, "utf8")
+      files.push({
+        path: file.name,
+        content: fileContent,
+        type: "registry:ui" as const,
+      })
+    }
+  }
+
   const schema = {
     name: component.name,
     type: "registry:ui",
@@ -29,13 +49,7 @@ for (const component of components) {
       dark: {},
     },
     description: component.description,
-    files: [
-      {
-        path: `${component.name}.tsx`,
-        content,
-        type: "registry:ui",
-      },
-    ],
+    files,
   } satisfies Schema
 
   fs.writeFileSync(

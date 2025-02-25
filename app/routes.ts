@@ -25,6 +25,21 @@ export const routes: Route[] = [
     label: "Prompt Input",
     order: 3,
   },
+  {
+    path: "/docs/message",
+    label: "Message",
+    order: 4,
+  },
+  {
+    path: "/docs/markdown",
+    label: "Markdown",
+    order: 5,
+  },
+  {
+    path: "/docs/code-block",
+    label: "Code Block",
+    order: 6,
+  },
 ]
 
 export function getNavigation(currentPath: string) {

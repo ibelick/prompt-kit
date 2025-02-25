@@ -1,0 +1,37 @@
+{
+  "name": "message",
+  "type": "registry:ui",
+  "registryDependencies": [
+    "avatar",
+    "tooltip"
+  ],
+  "dependencies": [
+    "react-markdown",
+    "remark-gfm",
+    "shiki"
+  ],
+  "devDependencies": [],
+  "tailwind": {},
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "description": "A component for displaying chat messages with support for avatars, markdown content, and interactive actions",
+  "files": [
+    {
+      "path": "message.tsx",
+      "content": "\"use client\"\n\nimport { Avatar, AvatarFallback, AvatarImage } from \"@/components/ui/avatar\"\nimport {\n  Tooltip,\n  TooltipContent,\n  TooltipProvider,\n  TooltipTrigger,\n} from \"@/components/ui/tooltip\"\nimport { cn } from \"@/lib/utils\"\nimport { Markdown } from \"./markdown\"\n\nexport type MessageProps = {\n  children: React.ReactNode\n  className?: string\n} & React.HTMLProps<HTMLDivElement>\n\nconst Message = ({ children, className, ...props }: MessageProps) => (\n  <div className={cn(\"flex gap-3\", className)} {...props}>\n    {children}\n  </div>\n)\n\nexport type MessageAvatarProps = {\n  src: string\n  alt: string\n  fallback?: string\n  delayMs?: number\n  className?: string\n}\n\nconst MessageAvatar = ({\n  src,\n  alt,\n  fallback,\n  delayMs,\n  className,\n}: MessageAvatarProps) => {\n  return (\n    <Avatar className={cn(\"h-8 w-8 shrink-0\", className)}>\n      <AvatarImage src={src} alt={alt} />\n      {fallback && (\n        <AvatarFallback delayMs={delayMs}>{fallback}</AvatarFallback>\n      )}\n    </Avatar>\n  )\n}\n\nexport type MessageContentProps = {\n  children: React.ReactNode\n  markdown?: boolean\n  className?: string\n} & React.ComponentProps<typeof Markdown> &\n  React.HTMLProps<HTMLDivElement>\n\nconst MessageContent = ({\n  children,\n  markdown = false,\n  className,\n  ...props\n}: MessageContentProps) => {\n  const classNames = cn(\n    \"rounded-lg p-2 text-foreground bg-secondary prose break-words whitespace-normal\",\n    className\n  )\n\n  return markdown ? (\n    <Markdown className={classNames} {...props}>\n      {children as string}\n    </Markdown>\n  ) : (\n    <div className={classNames} {...props}>\n      {children}\n    </div>\n  )\n}\n\nexport type MessageActionsProps = {\n  children: React.ReactNode\n  className?: string\n} & React.HTMLProps<HTMLDivElement>\n\nconst MessageActions = ({\n  children,\n  className,\n  ...props\n}: MessageActionsProps) => (\n  <div\n    className={cn(\"text-muted-foreground flex items-center gap-2\", className)}\n    {...props}\n  >\n    {children}\n  </div>\n)\n\nexport type MessageActionProps = {\n  className?: string\n  tooltip: React.ReactNode\n  children: React.ReactNode\n  side?: \"top\" | \"bottom\" | \"left\" | \"right\"\n} & React.ComponentProps<typeof Tooltip>\n\nconst MessageAction = ({\n  tooltip,\n  children,\n  className,\n  side = \"top\",\n  ...props\n}: MessageActionProps) => {\n  return (\n    <TooltipProvider>\n      <Tooltip {...props}>\n        <TooltipTrigger asChild>{children}</TooltipTrigger>\n        <TooltipContent side={side} className={className}>\n          {tooltip}\n        </TooltipContent>\n      </Tooltip>\n    </TooltipProvider>\n  )\n}\n\nexport { Message, MessageAvatar, MessageContent, MessageActions, MessageAction }\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "markdown.tsx",
+      "content": "import { cn } from \"@/lib/utils\"\nimport ReactMarkdown, { Components } from \"react-markdown\"\nimport remarkGfm from \"remark-gfm\"\nimport { CodeBlock, CodeBlockCode } from \"./code-block\"\n\nexport type MarkdownProps = {\n  children: string\n  className?: string\n  components?: Components\n} & React.ComponentProps<typeof ReactMarkdown>\n\nconst extractLanguage = (className?: string) => {\n  if (!className) return \"plaintext\"\n  const match = className.match(/language-(\\w+)/)\n  return match ? match[1] : \"plaintext\"\n}\n\nconst INITIAL_COMPONENTS: Partial<Components> = {\n  code: ({ className, children, ...props }: any) => {\n    const isInline =\n      !props.node?.position?.start.line ||\n      props.node?.position?.start.line === props.node?.position?.end.line\n\n    if (isInline) {\n      return (\n        <span\n          className={cn(\n            \"bg-primary-foreground rounded-sm px-1 font-mono text-sm\",\n            className\n          )}\n          {...props}\n        >\n          {children}\n        </span>\n      )\n    }\n\n    const language = extractLanguage(className)\n\n    return (\n      <CodeBlock className={className}>\n        <CodeBlockCode code={children as string} language={language} />\n      </CodeBlock>\n    )\n  },\n  pre: ({ children }) => <>{children}</>,\n}\n\nexport function Markdown({\n  children,\n  className,\n  components = INITIAL_COMPONENTS,\n  ...props\n}: MarkdownProps) {\n  return (\n    <ReactMarkdown\n      remarkPlugins={[remarkGfm]}\n      components={components}\n      className={className}\n      {...props}\n    >\n      {children}\n    </ReactMarkdown>\n  )\n}\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "code-block.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"@/lib/utils\"\nimport React, { useEffect, useState } from \"react\"\nimport { codeToHtml } from \"shiki\"\n\nexport type CodeBlockProps = {\n  children?: React.ReactNode\n  className?: string\n} & React.HTMLProps<HTMLDivElement>\n\nfunction CodeBlock({ children, className, ...props }: CodeBlockProps) {\n  return (\n    <div\n      className={cn(\n        \"not-prose flex w-full flex-col overflow-clip border\",\n        \"border-border bg-card text-card-foreground rounded-xl\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n    </div>\n  )\n}\n\nexport type CodeBlockCodeProps = {\n  code: string\n  language?: string\n  theme?: string\n  className?: string\n} & React.HTMLProps<HTMLDivElement>\n\nfunction CodeBlockCode({\n  code,\n  language = \"tsx\",\n  theme = \"github-light\",\n  className,\n  ...props\n}: CodeBlockCodeProps) {\n  const [highlightedHtml, setHighlightedHtml] = useState<string | null>(null)\n\n  useEffect(() => {\n    async function highlight() {\n      const html = await codeToHtml(code, { lang: language, theme })\n      setHighlightedHtml(html)\n    }\n    highlight()\n  }, [code, language, theme])\n\n  const classNames = cn(\n    \"w-full overflow-x-auto text-[13px] [&>pre]:px-4 [&>pre]:py-4\",\n    className\n  )\n\n  // SSR fallback: render plain code if not hydrated yet\n  return highlightedHtml ? (\n    <div\n      className={classNames}\n      dangerouslySetInnerHTML={{ __html: highlightedHtml }}\n      {...props}\n    />\n  ) : (\n    <div className={classNames} {...props}>\n      <pre>\n        <code>{code}</code>\n      </pre>\n    </div>\n  )\n}\n\nexport type CodeBlockGroupProps = React.HTMLAttributes<HTMLDivElement>\n\nfunction CodeBlockGroup({\n  children,\n  className,\n  ...props\n}: CodeBlockGroupProps) {\n  return (\n    <div\n      className={cn(\"flex items-center justify-between\", className)}\n      {...props}\n    >\n      {children}\n    </div>\n  )\n}\n\nexport { CodeBlockGroup, CodeBlockCode, CodeBlock }\n",
+      "type": "registry:ui"
+    }
+  ]
+}
