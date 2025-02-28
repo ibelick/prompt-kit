@@ -54,6 +54,12 @@ export const routes: Route[] = [
     order: 7,
     type: "component",
   },
+  {
+    path: "/docs/scroll-button",
+    label: "Scroll Button",
+    order: 8,
+    type: "component",
+  },
 ]
 
 export function getNavigation(currentPath: string) {

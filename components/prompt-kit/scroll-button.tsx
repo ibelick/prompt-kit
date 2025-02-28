@@ -7,8 +7,8 @@ import { ChevronDown } from "lucide-react"
 import { useEffect, useState } from "react"
 
 export type ScrollButtonProps = {
-  scrollRef: React.RefObject<HTMLElement>
-  containerRef: React.RefObject<HTMLElement>
+  scrollRef: React.RefObject<HTMLElement | null>
+  containerRef: React.RefObject<HTMLElement | null>
   className?: string
   threshold?: number
   variant?: VariantProps<typeof buttonVariants>["variant"]
@@ -19,7 +19,7 @@ function ScrollButton({
   scrollRef,
   containerRef,
   className,
-  threshold = 50,
+  threshold = 100,
   variant = "outline",
   size = "sm",
   ...props
@@ -46,11 +46,14 @@ function ScrollButton({
         container.removeEventListener("scroll", handleScroll)
       }
     }
-  }, [containerRef])
+  }, [containerRef, threshold])
 
   const handleScroll = () => {
-    if (scrollRef?.current) {
-      scrollRef.current.scrollIntoView({ behavior: "smooth" })
+    if (containerRef.current) {
+      containerRef.current.scrollTo({
+        top: containerRef.current.scrollHeight,
+        behavior: "smooth",
+      })
     }
   }
 

@@ -1,0 +1,88 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { ScrollButtonBasic } from "./scroll-button-basic"
+import { ScrollButtonCustom } from "./scroll-button-custom"
+import { ScrollButtonWithChat } from "./scroll-button-with-chat"
+
+# Scroll Button
+
+A floating button component that appears when users scroll up in a container, allowing them to quickly return to the bottom of the content with a single click.
+
+## Examples
+
+### Basic Scroll Button
+
+A simple implementation of the scroll button that appears when scrolling up and disappears when at the bottom of the container.
+
+<ComponentCodePreview
+  component={<ScrollButtonBasic />}
+  filePath="app/docs/scroll-button/scroll-button-basic.tsx"
+  classNameComponentContainer="p-0"
+/>
+
+### Custom Scroll Button
+
+Customize the appearance and behavior of the scroll button with different variants, sizes, and threshold values.
+
+<ComponentCodePreview
+  component={<ScrollButtonCustom />}
+  filePath="app/docs/scroll-button/scroll-button-custom.tsx"
+  classNameComponentContainer="p-0"
+/>
+
+### With Chat Container
+
+The ScrollButton works perfectly with ChatContainer for chat interfaces, providing an easy way for users to navigate long conversations.
+
+<ComponentCodePreview
+  component={<ScrollButtonWithChat />}
+  filePath="app/docs/scroll-button/scroll-button-with-chat.tsx"
+  classNameComponentContainer="p-0"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/scroll-button.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/scroll-button.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### ScrollButton
+
+| Prop         | Type                                            | Default   | Description                                          |
+| :----------- | :---------------------------------------------- | :-------- | :--------------------------------------------------- |
+| scrollRef    | React.RefObject\<HTMLElement\>                  |           | Reference to the element to scroll to                |
+| containerRef | React.RefObject\<HTMLElement\>                  |           | Reference to the scrollable container                |
+| className    | string                                          |           | Additional CSS classes                               |
+| threshold    | number                                          | 50        | Distance from bottom (in px) to show/hide the button |
+| variant      | "default" \| "outline" \| "ghost" \| etc.       | "outline" | Button variant from your UI button component         |
+| size         | "default" \| "sm" \| "lg" \| etc.               | "sm"      | Button size from your UI button component            |
+| ...props     | React.ButtonHTMLAttributes\<HTMLButtonElement\> |           | All other button props                               |
