@@ -18,36 +18,21 @@ import { usePathname } from "next/navigation"
 import { useEffect } from "react"
 import { Footer } from "./footer"
 import { Header } from "./header"
+import { routes } from "./routes"
 
-const coreMenuItems = [
-  {
-    title: "Introduction",
-    url: "/docs/introduction",
-  },
-  {
-    title: "Installation",
-    url: "/docs/installation",
-  },
-]
+const coreMenuItems = routes
+  .filter((route) => route.type === "core")
+  .map((route) => ({
+    title: route.label,
+    url: route.path,
+  }))
 
-const componentsMenuItems = [
-  {
-    title: "Prompt Input",
-    url: "/docs/prompt-input",
-  },
-  {
-    title: "Message",
-    url: "/docs/message",
-  },
-  {
-    title: "Markdown",
-    url: "/docs/markdown",
-  },
-  {
-    title: "Code Block",
-    url: "/docs/code-block",
-  },
-]
+const componentsMenuItems = routes
+  .filter((route) => route.type === "component")
+  .map((route) => ({
+    title: route.label,
+    url: route.path,
+  }))
 
 const socialMenuItems = [
   {

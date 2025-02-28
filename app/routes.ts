@@ -2,6 +2,7 @@ export type Route = {
   path: string
   label: string
   order: number
+  type: "component" | "core"
 }
 
 export const routes: Route[] = [
@@ -9,36 +10,49 @@ export const routes: Route[] = [
     path: "/",
     label: "Home",
     order: 0,
+    type: "core",
   },
   {
     path: "/docs/introduction",
     label: "Documentation",
     order: 1,
+    type: "core",
   },
   {
     path: "/docs/installation",
     label: "Installation",
     order: 2,
+    type: "core",
   },
   {
     path: "/docs/prompt-input",
     label: "Prompt Input",
     order: 3,
+    type: "component",
   },
   {
     path: "/docs/message",
     label: "Message",
     order: 4,
+    type: "component",
   },
   {
     path: "/docs/markdown",
     label: "Markdown",
     order: 5,
+    type: "component",
   },
   {
     path: "/docs/code-block",
     label: "Code Block",
     order: 6,
+    type: "component",
+  },
+  {
+    path: "/docs/chat-container",
+    label: "Chat Container",
+    order: 7,
+    type: "component",
   },
 ]
 
