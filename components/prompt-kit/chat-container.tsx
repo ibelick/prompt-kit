@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from "react"
 
 const useAutoScroll = (
   containerRef: React.RefObject<HTMLDivElement>,
-  bottomRef: React.RefObject<HTMLDivElement>,
   enabled: boolean
 ) => {
   const [autoScrollEnabled, setAutoScrollEnabled] = useState(true)
@@ -18,15 +17,50 @@ const useAutoScroll = (
   }
 
   const scrollToBottom = (behavior: ScrollBehavior = "smooth") => {
-    if (bottomRef?.current) {
-      autoScrollingRef.current = true
-      bottomRef.current.scrollIntoView({ behavior })
-      setTimeout(
-        () => {
+    const container = containerRef.current
+    if (!container) return
+
+    autoScrollingRef.current = true
+
+    const targetScrollTop = container.scrollHeight - container.clientHeight
+
+    if (behavior === "smooth") {
+      container.scrollTo({
+        top: targetScrollTop,
+        behavior: "smooth",
+      })
+
+      const checkScrollEnd = () => {
+        if (Math.abs(container.scrollTop - targetScrollTop) < 2) {
           autoScrollingRef.current = false
-        },
-        behavior === "smooth" ? 300 : 50
-      )
+          return
+        }
+
+        requestAnimationFrame(checkScrollEnd)
+      }
+
+      requestAnimationFrame(checkScrollEnd)
+
+      const safetyTimeout = setTimeout(() => {
+        autoScrollingRef.current = false
+      }, 500)
+
+      try {
+        const handleScrollEnd = () => {
+          autoScrollingRef.current = false
+          clearTimeout(safetyTimeout)
+          container.removeEventListener("scrollend", handleScrollEnd)
+        }
+
+        container.addEventListener("scrollend", handleScrollEnd, {
+          once: true,
+        })
+      } catch (e) {
+        // scrollend event not supported in this browser, fallback to requestAnimationFrame
+      }
+    } else {
+      container.scrollTop = targetScrollTop
+      autoScrollingRef.current = false
     }
   }
 
@@ -124,7 +158,6 @@ function ChatContainer({
 
   const { autoScrollEnabled, scrollToBottom, isScrolling } = useAutoScroll(
     containerRef,
-    bottomRef,
     autoScroll
   )
 
