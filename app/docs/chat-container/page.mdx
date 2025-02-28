@@ -1,0 +1,129 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { ChatBasic } from "./chat-basic"
+import { ChatWithCustomScroll } from "./chat-with-custom-scroll"
+
+# Chat Container
+
+A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth and responsive user experience in conversation interfaces.
+
+## Examples
+
+### Chat with Custom Scroll Behavior
+
+Customize the auto-scroll behavior by toggling the auto-scroll feature on or off. This example demonstrates how to give users control over the scrolling behavior.
+
+<ComponentCodePreview
+  component={<ChatWithCustomScroll />}
+  filePath="app/docs/chat-container/chat-with-custom-scroll.tsx"
+  classNameComponentContainer="p-0"
+/>
+
+### Streaming Text Example
+
+A chat container that demonstrates text streaming with automatic scrolling. Click the "Show Streaming" button to see a simulated streaming response with the smart auto-scroll behavior in action.
+
+<ComponentCodePreview
+  component={<ChatBasic />}
+  filePath="app/docs/chat-container/chat-basic.tsx"
+  classNameComponentContainer="p-0"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/chat-container.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/chat-container.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### ChatContainer
+
+| Prop        | Type                                   | Default | Description                                                 |
+| :---------- | :------------------------------------- | :------ | :---------------------------------------------------------- |
+| children    | React.ReactNode                        |         | Child components to render inside the container             |
+| className   | string                                 |         | Additional CSS classes                                      |
+| autoScroll  | boolean                                | true    | Whether to automatically scroll to bottom on content change |
+| scrollToRef | React.RefObject\<HTMLDivElement\>      |         | Optional custom reference for scroll target                 |
+| ...props    | React.HTMLAttributes\<HTMLDivElement\> |         | All other div props                                         |
+
+## Smart Auto-Scroll Behavior
+
+The ChatContainer component implements intelligent auto-scroll behavior that:
+
+1. Automatically scrolls to the bottom when new content is added
+2. Disables auto-scrolling when the user manually scrolls up
+3. Re-enables auto-scrolling when the user scrolls back to the bottom
+4. Handles both mouse wheel and touch interactions
+
+This behavior is particularly useful for chat applications where you want to show new messages as they arrive, but don't want to interrupt the user if they're reading previous messages.
+
+## Using with ScrollButton
+
+The ChatContainer pairs well with the ScrollButton component to provide a complete chat interface experience:
+
+<CodeBlock
+  code={`import { useRef } from "react"
+import { ChatContainer } from "@/components/prompt-kit/chat-container"
+import { ScrollButton } from "@/components/prompt-kit/scroll-button"
+
+function ChatInterface() {
+const containerRef = useRef<HTMLDivElement>(null)
+const bottomRef = useRef<HTMLDivElement>(null)
+
+return (
+
+<div className="relative h-[500px]">
+<ChatContainer ref={containerRef}>
+{/* Your chat messages here */}
+</ChatContainer>
+
+      <div className="absolute bottom-4 right-4">
+        <ScrollButton
+          containerRef={containerRef}
+          scrollRef={bottomRef}
+        />
+      </div>
+    </div>
+
+)
+}`}
+language="tsx"
+/>
+
+## Performance Considerations
+
+The ChatContainer component is optimized for performance in chat applications:
+
+1. Uses passive event listeners to avoid blocking the main thread
+2. Implements efficient scroll detection with browser-native APIs
+3. Uses `requestAnimationFrame` for smooth scrolling animations
+
+For large chat histories, consider implementing virtualization or pagination to maintain performance.
