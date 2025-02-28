@@ -57,3 +57,45 @@ for (const component of components) {
     JSON.stringify(schema, null, 2)
   )
 }
+
+// Generate consolidated registry.json file in shadcn/ui format
+const registryItems = components.map((component) => {
+  const componentFiles = [
+    {
+      path: `components/prompt-kit/${path.basename(component.path)}`,
+      type: "registry:component"
+    }
+  ]
+
+  // Add additional files if specified
+  if (component.files && component.files.length > 0) {
+    for (const file of component.files) {
+      componentFiles.push({
+        path: `components/prompt-kit/${file.name}`,
+        type: "registry:component"
+      })
+    }
+  }
+
+  return {
+    name: component.name,
+    type: "registry:block",
+    title: component.name.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+    description: component.description,
+    files: componentFiles
+  }
+})
+
+const registry = {
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "prompt-kit",
+  "homepage": "https://prompt-kit.com",
+  "items": registryItems
+}
+
+fs.writeFileSync(
+  path.join(registryComponents, "registry.json"),
+  JSON.stringify(registry, null, 2)
+)
+
+console.log(`Registry files generated in ${registryComponents}`)

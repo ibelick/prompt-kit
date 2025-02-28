@@ -1,0 +1,91 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "prompt-kit",
+  "homepage": "https://prompt-kit.com",
+  "items": [
+    {
+      "name": "prompt-input",
+      "type": "registry:block",
+      "title": "Prompt Input",
+      "description": "An input field designed for chat interfaces, allowing users to enter and submit text prompts to an AI model",
+      "files": [
+        {
+          "path": "components/prompt-kit/prompt-input.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "code-block",
+      "type": "registry:block",
+      "title": "Code Block",
+      "description": "A component for displaying code snippets with syntax highlighting and customizable styling",
+      "files": [
+        {
+          "path": "components/prompt-kit/code-block.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "markdown",
+      "type": "registry:block",
+      "title": "Markdown",
+      "description": "A component for rendering Markdown content with support for code blocks, GFM, and custom styling",
+      "files": [
+        {
+          "path": "components/prompt-kit/markdown.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/prompt-kit/code-block.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "message",
+      "type": "registry:block",
+      "title": "Message",
+      "description": "A component for displaying chat messages with support for avatars, markdown content, and interactive actions",
+      "files": [
+        {
+          "path": "components/prompt-kit/message.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/prompt-kit/markdown.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/prompt-kit/code-block.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "chat-container",
+      "type": "registry:block",
+      "title": "Chat Container",
+      "description": "A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth and responsive user experience",
+      "files": [
+        {
+          "path": "components/prompt-kit/chat-container.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "scroll-button",
+      "type": "registry:block",
+      "title": "Scroll Button",
+      "description": "A floating button component that appears when users scroll up in a container, allowing them to quickly return to the bottom of the content",
+      "files": [
+        {
+          "path": "components/prompt-kit/scroll-button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}
