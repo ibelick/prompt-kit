@@ -66,4 +66,19 @@ export const components: ComponentDefinition[] = [
       },
     ],
   },
+  {
+    name: "chat-container",
+    description:
+      "A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth and responsive user experience",
+    path: path.join(__dirname, "../components/prompt-kit/chat-container.tsx"),
+    registryDependencies: [],
+  },
+  {
+    name: "scroll-button",
+    description:
+      "A floating button component that appears when users scroll up in a container, allowing them to quickly return to the bottom of the content",
+    path: path.join(__dirname, "../components/prompt-kit/scroll-button.tsx"),
+    registryDependencies: ["button"],
+    dependencies: ["class-variance-authority", "lucide-react"],
+  },
 ]
