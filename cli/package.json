@@ -1,0 +1,29 @@
+{
+  "name": "prompt-kit",
+  "version": "1.0.0",
+  "description": "CLI to add prompt-kit components to your AI app",
+  "bin": {
+    "prompt-kit": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "commander": "^9.4.1",
+    "ora": "6.3.1",
+    "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.5",
+    "@types/node": "^18.0.0",
+    "@types/node-fetch": "^2.6.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ibelick/prompt-kit.git",
+    "directory": "cli"
+  },
+  "author": "ibelick",
+  "license": "MIT"
+}
