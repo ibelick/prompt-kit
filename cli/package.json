@@ -1,5 +1,5 @@
 {
-  "name": "@ibelick/prompt-kit",
+  "name": "prompt-kit-cli",
   "version": "1.0.0",
   "description": "CLI to add prompt-kit components to your AI app",
   "bin": {
