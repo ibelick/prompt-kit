@@ -125,7 +125,7 @@ export function ScrollButtonWithChat() {
                   fallback="AI"
                 />
               )}
-              <div className="flex-1">
+              <div className="max-w-[85%] flex-1 sm:max-w-[75%]">
                 {isAssistant ? (
                   <div className="bg-secondary text-foreground prose rounded-lg p-2">
                     <Markdown>{message.content}</Markdown>
