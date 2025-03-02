@@ -1,0 +1,85 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { LoaderBasic } from "./loader-basic"
+import { LoaderSizes } from "./loader-sizes"
+import { LoaderWithText } from "./loader-with-text"
+
+# Loader
+
+A loading component with multiple variants to indicate processing states and provide visual feedback to users during wait times.
+
+## Examples
+
+### Basic Loader
+
+Showcasing all available loader variants with default settings.
+
+<ComponentCodePreview
+  component={<LoaderBasic />}
+  filePath="app/docs/loader/loader-basic.tsx"
+  classNameComponentContainer="p-0"
+/>
+
+### Loader Sizes
+
+Customize the size of any loader variant with predefined size options.
+
+<ComponentCodePreview
+  component={<LoaderSizes />}
+  filePath="app/docs/loader/loader-sizes.tsx"
+  classNameComponentContainer="p-0"
+/>
+
+### Loader With Text
+
+Some loader variants support displaying custom text while loading.
+
+<ComponentCodePreview
+  component={<LoaderWithText />}
+  filePath="app/docs/loader/loader-with-text.tsx"
+  classNameComponentContainer="p-0"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/loader.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/loader.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### Loader
+
+| Prop      | Type                                                                                                                                                          | Default    | Description                              |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ | :--------- | :--------------------------------------- |
+| variant   | "circular" \| "classic" \| "pulse" \| "pulse-dot" \| "dots" \| "typing" \| "wave" \| "bars" \| "terminal" \| "text-blink" \| "text-shimmer" \| "loading-dots" | "circular" | The visual style of the loader           |
+| size      | "sm" \| "md" \| "lg"                                                                                                                                          | "md"       | The size of the loader                   |
+| text      | string                                                                                                                                                        |            | Text to display (for supported variants) |
+| className | string                                                                                                                                                        |            | Additional CSS classes                   |
