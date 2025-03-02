@@ -60,6 +60,12 @@ export const routes: Route[] = [
     order: 8,
     type: "component",
   },
+  {
+    path: "/docs/loader",
+    label: "Loader",
+    order: 9,
+    type: "component",
+  },
 ]
 
 export function getNavigation(currentPath: string) {
