@@ -63,7 +63,7 @@ function AppSidebar() {
         )}
       >
         <SidebarHeader className="hidden md:block">
-          <Link href="/">
+          <Link href="/" className="flex items-center">
             <h1 className="px-2 text-sm">prompt-kit</h1>
           </Link>
         </SidebarHeader>

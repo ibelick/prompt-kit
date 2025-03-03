@@ -27,12 +27,3 @@ After installation, import and start using the components in your project:
 ```tsx
 import { PromptInput } from "@/components/ui/prompt-input"
 ```
-
-## Available Components
-
-- PromptInput – A customizable input for AI prompts
-- Message – Display chat messages
-- Markdown – Render rich Markdown content.
-- CodeBlock – Display syntax-highlighted code blocks.
-
-More components will be released regularly.
