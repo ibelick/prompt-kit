@@ -1,0 +1,135 @@
+{
+  "name": "loader",
+  "type": "registry:ui",
+  "registryDependencies": [
+    "button"
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "tailwind": {
+    "config": {
+      "theme": {
+        "keyframes": {
+          "typing": {
+            "0%, 100%": {
+              "transform": "translateY(0)",
+              "opacity": 0.5
+            },
+            "50%": {
+              "transform": "translateY(-2px)",
+              "opacity": 1
+            }
+          },
+          "loading-dots": {
+            "0%, 100%": {
+              "opacity": 0
+            },
+            "50%": {
+              "opacity": 1
+            }
+          },
+          "wave": {
+            "0%, 100%": {
+              "transform": "scaleY(1)"
+            },
+            "50%": {
+              "transform": "scaleY(0.6)"
+            }
+          },
+          "blink": {
+            "0%, 100%": {
+              "opacity": 1
+            },
+            "50%": {
+              "opacity": 0
+            }
+          }
+        },
+        "text-blink": {
+          "0%, 100%": {
+            "color": "var(--primary)"
+          },
+          "50%": {
+            "color": "var(--muted-foreground)"
+          }
+        },
+        "bounce-dots": {
+          "0%, 100%": {
+            "transform": "scale(0.8)",
+            "opacity": 0.5
+          },
+          "50%": {
+            "transform": "scale(1.2)",
+            "opacity": 1
+          }
+        },
+        "thin-pulse": {
+          "0%, 100%": {
+            "transform": "scale(0.95)",
+            "opacity": 0.8
+          },
+          "50%": {
+            "transform": "scale(1.05)",
+            "opacity": 0.4
+          }
+        },
+        "pulse-dot": {
+          "0%, 100%": {
+            "transform": "scale(1)",
+            "opacity": 0.8
+          },
+          "50%": {
+            "transform": "scale(1.5)",
+            "opacity": 1
+          }
+        },
+        "shimmer-text": {
+          "0%": {
+            "backgroundPosition": "150% center"
+          },
+          "100%": {
+            "backgroundPosition": "-150% center"
+          }
+        },
+        "wave-bars": {
+          "0%, 100%": {
+            "transform": "scaleY(1)",
+            "opacity": 0.5
+          },
+          "50%": {
+            "transform": "scaleY(0.6)",
+            "opacity": 1
+          }
+        },
+        "shimmer": {
+          "0%": {
+            "backgroundPosition": "200% 50%"
+          },
+          "100%": {
+            "backgroundPosition": "-200% 50%"
+          }
+        },
+        "spinner-fade": {
+          "0%": {
+            "opacity": 0
+          },
+          "100%": {
+            "opacity": 1
+          }
+        }
+      }
+    }
+  },
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "description": "A component for displaying a loading indicator with multiple variants and customizable styling",
+  "files": [
+    {
+      "path": "loader.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"@/lib/utils\"\nimport React from \"react\"\n\nexport interface LoaderProps {\n  variant?:\n    | \"circular\"\n    | \"classic\"\n    | \"pulse\"\n    | \"pulse-dot\"\n    | \"dots\"\n    | \"typing\"\n    | \"wave\"\n    | \"bars\"\n    | \"terminal\"\n    | \"text-blink\"\n    | \"text-shimmer\"\n    | \"loading-dots\"\n  size?: \"sm\" | \"md\" | \"lg\"\n  text?: string\n  className?: string\n}\n\nexport function CircularLoader({\n  className,\n  size = \"md\",\n}: {\n  className?: string\n  size?: \"sm\" | \"md\" | \"lg\"\n}) {\n  const sizeClasses = {\n    sm: \"size-4\",\n    md: \"size-5\",\n    lg: \"size-6\",\n  }\n\n  return (\n    <div\n      className={cn(\n        \"border-primary animate-spin rounded-full border-2 border-t-transparent\",\n        sizeClasses[size],\n        className\n      )}\n    >\n      <span className=\"sr-only\">Loading</span>\n    </div>\n  )\n}\n\nexport function ClassicLoader({\n  className,\n  size = \"md\",\n}: {\n  className?: string\n  size?: \"sm\" | \"md\" | \"lg\"\n}) {\n  const sizeClasses = {\n    sm: \"size-4\",\n    md: \"size-5\",\n    lg: \"size-6\",\n  }\n\n  const barSizes = {\n    sm: { height: \"6px\", width: \"1.5px\" },\n    md: { height: \"8px\", width: \"2px\" },\n    lg: { height: \"10px\", width: \"2.5px\" },\n  }\n\n  return (\n    <div className={cn(\"relative\", sizeClasses[size], className)}>\n      <div className=\"absolute h-full w-full\">\n        {[...Array(12)].map((_, i) => (\n          <div\n            key={i}\n            className=\"bg-primary absolute animate-[spinner-fade_1.2s_linear_infinite] rounded-full\"\n            style={{\n              top: \"0\",\n              left: \"50%\",\n              marginLeft:\n                size === \"sm\" ? \"-0.75px\" : size === \"lg\" ? \"-1.25px\" : \"-1px\",\n              transformOrigin: `${size === \"sm\" ? \"0.75px\" : size === \"lg\" ? \"1.25px\" : \"1px\"} ${size === \"sm\" ? \"10px\" : size === \"lg\" ? \"14px\" : \"12px\"}`,\n              transform: `rotate(${i * 30}deg)`,\n              opacity: 0,\n              animationDelay: `${i * 0.1}s`,\n              height: barSizes[size].height,\n              width: barSizes[size].width,\n            }}\n          />\n        ))}\n      </div>\n      <span className=\"sr-only\">Loading</span>\n    </div>\n  )\n}\n\nexport function PulseLoader({\n  className,\n  size = \"md\",\n}: {\n  className?: string\n  size?: \"sm\" | \"md\" | \"lg\"\n}) {\n  const sizeClasses = {\n    sm: \"size-4\",\n    md: \"size-5\",\n    lg: \"size-6\",\n  }\n\n  return (\n    <div className={cn(\"relative\", sizeClasses[size], className)}>\n      <div className=\"border-primary absolute inset-0 animate-[thin-pulse_1.5s_ease-in-out_infinite] rounded-full border-2\" />\n      <span className=\"sr-only\">Loading</span>\n    </div>\n  )\n}\n\nexport function PulseDotLoader({\n  className,\n  size = \"md\",\n}: {\n  className?: string\n  size?: \"sm\" | \"md\" | \"lg\"\n}) {\n  const sizeClasses = {\n    sm: \"size-1\",\n    md: \"size-2\",\n    lg: \"size-3\",\n  }\n\n  return (\n    <div\n      className={cn(\n        \"bg-primary animate-[pulse-dot_1.2s_ease-in-out_infinite] rounded-full\",\n        sizeClasses[size],\n        className\n      )}\n    >\n      <span className=\"sr-only\">Loading</span>\n    </div>\n  )\n}\n\nexport function DotsLoader({\n  className,\n  size = \"md\",\n}: {\n  className?: string\n  size?: \"sm\" | \"md\" | \"lg\"\n}) {\n  const dotSizes = {\n    sm: \"h-1.5 w-1.5\",\n    md: \"h-2 w-2\",\n    lg: \"h-2.5 w-2.5\",\n  }\n\n  const containerSizes = {\n    sm: \"h-4\",\n    md: \"h-5\",\n    lg: \"h-6\",\n  }\n\n  return (\n    <div\n      className={cn(\n        \"flex items-center space-x-1\",\n        containerSizes[size],\n        className\n      )}\n    >\n      {[...Array(3)].map((_, i) => (\n        <div\n          key={i}\n          className={cn(\n            \"bg-primary animate-[bounce-dots_1.4s_ease-in-out_infinite] rounded-full\",\n            dotSizes[size]\n          )}\n          style={{\n            animationDelay: `${i * 160}ms`,\n          }}\n        />\n      ))}\n      <span className=\"sr-only\">Loading</span>\n    </div>\n  )\n}\n\nexport function TypingLoader({\n  className,\n  size = \"md\",\n}: {\n  className?: string\n  size?: \"sm\" | \"md\" | \"lg\"\n}) {\n  const dotSizes = {\n    sm: \"h-1 w-1\",\n    md: \"h-1.5 w-1.5\",\n    lg: \"h-2 w-2\",\n  }\n\n  const containerSizes = {\n    sm: \"h-4\",\n    md: \"h-5\",\n    lg: \"h-6\",\n  }\n\n  return (\n    <div\n      className={cn(\n        \"flex items-center space-x-1\",\n        containerSizes[size],\n        className\n      )}\n    >\n      {[...Array(3)].map((_, i) => (\n        <div\n          key={i}\n          className={cn(\n            \"bg-primary animate-[typing_1s_infinite] rounded-full\",\n            dotSizes[size]\n          )}\n          style={{\n            animationDelay: `${i * 250}ms`,\n          }}\n        />\n      ))}\n      <span className=\"sr-only\">Loading</span>\n    </div>\n  )\n}\n\nexport function WaveLoader({\n  className,\n  size = \"md\",\n}: {\n  className?: string\n  size?: \"sm\" | \"md\" | \"lg\"\n}) {\n  const barWidths = {\n    sm: \"w-0.5\",\n    md: \"w-0.5\",\n    lg: \"w-1\",\n  }\n\n  const containerSizes = {\n    sm: \"h-4\",\n    md: \"h-5\",\n    lg: \"h-6\",\n  }\n\n  const heights = {\n    sm: [\"6px\", \"9px\", \"12px\", \"9px\", \"6px\"],\n    md: [\"8px\", \"12px\", \"16px\", \"12px\", \"8px\"],\n    lg: [\"10px\", \"15px\", \"20px\", \"15px\", \"10px\"],\n  }\n\n  return (\n    <div\n      className={cn(\n        \"flex items-center gap-0.5\",\n        containerSizes[size],\n        className\n      )}\n    >\n      {[...Array(5)].map((_, i) => (\n        <div\n          key={i}\n          className={cn(\n            \"bg-primary animate-[wave_1s_ease-in-out_infinite] rounded-full\",\n            barWidths[size]\n          )}\n          style={{\n            animationDelay: `${i * 100}ms`,\n            height: heights[size][i],\n          }}\n        />\n      ))}\n      <span className=\"sr-only\">Loading</span>\n    </div>\n  )\n}\n\nexport function BarsLoader({\n  className,\n  size = \"md\",\n}: {\n  className?: string\n  size?: \"sm\" | \"md\" | \"lg\"\n}) {\n  const barWidths = {\n    sm: \"w-1\",\n    md: \"w-1.5\",\n    lg: \"w-2\",\n  }\n\n  const containerSizes = {\n    sm: \"h-4 gap-1\",\n    md: \"h-5 gap-1.5\",\n    lg: \"h-6 gap-2\",\n  }\n\n  return (\n    <div className={cn(\"flex\", containerSizes[size], className)}>\n      {[...Array(3)].map((_, i) => (\n        <div\n          key={i}\n          className={cn(\n            \"bg-primary h-full animate-[wave-bars_1.2s_ease-in-out_infinite]\",\n            barWidths[size]\n          )}\n          style={{\n            animationDelay: `${i * 0.2}s`,\n          }}\n        />\n      ))}\n      <span className=\"sr-only\">Loading</span>\n    </div>\n  )\n}\n\nexport function TerminalLoader({\n  className,\n  size = \"md\",\n}: {\n  className?: string\n  size?: \"sm\" | \"md\" | \"lg\"\n}) {\n  const cursorSizes = {\n    sm: \"h-3 w-1.5\",\n    md: \"h-4 w-2\",\n    lg: \"h-5 w-2.5\",\n  }\n\n  const textSizes = {\n    sm: \"text-xs\",\n    md: \"text-sm\",\n    lg: \"text-base\",\n  }\n\n  const containerSizes = {\n    sm: \"h-4\",\n    md: \"h-5\",\n    lg: \"h-6\",\n  }\n\n  return (\n    <div\n      className={cn(\n        \"flex items-center space-x-1\",\n        containerSizes[size],\n        className\n      )}\n    >\n      <span className={cn(\"text-primary font-mono\", textSizes[size])}>\n        {\">\"}\n      </span>\n      <div\n        className={cn(\n          \"bg-primary animate-[blink_1s_step-end_infinite]\",\n          cursorSizes[size]\n        )}\n      />\n      <span className=\"sr-only\">Loading</span>\n    </div>\n  )\n}\n\nexport function TextBlinkLoader({\n  text = \"Thinking\",\n  className,\n  size = \"md\",\n}: {\n  text?: string\n  className?: string\n  size?: \"sm\" | \"md\" | \"lg\"\n}) {\n  const textSizes = {\n    sm: \"text-xs\",\n    md: \"text-sm\",\n    lg: \"text-base\",\n  }\n\n  return (\n    <div\n      className={cn(\n        \"animate-[text-blink_2s_ease-in-out_infinite] font-medium\",\n        textSizes[size],\n        className\n      )}\n    >\n      {text}\n    </div>\n  )\n}\n\nexport function TextShimmerLoader({\n  text = \"Thinking\",\n  className,\n  size = \"md\",\n}: {\n  text?: string\n  className?: string\n  size?: \"sm\" | \"md\" | \"lg\"\n}) {\n  const textSizes = {\n    sm: \"text-xs\",\n    md: \"text-sm\",\n    lg: \"text-base\",\n  }\n\n  return (\n    <div\n      className={cn(\n        \"bg-[linear-gradient(to_right,var(--muted-foreground)_40%,var(--foreground)_60%,var(--muted-foreground)_80%)]\",\n        \"bg-[200%_auto] bg-clip-text font-medium text-transparent\",\n        \"animate-[shimmer_4s_infinite_linear]\",\n        textSizes[size],\n        className\n      )}\n    >\n      {text}\n    </div>\n  )\n}\n\nexport function TextDotsLoader({\n  className,\n  text = \"Thinking\",\n  size = \"md\",\n}: {\n  className?: string\n  text?: string\n  size?: \"sm\" | \"md\" | \"lg\"\n}) {\n  const textSizes = {\n    sm: \"text-xs\",\n    md: \"text-sm\",\n    lg: \"text-base\",\n  }\n\n  return (\n    <div\n      className={cn(\"inline-flex items-center\", className)}\n    >\n      <span className={cn(\"text-primary font-medium\", textSizes[size])}>\n        {text}\n      </span>\n      <span className=\"inline-flex\">\n        <span className=\"text-primary animate-[loading-dots_1.4s_infinite_0.2s]\">\n          .\n        </span>\n        <span className=\"text-primary animate-[loading-dots_1.4s_infinite_0.4s]\">\n          .\n        </span>\n        <span className=\"text-primary animate-[loading-dots_1.4s_infinite_0.6s]\">\n          .\n        </span>\n      </span>\n    </div>\n  )\n}\n\nfunction Loader({\n  variant = \"circular\",\n  size = \"md\",\n  text,\n  className,\n}: LoaderProps) {\n  switch (variant) {\n    case \"circular\":\n      return <CircularLoader size={size} className={className} />\n    case \"classic\":\n      return <ClassicLoader size={size} className={className} />\n    case \"pulse\":\n      return <PulseLoader size={size} className={className} />\n    case \"pulse-dot\":\n      return <PulseDotLoader size={size} className={className} />\n    case \"dots\":\n      return <DotsLoader size={size} className={className} />\n    case \"typing\":\n      return <TypingLoader size={size} className={className} />\n    case \"wave\":\n      return <WaveLoader size={size} className={className} />\n    case \"bars\":\n      return <BarsLoader size={size} className={className} />\n    case \"terminal\":\n      return <TerminalLoader size={size} className={className} />\n    case \"text-blink\":\n      return <TextBlinkLoader text={text} size={size} className={className} />\n    case \"text-shimmer\":\n      return <TextShimmerLoader text={text} size={size} className={className} />\n    case \"loading-dots\":\n      return <TextDotsLoader text={text} size={size} className={className} />\n    default:\n      return <CircularLoader size={size} className={className} />\n  }\n}\n\nexport { Loader }\n",
+      "type": "registry:ui"
+    }
+  ]
+}

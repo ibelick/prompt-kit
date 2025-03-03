@@ -15,6 +15,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
+
   /* keyframes for loaders */
   @keyframes typing {
     0%,
@@ -28,7 +29,7 @@
     }
   }
 
-  @keyframes loadingDots {
+  @keyframes loading-dots {
     0%,
     100% {
       opacity: 0;
@@ -58,7 +59,7 @@
     }
   }
 
-  @keyframes textBlink {
+  @keyframes text-blink {
     0%,
     100% {
       color: var(--primary);
@@ -68,7 +69,7 @@
     }
   }
 
-  @keyframes bounceDots {
+  @keyframes bounce-dots {
     0%,
     100% {
       transform: scale(0.8);
@@ -80,7 +81,7 @@
     }
   }
 
-  @keyframes thinPulse {
+  @keyframes thin-pulse {
     0%,
     100% {
       transform: scale(0.95);
@@ -92,7 +93,7 @@
     }
   }
 
-  @keyframes pulseDot {
+  @keyframes pulse-dot {
     0%,
     100% {
       transform: scale(1);
@@ -104,7 +105,7 @@
     }
   }
 
-  @keyframes shimmerText {
+  @keyframes shimmer-text {
     0% {
       background-position: 150% center;
     }
@@ -113,7 +114,7 @@
     }
   }
 
-  @keyframes waveBars {
+  @keyframes wave-bars {
     0%,
     100% {
       transform: scaleY(1);

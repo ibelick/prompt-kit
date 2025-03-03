@@ -109,7 +109,7 @@ export function PulseLoader({
 
   return (
     <div className={cn("relative", sizeClasses[size], className)}>
-      <div className="border-primary absolute inset-0 animate-[thinPulse_1.5s_ease-in-out_infinite] rounded-full border-2" />
+      <div className="border-primary absolute inset-0 animate-[thin-pulse_1.5s_ease-in-out_infinite] rounded-full border-2" />
       <span className="sr-only">Loading</span>
     </div>
   )
@@ -131,7 +131,7 @@ export function PulseDotLoader({
   return (
     <div
       className={cn(
-        "bg-primary animate-[pulseDot_1.2s_ease-in-out_infinite] rounded-full",
+        "bg-primary animate-[pulse-dot_1.2s_ease-in-out_infinite] rounded-full",
         sizeClasses[size],
         className
       )}
@@ -172,7 +172,7 @@ export function DotsLoader({
         <div
           key={i}
           className={cn(
-            "bg-primary animate-[bounceDots_1.4s_ease-in-out_infinite] rounded-full",
+            "bg-primary animate-[bounce-dots_1.4s_ease-in-out_infinite] rounded-full",
             dotSizes[size]
           )}
           style={{
@@ -305,7 +305,7 @@ export function BarsLoader({
         <div
           key={i}
           className={cn(
-            "bg-primary h-full animate-[waveBars_1.2s_ease-in-out_infinite]",
+            "bg-primary h-full animate-[wave-bars_1.2s_ease-in-out_infinite]",
             barWidths[size]
           )}
           style={{
@@ -383,7 +383,7 @@ export function TextBlinkLoader({
   return (
     <div
       className={cn(
-        "animate-[textBlink_2s_ease-in-out_infinite] font-medium",
+        "animate-[text-blink_2s_ease-in-out_infinite] font-medium",
         textSizes[size],
         className
       )}
@@ -412,7 +412,7 @@ export function TextShimmerLoader({
     <div
       className={cn(
         "bg-[linear-gradient(to_right,var(--muted-foreground)_40%,var(--foreground)_60%,var(--muted-foreground)_80%)]",
-        "!bg-[200%_auto] !bg-clip-text font-medium text-transparent",
+        "bg-[200%_auto] bg-clip-text font-medium text-transparent",
         "animate-[shimmer_4s_infinite_linear]",
         textSizes[size],
         className
@@ -439,22 +439,23 @@ export function TextDotsLoader({
   }
 
   return (
-    <div className={cn("inline-flex items-center", className)}>
+    <div
+      className={cn("inline-flex items-center", className)}
+    >
       <span className={cn("text-primary font-medium", textSizes[size])}>
         {text}
       </span>
-      <span className="inline-flex w-6">
-        <span className="text-primary animate-[loadingDots_2s_infinite] opacity-0">
+      <span className="inline-flex">
+        <span className="text-primary animate-[loading-dots_1.4s_infinite_0.2s]">
           .
         </span>
-        <span className="text-primary animate-[loadingDots_2s_infinite_300ms] opacity-0">
+        <span className="text-primary animate-[loading-dots_1.4s_infinite_0.4s]">
           .
         </span>
-        <span className="text-primary animate-[loadingDots_2s_infinite_600ms] opacity-0">
+        <span className="text-primary animate-[loading-dots_1.4s_infinite_0.6s]">
           .
         </span>
       </span>
-      <span className="sr-only">Loading</span>
     </div>
   )
 }
