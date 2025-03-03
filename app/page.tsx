@@ -90,7 +90,7 @@ export default function Home() {
         <div className="flex flex-row gap-4">
           <Link
             href="/docs/introduction"
-            className="inline-flex h-10 items-center justify-center rounded-full bg-black px-4 text-base text-white"
+            className="inline-flex h-10 items-center justify-center rounded-full bg-black px-4 text-base text-white transition-colors hover:bg-zinc-800"
           >
             Get Started
           </Link>
@@ -98,7 +98,7 @@ export default function Home() {
             href="https://github.com/ibelick/prompt-kit"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-10 items-center justify-center rounded-full border border-zinc-200 bg-white px-4 text-base text-black"
+            className="inline-flex h-10 items-center justify-center rounded-full border border-zinc-200 bg-white px-4 text-base text-black transition-colors hover:bg-zinc-50"
           >
             <Github className="mr-2 size-4" /> Star on GitHub
           </Link>

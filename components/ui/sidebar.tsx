@@ -22,6 +22,7 @@ const SIDEBAR_COOKIE_NAME = "sidebar:state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
 const SIDEBAR_WIDTH = "16rem"
 const SIDEBAR_WIDTH_MOBILE = "16rem"
+const SIDEBAR_WIDTH_MD = "12rem"
 const SIDEBAR_WIDTH_ICON = "3rem"
 const SIDEBAR_KEYBOARD_SHORTCUT = "b"
 
@@ -32,6 +33,7 @@ type SidebarContext = {
   openMobile: boolean
   setOpenMobile: (open: boolean) => void
   isMobileView: boolean
+  isMdView: boolean
   toggleSidebar: () => void
 }
 
@@ -53,6 +55,7 @@ const SidebarProvider = React.forwardRef<
     open?: boolean
     onOpenChange?: (open: boolean) => void
     viewportWidth?: number
+    mdViewportWidth?: number
   }
 >(
   (
@@ -63,12 +66,14 @@ const SidebarProvider = React.forwardRef<
       className,
       style,
       children,
-      viewportWidth = 1184,
+      viewportWidth = 640,
+      mdViewportWidth = 1024,
       ...props
     },
     ref
   ) => {
     const isMobileView = useBreakpoint(viewportWidth)
+    const isMdView = useBreakpoint(mdViewportWidth)
     const [openMobile, setOpenMobile] = React.useState(false)
 
     // This is the internal state of the sidebar.
@@ -123,6 +128,7 @@ const SidebarProvider = React.forwardRef<
         open,
         setOpen,
         isMobileView,
+        isMdView,
         openMobile,
         setOpenMobile,
         toggleSidebar,
@@ -132,6 +138,7 @@ const SidebarProvider = React.forwardRef<
         open,
         setOpen,
         isMobileView,
+        isMdView,
         openMobile,
         setOpenMobile,
         toggleSidebar,
@@ -144,7 +151,8 @@ const SidebarProvider = React.forwardRef<
           <div
             style={
               {
-                "--sidebar-width": SIDEBAR_WIDTH,
+                "--sidebar-width":
+                  isMdView && !isMobileView ? SIDEBAR_WIDTH_MD : SIDEBAR_WIDTH,
                 "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
                 ...style,
               } as React.CSSProperties
