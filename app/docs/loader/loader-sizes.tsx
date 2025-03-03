@@ -22,8 +22,8 @@ export function LoaderSizes() {
   ] as const
 
   return (
-    <div className="flex w-full flex-col space-y-8 p-4">
-      <div className="flex items-center justify-center gap-2 border-b pb-4">
+    <div className="flex w-full flex-col">
+      <div className="flex items-center justify-center gap-2 border-b py-2">
         <Button
           size="sm"
           variant={size === "sm" ? "default" : "outline"}
@@ -47,11 +47,11 @@ export function LoaderSizes() {
         </Button>
       </div>
 
-      <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4">
+      <div className="grid grid-cols-2 gap-8 p-4 sm:grid-cols-3 md:grid-cols-4">
         {variants.map((variant) => (
           <div
             key={variant}
-            className="flex flex-col items-center justify-center gap-2 rounded-lg border p-4"
+            className="flex flex-col items-center justify-center gap-2 p-4"
           >
             <Loader variant={variant} size={size} />
             <span className="text-muted-foreground text-sm">{variant}</span>

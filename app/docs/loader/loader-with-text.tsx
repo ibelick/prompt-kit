@@ -11,8 +11,8 @@ export function LoaderWithText() {
   const textVariants = ["text-blink", "text-shimmer", "loading-dots"] as const
 
   return (
-    <div className="flex w-full flex-col space-y-8 p-4">
-      <div className="flex items-center justify-center gap-2 border-b pb-4">
+    <div className="flex w-full flex-col justify-start">
+      <div className="flex items-center justify-center border-b py-2">
         <Input
           value={text}
           onChange={(e) => setText(e.target.value)}
@@ -21,11 +21,11 @@ export function LoaderWithText() {
         />
       </div>
 
-      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
+      <div className="grid flex-1 grid-cols-1 gap-8 p-4 sm:grid-cols-2 md:grid-cols-3">
         {textVariants.map((variant) => (
           <div
             key={variant}
-            className="flex flex-col items-center justify-center gap-4 rounded-lg border p-6"
+            className="flex flex-col items-center justify-center gap-4"
           >
             <Loader variant={variant} text={text} />
             <span className="text-muted-foreground text-sm">{variant}</span>

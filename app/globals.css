@@ -15,7 +15,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
-
   /* keyframes for loaders */
   @keyframes typing {
     0%,
@@ -62,10 +61,10 @@
   @keyframes textBlink {
     0%,
     100% {
-      color: hsl(var(--primary));
+      color: var(--primary);
     }
     50% {
-      color: hsl(var(--muted-foreground));
+      color: var(--muted-foreground);
     }
   }
 

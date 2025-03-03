@@ -22,7 +22,7 @@ export interface LoaderProps {
   className?: string
 }
 
-export function SimpleSpinner({
+export function CircularLoader({
   className,
   size = "md",
 }: {
@@ -48,7 +48,7 @@ export function SimpleSpinner({
   )
 }
 
-export function ClassicSpinner({
+export function ClassicLoader({
   className,
   size = "md",
 }: {
@@ -115,7 +115,7 @@ export function PulseLoader({
   )
 }
 
-export function PulseDot({
+export function PulseDotLoader({
   className,
   size = "md",
 }: {
@@ -185,7 +185,7 @@ export function DotsLoader({
   )
 }
 
-export function TypingIndicator({
+export function TypingLoader({
   className,
   size = "md",
 }: {
@@ -229,7 +229,7 @@ export function TypingIndicator({
   )
 }
 
-export function VoiceWave({
+export function WaveLoader({
   className,
   size = "md",
 }: {
@@ -280,7 +280,7 @@ export function VoiceWave({
   )
 }
 
-export function BarsProgress({
+export function BarsLoader({
   className,
   size = "md",
 }: {
@@ -318,7 +318,7 @@ export function BarsProgress({
   )
 }
 
-export function TerminalCursor({
+export function TerminalLoader({
   className,
   size = "md",
 }: {
@@ -411,28 +411,19 @@ export function TextShimmerLoader({
   return (
     <div
       className={cn(
-        "relative inline-block bg-clip-text font-medium text-transparent",
+        "bg-[linear-gradient(to_right,var(--muted-foreground)_40%,var(--foreground)_60%,var(--muted-foreground)_80%)]",
+        "!bg-[200%_auto] !bg-clip-text font-medium text-transparent",
+        "animate-[shimmer_4s_infinite_linear]",
         textSizes[size],
         className
       )}
-      style={{
-        background: `linear-gradient(
-          to right,
-          hsl(var(--muted-foreground)) 40%,
-          hsl(var(--foreground)) 60%,
-          hsl(var(--muted-foreground)) 80%
-        )`,
-        backgroundSize: "200% auto",
-        WebkitBackgroundClip: "text",
-        animation: "shimmer 4s infinite linear",
-      }}
     >
       {text}
     </div>
   )
 }
 
-export function LoadingDots({
+export function TextDotsLoader({
   className,
   text = "Thinking",
   size = "md",
@@ -476,31 +467,31 @@ function Loader({
 }: LoaderProps) {
   switch (variant) {
     case "circular":
-      return <SimpleSpinner size={size} className={className} />
+      return <CircularLoader size={size} className={className} />
     case "classic":
-      return <ClassicSpinner size={size} className={className} />
+      return <ClassicLoader size={size} className={className} />
     case "pulse":
       return <PulseLoader size={size} className={className} />
     case "pulse-dot":
-      return <PulseDot size={size} className={className} />
+      return <PulseDotLoader size={size} className={className} />
     case "dots":
       return <DotsLoader size={size} className={className} />
     case "typing":
-      return <TypingIndicator size={size} className={className} />
+      return <TypingLoader size={size} className={className} />
     case "wave":
-      return <VoiceWave size={size} className={className} />
+      return <WaveLoader size={size} className={className} />
     case "bars":
-      return <BarsProgress size={size} className={className} />
+      return <BarsLoader size={size} className={className} />
     case "terminal":
-      return <TerminalCursor size={size} className={className} />
+      return <TerminalLoader size={size} className={className} />
     case "text-blink":
       return <TextBlinkLoader text={text} size={size} className={className} />
     case "text-shimmer":
       return <TextShimmerLoader text={text} size={size} className={className} />
     case "loading-dots":
-      return <LoadingDots text={text} size={size} className={className} />
+      return <TextDotsLoader text={text} size={size} className={className} />
     default:
-      return <SimpleSpinner size={size} className={className} />
+      return <CircularLoader size={size} className={className} />
   }
 }
 
