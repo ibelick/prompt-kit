@@ -10,6 +10,10 @@ export type HeaderProps = {
 export function Header({ triggerViewportWidth }: HeaderProps) {
   const isMobileView = useBreakpoint(triggerViewportWidth)
 
+  if (!isMobileView) {
+    return null
+  }
+
   return (
     <nav className="absolute top-0 left-0 z-60 w-full px-4 py-4 text-white">
       <div className="mx-auto flex max-w-2xl items-center justify-between text-zinc-900">

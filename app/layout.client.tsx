@@ -6,6 +6,7 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -45,7 +46,7 @@ const socialMenuItems = [
   },
 ]
 
-function AppSidebar() {
+function AppSidebar({ viewportWidth }: { viewportWidth: number }) {
   const currentPath = usePathname()
   const { setOpenMobile } = useSidebar()
   const pathname = usePathname()
@@ -56,7 +57,10 @@ function AppSidebar() {
 
   return (
     <Sidebar className="h-full border-none bg-white shadow-none">
-      <SidebarContent className="border-none bg-white pt-0 pl-0 min-[1184px]:pt-[7.4rem] min-[1184px]:pl-20">
+      <SidebarContent className="border-none bg-white pt-0 pl-0 min-[1184px]:pt-[7.5rem] min-[1184px]:pl-20">
+        <SidebarHeader className="hidden min-[1184px]:block">
+          <h1 className="px-2 text-sm">prompt-kit</h1>
+        </SidebarHeader>
         <SidebarGroup className="border-none bg-white">
           <SidebarGroupLabel className="text-lg min-[1184px]:text-sm">
             Core
@@ -166,7 +170,7 @@ export function LayoutClient({ children }: { children: React.ReactNode }) {
             <Footer />
           </div>
         </div>
-        <AppSidebar />
+        <AppSidebar viewportWidth={MOBILE_SIDEBAR_VIEWPORT_THRESHOLD} />
       </div>
     </SidebarProvider>
   )

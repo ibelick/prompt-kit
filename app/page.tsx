@@ -8,6 +8,7 @@ import {
 import { AnimatedBackground } from "@/components/ui/animated-background"
 import { TextMorph } from "@/components/ui/text-morph"
 import { cn } from "@/lib/utils"
+import { Github } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
 import Link from "next/link"
 import { useState } from "react"
@@ -86,12 +87,22 @@ export default function Home() {
             interfaces.
           </p>
         </div>
-        <Link
-          href="/docs/introduction"
-          className="inline-flex h-10 items-center justify-center rounded-full bg-black px-4 text-base text-white"
-        >
-          Get Started
-        </Link>
+        <div className="flex flex-row gap-4">
+          <Link
+            href="/docs/introduction"
+            className="inline-flex h-10 items-center justify-center rounded-full bg-black px-4 text-base text-white"
+          >
+            Get Started
+          </Link>
+          <Link
+            href="https://github.com/ibelick/prompt-kit"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-10 items-center justify-center rounded-full border border-zinc-200 bg-white px-4 text-base text-black"
+          >
+            <Github className="mr-2 size-4" /> Star on GitHub
+          </Link>
+        </div>
       </div>
       <div className="-mx-6 mb-40 flex flex-col gap-10 sm:mx-0">
         <div className="flex min-h-[350px] w-full items-end rounded border border-zinc-200 p-4 sm:p-8">
