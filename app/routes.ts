@@ -66,6 +66,12 @@ export const routes: Route[] = [
     order: 9,
     type: "component",
   },
+  {
+    path: "/docs/prompt-suggestion",
+    label: "Prompt Suggestion",
+    order: 10,
+    type: "component",
+  },
 ]
 
 export function getNavigation(currentPath: string) {
