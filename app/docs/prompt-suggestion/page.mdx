@@ -5,12 +5,10 @@ import { PromptSuggestionVariants } from "./prompt-suggestion-variants"
 
 # PromptSuggestion
 
-A versatile component for implementing interactive prompt suggestions in AI interfaces. The PromptSuggestion component offers two distinct modes:
+A component for implementing interactive prompt suggestions in AI interfaces. The PromptSuggestion component offers two distinct modes:
 
-- **Normal Mode**: Renders clickable, pill-shaped buttons ideal for suggesting prompts in chat interfaces
-- **Highlight Mode**: Provides text highlighting for search results and autocomplete suggestions
-
-Perfect for AI chat applications, command palettes, and search interfaces where users need guidance on what to ask or search for.
+- **Normal Mode**: Renders clickable, pill-shaped buttons ideal for suggesting quick prompts in chat interfaces
+- **Highlight Mode**: Provides text highlighting to highlight a part of the suggestion
 
 ## Examples
 
@@ -85,13 +83,11 @@ Build a full-featured chat interface with dynamic prompt suggestions that switch
 
 ### PromptSuggestion
 
-| Prop      | Type                                               | Default   | Description                                                                     |
-| :-------- | :------------------------------------------------- | :-------- | :------------------------------------------------------------------------------ |
-| value     | string                                             |           | Text value of the suggestion                                                    |
-| onSelect  | (value: string) => void                            |           | Callback function when suggestion is selected                                   |
-| children  | React.ReactNode                                    | value     | Custom content to render instead of the value (optional)                        |
-| variant   | "default" \| "destructive" \| "outline" \| "ghost" | "outline" | Visual variant of the button (normal mode) or "ghost" (highlight mode)          |
-| size      | "default" \| "sm" \| "lg" \| "icon"                | "lg"      | Size of the button (normal mode) or "sm" (highlight mode)                       |
-| highlight | string                                             | undefined | When provided, enables highlight mode and highlights this text within the value |
-| className | string                                             |           | Additional CSS classes                                                          |
-| ...props  | ButtonHTMLAttributes                               |           | All other button HTML attributes                                                |
+| Prop      | Type                                               | Default   | Description                                                                    |
+| :-------- | :------------------------------------------------- | :-------- | :----------------------------------------------------------------------------- |
+| children  | React.ReactNode                                    |           | Content to display in the suggestion button                                    |
+| variant   | "default" \| "destructive" \| "outline" \| "ghost" | "outline" | Visual variant of the button (normal mode) or "ghost" (highlight mode)         |
+| size      | "default" \| "sm" \| "lg" \| "icon"                | "lg"      | Size of the button (normal mode) or "sm" (highlight mode)                      |
+| highlight | string                                             | undefined | When provided, enables highlight mode and highlights this text within children |
+| className | string                                             |           | Additional CSS classes                                                         |
+| ...props  | ButtonHTMLAttributes                               |           | All other button HTML attributes (including onClick)                           |

@@ -1,28 +1,13 @@
-"use client"
-
 import { PromptSuggestion } from "@/components/prompt-kit/prompt-suggestion"
 
-/**
- * Example showing the highlight functionality of PromptSuggestion
- * with a focus on highlighting matching terms in "how to" queries
- */
 export function PromptSuggestionHighlight() {
-  // This example shows how to highlight specific text within prompts
   const searchTerm = "how to"
 
   return (
     <div className="w-full space-y-2">
-      <div className="text-muted-foreground mb-2 text-sm">
-        Showing results for "<span className="font-medium">{searchTerm}</span>"
-      </div>
-
       <div className="w-full space-y-1">
         {howToPrompts.map((prompt) => (
-          <PromptSuggestion
-            key={prompt}
-            highlight={searchTerm}
-            onClick={() => console.log("Selected:", prompt)}
-          >
+          <PromptSuggestion key={prompt} highlight={searchTerm}>
             {prompt}
           </PromptSuggestion>
         ))}
@@ -31,7 +16,6 @@ export function PromptSuggestionHighlight() {
   )
 }
 
-// List of "how to" prompts for demonstration
 const howToPrompts = [
   "How to create a React component",
   "How to optimize website performance",

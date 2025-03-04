@@ -10,10 +10,6 @@ import { Button } from "@/components/ui/button"
 import { ArrowUpIcon, BrainIcon } from "lucide-react"
 import { useState } from "react"
 
-/**
- * Example showing PromptSuggestion in a chat interface with
- * both suggestion groups and filtered suggestions
- */
 export function PromptSuggestionVariants() {
   const [inputValue, setInputValue] = useState("")
   const [activeCategory, setActiveCategory] = useState("")
@@ -108,7 +104,6 @@ export function PromptSuggestionVariants() {
                     setInputValue("") // Clear input when selecting a category
                   }}
                   className="capitalize"
-                  data={suggestion.label}
                 >
                   <BrainIcon className="mr-2 h-4 w-4" />
                   {suggestion.label}

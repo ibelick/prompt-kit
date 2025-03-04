@@ -55,7 +55,7 @@ export function PromptSuggestionBasic() {
         <PromptInputActions className="justify-end">
           <Button
             size="sm"
-            className="max-w-9 cursor-pointer rounded-full"
+            className="size-9 cursor-pointer rounded-full"
             onClick={handleSend}
             disabled={!inputValue.trim()}
           >
