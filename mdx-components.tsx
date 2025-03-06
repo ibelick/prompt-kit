@@ -3,6 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { codeToHtml } from "@/lib/shiki"
 import { cn } from "@/lib/utils"
 import type { MDXComponents } from "mdx/types"
+import Link from "next/link"
 import { extractCodeFromFilePath } from "./lib/code"
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -13,11 +14,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </code>
     ),
-    a: ({ children, ...props }) => (
-      <a {...props} target="_blank" rel="noopener noreferrer">
-        {children}
-      </a>
-    ),
+    a: ({ children, ...props }) => <Link {...props}>{children}</Link>,
+    Link: ({ children, ...props }) => <Link {...props}>{children}</Link>,
     CodeBlock: async ({ language, code, filePath, ...props }) => {
       const fileContent = filePath ? extractCodeFromFilePath(filePath) : code
       const html = await codeToHtml({ code: fileContent, lang: language })

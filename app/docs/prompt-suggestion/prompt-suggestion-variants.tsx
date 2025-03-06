@@ -61,7 +61,7 @@ export function PromptSuggestionVariants() {
         <PromptInputActions className="justify-end">
           <Button
             size="sm"
-            className="max-w-9 cursor-pointer rounded-full"
+            className="h-9 w-9 rounded-full"
             onClick={handleSend}
             disabled={!inputValue.trim()}
           >
@@ -70,14 +70,8 @@ export function PromptSuggestionVariants() {
         </PromptInputActions>
       </PromptInput>
 
-      <div className="flex w-full flex-col items-center justify-center space-y-2">
-        <div className="text-muted-foreground w-full text-sm">
-          {showCategorySuggestions
-            ? `${activeCategory} suggestions:`
-            : "Try asking about:"}
-        </div>
-
-        <div className="w-full">
+      <div className="relative flex w-full flex-col items-center justify-center space-y-2">
+        <div className="absolute top-0 left-0 h-[70px] w-full">
           {showCategorySuggestions ? (
             <div className="flex w-full flex-col space-y-1">
               {activeCategoryData?.items.map((suggestion) => (
@@ -95,7 +89,7 @@ export function PromptSuggestionVariants() {
               ))}
             </div>
           ) : (
-            <div className="relative flex w-full flex-nowrap items-stretch justify-start gap-x-2 overflow-hidden">
+            <div className="relative flex w-full flex-wrap items-stretch justify-start gap-2">
               {suggestionGroups.map((suggestion) => (
                 <PromptSuggestion
                   key={suggestion.label}

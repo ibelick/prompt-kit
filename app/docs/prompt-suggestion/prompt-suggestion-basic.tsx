@@ -43,6 +43,11 @@ export function PromptSuggestionBasic() {
         <PromptSuggestion onClick={() => setInputValue("Write a poem")}>
           Write a poem
         </PromptSuggestion>
+        <PromptSuggestion
+          onClick={() => setInputValue("Code a React component")}
+        >
+          Code a React component
+        </PromptSuggestion>
       </div>
 
       <PromptInput
@@ -58,9 +63,9 @@ export function PromptSuggestionBasic() {
             className="size-9 cursor-pointer rounded-full"
             onClick={handleSend}
             disabled={!inputValue.trim()}
+            aria-label="Send"
           >
             <ArrowUpIcon className="h-4 w-4" />
-            <span className="sr-only">Send</span>
           </Button>
         </PromptInputActions>
       </PromptInput>

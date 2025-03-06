@@ -3,7 +3,7 @@ import { PromptSuggestionBasic } from "./prompt-suggestion-basic"
 import { PromptSuggestionHighlight } from "./prompt-suggestion-highlight"
 import { PromptSuggestionVariants } from "./prompt-suggestion-variants"
 
-# PromptSuggestion
+# Promp Suggestion
 
 A component for implementing interactive prompt suggestions in AI interfaces. The PromptSuggestion component offers two distinct modes:
 
@@ -12,9 +12,9 @@ A component for implementing interactive prompt suggestions in AI interfaces. Th
 
 ## Examples
 
-### Basic Usage with PromptInput
+### Basic Usage
 
-Display clickable prompt suggestions that users can select to populate an input field.
+Display clickable prompt suggestions that users can select to populate an input field. You can easily use it with the [PromptInput](/docs/prompt-input) component.
 
 <ComponentCodePreview
   component={<PromptSuggestionBasic />}
@@ -24,7 +24,7 @@ Display clickable prompt suggestions that users can select to populate an input 
 
 ### Highlighted Prompt Suggestions
 
-Implement prompt suggestions with search term highlighting, perfect for autocomplete interfaces.
+Implement prompt suggestions with search term highlighting. It's perfect to showcase a list of related prompts.
 
 <ComponentCodePreview
   component={<PromptSuggestionHighlight />}
@@ -39,7 +39,7 @@ Build a full-featured chat interface with dynamic prompt suggestions that switch
 <ComponentCodePreview
   component={<PromptSuggestionVariants />}
   filePath="app/docs/prompt-suggestion/prompt-suggestion-variants.tsx"
-  classNameComponentContainer="p-8"
+  classNameComponentContainer="p-8 h-[500px]"
 />
 
 ## Installation
