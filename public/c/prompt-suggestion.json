@@ -1,0 +1,25 @@
+{
+  "name": "prompt-suggestion",
+  "type": "registry:ui",
+  "registryDependencies": [
+    "button"
+  ],
+  "dependencies": [
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "devDependencies": [],
+  "tailwind": {},
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "description": "A component for implementing interactive prompt suggestions in AI interfaces. The PromptSuggestion component offers two distinct modes: Normal Mode and Highlight Mode.",
+  "files": [
+    {
+      "path": "prompt-suggestion.tsx",
+      "content": "\"use client\"\n\nimport { Button, buttonVariants } from \"@/components/ui/button\"\nimport { cn } from \"@/lib/utils\"\nimport { VariantProps } from \"class-variance-authority\"\n\nexport type PromptSuggestionProps = {\n  children: React.ReactNode\n  variant?: VariantProps<typeof buttonVariants>[\"variant\"]\n  size?: VariantProps<typeof buttonVariants>[\"size\"]\n  className?: string\n  highlight?: string\n} & React.ButtonHTMLAttributes<HTMLButtonElement>\n\nfunction PromptSuggestion({\n  children,\n  variant,\n  size,\n  className,\n  highlight,\n  ...props\n}: PromptSuggestionProps) {\n  const isHighlightMode = highlight !== undefined && highlight.trim() !== \"\"\n  const content = typeof children === \"string\" ? children : \"\"\n\n  if (!isHighlightMode) {\n    return (\n      <Button\n        variant={variant || \"outline\"}\n        size={size || \"lg\"}\n        className={cn(\"rounded-full\", className)}\n        {...props}\n      >\n        {children}\n      </Button>\n    )\n  }\n\n  if (!content) {\n    return (\n      <Button\n        variant={variant || \"ghost\"}\n        size={size || \"sm\"}\n        className={cn(\n          \"w-full cursor-pointer justify-start rounded-xl py-2\",\n          \"hover:bg-accent\",\n          className\n        )}\n        {...props}\n      >\n        {children}\n      </Button>\n    )\n  }\n\n  const trimmedHighlight = highlight.trim()\n  const contentLower = content.toLowerCase()\n  const highlightLower = trimmedHighlight.toLowerCase()\n  const shouldHighlight = contentLower.includes(highlightLower)\n\n  return (\n    <Button\n      variant={variant || \"ghost\"}\n      size={size || \"sm\"}\n      className={cn(\n        \"w-full cursor-pointer justify-start gap-0 rounded-xl py-2\",\n        \"hover:bg-accent\",\n        className\n      )}\n      {...props}\n    >\n      {shouldHighlight ? (\n        (() => {\n          const index = contentLower.indexOf(highlightLower)\n          if (index === -1)\n            return (\n              <span className=\"text-muted-foreground whitespace-pre-wrap\">\n                {content}\n              </span>\n            )\n\n          const actualHighlightedText = content.substring(\n            index,\n            index + highlightLower.length\n          )\n\n          const before = content.substring(0, index)\n          const after = content.substring(index + actualHighlightedText.length)\n\n          return (\n            <>\n              {before && (\n                <span className=\"text-muted-foreground whitespace-pre-wrap\">\n                  {before}\n                </span>\n              )}\n              <span className=\"text-primary font-medium whitespace-pre-wrap\">\n                {actualHighlightedText}\n              </span>\n              {after && (\n                <span className=\"text-muted-foreground whitespace-pre-wrap\">\n                  {after}\n                </span>\n              )}\n            </>\n          )\n        })()\n      ) : (\n        <span className=\"text-muted-foreground whitespace-pre-wrap\">\n          {content}\n        </span>\n      )}\n    </Button>\n  )\n}\n\nexport { PromptSuggestion }\n",
+      "type": "registry:ui"
+    }
+  ]
+}

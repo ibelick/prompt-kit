@@ -202,4 +202,15 @@ export const components: ComponentDefinition[] = [
       },
     },
   },
+  {
+    name: "prompt-suggestion",
+    description:
+      "A component for implementing interactive prompt suggestions in AI interfaces. The PromptSuggestion component offers two distinct modes: Normal Mode and Highlight Mode.",
+    path: path.join(
+      __dirname,
+      "../components/prompt-kit/prompt-suggestion.tsx"
+    ),
+    registryDependencies: ["button"],
+    dependencies: ["class-variance-authority", "lucide-react"],
+  },
 ]
