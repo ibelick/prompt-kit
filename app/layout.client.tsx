@@ -59,7 +59,7 @@ function AppSidebar() {
     <Sidebar className="h-full border-none shadow-none">
       <SidebarContent
         className={cn(
-          "border-none bg-white pt-0 pl-0 md:pt-[8.2rem] md:pl-7 lg:pl-20"
+          "border-none bg-white pt-0 pb-20 pl-0 md:pt-[8.2rem] md:pl-7 lg:pl-20"
         )}
       >
         <SidebarHeader className="hidden md:block">
@@ -68,12 +68,7 @@ function AppSidebar() {
           </Link>
         </SidebarHeader>
         <SidebarGroup className="border-none bg-white">
-          <SidebarGroupLabel
-            className={cn(
-              "text-lg min-[640px]:text-sm",
-              isMdView && "md:text-xs lg:text-sm"
-            )}
-          >
+          <SidebarGroupLabel className="text-lg md:text-sm">
             Core
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -88,31 +83,17 @@ function AppSidebar() {
                       className={cn(
                         isActive &&
                           "bg-sidebar-accent text-sidebar-accent-foreground",
-                        "text-lg min-[640px]:text-sm",
-                        isMdView && "md:text-xs lg:text-sm"
+                        "text-lg md:text-sm"
                       )}
                     >
-                      <Link
-                        href={item.url}
-                        className={cn(
-                          "text-lg min-[640px]:text-sm",
-                          isMdView && "md:text-xs lg:text-sm"
-                        )}
-                      >
-                        {item.title}
-                      </Link>
+                      <Link href={item.url}>{item.title}</Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 )
               })}
             </SidebarMenu>
           </SidebarGroupContent>
-          <SidebarGroupLabel
-            className={cn(
-              "mt-8 text-lg min-[640px]:text-sm",
-              isMdView && "md:text-xs lg:text-sm"
-            )}
-          >
+          <SidebarGroupLabel className={cn("mt-8 text-lg md:text-sm")}>
             Components
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -127,31 +108,24 @@ function AppSidebar() {
                       className={cn(
                         isActive &&
                           "bg-sidebar-accent text-sidebar-accent-foreground",
-                        "text-lg min-[640px]:text-sm",
-                        isMdView && "md:text-xs lg:text-sm"
+                        "text-lg md:text-sm"
                       )}
                     >
-                      <Link
-                        href={item.url}
-                        className={cn(
-                          "text-lg min-[640px]:text-sm",
-                          isMdView && "md:text-xs lg:text-sm"
-                        )}
-                      >
-                        {item.title}
-                      </Link>
+                      <Link href={item.url}>{item.title}</Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 )
               })}
             </SidebarMenu>
           </SidebarGroupContent>
-          <SidebarGroupLabel
-            className={cn(
-              "mt-8 text-lg min-[640px]:text-sm",
-              isMdView && "md:text-xs lg:text-sm"
-            )}
-          >
+          <SidebarGroupLabel className={cn("mt-8 text-lg md:text-sm")}>
+            <SidebarMenuButton asChild className="">
+              <Link href="/docs/showcase" className="-m-2">
+                Showcases
+              </Link>
+            </SidebarMenuButton>
+          </SidebarGroupLabel>
+          <SidebarGroupLabel className={cn("mt-8 text-lg md:text-sm")}>
             Social
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -159,21 +133,11 @@ function AppSidebar() {
               {socialMenuItems.map((item) => {
                 return (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton
-                      asChild
-                      className={cn(
-                        "text-lg min-[640px]:text-sm",
-                        isMdView && "md:text-xs lg:text-sm"
-                      )}
-                    >
+                    <SidebarMenuButton asChild className="text-lg md:text-sm">
                       <Link
                         href={item.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={cn(
-                          "text-lg min-[640px]:text-sm",
-                          isMdView && "md:text-xs lg:text-sm"
-                        )}
                       >
                         {item.title}
                       </Link>
@@ -202,7 +166,7 @@ export function LayoutClient({ children }: { children: React.ReactNode }) {
       <div className="w-full">
         <Header triggerViewportWidth={MOBILE_SIDEBAR_VIEWPORT_THRESHOLD} />
         <div className="flex h-full px-4 pt-32">
-          <div className="relative mx-auto grid max-w-screen-2xl grid-cols-6 md:grid-cols-12">
+          <div className="relative mx-auto grid w-full max-w-screen-2xl grid-cols-6 md:grid-cols-12">
             <div className="col-start-1 col-end-7 flex h-full flex-1 flex-col md:col-start-4 md:col-end-12 lg:col-end-10">
               <main className="flex-1">{children}</main>
               <Footer />
