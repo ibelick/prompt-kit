@@ -1,7 +1,6 @@
 "use client"
 
 import { Markdown } from "@/components/prompt-kit/markdown"
-import { cn } from "@/lib/utils"
 
 export function MarkdownBasic() {
   const markdownContent = `

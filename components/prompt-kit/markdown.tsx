@@ -60,18 +60,12 @@ const MemoizedMarkdownBlock = memo(
   function MarkdownBlock({
     content,
     components = INITIAL_COMPONENTS,
-    className,
   }: {
     content: string
     components?: Partial<Components>
-    className?: string
   }) {
     return (
-      <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
-        components={components}
-        className={className}
-      >
+      <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
         {content}
       </ReactMarkdown>
     )
@@ -94,16 +88,15 @@ function MarkdownComponent({
   const blocks = useMemo(() => parseMarkdownIntoBlocks(children), [children])
 
   return (
-    <>
+    <div className={className}>
       {blocks.map((block, index) => (
         <MemoizedMarkdownBlock
           key={`${blockId}-block-${index}`}
           content={block}
           components={components}
-          className={className}
         />
       ))}
-    </>
+    </div>
   )
 }
 
