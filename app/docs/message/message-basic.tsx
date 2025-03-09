@@ -14,8 +14,8 @@ export function MessageBasic() {
       <Message className="justify-start">
         <MessageAvatar src="/avatars/ai.png" alt="AI" fallback="AI" />
         <MessageContent markdown className="bg-transparent p-0">
-          I can help with a variety of tasks: - Answering questions - Providing
-          information - Assisting with coding - Generating creative content What
+          I can help with a variety of tasks: answering questions, providing
+          information, assisting with coding, generating creative content. What
           would you like help with today?
         </MessageContent>
       </Message>

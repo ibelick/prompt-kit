@@ -1,6 +1,7 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
 import { MessageBasic } from "./message-basic"
 import { MessageWithActions } from "./message-with-actions"
+import { MessageWithMarkdown } from "./message-with-markdown"
 
 # Message
 
@@ -14,6 +15,17 @@ A component for displaying messages in a conversation interface, with support fo
   component={<MessageBasic />}
   filePath="app/docs/message/message-basic.tsx"
   classNameComponentContainer="p-8"
+/>
+
+### Message with Markdown
+
+The `markdown` prop enables rendering content as [Markdown](/docs/markdown), perfect for rich text formatting in messages.
+
+<ComponentCodePreview
+  component={<MessageWithMarkdown />}
+  filePath="app/docs/message/message-with-markdown.tsx"
+  classNameComponentContainer="p-8"
+  disableNotProse
 />
 
 ### Message with Actions

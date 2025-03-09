@@ -1,8 +1,16 @@
 {
   "name": "message",
   "type": "registry:ui",
-  "registryDependencies": ["avatar", "tooltip"],
-  "dependencies": ["react-markdown", "remark-gfm", "shiki", "marked"],
+  "registryDependencies": [
+    "avatar",
+    "tooltip"
+  ],
+  "dependencies": [
+    "react-markdown",
+    "remark-gfm",
+    "shiki",
+    "marked"
+  ],
   "devDependencies": [],
   "tailwind": {},
   "cssVars": {
