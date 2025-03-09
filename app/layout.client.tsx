@@ -59,93 +59,98 @@ function AppSidebar() {
   return (
     <Sidebar className="h-full border-none shadow-none">
       <SidebarContent className="border-none bg-white">
-        <ScrollArea className="h-full pt-0 pl-0 md:pt-[8.2rem] md:pl-7 lg:pl-20">
-          <SidebarHeader className="hidden md:block">
-            <Link href="/" className="flex items-center">
-              <h1 className="px-2 text-sm">prompt-kit</h1>
-            </Link>
-          </SidebarHeader>
-          <SidebarGroup className="border-none bg-white">
-            <SidebarGroupLabel className="text-lg md:text-sm">
-              Core
-            </SidebarGroupLabel>
-            <SidebarGroupContent>
-              <SidebarMenu>
-                {coreMenuItems.map((item) => {
-                  const isActive = currentPath === item.url
+        <ScrollArea className="h-full pt-0 pr-4 md:pl-7 lg:pl-20">
+          <div className="flex h-full flex-col pb-20 pl-0 md:pt-[8.2rem]">
+            <SidebarHeader className="hidden md:block">
+              <Link href="/" className="flex items-center">
+                <h1 className="px-2 text-sm">prompt-kit</h1>
+              </Link>
+            </SidebarHeader>
+            <SidebarGroup className="border-none bg-white">
+              <SidebarGroupLabel className="text-lg md:text-sm">
+                Core
+              </SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {coreMenuItems.map((item) => {
+                    const isActive = currentPath === item.url
 
-                  return (
-                    <SidebarMenuItem key={item.title}>
-                      <SidebarMenuButton
-                        asChild
-                        className={cn(
-                          isActive &&
-                            "bg-sidebar-accent text-sidebar-accent-foreground",
-                          "text-lg md:text-sm"
-                        )}
-                      >
-                        <Link href={item.url}>{item.title}</Link>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  )
-                })}
-              </SidebarMenu>
-            </SidebarGroupContent>
-            <SidebarGroupLabel className={cn("mt-8 text-lg md:text-sm")}>
-              Components
-            </SidebarGroupLabel>
-            <SidebarGroupContent>
-              <SidebarMenu>
-                {componentsMenuItems.map((item) => {
-                  const isActive = currentPath === item.url
-
-                  return (
-                    <SidebarMenuItem key={item.title}>
-                      <SidebarMenuButton
-                        asChild
-                        className={cn(
-                          isActive &&
-                            "bg-sidebar-accent text-sidebar-accent-foreground",
-                          "text-lg md:text-sm"
-                        )}
-                      >
-                        <Link href={item.url}>{item.title}</Link>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  )
-                })}
-              </SidebarMenu>
-            </SidebarGroupContent>
-            <SidebarGroupLabel className={cn("mt-8 text-lg md:text-sm")}>
-              <SidebarMenuButton asChild className="">
-                <Link href="/docs/showcase" className="-m-2">
-                  Showcase
-                </Link>
-              </SidebarMenuButton>
-            </SidebarGroupLabel>
-            <SidebarGroupLabel className={cn("mt-8 text-lg md:text-sm")}>
-              Social
-            </SidebarGroupLabel>
-            <SidebarGroupContent>
-              <SidebarMenu>
-                {socialMenuItems.map((item) => {
-                  return (
-                    <SidebarMenuItem key={item.title}>
-                      <SidebarMenuButton asChild className="text-lg md:text-sm">
-                        <Link
-                          href={item.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                    return (
+                      <SidebarMenuItem key={item.title}>
+                        <SidebarMenuButton
+                          asChild
+                          className={cn(
+                            isActive &&
+                              "bg-sidebar-accent text-sidebar-accent-foreground",
+                            "text-lg md:text-sm"
+                          )}
                         >
-                          {item.title}
-                        </Link>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  )
-                })}
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
+                          <Link href={item.url}>{item.title}</Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    )
+                  })}
+                </SidebarMenu>
+              </SidebarGroupContent>
+              <SidebarGroupLabel className={cn("mt-8 text-lg md:text-sm")}>
+                Components
+              </SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {componentsMenuItems.map((item) => {
+                    const isActive = currentPath === item.url
+
+                    return (
+                      <SidebarMenuItem key={item.title}>
+                        <SidebarMenuButton
+                          asChild
+                          className={cn(
+                            isActive &&
+                              "bg-sidebar-accent text-sidebar-accent-foreground",
+                            "text-lg md:text-sm"
+                          )}
+                        >
+                          <Link href={item.url}>{item.title}</Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    )
+                  })}
+                </SidebarMenu>
+              </SidebarGroupContent>
+              <SidebarGroupLabel className="mt-8 text-lg md:text-sm">
+                <SidebarMenuButton asChild className="text-lg md:text-sm">
+                  <Link href="/docs/showcase" className="-m-2">
+                    Showcase
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarGroupLabel>
+              <SidebarGroupLabel className="mt-8 text-lg md:text-sm">
+                Social
+              </SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {socialMenuItems.map((item) => {
+                    return (
+                      <SidebarMenuItem key={item.title}>
+                        <SidebarMenuButton
+                          asChild
+                          className="text-lg md:text-sm"
+                        >
+                          <Link
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {item.title}
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    )
+                  })}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          </div>
         </ScrollArea>
       </SidebarContent>
     </Sidebar>
