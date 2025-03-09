@@ -1,0 +1,139 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { ResponseStreamFade } from "./response-stream-fade"
+import { ResponseStreamTypewriter } from "./response-stream-typewriter"
+import { ResponseStreamWithMarkdown } from "./response-stream-with-markdown"
+import { UseTextStreamExample } from "./use-text-stream-example"
+
+# Response Stream
+
+A component for displaying text with streaming animations, perfect for chat interfaces, AI responses, or any text that should appear progressively.
+
+## Examples
+
+### Typewriter Mode
+
+The default mode that types out text character by character, simulating a typing effect.
+
+<ComponentCodePreview
+  component={<ResponseStreamTypewriter />}
+  filePath="app/docs/response-stream/response-stream-typewriter.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[150px]"
+  hasReTrigger
+/>
+
+### Fade Mode
+
+The fade mode reveals text word by word with a smooth fade-in animation.
+
+<ComponentCodePreview
+  component={<ResponseStreamFade />}
+  filePath="app/docs/response-stream/response-stream-fade.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[150px]"
+  hasReTrigger
+/>
+
+### With Markdown
+
+ResponseStream can be combined with the Markdown component to create rich, animated content.
+
+<ComponentCodePreview
+  component={<ResponseStreamWithMarkdown />}
+  filePath="app/docs/response-stream/response-stream-with-markdown.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[400px]"
+  disableNotProse
+  hasReTrigger
+/>
+
+### Using the useTextStream Hook
+
+For more control over the streaming behavior, you can use the `useTextStream` hook directly.
+Note: When using the useTextStream hook with `fade` mode, you need to manually render the segments with appropriate CSS animations.
+
+<ComponentCodePreview
+  component={<UseTextStreamExample />}
+  filePath="app/docs/response-stream/use-text-stream-example.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[200px]"
+  hasReTrigger
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/response-stream.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock
+  filePath="components/prompt-kit/response-stream.tsx"
+  language="tsx"
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### ResponseStream
+
+| Prop               | Type                              | Default      | Description                                                  |
+| :----------------- | :-------------------------------- | :----------- | :----------------------------------------------------------- |
+| textStream         | string \| AsyncIterable\<string\> |              | The text to stream or an async iterable of text chunks       |
+| mode               | "typewriter" \| "fade"            | "typewriter" | The animation mode to use                                    |
+| speed              | number                            | 20           | Speed from 1-100, where 1 is slowest and 100 is fastest      |
+| className          | string                            | ""           | Additional CSS classes                                       |
+| onComplete         | () => void                        |              | Callback function when streaming is complete                 |
+| as                 | string                            | "div"        | Element type to render                                       |
+| fadeDuration       | number                            |              | Custom fade duration in ms (overrides speed)                 |
+| segmentDelay       | number                            |              | Custom delay between segments in ms (overrides speed)        |
+| characterChunkSize | number                            |              | Custom characters per frame for typewriter (overrides speed) |
+
+### useTextStream Hook
+
+#### Parameters
+
+| Parameter          | Type                              | Default      | Description                                                  |
+| :----------------- | :-------------------------------- | :----------- | :----------------------------------------------------------- |
+| textStream         | string \| AsyncIterable\<string\> |              | The text to stream or an async iterable of text chunks       |
+| speed              | number                            | 20           | Speed from 1-100, where 1 is slowest and 100 is fastest      |
+| mode               | "typewriter" \| "fade"            | "typewriter" | The animation mode to use                                    |
+| onComplete         | () => void                        |              | Callback function when streaming is complete                 |
+| fadeDuration       | number                            |              | Custom fade duration in ms (overrides speed)                 |
+| segmentDelay       | number                            |              | Custom delay between segments in ms (overrides speed)        |
+| characterChunkSize | number                            |              | Custom characters per frame for typewriter (overrides speed) |
+| onError            | (error: unknown) => void          |              | Callback function when an error occurs                       |
+
+#### Return Value
+
+| Property        | Type                                | Description                               |
+| :-------------- | :---------------------------------- | :---------------------------------------- |
+| displayedText   | string                              | The current text being displayed          |
+| isComplete      | boolean                             | Whether streaming is complete             |
+| segments        | `{ text: string; index: number }[]` | Text segments for fade mode               |
+| getFadeDuration | () => number                        | Function to get the current fade duration |
+| getSegmentDelay | () => number                        | Function to get the current segment delay |
+| reset           | () => void                          | Function to reset the streaming state     |
+| startStreaming  | () => void                          | Function to start or restart streaming    |
+| pause           | () => void                          | Function to pause streaming               |
+| resume          | () => void                          | Function to resume streaming              |
