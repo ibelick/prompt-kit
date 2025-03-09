@@ -121,7 +121,7 @@ function AppSidebar() {
           <SidebarGroupLabel className={cn("mt-8 text-lg md:text-sm")}>
             <SidebarMenuButton asChild className="">
               <Link href="/docs/showcase" className="-m-2">
-                Showcases
+                Showcase
               </Link>
             </SidebarMenuButton>
           </SidebarGroupLabel>
