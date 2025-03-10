@@ -119,14 +119,14 @@ function ReasoningContent({
 
     const observer = new ResizeObserver(() => {
       if (contentRef.current && innerRef.current && isOpen) {
-        contentRef.current.style.maxHeight = `${innerRef.current.offsetHeight}px`
+        contentRef.current.style.maxHeight = `${innerRef.current.scrollHeight}px`
       }
     })
 
     observer.observe(innerRef.current)
 
     if (isOpen) {
-      contentRef.current.style.maxHeight = `${innerRef.current.offsetHeight}px`
+      contentRef.current.style.maxHeight = `${innerRef.current.scrollHeight}px`
     }
 
     return () => observer.disconnect()

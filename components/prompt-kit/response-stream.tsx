@@ -329,13 +329,7 @@ function ResponseStream({
     }
     
     .fade-segment {
-      display: inline;
-      opacity: 0;
       animation: fadeIn ${getFadeDuration()}ms ease-out forwards;
-    }
-
-    .fade-segment-space {
-      white-space: pre;
     }
   `
 
@@ -357,8 +351,8 @@ function ResponseStream({
                   <span
                     key={`${segment.text}-${idx}`}
                     className={cn(
-                      "fade-segment",
-                      isWhitespace && "fade-segment-space"
+                      "fade-segment inline opacity-0",
+                      isWhitespace && "whitespace-pre"
                     )}
                     style={{
                       animationDelay: `${idx * getSegmentDelay()}ms`,
