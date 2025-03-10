@@ -1,0 +1,123 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { ReasoningBasic } from "./reasoning-basic"
+import { ReasoningControlled } from "./reasoning-controlled"
+import { ReasoningWithAIResponse } from "./reasoning-with-ai-response"
+import { ReasoningWithCustomStyling } from "./reasoning-with-custom-styling"
+
+# Reasoning
+
+A component for displaying collapsible reasoning or thought process content, perfect for AI applications that need to show their "thinking" or step-by-step explanations.
+
+## Examples
+
+### Basic Usage
+
+The most basic implementation of the Reasoning component with collapsible content.
+
+<ComponentCodePreview
+  component={<ReasoningBasic />}
+  filePath="app/docs/reasoning/reasoning-basic.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[200px]"
+  hasReTrigger
+/>
+
+### With AI Response
+
+Combine with the ResponseStream component to show streaming AI reasoning content.
+
+<ComponentCodePreview
+  component={<ReasoningWithAIResponse />}
+  filePath="app/docs/reasoning/reasoning-with-ai-response.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[250px]"
+  hasReTrigger
+/>
+
+### Controlled Component
+
+Control the open state programmatically for advanced use cases.
+
+<ComponentCodePreview
+  component={<ReasoningControlled />}
+  filePath="app/docs/reasoning/reasoning-controlled.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[250px]"
+  hasReTrigger
+/>
+
+### Custom Styling
+
+Customize the appearance of the Reasoning component to match your application's design.
+
+<ComponentCodePreview
+  component={<ReasoningWithCustomStyling />}
+  filePath="app/docs/reasoning/reasoning-with-custom-styling.tsx"
+  hasReTrigger
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/reasoning.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/reasoning.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### Reasoning
+
+| Prop         | Type                    | Default | Description                                         |
+| :----------- | :---------------------- | :------ | :-------------------------------------------------- |
+| children     | React.ReactNode         |         | The content of the component                        |
+| className    | string                  |         | Additional CSS classes                              |
+| open         | boolean                 |         | Control the open state (makes component controlled) |
+| onOpenChange | (open: boolean) => void |         | Callback when open state changes                    |
+
+### ReasoningTrigger
+
+| Prop      | Type            | Default | Description                  |
+| :-------- | :-------------- | :------ | :--------------------------- |
+| children  | React.ReactNode |         | The content of the trigger   |
+| className | string          |         | Additional CSS classes       |
+| ...props  | HTMLAttributes  |         | Additional HTML button props |
+
+### ReasoningContent
+
+| Prop      | Type            | Default | Description                 |
+| :-------- | :-------------- | :------ | :-------------------------- |
+| children  | React.ReactNode |         | The content to be displayed |
+| className | string          |         | Additional CSS classes      |
+| ...props  | HTMLAttributes  |         | Additional HTML div props   |
+
+### ReasoningResponse
+
+| Prop      | Type                              | Default | Description                                         |
+| :-------- | :-------------------------------- | :------ | :-------------------------------------------------- |
+| text      | string \| AsyncIterable\<string\> |         | The text to display or stream                       |
+| className | string                            |         | Additional CSS classes                              |
+| ...props  | ResponseStreamProps               |         | Additional ResponseStream props (except textStream) |
