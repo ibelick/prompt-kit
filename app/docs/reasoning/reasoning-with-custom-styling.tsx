@@ -17,7 +17,18 @@ I compared several sorting algorithms based on their time complexity:
 - **Quick Sort:** O(n log n) average case - Best overall option
 - **Heap Sort:** O(n log n) - Good but typically slower than Quick Sort
 
-Quick Sort was selected because it offers excellent average-case performance, can be implemented with minimal extra space (in-place), and performs well on real-world data.`
+Quick Sort was selected because it offers excellent average-case performance, can be implemented with minimal extra space (in-place), and performs well on real-world data.
+
+\`\`\`js
+const quickSort = (arr) => {
+  if (arr.length <= 1) return arr;
+  const pivot = arr[Math.floor(arr.length / 2)];
+  const left = arr.filter(x => x < pivot);
+  const right = arr.filter(x => x > pivot);
+  return [...quickSort(left), pivot, ...quickSort(right)];
+}
+\`\`\`
+`
 
   return (
     <div className="min-h-[350px] w-full flex-col gap-4 bg-gradient-to-r from-purple-50 to-blue-50 p-6 dark:border-slate-700 dark:from-slate-900 dark:to-slate-800">
@@ -31,11 +42,12 @@ Quick Sort was selected because it offers excellent average-case performance, ca
           AI Reasoning Process
         </ReasoningTrigger>
 
-        <ReasoningContent className="mt-4 rounded-md border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900">
+        <ReasoningContent className="mt-4 rounded-md border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900">
           <ReasoningResponse
             text={reasoningText}
-            className="p-4 text-sm"
+            className="prose-h2:!mt-0 prose-h2:!scroll-m-0 prose-h2:!text-lg p-4 text-sm"
             mode="typewriter"
+            speed={60}
           />
         </ReasoningContent>
       </Reasoning>

@@ -1,9 +1,5 @@
 "use client"
 
-import {
-  ResponseStream,
-  type ResponseStreamProps,
-} from "@/components/prompt-kit/response-stream"
 import { cn } from "@/lib/utils"
 import { ChevronDownIcon } from "lucide-react"
 import React, {
@@ -13,6 +9,8 @@ import React, {
   useRef,
   useState,
 } from "react"
+import { Markdown } from "./markdown"
+import { useTextStream, type Mode } from "./response-stream"
 
 type ReasoningContextType = {
   isOpen: boolean
@@ -136,12 +134,11 @@ function ReasoningContent({
     <div
       ref={contentRef}
       className={cn(
-        "overflow-hidden transition-all duration-300",
-        isOpen ? "opacity-100" : "opacity-0",
+        "overflow-hidden transition-[max-height] duration-300 ease-out",
         className
       )}
       style={{
-        maxHeight: isOpen ? undefined : "0px",
+        maxHeight: isOpen ? contentRef.current?.scrollHeight : "0px",
       }}
       {...props}
     >
@@ -153,19 +150,47 @@ function ReasoningContent({
 export type ReasoningResponseProps = {
   text: string | AsyncIterable<string>
   className?: string
-} & Omit<ResponseStreamProps, "textStream">
+  speed?: number
+  mode?: Mode
+  onComplete?: () => void
+  fadeDuration?: number
+  segmentDelay?: number
+  characterChunkSize?: number
+}
 
 function ReasoningResponse({
   text,
   className,
-  ...props
+  speed = 20,
+  mode = "typewriter",
+  onComplete,
+  fadeDuration,
+  segmentDelay,
+  characterChunkSize,
 }: ReasoningResponseProps) {
+  const { isOpen } = useReasoningContext()
+  const { displayedText } = useTextStream({
+    textStream: text,
+    speed,
+    mode,
+    onComplete,
+    fadeDuration,
+    segmentDelay,
+    characterChunkSize,
+  })
+
   return (
-    <ResponseStream
-      textStream={text}
-      className={cn("text-muted-foreground text-sm", className)}
-      {...props}
-    />
+    <div
+      className={cn(
+        "text-muted-foreground prose prose-sm dark:prose-invert text-sm transition-opacity duration-300 ease-out",
+        className
+      )}
+      style={{
+        opacity: isOpen ? 1 : 0,
+      }}
+    >
+      <Markdown>{displayedText}</Markdown>
+    </div>
   )
 }
 
