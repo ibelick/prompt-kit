@@ -53,6 +53,7 @@ function useTextStream({
   const characterChunkSizeRef = useRef(characterChunkSize)
   const streamRef = useRef<AbortController | null>(null)
   const completedRef = useRef(false)
+  const onCompleteRef = useRef(onComplete)
 
   useEffect(() => {
     speedRef.current = speed
@@ -61,6 +62,10 @@ function useTextStream({
     segmentDelayRef.current = segmentDelay
     characterChunkSizeRef.current = characterChunkSize
   }, [speed, mode, fadeDuration, segmentDelay, characterChunkSize])
+
+  useEffect(() => {
+    onCompleteRef.current = onComplete
+  }, [onComplete])
 
   const getChunkSize = useCallback(() => {
     if (typeof characterChunkSizeRef.current === "number") {
@@ -136,9 +141,9 @@ function useTextStream({
     if (!completedRef.current) {
       completedRef.current = true
       setIsComplete(true)
-      onComplete?.()
+      onCompleteRef.current?.()
     }
-  }, [onComplete])
+  }, [])
 
   const reset = useCallback(() => {
     currentIndexRef.current = 0
@@ -274,13 +279,13 @@ function useTextStream({
 export type ResponseStreamProps = {
   textStream: string | AsyncIterable<string>
   mode?: Mode
-  speed?: number
+  speed?: number // 1-100, where 1 is slowest and 100 is fastest
   className?: string
   onComplete?: () => void
-  as?: keyof React.JSX.IntrinsicElements
-  fadeDuration?: number
-  segmentDelay?: number
-  characterChunkSize?: number
+  as?: keyof React.JSX.IntrinsicElements // Element type to render
+  fadeDuration?: number // Custom fade duration in ms (overrides speed)
+  segmentDelay?: number // Custom delay between segments in ms (overrides speed)
+  characterChunkSize?: number // Custom characters per frame for typewriter mode (overrides speed)
 }
 
 function ResponseStream({
@@ -322,6 +327,7 @@ function ResponseStream({
     }
   }, [isComplete])
 
+  // fadeStyle is the style for the fade animation
   const fadeStyle = `
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -329,7 +335,13 @@ function ResponseStream({
     }
     
     .fade-segment {
+      display: inline;
+      opacity: 0;
       animation: fadeIn ${getFadeDuration()}ms ease-out forwards;
+    }
+
+    .fade-segment-space {
+      white-space: pre;
     }
   `
 
@@ -351,8 +363,8 @@ function ResponseStream({
                   <span
                     key={`${segment.text}-${idx}`}
                     className={cn(
-                      "fade-segment inline opacity-0",
-                      isWhitespace && "whitespace-pre"
+                      "fade-segment",
+                      isWhitespace && "fade-segment-space"
                     )}
                     style={{
                       animationDelay: `${idx * getSegmentDelay()}ms`,

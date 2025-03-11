@@ -213,4 +213,29 @@ export const components: ComponentDefinition[] = [
     registryDependencies: ["button"],
     dependencies: ["class-variance-authority", "lucide-react"],
   },
+  {
+    name: "response-stream",
+    description:
+      "A component for displaying text with streaming animations, perfect for chat interfaces, AI responses, or any text that should appear progressively.",
+    path: path.join(__dirname, "../components/prompt-kit/response-stream.tsx"),
+  },
+  {
+    name: "reasoning",
+    description: `A component for displaying collapsible reasoning or thought process content, perfect for AI applications that need to show their "thinking" or step-by-step explanations.`,
+    path: path.join(__dirname, "../components/prompt-kit/reasoning.tsx"),
+    dependencies: ["lucide-react"],
+    files: [
+      {
+        name: "markdown.tsx",
+        path: path.join(__dirname, "../components/prompt-kit/markdown.tsx"),
+      },
+      {
+        name: "response-stream.tsx",
+        path: path.join(
+          __dirname,
+          "../components/prompt-kit/response-stream.tsx"
+        ),
+      },
+    ],
+  },
 ]
