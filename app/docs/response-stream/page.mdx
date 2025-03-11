@@ -34,7 +34,10 @@ The fade mode reveals text word by word with a smooth fade-in animation.
 
 ### With Markdown
 
-ResponseStream can be combined with the Markdown component to create rich, animated content.
+ResponseStream can be combined with the Markdown component to create rich, animated content, for that you need to use the `useTextStream` hook directly.
+
+Note: If you want to use mode="fade", you need to manually render the segments with appropriate CSS animations.
+It can be hard to get it done with markdown, the way is to write a custom `remarkPlugins`. We have a demo but it's a bit too experimental to be included here, happy to receive a PR if you have a good solution.
 
 <ComponentCodePreview
   component={<ResponseStreamWithMarkdown />}
@@ -44,10 +47,9 @@ ResponseStream can be combined with the Markdown component to create rich, anima
   hasReTrigger
 />
 
-### Using the useTextStream Hook
+### Using the useTextStream Hook with fade mode
 
-For more control over the streaming behavior, you can use the `useTextStream` hook directly.
-Note: When using the useTextStream hook with `fade` mode, you need to manually render the segments with appropriate CSS animations.
+When using the useTextStream hook with `fade` mode, you need to manually render the segments with appropriate CSS animations.
 
 <ComponentCodePreview
   component={<UseTextStreamExample />}
