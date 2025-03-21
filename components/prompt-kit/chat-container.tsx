@@ -1,8 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { useEffect, useRef, useState, useCallback } from "react"
-import React from "react"
+import { Children, useCallback, useEffect, useRef, useState } from "react"
 
 const useAutoScroll = (
   containerRef: React.RefObject<HTMLDivElement | null>,
@@ -20,52 +19,55 @@ const useAutoScroll = (
     return scrollHeight - scrollTop - clientHeight <= 8
   }, [])
 
-  const scrollToBottom = useCallback((behavior: ScrollBehavior = "smooth") => {
-    const container = containerRef.current
-    if (!container) return
+  const scrollToBottom = useCallback(
+    (behavior: ScrollBehavior = "smooth") => {
+      const container = containerRef.current
+      if (!container) return
 
-    autoScrollingRef.current = true
-    scrollTriggeredRef.current = true
-    
-    const targetScrollTop = container.scrollHeight - container.clientHeight
+      autoScrollingRef.current = true
+      scrollTriggeredRef.current = true
 
-    container.scrollTo({
-      top: targetScrollTop,
-      behavior: behavior
-    })
+      const targetScrollTop = container.scrollHeight - container.clientHeight
 
-    const checkScrollEnd = () => {
-      if (Math.abs(container.scrollTop - targetScrollTop) < 5) {
-        autoScrollingRef.current = false
-        scrollTriggeredRef.current = false
-        return
+      container.scrollTo({
+        top: targetScrollTop,
+        behavior: behavior,
+      })
+
+      const checkScrollEnd = () => {
+        if (Math.abs(container.scrollTop - targetScrollTop) < 5) {
+          autoScrollingRef.current = false
+          scrollTriggeredRef.current = false
+          return
+        }
+
+        requestAnimationFrame(checkScrollEnd)
       }
 
       requestAnimationFrame(checkScrollEnd)
-    }
 
-    requestAnimationFrame(checkScrollEnd)
-
-    const safetyTimeout = setTimeout(() => {
-      autoScrollingRef.current = false
-      scrollTriggeredRef.current = false
-    }, 500)
-
-    try {
-      const handleScrollEnd = () => {
+      const safetyTimeout = setTimeout(() => {
         autoScrollingRef.current = false
         scrollTriggeredRef.current = false
-        clearTimeout(safetyTimeout)
-        container.removeEventListener("scrollend", handleScrollEnd)
-      }
+      }, 500)
 
-      container.addEventListener("scrollend", handleScrollEnd, {
-        once: true,
-      })
-    } catch (e) {
-      // scrollend event not supported in this browser, fallback to requestAnimationFrame
-    }
-  }, [containerRef])
+      try {
+        const handleScrollEnd = () => {
+          autoScrollingRef.current = false
+          scrollTriggeredRef.current = false
+          clearTimeout(safetyTimeout)
+          container.removeEventListener("scrollend", handleScrollEnd)
+        }
+
+        container.addEventListener("scrollend", handleScrollEnd, {
+          once: true,
+        })
+      } catch (e) {
+        // scrollend event not supported in this browser, fallback to requestAnimationFrame
+      }
+    },
+    [containerRef]
+  )
 
   useEffect(() => {
     if (!enabled) return
@@ -79,7 +81,7 @@ const useAutoScroll = (
       if (autoScrollingRef.current) return
 
       const currentScrollTop = container.scrollTop
-      
+
       if (currentScrollTop < lastScrollTopRef.current && autoScrollEnabled) {
         setAutoScrollEnabled(false)
       }
@@ -166,65 +168,59 @@ function ChatContainer({
   const prevChildrenRef = useRef<React.ReactNode>(null)
   const contentChangedWithoutNewMessageRef = useRef(false)
 
-  const { 
-    autoScrollEnabled, 
-    scrollToBottom, 
+  const {
+    autoScrollEnabled,
+    scrollToBottom,
     isScrolling,
     scrollTriggered,
     newMessageAdded,
     setNewMessageAdded,
-    prevChildrenCountRef
-  } = useAutoScroll(
-    chatContainerRef,
-    autoScroll
-  )
+    prevChildrenCountRef,
+  } = useAutoScroll(chatContainerRef, autoScroll)
 
   useEffect(() => {
-    const childrenArray = React.Children.toArray(children)
+    const childrenArray = Children.toArray(children)
     const currentChildrenCount = childrenArray.length
-    
+
     if (currentChildrenCount > prevChildrenCountRef.current) {
       setNewMessageAdded(true)
-    } 
-    else if (prevChildrenRef.current !== children) {
+    } else if (prevChildrenRef.current !== children) {
       contentChangedWithoutNewMessageRef.current = true
     }
-    
+
     prevChildrenCountRef.current = currentChildrenCount
     prevChildrenRef.current = children
   }, [children, setNewMessageAdded])
 
   useEffect(() => {
     if (!autoScroll) return
-    
+
     const scrollHandler = () => {
       if (newMessageAdded) {
         scrollToBottom("smooth")
         setNewMessageAdded(false)
         contentChangedWithoutNewMessageRef.current = false
-      } 
-      else if (
-        contentChangedWithoutNewMessageRef.current && 
-        autoScrollEnabled && 
-        !isScrolling && 
+      } else if (
+        contentChangedWithoutNewMessageRef.current &&
+        autoScrollEnabled &&
+        !isScrolling &&
         !scrollTriggered
       ) {
         scrollToBottom("smooth")
         contentChangedWithoutNewMessageRef.current = false
       }
     }
-    
+
     requestAnimationFrame(scrollHandler)
-    
   }, [
-    children, 
-    autoScroll, 
-    autoScrollEnabled, 
+    children,
+    autoScroll,
+    autoScrollEnabled,
     isScrolling,
     scrollTriggered,
-    scrollToBottom, 
-    newMessageAdded, 
-    setNewMessageAdded
+    scrollToBottom,
+    newMessageAdded,
+    setNewMessageAdded,
   ])
 
   return (
