@@ -238,4 +238,10 @@ export const components: ComponentDefinition[] = [
       },
     ],
   },
+  {
+    name: "file-upload",
+    description:
+      "A component for creating drag-and-drop file upload interfaces with support for single or multiple files, custom triggers, and visual feedback during file dragging operations.",
+    path: path.join(__dirname, "../components/prompt-kit/file-upload.tsx"),
+  },
 ]
