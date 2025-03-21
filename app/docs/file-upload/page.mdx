@@ -1,0 +1,90 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { BasicFileUpload } from "./basic-file-upload"
+import { CustomFileUpload } from "./custom-file-upload"
+
+# File Upload
+
+A component for creating drag-and-drop file upload interfaces with support for single or multiple files, custom triggers, and visual feedback during file dragging operations.
+
+## Examples
+
+### Basic File Upload
+
+A simple file upload component with drag-and-drop support and a button trigger.
+
+<ComponentCodePreview
+  component={<BasicFileUpload />}
+  filePath="app/docs/file-upload/basic-file-upload.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### File Upload with Prompt Input
+
+You can combine the file upload component with the [Prompt Input](/docs/prompt-input) component to create a full-featured input component with file upload support.
+
+<ComponentCodePreview
+  component={<CustomFileUpload />}
+  filePath="app/docs/file-upload/custom-file-upload.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/file-upload.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/file-upload.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### FileUpload
+
+| Prop         | Type                    | Default | Description                              |
+| :----------- | :---------------------- | :------ | :--------------------------------------- |
+| onFilesAdded | (files: File[]) => void |         | Function called when files are added     |
+| children     | React.ReactNode         |         | Child components                         |
+| multiple     | boolean                 | true    | Allow selection of multiple files        |
+| accept       | string                  |         | File types to accept (e.g., ".jpg,.png") |
+
+### FileUploadTrigger
+
+| Prop      | Type                                       | Default | Description                      |
+| :-------- | :----------------------------------------- | :------ | :------------------------------- |
+| asChild   | boolean                                    | false   | Use child element as the trigger |
+| className | string                                     |         | Additional CSS classes           |
+| children  | React.ReactNode                            |         | Child components                 |
+| ...props  | `React.ComponentPropsWithoutRef<"button">` |         | All other button props           |
+
+### FileUploadContent
+
+| Prop      | Type                                   | Default | Description            |
+| :-------- | :------------------------------------- | :------ | :--------------------- |
+| className | string                                 |         | Additional CSS classes |
+| ...props  | `React.HTMLAttributes<HTMLDivElement>` |         | All other div props    |

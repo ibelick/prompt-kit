@@ -84,6 +84,12 @@ export const routes: Route[] = [
     order: 12,
     type: "component",
   },
+  {
+    path: "/docs/file-upload",
+    label: "File Upload",
+    order: 13,
+    type: "component",
+  },
 ]
 
 export function getNavigation(currentPath: string) {
