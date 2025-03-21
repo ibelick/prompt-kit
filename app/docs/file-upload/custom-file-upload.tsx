@@ -108,9 +108,9 @@ export function CustomFileUpload() {
       <FileUploadContent>
         <div className="flex min-h-[200px] w-full items-center justify-center backdrop-blur-sm">
           <div className="bg-background/90 m-4 w-full max-w-md rounded-lg border p-8 shadow-lg">
-            <div className="mb-4 flex animate-bounce justify-center">
+            <div className="mb-4 flex justify-center">
               <svg
-                className="h-12 w-12 text-blue-500"
+                className="text-muted size-8"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -123,10 +123,10 @@ export function CustomFileUpload() {
                 />
               </svg>
             </div>
-            <h3 className="mb-2 text-center text-lg font-bold">
+            <h3 className="mb-2 text-center text-base font-medium">
               Drop files to upload
             </h3>
-            <p className="text-muted-foreground text-center">
+            <p className="text-muted-foreground text-center text-sm">
               Release to add files to your message
             </p>
           </div>
