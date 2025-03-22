@@ -8,12 +8,13 @@ import {
 } from "@/components/prompt-kit/prompt-input"
 import { Button } from "@/components/ui/button"
 import { ArrowUp, Paperclip, Square, X } from "lucide-react"
-import { useState } from "react"
+import { useRef, useState } from "react"
 
 export function PromptInputWithActions() {
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [files, setFiles] = useState<File[]>([])
+  const uploadInputRef = useRef<HTMLInputElement>(null)
 
   const handleSubmit = () => {
     if (input.trim() || files.length > 0) {
@@ -35,6 +36,9 @@ export function PromptInputWithActions() {
 
   const handleRemoveFile = (index: number) => {
     setFiles((prev) => prev.filter((_, i) => i !== index))
+    if (uploadInputRef?.current) {
+      uploadInputRef.current.value = ""
+    }
   }
 
   return (
