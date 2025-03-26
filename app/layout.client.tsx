@@ -99,7 +99,7 @@ function AppSidebar() {
               <SidebarGroupContent>
                 <SidebarMenu>
                   {componentsMenuItems.map((item) => {
-                    const isActive = currentPath === item.url
+                    const isActive = currentPath ===   item.url
 
                     return (
                       <SidebarMenuItem key={item.title}>

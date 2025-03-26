@@ -9,9 +9,7 @@ export function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  useEffect(() => setMounted(true), []);
 
   if (!mounted) return null;
 
@@ -20,19 +18,20 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon"
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="w-full justify-start px-2"
+      className="h-8 w-8 p-0"
     >
       {theme === 'dark' ? (
         <>
-          <Sun className="h-4 w-4 mr-2" />
-          <span className='sr-only'>Light Mode</span>
+          <Sun className="h-4 w-4" />
+          <span className="sr-only">Dark Mode</span>
         </>
       ) : (
         <>
-          <Moon className="h-4 w-4 mr-2" />
-          <span className='sr-only'>Dark Mode</span>
+          <Moon className="h-4 w-4" />
+          <span className="sr-only">Light Mode</span>
         </>
       )}
+      <span className="sr-only">{theme === 'dark' ? 'Light' : 'Dark'} Mode</span>
     </Button>
   );
 }
