@@ -244,4 +244,11 @@ export const components: ComponentDefinition[] = [
       "A component for creating drag-and-drop file upload interfaces with support for single or multiple files, custom triggers, and visual feedback during file dragging operations.",
     path: path.join(__dirname, "../components/prompt-kit/file-upload.tsx"),
   },
+  {
+    name: "jsx-preview",
+    description:
+      "A component for rendering JSX strings as React components, with support for streaming content and automatic tag completion.",
+    path: path.join(__dirname, "../components/prompt-kit/jsx-preview.tsx"),
+    dependencies: ["react-jsx-parser"],
+  },
 ]

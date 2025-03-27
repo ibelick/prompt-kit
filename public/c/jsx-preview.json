@@ -1,0 +1,22 @@
+{
+  "name": "jsx-preview",
+  "type": "registry:ui",
+  "registryDependencies": [],
+  "dependencies": [
+    "react-jsx-parser"
+  ],
+  "devDependencies": [],
+  "tailwind": {},
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "description": "A component for rendering JSX strings as React components, with support for streaming content and automatic tag completion.",
+  "files": [
+    {
+      "path": "jsx-preview.tsx",
+      "content": "import * as React from \"react\"\nimport JsxParser from \"react-jsx-parser\"\nimport type { TProps as JsxParserProps } from \"react-jsx-parser\"\n\nfunction matchJsxTag(code: string) {\n  if (code.trim() === \"\") {\n    return null\n  }\n\n  const tagRegex = /<\\/?([a-zA-Z][a-zA-Z0-9]*)\\s*([^>]*?)(\\/)?>/\n  const match = code.match(tagRegex)\n\n  if (!match || typeof match.index === \"undefined\") {\n    return null\n  }\n\n  const [fullMatch, tagName, attributes, selfClosing] = match\n\n  const type = selfClosing\n    ? \"self-closing\"\n    : fullMatch.startsWith(\"</\")\n      ? \"closing\"\n      : \"opening\"\n\n  return {\n    tag: fullMatch,\n    tagName,\n    type,\n    attributes: attributes.trim(),\n    startIndex: match.index,\n    endIndex: match.index + fullMatch.length,\n  }\n}\n\nfunction completeJsxTag(code: string) {\n  const stack: string[] = []\n  let result = \"\"\n  let currentPosition = 0\n\n  while (currentPosition < code.length) {\n    const match = matchJsxTag(code.slice(currentPosition))\n    if (!match) break\n    const { tagName, type, endIndex } = match\n\n    if (type === \"opening\") {\n      stack.push(tagName)\n    } else if (type === \"closing\") {\n      stack.pop()\n    }\n\n    result += code.slice(currentPosition, currentPosition + endIndex)\n    currentPosition += endIndex\n  }\n\n  return (\n    result +\n    stack\n      .reverse()\n      .map((tag) => `</${tag}>`)\n      .join(\"\")\n  )\n}\n\nexport type JSXPreviewProps = {\n  jsx: string\n  isStreaming?: boolean\n} & JsxParserProps\n\nfunction JSXPreview({ jsx, isStreaming = false, ...props }: JSXPreviewProps) {\n  const processedJsx = React.useMemo(\n    () => (isStreaming ? completeJsxTag(jsx) : jsx),\n    [jsx, isStreaming]\n  )\n\n  // Cast JsxParser to any to work around the type incompatibility\n  const Parser = JsxParser as unknown as React.ComponentType<JsxParserProps>\n\n  return <Parser jsx={processedJsx} {...props} />\n}\n\nexport { JSXPreview }\n",
+      "type": "registry:ui"
+    }
+  ]
+}
