@@ -55,5 +55,9 @@
     "tailwindcss": "^4.0.0",
     "tsx": "^4.19.3",
     "typescript": "^5"
+  },
+  "resolutions": {
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0"
   }
 }
