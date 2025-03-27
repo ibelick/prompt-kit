@@ -90,6 +90,12 @@ export const routes: Route[] = [
     order: 13,
     type: "component",
   },
+  {
+    path: "/docs/jsx-preview",
+    label: "JSX Preview",
+    order: 14,
+    type: "component",
+  },
 ]
 
 export function getNavigation(currentPath: string) {

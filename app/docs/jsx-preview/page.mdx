@@ -1,0 +1,75 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { JSXPreviewBasic } from "./jsx-preview-basic"
+import { JSXPreviewStreaming } from "./jsx-preview-streaming"
+
+# JSX Preview
+
+A component for rendering JSX strings as React components, with support for streaming content and automatic tag completion.
+
+## Examples
+
+### Basic JSX Preview
+
+The `JSXPreview` component can render JSX strings directly into React components.
+
+<ComponentCodePreview
+  component={<JSXPreviewBasic />}
+  filePath="app/docs/jsx-preview/jsx-preview-basic.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### Streaming JSX Preview
+
+The `isStreaming` prop enables real-time rendering of JSX as it's being streamed, with automatic tag completion.
+
+<ComponentCodePreview
+  component={<JSXPreviewStreaming />}
+  filePath="app/docs/jsx-preview/jsx-preview-streaming.tsx"
+  classNameComponentContainer="p-8"
+  hasReTrigger
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/jsx-preview.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/jsx-preview.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### JSXPreview
+
+| Prop        | Type             | Default | Description                                                          |
+| :---------- | :--------------- | :------ | :------------------------------------------------------------------- |
+| jsx         | string           |         | The JSX string to render                                             |
+| isStreaming | boolean          | false   | Whether the JSX is being streamed (enables automatic tag completion) |
+| className   | string           |         | Additional CSS classes                                               |
+| ...props    | `JsxParserProps` |         | All other props from `react-jsx-parser`                              |

@@ -72,12 +72,10 @@ function JSXPreview({ jsx, isStreaming = false, ...props }: JSXPreviewProps) {
     [jsx, isStreaming]
   )
 
-  const jsxParser = new JsxParser({
-    jsx: processedJsx,
-    ...props,
-  })
+  // Cast JsxParser to any to work around the type incompatibility
+  const Parser = JsxParser as unknown as React.ComponentType<JsxParserProps>
 
-  return jsxParser.render()
+  return <Parser jsx={processedJsx} {...props} />
 }
 
 export { JSXPreview }
