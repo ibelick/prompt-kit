@@ -32,6 +32,10 @@ export const codeToHtml = async ({
     throw new Error("Highlighter instance is null")
   }
 
+  if (!code) {
+    return "<pre><code></code></pre>"
+  }
+
   return highlighterInstance.codeToHtml(code, {
     lang: lang,
     theme: "github-light",
