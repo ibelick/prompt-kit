@@ -21,6 +21,7 @@ import { useEffect } from "react"
 import { Footer } from "./footer"
 import { Header } from "./header"
 import { routes } from "./routes"
+import { ThemeToggle } from "@/components/ui/theme-toggler"
 
 const coreMenuItems = routes
   .filter((route) => route.type === "core")
@@ -98,7 +99,7 @@ function AppSidebar() {
               <SidebarGroupContent>
                 <SidebarMenu>
                   {componentsMenuItems.map((item) => {
-                    const isActive = currentPath === item.url
+                    const isActive = currentPath ===   item.url
 
                     return (
                       <SidebarMenuItem key={item.title}>
@@ -149,6 +150,9 @@ function AppSidebar() {
                   })}
                 </SidebarMenu>
               </SidebarGroupContent>
+              <SidebarGroupContent className="mt-4">
+                <ThemeToggle />
+              </SidebarGroupContent >
             </SidebarGroup>
           </div>
         </ScrollArea>
