@@ -1,0 +1,32 @@
+# prompt-kit
+
+> prompt-kit is a library of customizable, high-quality UI components for AI applications. It provides ready-to-use components for building chat experiences, AI agents, autonomous assistants, and more, with a focus on rapid development and beautiful design.
+
+prompt-kit is built on top of shadcn/ui and extends it with specialized components for AI interfaces. It uses Next.js, React 19, and Tailwind CSS. The components are designed to be easily customizable and can be installed individually using the shadcn CLI.
+
+## Documentation
+
+- [README](https://github.com/ibelick/prompt-kit/blob/main/README.md): Installation instructions and basic usage guide
+- [Installation](https://www.prompt-kit.com/docs/installation): Detailed installation guide, how to install prompt-kit components
+
+## Components
+
+- [components/prompt-kit/prompt-input.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/prompt-input.tsx): An input field designed for chat interfaces, allowing users to enter and submit text prompts to an AI model
+- [components/prompt-kit/code-block.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/code-block.tsx): A component for displaying code snippets with syntax highlighting and customizable styling
+- [components/prompt-kit/markdown.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/markdown.tsx): A component for rendering Markdown content with support for code blocks, GFM, and custom styling
+- [components/prompt-kit/message.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/message.tsx): A component for displaying chat messages with support for avatars, markdown content, and interactive actions
+- [components/prompt-kit/chat-container.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/chat-container.tsx): A component for creating chat interfaces with intelligent auto-scrolling behavior for a smooth user experience
+- [components/prompt-kit/scroll-button.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/scroll-button.tsx): A floating button component that appears when users scroll up in a container, allowing them to quickly return to the bottom
+- [components/prompt-kit/loader.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/loader.tsx): A component for displaying loading indicators with multiple variants and customizable styling
+- [components/prompt-kit/prompt-suggestion.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/prompt-suggestion.tsx): A component for implementing interactive prompt suggestions in AI interfaces with both normal and highlight modes
+- [components/prompt-kit/response-stream.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/response-stream.tsx): A component for displaying text with streaming animations, perfect for AI responses or progressively appearing text
+- [components/prompt-kit/reasoning.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/reasoning.tsx): A component for displaying collapsible reasoning or thought process content, perfect for showing AI "thinking"
+- [components/prompt-kit/file-upload.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/file-upload.tsx): A component for creating drag-and-drop file upload interfaces with support for single or multiple files
+- [components/prompt-kit/jsx-preview.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/jsx-preview.tsx): A component for rendering JSX strings as React components, with support for streaming content and tag completion
+
+## Optional
+
+- [zola.chat](https://zola.chat/): Open-source AI chat app built with prompt-kit components, providing a great example implementation
+- [shadcn/ui Documentation](https://ui.shadcn.com): Documentation for the underlying UI component system
+- [Next.js Documentation](https://nextjs.org/docs): Documentation for the Next.js framework
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs): Documentation for the Tailwind CSS framework 
