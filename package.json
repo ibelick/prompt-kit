@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "build:registry": "tsx scripts/registry-build.ts"
+    "build:registry": "tsx scripts/registry-build.ts",
+    "generate-llms-txt": "node scripts/generate-llms-txt.js"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.0",

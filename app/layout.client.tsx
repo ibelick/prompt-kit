@@ -47,9 +47,20 @@ const socialMenuItems = [
   },
 ]
 
+const llms = [
+  {
+    title: "llms.txt",
+    url: "/llms.txt",
+  },
+  {
+    title: "llms-full.txt",
+    url: "/llms-full.txt",
+  },
+]
+
 function AppSidebar() {
   const currentPath = usePathname()
-  const { setOpenMobile, isMdView } = useSidebar()
+  const { setOpenMobile } = useSidebar()
   const pathname = usePathname()
 
   useEffect(() => {
@@ -109,6 +120,25 @@ function AppSidebar() {
                               "bg-sidebar-accent text-sidebar-accent-foreground",
                             "text-lg md:text-sm"
                           )}
+                        >
+                          <Link href={item.url}>{item.title}</Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    )
+                  })}
+                </SidebarMenu>
+              </SidebarGroupContent>
+              <SidebarGroupLabel className={cn("mt-8 text-lg md:text-sm")}>
+                LLMs
+              </SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {llms.map((item) => {
+                    return (
+                      <SidebarMenuItem key={item.title}>
+                        <SidebarMenuButton
+                          asChild
+                          className="text-lg md:text-sm"
                         >
                           <Link href={item.url}>{item.title}</Link>
                         </SidebarMenuButton>

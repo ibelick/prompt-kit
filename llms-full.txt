@@ -1,0 +1,1663 @@
+# prompt-kit
+
+> prompt-kit is a library of customizable, high-quality UI components for AI applications. It provides ready-to-use components for building chat experiences, AI agents, autonomous assistants, and more, with a focus on rapid development and beautiful design.
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Introduction](#introduction)
+- [Components](#components)
+  - [Prompt input](#prompt-input)
+  - [Code block](#code-block)
+  - [Markdown](#markdown)
+  - [Message](#message)
+  - [Chat container](#chat-container)
+  - [Scroll button](#scroll-button)
+  - [Loader](#loader)
+  - [Prompt suggestion](#prompt-suggestion)
+  - [Response stream](#response-stream)
+  - [Reasoning](#reasoning)
+  - [File upload](#file-upload)
+  - [Jsx preview](#jsx-preview)
+- [Showcase](#showcase)
+
+**prompt-kit** is a set of customizable, high-quality components built for AI applications, making it easy to design chat experiences, AI agents, autonomous assistants, and more, quickly and beautifully.
+
+**prompt-kit** is built on top of shadcn/ui with the same design principles. But instead of helping you build a component library, it helps you build AI interfaces.
+
+This project is a work in progress, and we’re continuously improving and expanding the collection. We’d love to hear your feedback or see your contributions as it evolves!
+
+prompt-kit is open source. Check out the code and contribute on [GitHub](https://github.com/ibelick/prompt-kit).
+
+
+# Installation
+
+## Prerequisites
+
+Before installing, ensure you have the following:
+
+- [Node.js](https://nodejs.org/en/download/) version __18__ or later
+- [React](https://react.dev/) version __19__ or later
+
+
+
+## Install shadcn/ui
+
+First, you'll need to install and configure shadcn/ui in your project. Follow the installation guide at [shadcn/ui documentation](https://ui.shadcn.com/docs/installation).
+
+Once shadcn/ui is set up, you can install **prompt-kit** components using the **shadcn CLI**.
+
+## Using the shadcn CLI
+
+<CodeBlock
+  language="bash"
+  code={`npx shadcn@latest add "https://prompt-kit.com/c/[COMPONENT].json"`}
+/>
+
+## Usage
+
+After installation, import and start using the components in your project:
+
+<CodeBlock
+  language="tsx"
+  code={`import { PromptInput } from "@/components/ui/prompt-input";`}
+/>
+
+
+## Components
+
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { PromptInputBasic } from "./prompt-input-basic"
+import { PromptInputWithActions } from "./prompt-input-with-actions"
+
+# Prompt Input
+
+An input field that allows users to enter and submit text to an AI model.
+
+## Examples
+
+### Prompt Input basic
+
+<ComponentCodePreview
+  component={<PromptInputBasic />}
+  filePath="app/docs/prompt-input/prompt-input-basic.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### Prompt Input with actions
+
+You can use `PromptInputActions` to add actions with tooltips to the `PromptInput`.
+
+<ComponentCodePreview
+  component={<PromptInputWithActions />}
+  filePath="app/docs/prompt-input/prompt-input-with-actions.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/prompt-input.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/prompt-input.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### PromptInput
+
+| Prop          | Type                    | Default | Description                                     |
+| :------------ | :---------------------- | :------ | :---------------------------------------------- |
+| isLoading     | boolean                 | false   | Loading state of the input                      |
+| value         | string                  |         | Controlled value of the input                   |
+| onValueChange | (value: string) => void |         | Callback when input value changes               |
+| maxHeight     | number \| string        | 240     | Maximum height of the textarea in pixels        |
+| onSubmit      | () => void              |         | Callback when form is submitted (Enter pressed) |
+| children      | React.ReactNode         |         | Child components to render                      |
+| className     | string                  |         | Additional CSS classes                          |
+
+### PromptInputTextarea
+
+| Prop            | Type                               | Default | Description                            |
+| :-------------- | :--------------------------------- | :------ | :------------------------------------- |
+| disableAutosize | boolean                            | false   | Disable automatic height adjustment    |
+| className       | string                             |         | Additional CSS classes                 |
+| onKeyDown       | (e: KeyboardEvent) => void         |         | Keyboard event handler                 |
+| disabled        | boolean                            | false   | Disable the textarea input             |
+| ...props        | `React.ComponentProps<"textarea">` |         | All other textarea props are supported |
+
+### PromptInputActions
+
+| Prop      | Type                                   | Default | Description                       |
+| :-------- | :------------------------------------- | :------ | :-------------------------------- |
+| children  | React.ReactNode                        |         | Child components to render        |
+| className | string                                 |         | Additional CSS classes            |
+| ...props  | `React.HTMLAttributes<HTMLDivElement>` |         | All other div props are supported |
+
+### PromptInputAction
+
+| Prop      | Type                                   | Default | Description                                     |
+| :-------- | :------------------------------------- | :------ | :---------------------------------------------- |
+| tooltip   | React.ReactNode                        |         | Content to show in the tooltip                  |
+| children  | React.ReactNode                        |         | Child component to trigger the tooltip          |
+| className | string                                 |         | Additional CSS classes for the tooltip          |
+| side      | "top" \| "bottom" \| "left" \| "right" | "top"   | Position of the tooltip relative to the trigger |
+| disabled  | boolean                                | false   | Disable the tooltip trigger                     |
+| ...props  | `React.ComponentProps<typeof Tooltip>` |         | All other Tooltip component props are supported |
+
+
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { CodeBlockBasic } from "./code-block-basic"
+import { CodeBlockCSS } from "./code-block-css"
+import { CodeBlockNord } from "./code-block-nord"
+import { CodeBlockPython } from "./code-block-python"
+import { CodeBlockThemed } from "./code-block-themed"
+import { CodeBlockWithHeader } from "./code-block-with-header"
+
+# Code Block
+
+A component for displaying code snippets with syntax highlighting and customizable styling.
+
+## Examples
+
+### Basic Code Block
+
+<ComponentCodePreview
+  component={<CodeBlockBasic />}
+  filePath="app/docs/code-block/code-block-basic.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### Code Block with Header
+
+You can use `CodeBlockGroup` to add a header with metadata and actions to your code blocks.
+
+<ComponentCodePreview
+  component={<CodeBlockWithHeader />}
+  filePath="app/docs/code-block/code-block-with-header.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### Different Languages
+
+You can highlight code in various languages by changing the `language` prop.
+
+#### Python Example
+
+<ComponentCodePreview
+  component={<CodeBlockPython />}
+  filePath="app/docs/code-block/code-block-python.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+#### CSS Example
+
+<ComponentCodePreview
+  component={<CodeBlockCSS />}
+  filePath="app/docs/code-block/code-block-css.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### Different Themes
+
+Shiki supports many popular themes. Here are some examples:
+
+#### GitHub Dark Theme
+
+<ComponentCodePreview
+  component={<CodeBlockThemed />}
+  filePath="app/docs/code-block/code-block-themed.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+#### Nord Theme
+
+<ComponentCodePreview
+  component={<CodeBlockNord />}
+  filePath="app/docs/code-block/code-block-nord.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/code-block.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/code-block.tsx" language="tsx" />
+
+<Step>Install the required dependencies.</Step>
+
+<CodeBlock code={`npm install shiki`} language="bash" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### CodeBlock
+
+| Prop      | Type                              | Default | Description                |
+| :-------- | :-------------------------------- | :------ | :------------------------- |
+| children  | React.ReactNode                   |         | Child components to render |
+| className | string                            |         | Additional CSS classes     |
+| ...props  | `React.HTMLProps<HTMLDivElement>` |         | All other div props        |
+
+### CodeBlockCode
+
+| Prop      | Type                              | Default        | Description                          |
+| :-------- | :-------------------------------- | :------------- | :----------------------------------- |
+| code      | string                            |                | The code to display and highlight    |
+| language  | string                            | "tsx"          | The language for syntax highlighting |
+| theme     | string                            | "github-light" | The theme for syntax highlighting    |
+| className | string                            |                | Additional CSS classes               |
+| ...props  | `React.HTMLProps<HTMLDivElement>` |                | All other div props                  |
+
+### CodeBlockGroup
+
+| Prop      | Type                                   | Default | Description                |
+| :-------- | :------------------------------------- | :------ | :------------------------- |
+| children  | React.ReactNode                        |         | Child components to render |
+| className | string                                 |         | Additional CSS classes     |
+| ...props  | `React.HTMLAttributes<HTMLDivElement>` |         | All other div props        |
+
+## Usage with Markdown
+
+The `CodeBlock` component is used internally by the `Markdown` component to render code blocks in markdown content. When used within the `Markdown` component, code blocks are automatically wrapped with the `not-prose` class to prevent conflicts with prose styling.
+
+<CodeBlock
+  code={`import { Markdown } from "@/components/prompt-kit/markdown"
+
+function MyComponent() {
+const markdownContent = \` # Example
+
+    \\\`\\\`\\\`javascript
+    function greet(name) {
+
+    return \`Hello, \\\${name}!\\\`;
+    }
+    \\\`\\\`\\\`
+
+    return <Markdown className="prose">{markdownContent}</Markdown>
+
+}`}
+language="tsx"
+/>
+
+## Tailwind Typography and not-prose
+
+The `CodeBlock` component includes the `not-prose` class by default to prevent Tailwind Typography's prose styling from affecting code blocks. This is important when using the [@tailwindcss/typography](https://github.com/tailwindlabs/tailwindcss-typography) plugin, which provides beautiful typography defaults but can interfere with code block styling.
+
+Since code blocks are styled with Shiki for syntax highlighting, they should not inherit Tailwind Typography styles. The `not-prose` class ensures that code blocks maintain their intended appearance regardless of the surrounding typography context.
+
+<CodeBlock
+  code={`<article className="prose">
+  <h1>My Content</h1>
+  <p>This content has prose styling applied.</p>
+  
+  {/* The CodeBlock has not-prose to prevent prose styling */}
+  <CodeBlock>
+    <CodeBlockCode code={code} language="javascript" />
+  </CodeBlock>
+</article>`}
+  language="tsx"
+/>
+
+## Customizing Syntax Highlighting
+
+The `CodeBlockCode` component uses [Shiki](https://shiki.matsu.io/) for syntax highlighting. You can customize the theme by passing a different theme name to the `theme` prop.
+
+Shiki supports many popular themes including:
+
+- github-light (default)
+- github-dark
+- dracula
+- nord
+- and more.
+
+For a complete list of supported themes, refer to the [Shiki documentation](https://github.com/shikijs/shiki/blob/main/docs/themes.md).
+
+
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { MarkdownBasic } from "./markdown-basic"
+import { MarkdownCustomComponents } from "./markdown-custom-components"
+
+# Markdown
+
+A component for rendering Markdown content with support for GitHub Flavored Markdown (GFM) and custom component styling.
+
+## Examples
+
+### Basic Markdown
+
+Render basic Markdown with support for bold, italics, lists, code blocks and more.
+
+<ComponentCodePreview
+  component={<MarkdownBasic />}
+  filePath="app/docs/markdown/markdown-basic.tsx"
+  classNameComponentContainer="p-8"
+  disableNotProse
+/>
+
+### Markdown with Custom Components
+
+You can customize how different Markdown elements are rendered by providing custom components.
+
+<ComponentCodePreview
+  component={<MarkdownCustomComponents />}
+  filePath="app/docs/markdown/markdown-custom-components.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/markdown.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/markdown.tsx" language="tsx" />
+
+<Step>Install the required dependencies.</Step>
+
+<CodeBlock code={`npm install react-markdown remark-gfm`} language="bash" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### Markdown
+
+| Prop       | Type                                         | Default            | Description                                     |
+| :--------- | :------------------------------------------- | :----------------- | :---------------------------------------------- |
+| children   | string                                       |                    | Markdown content to render                      |
+| className  | string                                       |                    | Additional CSS classes                          |
+| components | `Partial<Components>`                        | INITIAL_COMPONENTS | Custom components to override default rendering |
+| ...props   | `React.ComponentProps<typeof ReactMarkdown>` |                    | All other ReactMarkdown props                   |
+
+## Performance Optimization
+
+The Markdown component employs advanced memoization techniques to optimize rendering performance, especially in streaming AI response scenarios. This approach is crucial when rendering chat interfaces where new tokens are continuously streamed.
+
+### How Memoization Works
+
+Our implementation:
+
+1. Splits Markdown content into discrete semantic blocks using the `marked` library
+2. Memoizes each block individually with React's `memo`
+3. Only re-renders blocks that have actually changed when new content arrives
+4. Preserves already rendered blocks to prevent unnecessary re-parsing and re-rendering
+
+This pattern significantly improves performance in chat applications by preventing the entire message history from re-rendering with each new token, which becomes increasingly important as conversations grow longer.
+
+For AI chat interfaces using streaming responses, always provide a unique `id` prop (typically the message ID) to ensure proper block caching:
+
+<CodeBlock
+  code={`<Markdown id={message.id}>{message.content}</Markdown>`}
+  language="tsx"
+/>
+
+This memoization implementation is based on the [Vercel AI SDK Cookbook](https://sdk.vercel.ai/cookbook/next/markdown-chatbot-with-memoization) with enhancements for better React integration.
+
+## Customizing Components
+
+You can customize how different Markdown elements are rendered by providing a `components` prop. This is an object where keys are HTML element names and values are React components.
+
+<CodeBlock code={`const customComponents = {
+    h1: ({ children }) => <h1 className="text-2xl font-bold text-blue-500">{children}</h1>,
+    a: ({ href, children }) => <a href={href} className="text-purple-500 underline">{children}</a>,
+    // ... other components
+}
+
+<Markdown components={customComponents}>{markdownContent}</Markdown>
+`} language="tsx" />
+
+## Supported Markdown Features
+
+The Markdown component uses [react-markdown](https://github.com/remarkjs/react-markdown) with [remark-gfm](https://github.com/remarkjs/remark-gfm) to support GitHub Flavored Markdown, which includes:
+
+- Tables
+- Strikethrough
+- Tasklists
+- Literal URLs
+- Footnotes
+
+Additionally, the component includes built-in code block highlighting through the `CodeBlock` component.
+
+## Styling with Tailwind Typography
+
+For the best typography styling experience, we recommend using the [@tailwindcss/typography](https://github.com/tailwindlabs/tailwindcss-typography) plugin. This plugin provides a set of `prose` classes that add beautiful typographic defaults to your markdown content.
+
+<CodeBlock code={`npm install -D @tailwindcss/typography`} language="bash" />
+
+When using the Markdown component with Tailwind Typography, you can apply the `prose` class:
+
+<CodeBlock
+  code={`<Markdown className="prose dark:prose-invert">{markdownContent}</Markdown>`}
+  language="tsx"
+/>
+
+### Handling Code Blocks
+
+As you've seen in our examples, code blocks within prose content can sometimes cause styling conflicts. The Tailwind Typography plugin provides a `not-prose` class to exclude elements from prose styling:
+
+<CodeBlock code={`<article className="prose">
+    <h1>My Content</h1>
+    <p>Regular content with prose styling...</p>
+
+    <div className="not-prose">
+      <!-- Code blocks or other elements that shouldn't inherit prose styles -->
+    </div>
+
+</article>
+`} language="tsx" />
+
+
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { MessageBasic } from "./message-basic"
+import { MessageWithActions } from "./message-with-actions"
+import { MessageWithMarkdown } from "./message-with-markdown"
+
+# Message
+
+A component for displaying messages in a conversation interface, with support for avatars, markdown content, and interactive actions.
+
+## Examples
+
+### Basic Message
+
+<ComponentCodePreview
+  component={<MessageBasic />}
+  filePath="app/docs/message/message-basic.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### Message with Markdown
+
+The `markdown` prop enables rendering content as [Markdown](/docs/markdown), perfect for rich text formatting in messages.
+
+<ComponentCodePreview
+  component={<MessageWithMarkdown />}
+  filePath="app/docs/message/message-with-markdown.tsx"
+  classNameComponentContainer="p-8"
+  disableNotProse
+/>
+
+### Message with Actions
+
+You can use `MessageActions` and `MessageAction` to add interactive elements to your messages.
+
+<ComponentCodePreview
+  component={<MessageWithActions />}
+  filePath="app/docs/message/message-with-actions.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/message.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/message.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### Message
+
+| Prop      | Type                              | Default | Description                |
+| :-------- | :-------------------------------- | :------ | :------------------------- |
+| children  | React.ReactNode                   |         | Child components to render |
+| className | string                            |         | Additional CSS classes     |
+| ...props  | `React.HTMLProps<HTMLDivElement>` |         | All other div props        |
+
+### MessageAvatar
+
+| Prop      | Type   | Default | Description                            |
+| :-------- | :----- | :------ | :------------------------------------- |
+| src       | string |         | URL of the avatar image                |
+| alt       | string |         | Alt text for the avatar image          |
+| fallback  | string |         | Text to display if image fails to load |
+| delayMs   | number |         | Delay before showing fallback (in ms)  |
+| className | string |         | Additional CSS classes                 |
+
+### MessageContent
+
+| Prop      | Type                              | Default | Description                           |
+| :-------- | :-------------------------------- | :------ | :------------------------------------ |
+| children  | React.ReactNode                   |         | Content to display in the message     |
+| markdown  | boolean                           | false   | Whether to render content as markdown |
+| className | string                            |         | Additional CSS classes                |
+| ...props  | `React.HTMLProps<HTMLDivElement>` |         | All other div props                   |
+
+### MessageActions
+
+| Prop      | Type                              | Default | Description                |
+| :-------- | :-------------------------------- | :------ | :------------------------- |
+| children  | React.ReactNode                   |         | Child components to render |
+| className | string                            |         | Additional CSS classes     |
+| ...props  | `React.HTMLProps<HTMLDivElement>` |         | All other div props        |
+
+### MessageAction
+
+| Prop      | Type                                   | Default | Description                                     |
+| :-------- | :------------------------------------- | :------ | :---------------------------------------------- |
+| tooltip   | React.ReactNode                        |         | Content to show in the tooltip                  |
+| children  | React.ReactNode                        |         | Child component to trigger the tooltip          |
+| className | string                                 |         | Additional CSS classes for the tooltip          |
+| side      | "top" \| "bottom" \| "left" \| "right" | "top"   | Position of the tooltip relative to the trigger |
+| ...props  | `React.ComponentProps<typeof Tooltip>` |         | All other Tooltip component props               |
+
+
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { ChatBasic } from "./chat-basic"
+import { ChatWithCustomScroll } from "./chat-with-custom-scroll"
+
+# Chat Container
+
+A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth and responsive user experience in conversation interfaces.
+
+## Examples
+
+### Chat with Custom Scroll Behavior
+
+Customize the auto-scroll behavior by toggling the auto-scroll feature on or off. This example demonstrates how to give users control over the scrolling behavior.
+
+<ComponentCodePreview
+  component={<ChatWithCustomScroll />}
+  filePath="app/docs/chat-container/chat-with-custom-scroll.tsx"
+  classNameComponentContainer="p-0"
+/>
+
+### Streaming Text Example
+
+A chat container that demonstrates text streaming with automatic scrolling. Click the "Show Streaming" button to see a simulated streaming response with the smart auto-scroll behavior in action.
+
+<ComponentCodePreview
+  component={<ChatBasic />}
+  filePath="app/docs/chat-container/chat-basic.tsx"
+  classNameComponentContainer="p-0"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/chat-container.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/chat-container.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### ChatContainer
+
+| Prop        | Type                                   | Default | Description                                                 |
+| :---------- | :------------------------------------- | :------ | :---------------------------------------------------------- |
+| children    | React.ReactNode                        |         | Child components to render inside the container             |
+| className   | string                                 |         | Additional CSS classes                                      |
+| autoScroll  | boolean                                | true    | Whether to automatically scroll to bottom on content change |
+| scrollToRef | React.RefObject\<HTMLDivElement\>      |         | Optional custom reference for scroll target                 |
+| ...props    | React.HTMLAttributes\<HTMLDivElement\> |         | All other div props                                         |
+
+
+## Auto-Scroll Behavior
+
+The component implements sophisticated scrolling logic to provide a natural user experience:
+
+- **New Messages**: Automatically scrolls to the bottom when new messages are added
+- **Content Updates**: Scrolls to follow streaming content when already at the bottom
+- **User Control**: 
+  - Temporarily disables auto-scrolling when users scroll up or use mouse wheel up
+  - Maintains scroll position during content updates when user has scrolled up
+  - Supports touch interactions by tracking touch start/move/end events
+- **Resume Auto-Scroll**: Re-enables auto-scrolling when users scroll back to the bottom
+
+## Using with ScrollButton
+
+The ChatContainer pairs well with the ScrollButton component to provide a complete chat interface experience:
+
+<CodeBlock
+  code={`import { useRef } from "react"
+import { ChatContainer } from "@/components/prompt-kit/chat-container"
+import { ScrollButton } from "@/components/prompt-kit/scroll-button"
+
+function ChatInterface() {
+const containerRef = useRef<HTMLDivElement>(null)
+const bottomRef = useRef<HTMLDivElement>(null)
+
+return (
+
+<div className="relative h-[500px]">
+<ChatContainer ref={containerRef}>
+{/* Your chat messages here */}
+</ChatContainer>
+
+      <div className="absolute bottom-4 right-4">
+        <ScrollButton
+          containerRef={containerRef}
+          scrollRef={bottomRef}
+        />
+      </div>
+    </div>
+
+)
+}`}
+language="tsx"
+/>
+
+## Performance Considerations
+
+The ChatContainer component is optimized for performance in chat applications:
+
+1. Uses passive event listeners to avoid blocking the main thread
+2. Implements efficient scroll detection with browser-native APIs
+3. Uses `requestAnimationFrame` for smooth scrolling animations
+
+For large chat histories, consider implementing virtualization or pagination to maintain performance.
+
+
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { ScrollButtonBasic } from "./scroll-button-basic"
+import { ScrollButtonCustom } from "./scroll-button-custom"
+import { ScrollButtonWithChat } from "./scroll-button-with-chat"
+
+# Scroll Button
+
+A floating button component that appears when users scroll up in a container, allowing them to quickly return to the bottom of the content with a single click.
+
+## Examples
+
+### Basic Scroll Button
+
+A simple implementation of the scroll button that appears when scrolling up and disappears when at the bottom of the container.
+
+<ComponentCodePreview
+  component={<ScrollButtonBasic />}
+  filePath="app/docs/scroll-button/scroll-button-basic.tsx"
+  classNameComponentContainer="p-0"
+/>
+
+### Custom Scroll Button
+
+Customize the appearance and behavior of the scroll button with different variants, sizes, and threshold values.
+
+<ComponentCodePreview
+  component={<ScrollButtonCustom />}
+  filePath="app/docs/scroll-button/scroll-button-custom.tsx"
+  classNameComponentContainer="p-0"
+/>
+
+### With Chat Container
+
+The ScrollButton works perfectly with ChatContainer for chat interfaces, providing an easy way for users to navigate long conversations.
+
+<ComponentCodePreview
+  component={<ScrollButtonWithChat />}
+  filePath="app/docs/scroll-button/scroll-button-with-chat.tsx"
+  classNameComponentContainer="p-0"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/scroll-button.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/scroll-button.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### ScrollButton
+
+| Prop         | Type                                            | Default   | Description                                          |
+| :----------- | :---------------------------------------------- | :-------- | :--------------------------------------------------- |
+| scrollRef    | React.RefObject\<HTMLElement\>                  |           | Reference to the element to scroll to                |
+| containerRef | React.RefObject\<HTMLElement\>                  |           | Reference to the scrollable container                |
+| className    | string                                          |           | Additional CSS classes                               |
+| threshold    | number                                          | 50        | Distance from bottom (in px) to show/hide the button |
+| variant      | "default" \| "outline" \| "ghost" \| etc.       | "outline" | Button variant from your UI button component         |
+| size         | "default" \| "sm" \| "lg" \| etc.               | "sm"      | Button size from your UI button component            |
+| ...props     | React.ButtonHTMLAttributes\<HTMLButtonElement\> |           | All other button props                               |
+
+
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { LoaderBasic } from "./loader-basic"
+import { LoaderSizes } from "./loader-sizes"
+import { LoaderWithText } from "./loader-with-text"
+
+# Loader
+
+A loading component with multiple variants to indicate processing states and provide visual feedback to users during wait times.
+
+## Examples
+
+### Basic Loader
+
+Showcasing all available loader variants with default settings.
+
+<ComponentCodePreview
+  component={<LoaderBasic />}
+  filePath="app/docs/loader/loader-basic.tsx"
+  classNameComponentContainer="p-0"
+/>
+
+### Loader Sizes
+
+Customize the size of any loader variant with predefined size options.
+
+<ComponentCodePreview
+  component={<LoaderSizes />}
+  filePath="app/docs/loader/loader-sizes.tsx"
+  classNameComponentContainer="p-0"
+/>
+
+### Loader With Text
+
+Some loader variants support displaying custom text while loading.
+
+<ComponentCodePreview
+  component={<LoaderWithText />}
+  filePath="app/docs/loader/loader-with-text.tsx"
+  classNameComponentContainer="p-0 min-h-auto items-start"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/loader.json"`}
+  language="bash"
+/>
+
+*Note: If you are using Tailwind CSS v4, you may have to grab the keyframes and add them to your global.css file manually. Check manual installation for more details.*
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following into your global.css file.</Step>
+
+<CodeBlock language="css" code={`@keyframes typing {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-2px);
+    opacity: 1;
+  }
+}
+
+@keyframes loading-dots {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.6);
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes text-blink {
+  0%,
+  100% {
+    color: var(--primary);
+  }
+  50% {
+    color: var(--muted-foreground);
+  }
+}
+
+@keyframes bounce-dots {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes thin-pulse {
+  0%,
+  100% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.4;
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer-text {
+  0% {
+    background-position: 150% center;
+  }
+  100% {
+    background-position: -150% center;
+  }
+}
+
+@keyframes wave-bars {
+  0%,
+  100% {
+    transform: scaleY(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scaleY(0.6);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 50%;
+  }
+  100% {
+    background-position: -200% 50%;
+  }
+}
+
+@keyframes spinner-fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}`} />
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/loader.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### Loader
+
+| Prop      | Type                                                                                                                                                          | Default    | Description                              |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ | :--------- | :--------------------------------------- |
+| variant   | "circular" \| "classic" \| "pulse" \| "pulse-dot" \| "dots" \| "typing" \| "wave" \| "bars" \| "terminal" \| "text-blink" \| "text-shimmer" \| "loading-dots" | "circular" | The visual style of the loader           |
+| size      | "sm" \| "md" \| "lg"                                                                                                                                          | "md"       | The size of the loader                   |
+| text      | string                                                                                                                                                        |            | Text to display (for supported variants) |
+| className | string                                                                                                                                                        |            | Additional CSS classes                   |
+
+
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { PromptSuggestionBasic } from "./prompt-suggestion-basic"
+import { PromptSuggestionHighlight } from "./prompt-suggestion-highlight"
+import { PromptSuggestionVariants } from "./prompt-suggestion-variants"
+
+# Prompt Suggestion
+
+A component for implementing interactive prompt suggestions in AI interfaces. The PromptSuggestion component offers two distinct modes:
+
+- **Normal Mode**: Renders clickable, pill-shaped buttons ideal for suggesting quick prompts in chat interfaces
+- **Highlight Mode**: Provides text highlighting to highlight a part of the suggestion
+
+## Examples
+
+### Basic Usage
+
+Display clickable prompt suggestions that users can select to populate an input field. You can easily use it with the [PromptInput](/docs/prompt-input) component.
+
+<ComponentCodePreview
+  component={<PromptSuggestionBasic />}
+  filePath="app/docs/prompt-suggestion/prompt-suggestion-basic.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### Highlighted Prompt Suggestions
+
+Implement prompt suggestions with search term highlighting. It's perfect to showcase a list of related prompts.
+
+<ComponentCodePreview
+  component={<PromptSuggestionHighlight />}
+  filePath="app/docs/prompt-suggestion/prompt-suggestion-highlight.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### Complete Chat Interface
+
+Build a full-featured chat interface with dynamic prompt suggestions that switch between both modes.
+
+<ComponentCodePreview
+  component={<PromptSuggestionVariants />}
+  filePath="app/docs/prompt-suggestion/prompt-suggestion-variants.tsx"
+  classNameComponentContainer="p-8 h-[500px]"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/prompt-suggestion.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock
+  filePath="components/prompt-kit/prompt-suggestion.tsx"
+  language="tsx"
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### PromptSuggestion
+
+| Prop      | Type                                               | Default   | Description                                                                    |
+| :-------- | :------------------------------------------------- | :-------- | :----------------------------------------------------------------------------- |
+| children  | React.ReactNode                                    |           | Content to display in the suggestion button                                    |
+| variant   | "default" \| "destructive" \| "outline" \| "ghost" | "outline" | Visual variant of the button (normal mode) or "ghost" (highlight mode)         |
+| size      | "default" \| "sm" \| "lg" \| "icon"                | "lg"      | Size of the button (normal mode) or "sm" (highlight mode)                      |
+| highlight | string                                             | undefined | When provided, enables highlight mode and highlights this text within children |
+| className | string                                             |           | Additional CSS classes                                                         |
+| ...props  | ButtonHTMLAttributes                               |           | All other button HTML attributes (including onClick)                           |
+
+
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { ResponseStreamFade } from "./response-stream-fade"
+import { ResponseStreamTypewriter } from "./response-stream-typewriter"
+import { ResponseStreamWithMarkdown } from "./response-stream-with-markdown"
+import { UseTextStreamExample } from "./use-text-stream-example"
+
+# Response Stream
+
+A component for displaying text with streaming animations, perfect for chat interfaces, AI responses, or any text that should appear progressively.
+
+## Examples
+
+### Typewriter Mode
+
+The default mode that types out text character by character, simulating a typing effect.
+
+<ComponentCodePreview
+  component={<ResponseStreamTypewriter />}
+  filePath="app/docs/response-stream/response-stream-typewriter.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[150px]"
+  hasReTrigger
+/>
+
+### Fade Mode
+
+The fade mode reveals text word by word with a smooth fade-in animation.
+
+<ComponentCodePreview
+  component={<ResponseStreamFade />}
+  filePath="app/docs/response-stream/response-stream-fade.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[150px]"
+  hasReTrigger
+/>
+
+### With Markdown
+
+ResponseStream can be combined with the Markdown component to create rich, animated content, for that you need to use the `useTextStream` hook directly.
+
+Note: If you want to use mode="fade", you need to manually render the segments with appropriate CSS animations.
+It can be hard to get it done with markdown, the way is to write a custom `remarkPlugins`. We have a demo but it's a bit too experimental to be included here, happy to receive a PR if you have a good solution.
+
+<ComponentCodePreview
+  component={<ResponseStreamWithMarkdown />}
+  filePath="app/docs/response-stream/response-stream-with-markdown.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[400px]"
+  disableNotProse
+  hasReTrigger
+/>
+
+### Using the useTextStream Hook with fade mode
+
+When using the useTextStream hook with `fade` mode, you need to manually render the segments with appropriate CSS animations.
+
+<ComponentCodePreview
+  component={<UseTextStreamExample />}
+  filePath="app/docs/response-stream/use-text-stream-example.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[200px]"
+  hasReTrigger
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/response-stream.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock
+  filePath="components/prompt-kit/response-stream.tsx"
+  language="tsx"
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### ResponseStream
+
+| Prop               | Type                              | Default      | Description                                                  |
+| :----------------- | :-------------------------------- | :----------- | :----------------------------------------------------------- |
+| textStream         | string \| AsyncIterable\<string\> |              | The text to stream or an async iterable of text chunks       |
+| mode               | "typewriter" \| "fade"            | "typewriter" | The animation mode to use                                    |
+| speed              | number                            | 20           | Speed from 1-100, where 1 is slowest and 100 is fastest      |
+| className          | string                            | ""           | Additional CSS classes                                       |
+| onComplete         | () => void                        |              | Callback function when streaming is complete                 |
+| as                 | string                            | "div"        | Element type to render                                       |
+| fadeDuration       | number                            |              | Custom fade duration in ms (overrides speed)                 |
+| segmentDelay       | number                            |              | Custom delay between segments in ms (overrides speed)        |
+| characterChunkSize | number                            |              | Custom characters per frame for typewriter (overrides speed) |
+
+### useTextStream Hook
+
+#### Parameters
+
+| Parameter          | Type                              | Default      | Description                                                  |
+| :----------------- | :-------------------------------- | :----------- | :----------------------------------------------------------- |
+| textStream         | string \| AsyncIterable\<string\> |              | The text to stream or an async iterable of text chunks       |
+| speed              | number                            | 20           | Speed from 1-100, where 1 is slowest and 100 is fastest      |
+| mode               | "typewriter" \| "fade"            | "typewriter" | The animation mode to use                                    |
+| onComplete         | () => void                        |              | Callback function when streaming is complete                 |
+| fadeDuration       | number                            |              | Custom fade duration in ms (overrides speed)                 |
+| segmentDelay       | number                            |              | Custom delay between segments in ms (overrides speed)        |
+| characterChunkSize | number                            |              | Custom characters per frame for typewriter (overrides speed) |
+| onError            | (error: unknown) => void          |              | Callback function when an error occurs                       |
+
+#### Return Value
+
+| Property        | Type                                | Description                               |
+| :-------------- | :---------------------------------- | :---------------------------------------- |
+| displayedText   | string                              | The current text being displayed          |
+| isComplete      | boolean                             | Whether streaming is complete             |
+| segments        | `{ text: string; index: number }[]` | Text segments for fade mode               |
+| getFadeDuration | () => number                        | Function to get the current fade duration |
+| getSegmentDelay | () => number                        | Function to get the current segment delay |
+| reset           | () => void                          | Function to reset the streaming state     |
+| startStreaming  | () => void                          | Function to start or restart streaming    |
+| pause           | () => void                          | Function to pause streaming               |
+| resume          | () => void                          | Function to resume streaming              |
+
+
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { ReasoningBasic } from "./reasoning-basic"
+import { ReasoningControlled } from "./reasoning-controlled"
+import { ReasoningWithAIResponse } from "./reasoning-with-ai-response"
+import { ReasoningWithCustomStyling } from "./reasoning-with-custom-styling"
+
+# Reasoning
+
+A component for displaying collapsible reasoning or thought process content, perfect for AI applications that need to show their "thinking" or step-by-step explanations.
+
+## Examples
+
+### Basic Usage
+
+The most basic implementation of the Reasoning component with collapsible content.
+
+<ComponentCodePreview
+  component={<ReasoningBasic />}
+  filePath="app/docs/reasoning/reasoning-basic.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[200px]"
+  hasReTrigger
+/>
+
+### With AI Response
+
+Combine with the ResponseStream component to show streaming AI reasoning content.
+
+<ComponentCodePreview
+  component={<ReasoningWithAIResponse />}
+  filePath="app/docs/reasoning/reasoning-with-ai-response.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[250px]"
+  hasReTrigger
+/>
+
+### Controlled Component
+
+Control the open state programmatically for advanced use cases.
+
+<ComponentCodePreview
+  component={<ReasoningControlled />}
+  filePath="app/docs/reasoning/reasoning-controlled.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[250px]"
+  hasReTrigger
+/>
+
+### Custom Styling
+
+Customize the appearance of the Reasoning component to match your application's design.
+You can also use markdown in the ReasoningResponse component to style the content.
+
+<ComponentCodePreview
+  component={<ReasoningWithCustomStyling />}
+  filePath="app/docs/reasoning/reasoning-with-custom-styling.tsx"
+  hasReTrigger
+  disableNotProse
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/reasoning.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/reasoning.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### Reasoning
+
+| Prop         | Type                    | Default | Description                                         |
+| :----------- | :---------------------- | :------ | :-------------------------------------------------- |
+| children     | React.ReactNode         |         | The content of the component                        |
+| className    | string                  |         | Additional CSS classes                              |
+| open         | boolean                 |         | Control the open state (makes component controlled) |
+| onOpenChange | (open: boolean) => void |         | Callback when open state changes                    |
+
+### ReasoningTrigger
+
+| Prop      | Type            | Default | Description                  |
+| :-------- | :-------------- | :------ | :--------------------------- |
+| children  | React.ReactNode |         | The content of the trigger   |
+| className | string          |         | Additional CSS classes       |
+| ...props  | HTMLAttributes  |         | Additional HTML button props |
+
+### ReasoningContent
+
+| Prop      | Type            | Default | Description                 |
+| :-------- | :-------------- | :------ | :-------------------------- |
+| children  | React.ReactNode |         | The content to be displayed |
+| className | string          |         | Additional CSS classes      |
+| ...props  | HTMLAttributes  |         | Additional HTML div props   |
+
+### ReasoningResponse
+
+| Prop      | Type                              | Default | Description                                         |
+| :-------- | :-------------------------------- | :------ | :-------------------------------------------------- |
+| text      | string \| AsyncIterable\<string\> |         | The text to display or stream                       |
+| className | string                            |         | Additional CSS classes                              |
+| ...props  | ResponseStreamProps               |         | Additional ResponseStream props (except textStream) |
+
+
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { CustomFileUpload } from "./custom-file-upload"
+
+# File Upload
+
+A component for creating drag-and-drop file upload interfaces with support for single or multiple files, custom triggers, and visual feedback during file dragging operations.
+
+## Examples
+
+### File Upload with Prompt Input
+
+You can combine the file upload component with the [Prompt Input](/docs/prompt-input) component to create a full-featured input component with file upload support. You can try to drop a file to see the visual feedback.
+
+<ComponentCodePreview
+  component={<CustomFileUpload />}
+  filePath="app/docs/file-upload/custom-file-upload.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/file-upload.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/file-upload.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### FileUpload
+
+| Prop         | Type                    | Default | Description                              |
+| :----------- | :---------------------- | :------ | :--------------------------------------- |
+| onFilesAdded | (files: File[]) => void |         | Function called when files are added     |
+| children     | React.ReactNode         |         | Child components                         |
+| multiple     | boolean                 | true    | Allow selection of multiple files        |
+| accept       | string                  |         | File types to accept (e.g., ".jpg,.png") |
+
+### FileUploadTrigger
+
+| Prop      | Type                                       | Default | Description                      |
+| :-------- | :----------------------------------------- | :------ | :------------------------------- |
+| asChild   | boolean                                    | false   | Use child element as the trigger |
+| className | string                                     |         | Additional CSS classes           |
+| children  | React.ReactNode                            |         | Child components                 |
+| ...props  | `React.ComponentPropsWithoutRef<"button">` |         | All other button props           |
+
+### FileUploadContent
+
+| Prop      | Type                                   | Default | Description            |
+| :-------- | :------------------------------------- | :------ | :--------------------- |
+| className | string                                 |         | Additional CSS classes |
+| ...props  | `React.HTMLAttributes<HTMLDivElement>` |         | All other div props    |
+
+
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { JSXPreviewBasic } from "./jsx-preview-basic"
+import { JSXPreviewStreaming } from "./jsx-preview-streaming"
+
+# JSX Preview
+
+A component for rendering JSX strings as React components, with support for streaming content and automatic tag completion.
+
+## Examples
+
+### Basic JSX Preview
+
+The `JSXPreview` component can render JSX strings directly into React components.
+
+<ComponentCodePreview
+  component={<JSXPreviewBasic />}
+  filePath="app/docs/jsx-preview/jsx-preview-basic.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### Streaming JSX Preview
+
+The `isStreaming` prop enables real-time rendering of JSX as it's being streamed, with automatic tag completion.
+
+<ComponentCodePreview
+  component={<JSXPreviewStreaming />}
+  filePath="app/docs/jsx-preview/jsx-preview-streaming.tsx"
+  classNameComponentContainer="p-8"
+  hasReTrigger
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/jsx-preview.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/jsx-preview.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### JSXPreview
+
+| Prop        | Type             | Default | Description                                                          |
+| :---------- | :--------------- | :------ | :------------------------------------------------------------------- |
+| jsx         | string           |         | The JSX string to render                                             |
+| isStreaming | boolean          | false   | Whether the JSX is being streamed (enables automatic tag completion) |
+| className   | string           |         | Additional CSS classes                                               |
+| ...props    | `JsxParserProps` |         | All other props from `react-jsx-parser`                              |
+
+
+## Showcase
+
+Check out these example implementations using prompt-kit components:
+
+- [zola.chat](https://zola.chat/): Open-source AI chat app built with prompt-kit components
+
+import { Button } from "@/components/ui/button"
+import { ArrowRightIcon } from "lucide-react"
+import Link from "next/link"
+
+export default function Showcase() {
+  return (
+    <div className="not-prose w-full flex-auto pt-2.5">
+      <div className="relative w-full pb-16">
+        <h1 className="text-sm font-medium text-[#0D74CE] dark:text-[#70B8FF]">
+          Showcase
+        </h1>
+        <p className="mt-6 text-3xl font-[450] tracking-tight text-pretty text-black">
+          Building something great with prompt-kit?
+        </p>
+        <p className="mb-4 text-3xl font-[450] tracking-tight text-zinc-500">
+          We'd love to feature your project here.
+        </p>
+        <Link href="https://forms.gle/SfNVyJJMyZ2RfnTb6" target="_blank">
+          <Button className="mt-2">
+            Submit your project <ArrowRightIcon className="size-4" />
+          </Button>
+        </Link>
+      </div>
+      <div className="grid w-full grid-cols-2 gap-6 [mask-image:linear-gradient(to_bottom,black_30%,transparent)] md:grid-cols-2 lg:grid-cols-2">
+        <div className="h-48 rounded-2xl bg-zinc-100 dark:bg-zinc-900"></div>
+        <div className="h-48 rounded-2xl bg-zinc-100 dark:bg-zinc-900"></div>
+        <div className="h-48 rounded-2xl bg-zinc-100 dark:bg-zinc-900"></div>
+        <div className="h-48 rounded-2xl bg-zinc-100 dark:bg-zinc-900"></div>
+        <div className="h-48 rounded-2xl bg-zinc-100 dark:bg-zinc-900"></div>
+        <div className="h-48 rounded-2xl bg-zinc-100 dark:bg-zinc-900"></div>
+      </div>
+    </div>
+  )
+}
+
+
+## Resources
+
+- [GitHub Repository](https://github.com/ibelick/prompt-kit): Source code and issues
+- [Installation Guide](https://www.prompt-kit.com/docs/installation): Detailed installation instructions
+- [Component Documentation](https://www.prompt-kit.com/docs): Complete component API documentation
+- [shadcn/ui Documentation](https://ui.shadcn.com): Documentation for the underlying UI component system
+- [Next.js Documentation](https://nextjs.org/docs): Documentation for the Next.js framework
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs): Documentation for the Tailwind CSS framework
