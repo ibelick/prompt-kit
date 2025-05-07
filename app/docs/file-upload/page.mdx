@@ -1,5 +1,11 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { CustomFileUpload } from "./custom-file-upload"
+
+export const metadata = generateMetadata(
+  "File Upload",
+  "A component for creating drag-and-drop file upload interfaces with support for single or multiple files, custom triggers, and visual feedback during file dragging operations."
+)
 
 # File Upload
 

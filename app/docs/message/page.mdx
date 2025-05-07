@@ -1,7 +1,13 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { MessageBasic } from "./message-basic"
 import { MessageWithActions } from "./message-with-actions"
 import { MessageWithMarkdown } from "./message-with-markdown"
+
+export const metadata = generateMetadata(
+  "Message",
+  "A component for displaying messages in a conversation interface, with support for avatars, markdown content, and interactive actions."
+)
 
 # Message
 

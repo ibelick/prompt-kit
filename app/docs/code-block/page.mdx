@@ -1,10 +1,16 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { CodeBlockBasic } from "./code-block-basic"
 import { CodeBlockCSS } from "./code-block-css"
 import { CodeBlockNord } from "./code-block-nord"
 import { CodeBlockPython } from "./code-block-python"
 import { CodeBlockThemed } from "./code-block-themed"
 import { CodeBlockWithHeader } from "./code-block-with-header"
+
+export const metadata = generateMetadata(
+  "Code Block",
+  "A component for displaying code snippets with syntax highlighting and customizable styling."
+)
 
 # Code Block
 

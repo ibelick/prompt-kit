@@ -1,6 +1,12 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { ChatBasic } from "./chat-basic"
 import { ChatWithCustomScroll } from "./chat-with-custom-scroll"
+
+export const metadata = generateMetadata(
+  "Chat Container",
+  "A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth and responsive user experience in conversation interfaces."
+)
 
 # Chat Container
 
@@ -74,14 +80,13 @@ A chat container that demonstrates text streaming with automatic scrolling. Clic
 | scrollToRef | React.RefObject\<HTMLDivElement\>      |         | Optional custom reference for scroll target                 |
 | ...props    | React.HTMLAttributes\<HTMLDivElement\> |         | All other div props                                         |
 
-
 ## Auto-Scroll Behavior
 
 The component implements sophisticated scrolling logic to provide a natural user experience:
 
 - **New Messages**: Automatically scrolls to the bottom when new messages are added
 - **Content Updates**: Scrolls to follow streaming content when already at the bottom
-- **User Control**: 
+- **User Control**:
   - Temporarily disables auto-scrolling when users scroll up or use mouse wheel up
   - Maintains scroll position during content updates when user has scrolled up
   - Supports touch interactions by tracking touch start/move/end events

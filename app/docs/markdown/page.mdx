@@ -1,6 +1,12 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { MarkdownBasic } from "./markdown-basic"
 import { MarkdownCustomComponents } from "./markdown-custom-components"
+
+export const metadata = generateMetadata(
+  "Markdown",
+  "A component for rendering Markdown content with support for GitHub Flavored Markdown (GFM) and custom component styling."
+)
 
 # Markdown
 

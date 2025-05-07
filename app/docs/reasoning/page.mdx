@@ -1,8 +1,14 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { ReasoningBasic } from "./reasoning-basic"
 import { ReasoningControlled } from "./reasoning-controlled"
 import { ReasoningWithAIResponse } from "./reasoning-with-ai-response"
 import { ReasoningWithCustomStyling } from "./reasoning-with-custom-styling"
+
+export const metadata = generateMetadata(
+  "Reasoning",
+  "A component for displaying collapsible reasoning or thought process content, perfect for AI applications that need to show their 'thinking' or step-by-step explanations."
+)
 
 # Reasoning
 

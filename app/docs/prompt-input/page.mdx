@@ -1,6 +1,12 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { PromptInputBasic } from "./prompt-input-basic"
 import { PromptInputWithActions } from "./prompt-input-with-actions"
+
+export const metadata = generateMetadata(
+  "Prompt Input",
+  "An input field that allows users to enter and submit text to an AI model."
+)
 
 # Prompt Input
 

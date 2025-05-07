@@ -1,7 +1,13 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { LoaderBasic } from "./loader-basic"
 import { LoaderSizes } from "./loader-sizes"
 import { LoaderWithText } from "./loader-with-text"
+
+export const metadata = generateMetadata(
+  "Loader",
+  "A loading component with multiple variants to indicate processing states and provide visual feedback to users during wait times."
+)
 
 # Loader
 
@@ -55,7 +61,7 @@ Some loader variants support displaying custom text while loading.
   language="bash"
 />
 
-*Note: If you are using Tailwind CSS v4, you may have to grab the keyframes and add them to your global.css file manually. Check manual installation for more details.*
+_Note: If you are using Tailwind CSS v4, you may have to grab the keyframes and add them to your global.css file manually. Check manual installation for more details._
 
 </TabsContent>
 
@@ -78,118 +84,118 @@ Some loader variants support displaying custom text while loading.
 }
 
 @keyframes loading-dots {
-  0%,
-  100% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
+0%,
+100% {
+opacity: 0;
+}
+50% {
+opacity: 1;
+}
 }
 
 @keyframes wave {
-  0%,
-  100% {
-    transform: scaleY(1);
-  }
-  50% {
-    transform: scaleY(0.6);
-  }
+0%,
+100% {
+transform: scaleY(1);
+}
+50% {
+transform: scaleY(0.6);
+}
 }
 
 @keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
+0%,
+100% {
+opacity: 1;
+}
+50% {
+opacity: 0;
+}
 }
 
 @keyframes text-blink {
-  0%,
-  100% {
-    color: var(--primary);
-  }
-  50% {
-    color: var(--muted-foreground);
-  }
+0%,
+100% {
+color: var(--primary);
+}
+50% {
+color: var(--muted-foreground);
+}
 }
 
 @keyframes bounce-dots {
-  0%,
-  100% {
-    transform: scale(0.8);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 1;
-  }
+0%,
+100% {
+transform: scale(0.8);
+opacity: 0.5;
+}
+50% {
+transform: scale(1.2);
+opacity: 1;
+}
 }
 
 @keyframes thin-pulse {
-  0%,
-  100% {
-    transform: scale(0.95);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1.05);
-    opacity: 0.4;
-  }
+0%,
+100% {
+transform: scale(0.95);
+opacity: 0.8;
+}
+50% {
+transform: scale(1.05);
+opacity: 0.4;
+}
 }
 
 @keyframes pulse-dot {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1.5);
-    opacity: 1;
-  }
+0%,
+100% {
+transform: scale(1);
+opacity: 0.8;
+}
+50% {
+transform: scale(1.5);
+opacity: 1;
+}
 }
 
 @keyframes shimmer-text {
-  0% {
-    background-position: 150% center;
-  }
-  100% {
-    background-position: -150% center;
-  }
+0% {
+background-position: 150% center;
+}
+100% {
+background-position: -150% center;
+}
 }
 
 @keyframes wave-bars {
-  0%,
-  100% {
-    transform: scaleY(1);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scaleY(0.6);
-    opacity: 1;
-  }
+0%,
+100% {
+transform: scaleY(1);
+opacity: 0.5;
+}
+50% {
+transform: scaleY(0.6);
+opacity: 1;
+}
 }
 
 @keyframes shimmer {
-  0% {
-    background-position: 200% 50%;
-  }
-  100% {
-    background-position: -200% 50%;
-  }
+0% {
+background-position: 200% 50%;
+}
+100% {
+background-position: -200% 50%;
+}
 }
 
 @keyframes spinner-fade {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+0% {
+opacity: 0;
+}
+100% {
+opacity: 1;
+}
 }`} />
 
 <Step>Copy and paste the following code into your project.</Step>

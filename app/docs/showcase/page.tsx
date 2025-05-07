@@ -1,6 +1,9 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRightIcon } from "lucide-react"
 import Link from "next/link"
+import { generateMetadata } from "../utils/metadata"
+
+export const metadata = generateMetadata("Showcase", "Showcase for prompt-kit.")
 
 export default function Showcase() {
   return (

@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "prompt-kit",
   description:
-    "Core building blocks for AI apps. High-quality, accessible, and customizable components for AI interfaces.",
+    "Core building blocks for AI apps. High-quality, accessible, and customizable components for AI interfaces. Built with React, shadcn/ui and Tailwind CSS.",
 }
 
 export default function RootLayout({

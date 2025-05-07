@@ -1,7 +1,13 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { ScrollButtonBasic } from "./scroll-button-basic"
 import { ScrollButtonCustom } from "./scroll-button-custom"
 import { ScrollButtonWithChat } from "./scroll-button-with-chat"
+
+export const metadata = generateMetadata(
+  "Scroll Button",
+  "A floating button component that appears when users scroll up in a container, allowing them to quickly return to the bottom of the content with a single click."
+)
 
 # Scroll Button
 

@@ -1,6 +1,12 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { JSXPreviewBasic } from "./jsx-preview-basic"
 import { JSXPreviewStreaming } from "./jsx-preview-streaming"
+
+export const metadata = generateMetadata(
+  "JSX Preview",
+  "A component for rendering JSX strings as React components, with support for streaming content and automatic tag completion."
+)
 
 # JSX Preview
 

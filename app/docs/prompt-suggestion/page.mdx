@@ -1,7 +1,13 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { PromptSuggestionBasic } from "./prompt-suggestion-basic"
 import { PromptSuggestionHighlight } from "./prompt-suggestion-highlight"
 import { PromptSuggestionVariants } from "./prompt-suggestion-variants"
+
+export const metadata = generateMetadata(
+  "Prompt Suggestion",
+  "A component for implementing interactive prompt suggestions in AI interfaces. The PromptSuggestion component offers two distinct modes: Normal Mode and Highlight Mode."
+)
 
 # Prompt Suggestion
 

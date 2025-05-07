@@ -1,8 +1,14 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { ResponseStreamFade } from "./response-stream-fade"
 import { ResponseStreamTypewriter } from "./response-stream-typewriter"
 import { ResponseStreamWithMarkdown } from "./response-stream-with-markdown"
 import { UseTextStreamExample } from "./use-text-stream-example"
+
+export const metadata = generateMetadata(
+  "Response Stream",
+  "A component for displaying text with streaming animations, perfect for chat interfaces, AI responses, or any text that should appear progressively."
+)
 
 # Response Stream
 
