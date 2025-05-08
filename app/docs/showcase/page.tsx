@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRightIcon } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { generateMetadata } from "../utils/metadata"
 
@@ -25,7 +26,33 @@ export default function Showcase() {
         </Link>
       </div>
       <div className="grid w-full grid-cols-2 gap-6 [mask-image:linear-gradient(to_bottom,black_30%,transparent)] md:grid-cols-2 lg:grid-cols-2">
-        <div className="h-48 rounded-2xl bg-zinc-100 dark:bg-zinc-900"></div>
+        <div className="relative isolate h-48 w-full overflow-hidden rounded-2xl">
+          <Image
+            priority
+            src="https://attic.sh/_static/emojis/ai-emoji-generator/og.jpg"
+            alt="thumbnail"
+            unoptimized
+            width={1200}
+            height={630}
+            className="h-48 object-cover object-left"
+          />
+
+          <div
+            aria-hidden
+            className="absolute bottom-2 left-2 rounded-[6px] bg-black/70 px-1.5 py-0.5 text-xs font-medium text-white"
+          >
+            emojis.com
+          </div>
+
+          <Link
+            href="https://emojis.com"
+            target="_blank"
+            className="absolute inset-0"
+          >
+            <span className="sr-only">Visit emojis.com</span>
+          </Link>
+        </div>
+
         <div className="h-48 rounded-2xl bg-zinc-100 dark:bg-zinc-900"></div>
         <div className="h-48 rounded-2xl bg-zinc-100 dark:bg-zinc-900"></div>
         <div className="h-48 rounded-2xl bg-zinc-100 dark:bg-zinc-900"></div>
