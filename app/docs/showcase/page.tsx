@@ -25,8 +25,8 @@ export default function Showcase() {
           </Button>
         </Link>
       </div>
-      <div className="grid w-full grid-cols-2 gap-6 [mask-image:linear-gradient(to_bottom,black_30%,transparent)] md:grid-cols-2 lg:grid-cols-2">
-        <div className="relative isolate h-48 w-full overflow-hidden rounded-2xl">
+      <div className="grid w-full grid-cols-1 gap-6 [mask-image:linear-gradient(to_bottom,black_30%,transparent)] md:grid-cols-2 lg:grid-cols-2">
+        <div className="relative isolate w-full overflow-hidden rounded-2xl max-md:aspect-[1200/630] md:h-48">
           <Image
             priority
             src="https://attic.sh/_static/emojis/ai-emoji-generator/og.jpg"
@@ -34,7 +34,7 @@ export default function Showcase() {
             unoptimized
             width={1200}
             height={630}
-            className="h-48 object-cover object-left"
+            className="h-full w-full object-cover object-left"
           />
 
           <div
@@ -53,11 +53,11 @@ export default function Showcase() {
           </Link>
         </div>
 
-        <div className="h-48 rounded-2xl bg-zinc-100 dark:bg-zinc-900"></div>
-        <div className="h-48 rounded-2xl bg-zinc-100 dark:bg-zinc-900"></div>
-        <div className="h-48 rounded-2xl bg-zinc-100 dark:bg-zinc-900"></div>
-        <div className="h-48 rounded-2xl bg-zinc-100 dark:bg-zinc-900"></div>
-        <div className="h-48 rounded-2xl bg-zinc-100 dark:bg-zinc-900"></div>
+        <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-[1200/630] md:h-48 dark:bg-zinc-900"></div>
+        <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-[1200/630] md:h-48 dark:bg-zinc-900"></div>
+        <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-[1200/630] md:h-48 dark:bg-zinc-900"></div>
+        <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-[1200/630] md:h-48 dark:bg-zinc-900"></div>
+        <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-[1200/630] md:h-48 dark:bg-zinc-900"></div>
       </div>
     </div>
   )
