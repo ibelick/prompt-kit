@@ -21,14 +21,28 @@
   - [Jsx preview](#jsx-preview)
 - [Showcase](#showcase)
 
+import { generateMetadata } from "../utils/metadata"
+
+export const metadata = generateMetadata(
+  "Introduction",
+  "Introduction to prompt-kit."
+)
+
 **prompt-kit** is a set of customizable, high-quality components built for AI applications, making it easy to design chat experiences, AI agents, autonomous assistants, and more, quickly and beautifully.
 
 **prompt-kit** is built on top of shadcn/ui with the same design principles. But instead of helping you build a component library, it helps you build AI interfaces.
 
-This project is a work in progress, and we’re continuously improving and expanding the collection. We’d love to hear your feedback or see your contributions as it evolves!
+This project is a work in progress, and we're continuously improving and expanding the collection. We'd love to hear your feedback or see your contributions as it evolves!
 
 prompt-kit is open source. Check out the code and contribute on [GitHub](https://github.com/ibelick/prompt-kit).
 
+
+import { generateMetadata } from "../utils/metadata"
+
+export const metadata = generateMetadata(
+  "Installation",
+  "Installation guide for prompt-kit."
+)
 
 # Installation
 
@@ -36,10 +50,8 @@ prompt-kit is open source. Check out the code and contribute on [GitHub](https:/
 
 Before installing, ensure you have the following:
 
-- [Node.js](https://nodejs.org/en/download/) version __18__ or later
-- [React](https://react.dev/) version __19__ or later
-
-
+- [Node.js](https://nodejs.org/en/download/) version **18** or later
+- [React](https://react.dev/) version **19** or later
 
 ## Install shadcn/ui
 
@@ -67,8 +79,14 @@ After installation, import and start using the components in your project:
 ## Components
 
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { PromptInputBasic } from "./prompt-input-basic"
 import { PromptInputWithActions } from "./prompt-input-with-actions"
+
+export const metadata = generateMetadata(
+  "Prompt Input",
+  "An input field that allows users to enter and submit text to an AI model."
+)
 
 # Prompt Input
 
@@ -173,12 +191,18 @@ You can use `PromptInputActions` to add actions with tooltips to the `PromptInpu
 
 
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { CodeBlockBasic } from "./code-block-basic"
 import { CodeBlockCSS } from "./code-block-css"
 import { CodeBlockNord } from "./code-block-nord"
 import { CodeBlockPython } from "./code-block-python"
 import { CodeBlockThemed } from "./code-block-themed"
 import { CodeBlockWithHeader } from "./code-block-with-header"
+
+export const metadata = generateMetadata(
+  "Code Block",
+  "A component for displaying code snippets with syntax highlighting and customizable styling."
+)
 
 # Code Block
 
@@ -368,8 +392,14 @@ For a complete list of supported themes, refer to the [Shiki documentation](http
 
 
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { MarkdownBasic } from "./markdown-basic"
 import { MarkdownCustomComponents } from "./markdown-custom-components"
+
+export const metadata = generateMetadata(
+  "Markdown",
+  "A component for rendering Markdown content with support for GitHub Flavored Markdown (GFM) and custom component styling."
+)
 
 # Markdown
 
@@ -426,7 +456,10 @@ You can customize how different Markdown elements are rendered by providing cust
 
 <Step>Install the required dependencies.</Step>
 
-<CodeBlock code={`npm install react-markdown remark-gfm`} language="bash" />
+<CodeBlock
+  code={`npm install react-markdown remark-gfm remark-breaks`}
+  language="bash"
+/>
 
 <Step>Update the import paths to match your project setup.</Step>
 
@@ -526,9 +559,15 @@ As you've seen in our examples, code blocks within prose content can sometimes c
 
 
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { MessageBasic } from "./message-basic"
 import { MessageWithActions } from "./message-with-actions"
 import { MessageWithMarkdown } from "./message-with-markdown"
+
+export const metadata = generateMetadata(
+  "Message",
+  "A component for displaying messages in a conversation interface, with support for avatars, markdown content, and interactive actions."
+)
 
 # Message
 
@@ -648,8 +687,14 @@ You can use `MessageActions` and `MessageAction` to add interactive elements to 
 
 
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { ChatBasic } from "./chat-basic"
 import { ChatWithCustomScroll } from "./chat-with-custom-scroll"
+
+export const metadata = generateMetadata(
+  "Chat Container",
+  "A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth and responsive user experience in conversation interfaces."
+)
 
 # Chat Container
 
@@ -723,14 +768,13 @@ A chat container that demonstrates text streaming with automatic scrolling. Clic
 | scrollToRef | React.RefObject\<HTMLDivElement\>      |         | Optional custom reference for scroll target                 |
 | ...props    | React.HTMLAttributes\<HTMLDivElement\> |         | All other div props                                         |
 
-
 ## Auto-Scroll Behavior
 
 The component implements sophisticated scrolling logic to provide a natural user experience:
 
 - **New Messages**: Automatically scrolls to the bottom when new messages are added
 - **Content Updates**: Scrolls to follow streaming content when already at the bottom
-- **User Control**: 
+- **User Control**:
   - Temporarily disables auto-scrolling when users scroll up or use mouse wheel up
   - Maintains scroll position during content updates when user has scrolled up
   - Supports touch interactions by tracking touch start/move/end events
@@ -781,9 +825,15 @@ For large chat histories, consider implementing virtualization or pagination to 
 
 
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { ScrollButtonBasic } from "./scroll-button-basic"
 import { ScrollButtonCustom } from "./scroll-button-custom"
 import { ScrollButtonWithChat } from "./scroll-button-with-chat"
+
+export const metadata = generateMetadata(
+  "Scroll Button",
+  "A floating button component that appears when users scroll up in a container, allowing them to quickly return to the bottom of the content with a single click."
+)
 
 # Scroll Button
 
@@ -871,9 +921,15 @@ The ScrollButton works perfectly with ChatContainer for chat interfaces, providi
 
 
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { LoaderBasic } from "./loader-basic"
 import { LoaderSizes } from "./loader-sizes"
 import { LoaderWithText } from "./loader-with-text"
+
+export const metadata = generateMetadata(
+  "Loader",
+  "A loading component with multiple variants to indicate processing states and provide visual feedback to users during wait times."
+)
 
 # Loader
 
@@ -927,7 +983,7 @@ Some loader variants support displaying custom text while loading.
   language="bash"
 />
 
-*Note: If you are using Tailwind CSS v4, you may have to grab the keyframes and add them to your global.css file manually. Check manual installation for more details.*
+_Note: If you are using Tailwind CSS v4, you may have to grab the keyframes and add them to your global.css file manually. Check manual installation for more details._
 
 </TabsContent>
 
@@ -950,118 +1006,118 @@ Some loader variants support displaying custom text while loading.
 }
 
 @keyframes loading-dots {
-  0%,
-  100% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
+0%,
+100% {
+opacity: 0;
+}
+50% {
+opacity: 1;
+}
 }
 
 @keyframes wave {
-  0%,
-  100% {
-    transform: scaleY(1);
-  }
-  50% {
-    transform: scaleY(0.6);
-  }
+0%,
+100% {
+transform: scaleY(1);
+}
+50% {
+transform: scaleY(0.6);
+}
 }
 
 @keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
+0%,
+100% {
+opacity: 1;
+}
+50% {
+opacity: 0;
+}
 }
 
 @keyframes text-blink {
-  0%,
-  100% {
-    color: var(--primary);
-  }
-  50% {
-    color: var(--muted-foreground);
-  }
+0%,
+100% {
+color: var(--primary);
+}
+50% {
+color: var(--muted-foreground);
+}
 }
 
 @keyframes bounce-dots {
-  0%,
-  100% {
-    transform: scale(0.8);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 1;
-  }
+0%,
+100% {
+transform: scale(0.8);
+opacity: 0.5;
+}
+50% {
+transform: scale(1.2);
+opacity: 1;
+}
 }
 
 @keyframes thin-pulse {
-  0%,
-  100% {
-    transform: scale(0.95);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1.05);
-    opacity: 0.4;
-  }
+0%,
+100% {
+transform: scale(0.95);
+opacity: 0.8;
+}
+50% {
+transform: scale(1.05);
+opacity: 0.4;
+}
 }
 
 @keyframes pulse-dot {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1.5);
-    opacity: 1;
-  }
+0%,
+100% {
+transform: scale(1);
+opacity: 0.8;
+}
+50% {
+transform: scale(1.5);
+opacity: 1;
+}
 }
 
 @keyframes shimmer-text {
-  0% {
-    background-position: 150% center;
-  }
-  100% {
-    background-position: -150% center;
-  }
+0% {
+background-position: 150% center;
+}
+100% {
+background-position: -150% center;
+}
 }
 
 @keyframes wave-bars {
-  0%,
-  100% {
-    transform: scaleY(1);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scaleY(0.6);
-    opacity: 1;
-  }
+0%,
+100% {
+transform: scaleY(1);
+opacity: 0.5;
+}
+50% {
+transform: scaleY(0.6);
+opacity: 1;
+}
 }
 
 @keyframes shimmer {
-  0% {
-    background-position: 200% 50%;
-  }
-  100% {
-    background-position: -200% 50%;
-  }
+0% {
+background-position: 200% 50%;
+}
+100% {
+background-position: -200% 50%;
+}
 }
 
 @keyframes spinner-fade {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+0% {
+opacity: 0;
+}
+100% {
+opacity: 1;
+}
 }`} />
 
 <Step>Copy and paste the following code into your project.</Step>
@@ -1089,9 +1145,15 @@ Some loader variants support displaying custom text while loading.
 
 
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { PromptSuggestionBasic } from "./prompt-suggestion-basic"
 import { PromptSuggestionHighlight } from "./prompt-suggestion-highlight"
 import { PromptSuggestionVariants } from "./prompt-suggestion-variants"
+
+export const metadata = generateMetadata(
+  "Prompt Suggestion",
+  "A component for implementing interactive prompt suggestions in AI interfaces. The PromptSuggestion component offers two distinct modes: Normal Mode and Highlight Mode."
+)
 
 # Prompt Suggestion
 
@@ -1184,10 +1246,16 @@ Build a full-featured chat interface with dynamic prompt suggestions that switch
 
 
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { ResponseStreamFade } from "./response-stream-fade"
 import { ResponseStreamTypewriter } from "./response-stream-typewriter"
 import { ResponseStreamWithMarkdown } from "./response-stream-with-markdown"
 import { UseTextStreamExample } from "./use-text-stream-example"
+
+export const metadata = generateMetadata(
+  "Response Stream",
+  "A component for displaying text with streaming animations, perfect for chat interfaces, AI responses, or any text that should appear progressively."
+)
 
 # Response Stream
 
@@ -1327,10 +1395,16 @@ When using the useTextStream hook with `fade` mode, you need to manually render 
 
 
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { ReasoningBasic } from "./reasoning-basic"
 import { ReasoningControlled } from "./reasoning-controlled"
 import { ReasoningWithAIResponse } from "./reasoning-with-ai-response"
 import { ReasoningWithCustomStyling } from "./reasoning-with-custom-styling"
+
+export const metadata = generateMetadata(
+  "Reasoning",
+  "A component for displaying collapsible reasoning or thought process content, perfect for AI applications that need to show their 'thinking' or step-by-step explanations."
+)
 
 # Reasoning
 
@@ -1454,7 +1528,13 @@ You can also use markdown in the ReasoningResponse component to style the conten
 
 
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { CustomFileUpload } from "./custom-file-upload"
+
+export const metadata = generateMetadata(
+  "File Upload",
+  "A component for creating drag-and-drop file upload interfaces with support for single or multiple files, custom triggers, and visual feedback during file dragging operations."
+)
 
 # File Upload
 
@@ -1535,8 +1615,14 @@ You can combine the file upload component with the [Prompt Input](/docs/prompt-i
 
 
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
 import { JSXPreviewBasic } from "./jsx-preview-basic"
 import { JSXPreviewStreaming } from "./jsx-preview-streaming"
+
+export const metadata = generateMetadata(
+  "JSX Preview",
+  "A component for rendering JSX strings as React components, with support for streaming content and automatic tag completion."
+)
 
 # JSX Preview
 
@@ -1619,7 +1705,24 @@ Check out these example implementations using prompt-kit components:
 
 import { Button } from "@/components/ui/button"
 import { ArrowRightIcon } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
+import { generateMetadata } from "../utils/metadata"
+
+export const metadata = generateMetadata("Showcase", "Showcase for prompt-kit.")
+
+const projects = [
+  {
+    title: "zola.chat",
+    href: "https://zola.chat",
+    thumbnail: "https://www.zola.chat/cover_zola.jpg",
+  },
+  {
+    title: "emojis.com",
+    href: "https://emojis.com",
+    thumbnail: "https://attic.sh/_static/emojis/ai-emoji-generator/og.jpg",
+  },
+]
 
 export default function Showcase() {
   return (
@@ -1640,13 +1743,41 @@ export default function Showcase() {
           </Button>
         </Link>
       </div>
-      <div className="grid w-full grid-cols-2 gap-6 [mask-image:linear-gradient(to_bottom,black_30%,transparent)] md:grid-cols-2 lg:grid-cols-2">
-        <div className="h-48 rounded-2xl bg-zinc-100 dark:bg-zinc-900"></div>
-        <div className="h-48 rounded-2xl bg-zinc-100 dark:bg-zinc-900"></div>
-        <div className="h-48 rounded-2xl bg-zinc-100 dark:bg-zinc-900"></div>
-        <div className="h-48 rounded-2xl bg-zinc-100 dark:bg-zinc-900"></div>
-        <div className="h-48 rounded-2xl bg-zinc-100 dark:bg-zinc-900"></div>
-        <div className="h-48 rounded-2xl bg-zinc-100 dark:bg-zinc-900"></div>
+      <div className="grid w-full grid-cols-1 gap-6 [mask-image:linear-gradient(to_bottom,black_30%,transparent)] md:grid-cols-2 lg:grid-cols-2">
+        {projects.map((project) => (
+          <div className="relative isolate w-full overflow-hidden rounded-2xl max-md:aspect-[1200/630] md:h-48">
+            <Image
+              priority
+              src={project.thumbnail}
+              alt="thumbnail"
+              unoptimized
+              width={1200}
+              height={630}
+              className="h-full w-full object-cover object-left"
+            />
+
+            <div
+              aria-hidden
+              className="absolute bottom-2 left-2 rounded-[6px] bg-black/70 px-1.5 py-0.5 text-xs font-medium text-white"
+            >
+              {project.title}
+            </div>
+
+            <Link
+              href={project.href}
+              target="_blank"
+              className="absolute inset-0"
+            >
+              <span className="sr-only">Visit {project.title}</span>
+            </Link>
+          </div>
+        ))}
+
+        <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-[1200/630] md:h-48 dark:bg-zinc-900"></div>
+        <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-[1200/630] md:h-48 dark:bg-zinc-900"></div>
+        <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-[1200/630] md:h-48 dark:bg-zinc-900"></div>
+        <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-[1200/630] md:h-48 dark:bg-zinc-900"></div>
+        <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-[1200/630] md:h-48 dark:bg-zinc-900"></div>
       </div>
     </div>
   )
