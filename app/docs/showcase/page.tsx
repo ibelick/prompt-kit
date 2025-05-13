@@ -6,6 +6,19 @@ import { generateMetadata } from "../utils/metadata"
 
 export const metadata = generateMetadata("Showcase", "Showcase for prompt-kit.")
 
+const projects = [
+  {
+    title: "zola.chat",
+    href: "https://zola.chat",
+    thumbnail: "https://www.zola.chat/cover_zola.jpg",
+  },
+  {
+    title: "emojis.com",
+    href: "https://emojis.com",
+    thumbnail: "https://attic.sh/_static/emojis/ai-emoji-generator/og.jpg",
+  },
+]
+
 export default function Showcase() {
   return (
     <div className="not-prose w-full flex-auto pt-2.5">
@@ -26,32 +39,34 @@ export default function Showcase() {
         </Link>
       </div>
       <div className="grid w-full grid-cols-1 gap-6 [mask-image:linear-gradient(to_bottom,black_30%,transparent)] md:grid-cols-2 lg:grid-cols-2">
-        <div className="relative isolate w-full overflow-hidden rounded-2xl max-md:aspect-[1200/630] md:h-48">
-          <Image
-            priority
-            src="https://attic.sh/_static/emojis/ai-emoji-generator/og.jpg"
-            alt="thumbnail"
-            unoptimized
-            width={1200}
-            height={630}
-            className="h-full w-full object-cover object-left"
-          />
+        {projects.map((project) => (
+          <div className="relative isolate w-full overflow-hidden rounded-2xl max-md:aspect-[1200/630] md:h-48">
+            <Image
+              priority
+              src={project.thumbnail}
+              alt="thumbnail"
+              unoptimized
+              width={1200}
+              height={630}
+              className="h-full w-full object-cover object-left"
+            />
 
-          <div
-            aria-hidden
-            className="absolute bottom-2 left-2 rounded-[6px] bg-black/70 px-1.5 py-0.5 text-xs font-medium text-white"
-          >
-            emojis.com
+            <div
+              aria-hidden
+              className="absolute bottom-2 left-2 rounded-[6px] bg-black/70 px-1.5 py-0.5 text-xs font-medium text-white"
+            >
+              {project.title}
+            </div>
+
+            <Link
+              href={project.href}
+              target="_blank"
+              className="absolute inset-0"
+            >
+              <span className="sr-only">Visit {project.title}</span>
+            </Link>
           </div>
-
-          <Link
-            href="https://emojis.com"
-            target="_blank"
-            className="absolute inset-0"
-          >
-            <span className="sr-only">Visit emojis.com</span>
-          </Link>
-        </div>
+        ))}
 
         <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-[1200/630] md:h-48 dark:bg-zinc-900"></div>
         <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-[1200/630] md:h-48 dark:bg-zinc-900"></div>
