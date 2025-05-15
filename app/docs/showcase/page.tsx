@@ -48,7 +48,7 @@ export default function Showcase() {
               unoptimized
               width={1200}
               height={630}
-              className="h-full w-full object-cover object-left"
+              className="h-full w-full object-cover"
             />
 
             <div
