@@ -49,6 +49,30 @@ export default function BlocksPage() {
           />
         </div>
         <div>
+          <h4>Conversation with avatars</h4>
+          <ComponentCodePreview
+            url="http://localhost:3000/c/conversation-avatars"
+            filePath="components/blocks/conversation-avatars.tsx"
+            classNameComponentContainer="p-0 aspect-[16/9] h-[650px] w-full overflow-y-auto"
+          />
+        </div>
+        <div>
+          <h4>Conversation with actions</h4>
+          <ComponentCodePreview
+            url="http://localhost:3000/c/conversation-actions"
+            filePath="components/blocks/conversation-actions.tsx"
+            classNameComponentContainer="p-0 aspect-[16/9] h-[650px] w-full overflow-y-auto"
+          />
+        </div>
+        <div>
+          <h4>Conversation with scroll to bottom</h4>
+          <ComponentCodePreview
+            url="http://localhost:3000/c/conversation-scroll-bottom"
+            filePath="components/blocks/conversation-scroll-bottom.tsx"
+            classNameComponentContainer="p-0 aspect-[16/9] h-[650px] w-full overflow-y-auto"
+          />
+        </div>
+        <div>
           <h4>Sidebar with chat history</h4>
           <ComponentCodePreview
             url="http://localhost:3000/c/sidebar-chat-history"

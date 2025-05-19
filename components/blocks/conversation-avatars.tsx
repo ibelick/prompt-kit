@@ -1,8 +1,13 @@
 "use client"
 
 import { ChatContainer } from "@/components/prompt-kit/chat-container"
-import { Message, MessageContent } from "@/components/prompt-kit/message"
+import {
+  Message,
+  MessageAvatar,
+  MessageContent,
+} from "@/components/prompt-kit/message"
 import { cn } from "@/lib/utils"
+import { useRef } from "react"
 
 const messages = [
   {
@@ -39,9 +44,16 @@ const messages = [
   },
 ]
 
-function FullConversation() {
+function ConversationWithAvatars() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const bottomRef = useRef<HTMLDivElement>(null)
+
   return (
-    <ChatContainer className="w-full space-y-12 overflow-y-auto py-12">
+    <ChatContainer
+      className="space-y-12 px-6 py-12"
+      ref={containerRef}
+      scrollToRef={bottomRef}
+    >
       {messages.map((message) => {
         const isAssistant = message.role === "assistant"
 
@@ -53,18 +65,38 @@ function FullConversation() {
               isAssistant ? "items-start" : "items-end"
             )}
           >
-            {isAssistant ? (
-              <MessageContent
-                className="text-foreground prose flex-1 rounded-lg bg-transparent p-2"
-                markdown
-              >
-                {message.content}
-              </MessageContent>
-            ) : (
-              <MessageContent className="bg-primary text-primary-foreground max-w-[85%] sm:max-w-[75%]">
-                {message.content}
-              </MessageContent>
-            )}
+            <div
+              className={cn(
+                "flex items-end gap-3",
+                isAssistant ? "flex-row" : "flex-row-reverse"
+              )}
+            >
+              {isAssistant ? (
+                <MessageAvatar
+                  className="mb-0.5 h-6 w-6"
+                  src="https://github.com/shadcn.png"
+                  alt={`Avatar of the assistant`}
+                />
+              ) : (
+                <MessageAvatar
+                  className="h-6 w-6"
+                  src="https://github.com/ibelick.png"
+                  alt={`Avatar of the user`}
+                />
+              )}
+              {isAssistant ? (
+                <MessageContent
+                  className="prose text-primary flex-1 rounded-lg bg-transparent p-0 py-0"
+                  markdown
+                >
+                  {message.content}
+                </MessageContent>
+              ) : (
+                <MessageContent className="bg-secondary text-primary max-w-[85%] sm:max-w-[75%]">
+                  {message.content}
+                </MessageContent>
+              )}
+            </div>
           </Message>
         )
       })}
@@ -72,4 +104,4 @@ function FullConversation() {
   )
 }
 
-export { FullConversation }
+export { ConversationWithAvatars }
