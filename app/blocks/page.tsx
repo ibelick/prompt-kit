@@ -16,10 +16,16 @@ export default function BlocksPage() {
         </p>
       </div>
       <LayoutDocs className="w-full">
-        <h4>Full Conversation</h4>
+        <h4>Basic full conversation</h4>
         <ComponentCodePreview
           url="http://localhost:3000/c/full-conversation"
           filePath="components/blocks/full-conversation.tsx"
+          classNameComponentContainer="p-0 aspect-[16/9] h-[650px] w-full overflow-y-auto"
+        />
+        <h4>Sidebar with chat history</h4>
+        <ComponentCodePreview
+          url="http://localhost:3000/c/sidebar-chat-history"
+          filePath="components/blocks/sidebar-chat-history.tsx"
           classNameComponentContainer="p-0 aspect-[16/9] h-[650px] w-full overflow-y-auto"
         />
       </LayoutDocs>
