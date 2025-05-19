@@ -41,8 +41,8 @@ export function ChatWithCustomScroll() {
   ])
 
   const addMessage = () => {
-    setIsStreaming(true);
-    
+    setIsStreaming(true)
+
     // Add a new message
     setMessages([
       ...messages,
@@ -56,11 +56,11 @@ export function ChatWithCustomScroll() {
             : "Thanks for the explanation! Could you tell me more about grid areas?",
       },
     ])
-    
+
     // Simulate streaming by setting isStreaming to false after a delay
     setTimeout(() => {
-      setIsStreaming(false);
-    }, 500);
+      setIsStreaming(false)
+    }, 500)
   }
 
   return (
@@ -86,8 +86,8 @@ export function ChatWithCustomScroll() {
         </div>
       </div>
 
-      <ChatContainer 
-        className="flex-1 space-y-4 p-4" 
+      <ChatContainer
+        className="flex-1 space-y-4 p-4"
         autoScroll={autoScroll}
         ref={chatContainerRef}
       >

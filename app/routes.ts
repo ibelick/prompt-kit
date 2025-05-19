@@ -2,7 +2,7 @@ export type Route = {
   path: string
   label: string
   order: number
-  type: "component" | "core"
+  type: "component" | "core" | "block"
 }
 
 export const routes: Route[] = [
@@ -95,6 +95,12 @@ export const routes: Route[] = [
     label: "JSX Preview",
     order: 14,
     type: "component",
+  },
+  {
+    path: "/docs/blocks",
+    label: "Blocks",
+    order: 15,
+    type: "block",
   },
 ]
 
