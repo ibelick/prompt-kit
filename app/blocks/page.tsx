@@ -73,6 +73,14 @@ export default function BlocksPage() {
           />
         </div>
         <div>
+          <h4>Conversation with prompt input</h4>
+          <ComponentCodePreview
+            url="http://localhost:3000/c/conversation-prompt-input"
+            filePath="components/blocks/conversation-prompt-input.tsx"
+            classNameComponentContainer="p-0 aspect-[16/9] h-[650px] w-full overflow-y-auto"
+          />
+        </div>
+        <div>
           <h4>Sidebar with chat history</h4>
           <ComponentCodePreview
             url="http://localhost:3000/c/sidebar-chat-history"

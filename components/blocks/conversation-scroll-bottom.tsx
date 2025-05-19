@@ -46,11 +46,11 @@ function ConversationWithScrollBottom() {
   const bottomRef = useRef<HTMLDivElement>(null)
 
   return (
-    <div className="relative flex w-full flex-col overflow-hidden">
+    <div className="relative flex h-[650px] flex-1 flex-col overflow-hidden">
       <ChatContainer
-        className="border-border h-[500px] space-y-12 border-b px-6 py-12"
-        ref={containerRef}
+        className="h-full space-y-12 overflow-y-auto px-6 py-12"
         scrollToRef={bottomRef}
+        ref={containerRef}
       >
         {messages.map((message) => {
           const isAssistant = message.role === "assistant"
