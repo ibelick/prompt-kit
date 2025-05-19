@@ -8,7 +8,7 @@ export function Footer() {
   const navigation = getNavigation(pathname)
 
   return (
-    <div className="flex justify-between pt-12 pb-4">
+    <div className="flex justify-between pt-12 pb-20">
       {navigation && navigation.prev ? (
         <Link
           href={navigation.prev.path}
