@@ -18,9 +18,9 @@ export default function BlocksPage() {
       <LayoutDocs className="w-full">
         <h4>Full Conversation</h4>
         <ComponentCodePreview
-          component={<FullConversation />}
+          url="http://localhost:3000/c/full-conversation"
           filePath="components/blocks/full-conversation.tsx"
-          classNameComponentContainer="p-0 aspect-[16/9] w-full overflow-hidden"
+          classNameComponentContainer="p-0 aspect-[16/9] h-[650px] w-full overflow-y-auto"
         />
       </LayoutDocs>
     </div>

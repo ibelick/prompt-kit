@@ -2,23 +2,72 @@
 
 import { cn } from "@/lib/utils"
 import { RotateCw } from "lucide-react"
-import { cloneElement, useState } from "react"
+import { cloneElement, useEffect, useRef, useState } from "react"
 
 type ComponentPreviewProps = {
-  component: React.ReactElement
+  component?: React.ReactElement
   hasReTrigger?: boolean
   className?: string
+  url?: string
 }
 
 export default function ComponentPreview({
   component,
   hasReTrigger = false,
   className,
+  url,
 }: ComponentPreviewProps) {
   const [reTriggerKey, setReTriggerKey] = useState<number>(Date.now())
+  const [isLoading, setIsLoading] = useState(true)
+  const iframeRef = useRef<HTMLIFrameElement>(null)
+
+  useEffect(() => {
+    if (!url || !iframeRef.current) return
+
+    setIsLoading(true)
+
+    const iframe = iframeRef.current
+
+    const updateIframeHeight = () => {
+      try {
+        const scrollHeight =
+          iframe.contentWindow?.document.documentElement.scrollHeight || 930
+        const bodyHeight =
+          iframe.contentWindow?.document.body.offsetHeight || 930
+        const newHeight = Math.max(scrollHeight, bodyHeight)
+
+        iframe.style.height = `${Math.max(newHeight, 100)}px`
+      } catch (e) {
+        console.warn(
+          "Could not access iframe content height due to CORS policy"
+        )
+        iframe.style.height = "500px"
+      }
+      setIsLoading(false)
+    }
+
+    iframe.onload = updateIframeHeight
+
+    return () => {
+      iframe.onload = null
+    }
+  }, [url, reTriggerKey])
 
   const reTrigger = () => {
     setReTriggerKey(Date.now())
+  }
+
+  const renderComponent = () => {
+    if (!url) return component!
+
+    return (
+      <iframe
+        ref={iframeRef}
+        src={url}
+        className="bg-background relative h-full w-full"
+        title={url}
+      />
+    )
   }
 
   return (
@@ -36,9 +85,10 @@ export default function ComponentPreview({
           <RotateCw className="h-4 w-4 text-zinc-500" />
         </div>
       )}
+      {url && isLoading && <div className="absolute inset-0 w-full" />}
       {hasReTrigger
-        ? cloneElement(component, { key: reTriggerKey })
-        : component}
+        ? cloneElement(renderComponent(), { key: reTriggerKey })
+        : renderComponent()}
     </div>
   )
 }

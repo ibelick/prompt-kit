@@ -218,6 +218,11 @@ export function LayoutClient({ children }: { children: React.ReactNode }) {
   const MD_SIDEBAR_VIEWPORT_THRESHOLD = 1024
 
   const isBlocksPage = usePathname() === "/blocks"
+  const isComponentPage = usePathname().includes("/c/")
+
+  if (isComponentPage) {
+    return <>{children}</>
+  }
 
   return (
     <SidebarProvider

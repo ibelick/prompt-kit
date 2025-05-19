@@ -6,12 +6,13 @@ import { CodeRenderer } from "./code-renderer"
 import ComponentPreview from "./component-preview"
 
 type ComponentCodePreview = {
-  component: React.ReactElement
+  component?: React.ReactElement
   filePath: string
   hasReTrigger?: boolean
   classNameComponentContainer?: string
   classNameContainer?: string
   disableNotProse?: boolean
+  url?: string
 }
 
 export default function ComponentCodePreview({
@@ -21,6 +22,7 @@ export default function ComponentCodePreview({
   classNameComponentContainer,
   classNameContainer,
   disableNotProse = false,
+  url,
 }: ComponentCodePreview) {
   const fileContent = extractCodeFromFilePath(filePath)
 
@@ -42,6 +44,7 @@ export default function ComponentCodePreview({
             component={component}
             hasReTrigger={hasReTrigger}
             className={classNameComponentContainer}
+            url={url}
           />
         </TabsContent>
         <TabsContent value="code">
