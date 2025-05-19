@@ -1,22 +1,28 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
-import { ScrollButtonWithChat } from "../docs/scroll-button/scroll-button-with-chat"
+import { FullConversation } from "@/components/blocks/full-conversation"
+import LayoutDocs from "../docs/layout"
 
 export default function BlocksPage() {
   return (
     <div className="mb-12 flex flex-col items-start">
-      <div className="mb-5 flex flex-col gap-1 text-pretty">
-        <p className="text-3xl font-[450] tracking-tight text-black">
-          Building blocks for AI apps.
+      <div className="mb-10 flex flex-col gap-1 text-pretty">
+        <p className="text-primary text-3xl font-[450] tracking-tight">
+          Blocks for AI apps.
         </p>
-        <p className="text-lg font-normal text-zinc-500"></p>
+        <p className="text-muted-foreground max-w-2xl text-lg font-normal">
+          Reusable UI blocks to build high-quality AI apps faster.
+          <br />
+          React components built with shadcn/ui and prompt-kit components.
+        </p>
       </div>
-      <div className="flex w-full flex-col gap-4">
+      <LayoutDocs className="w-full">
+        <h4>Full Conversation</h4>
         <ComponentCodePreview
-          component={<ScrollButtonWithChat />}
-          filePath="app/docs/scroll-button/scroll-button-with-chat.tsx"
-          classNameComponentContainer="p-0 aspect-[16/9] min-h-[900px]"
+          component={<FullConversation />}
+          filePath="components/blocks/full-conversation.tsx"
+          classNameComponentContainer="p-0 aspect-[16/9] w-full overflow-hidden"
         />
-      </div>
+      </LayoutDocs>
     </div>
   )
 }
