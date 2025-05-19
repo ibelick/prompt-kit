@@ -33,6 +33,14 @@ export default function BlocksPage() {
           />
         </div>
         <div>
+          <h4>Prompt input with autocomplete</h4>
+          <ComponentCodePreview
+            url="http://localhost:3000/c/prompt-autocomplete-highlight"
+            filePath="components/blocks/prompt-autocomplete-highlight.tsx"
+            classNameComponentContainer="p-0 aspect-[16/9] h-[650px] w-full overflow-y-auto"
+          />
+        </div>
+        <div>
           <h4>Basic full conversation</h4>
           <ComponentCodePreview
             url="http://localhost:3000/c/full-conversation"
