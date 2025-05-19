@@ -173,17 +173,57 @@ function SidebarWithChatHistory() {
 
 function AppContent() {
   return (
-    <main className="flex flex-1 flex-col gap-4">
-      <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+    <main className="flex h-screen flex-col overflow-hidden">
+      <header className="bg-background z-10 flex h-16 w-full shrink-0 items-center gap-2 border-b px-4">
         <SidebarTrigger className="-ml-1" />
+        <div className="bg-muted/50 h-10 w-48 rounded-md" />
       </header>
-      <div className="flex flex-1 flex-col gap-4 p-4">
-        <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-          <div className="bg-muted/50 aspect-video rounded-xl" />
-          <div className="bg-muted/50 aspect-video rounded-xl" />
-          <div className="bg-muted/50 aspect-video rounded-xl" />
+
+      <div className="flex-1 overflow-y-auto px-4 py-6">
+        <div className="mx-auto max-w-3xl space-y-4">
+          <div className="flex w-full">
+            <div className="bg-muted/50 h-12 w-[65%] rounded-xl" />
+          </div>
+
+          <div className="flex justify-end">
+            <div className="bg-muted/50 h-10 w-[45%] rounded-xl" />
+          </div>
+
+          <div className="flex">
+            <div className="bg-muted/50 h-10 w-[70%] rounded-xl" />
+          </div>
+
+          <div className="flex justify-end">
+            <div className="bg-muted/50 h-10 w-[55%] rounded-xl" />
+          </div>
+
+          <div className="flex">
+            <div className="bg-muted/50 h-16 w-[75%] rounded-xl" />
+          </div>
+
+          <div className="flex justify-end">
+            <div className="bg-muted/50 h-10 w-[50%] rounded-xl" />
+          </div>
+
+          <div className="flex">
+            <div className="bg-muted/50 h-16 w-[70%] rounded-xl" />
+          </div>
+          <div className="flex justify-end">
+            <div className="bg-muted/50 h-10 w-[60%] rounded-xl" />
+          </div>
+          <div className="flex">
+            <div className="bg-muted/50 h-20 w-[75%] rounded-xl" />
+          </div>
+          <div className="flex justify-end">
+            <div className="bg-muted/50 h-10 w-[50%] rounded-xl" />
+          </div>
         </div>
-        <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
+      </div>
+
+      <div className="bg-background z-10 shrink-0 border-t p-4">
+        <div className="mx-auto max-w-3xl">
+          <div className="bg-muted/50 h-12 w-full rounded-xl" />
+        </div>
       </div>
     </main>
   )
