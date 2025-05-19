@@ -1,6 +1,10 @@
 "use client"
 
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { cn } from "@/lib/utils"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { useEffect } from "react"
 import {
   Sidebar,
   SidebarContent,
@@ -13,11 +17,7 @@ import {
   SidebarMenuItem,
   SidebarProvider,
   useSidebar,
-} from "@/components/ui/sidebar"
-import { cn } from "@/lib/utils"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { useEffect } from "react"
+} from "./app-sidebar"
 import { Footer } from "./footer"
 import { Header } from "./header"
 import { routes } from "./routes"

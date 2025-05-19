@@ -1,4 +1,4 @@
-import { SidebarTrigger } from "@/components/ui/sidebar"
+import { SidebarTrigger } from "@/app/app-sidebar"
 import { useBreakpoint } from "@/hooks/use-breakpoint"
 import { ExternalLink } from "lucide-react"
 import Link from "next/link"
