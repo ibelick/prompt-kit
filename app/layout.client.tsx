@@ -12,6 +12,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
+  SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar"
 import { cn } from "@/lib/utils"
@@ -70,14 +71,17 @@ function AppSidebar() {
   return (
     <Sidebar className="h-full border-none shadow-none">
       <SidebarContent className="bg-muted/30 border-none">
-        <ScrollArea className="h-full pt-0 pr-4 md:pl-7 lg:pl-20">
-          <div className="flex h-full flex-col pb-20 pl-0 md:pt-[8.2rem]">
-            <SidebarHeader className="hidden md:block">
-              <Link href="/" className="flex items-center">
-                <h1 className="px-2 text-sm">prompt-kit</h1>
+        <ScrollArea className="h-full p-0">
+          <div className="flex h-full flex-col pb-20 pl-0">
+            <SidebarHeader className="hidden px-5 pt-8 md:block">
+              <Link
+                href="/"
+                className="flex items-center text-xl font-medium tracking-tighter"
+              >
+                <h1 className="pl-2">prompt-kit</h1>
               </Link>
             </SidebarHeader>
-            <SidebarGroup className="border-none pr-0 pl-2">
+            <SidebarGroup className="border-none pr-0 pl-2 md:px-5 md:pt-[3.6rem]">
               <SidebarGroupLabel className="text-lg md:text-sm">
                 Core
               </SidebarGroupLabel>
