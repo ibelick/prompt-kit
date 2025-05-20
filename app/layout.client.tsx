@@ -1,5 +1,6 @@
 "use client"
 
+import { PromptKitLogo } from "@/components/app/icon/prompt-kit-logo"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
@@ -79,12 +80,13 @@ function AppSidebar() {
       <SidebarContent className="bg-muted/30 border-none">
         <ScrollArea className="h-full p-0">
           <div className="flex h-full flex-col pb-20 pl-0">
-            <SidebarHeader className="hidden px-5 pt-8 md:block">
+            <SidebarHeader className="hidden items-start px-5 pt-8 md:flex">
               <Link
                 href="/"
-                className="flex items-center text-xl font-medium tracking-tighter"
+                className="flex items-center gap-2 pl-2 text-xl font-medium tracking-tighter"
               >
-                <h1 className="pl-2">prompt-kit</h1>
+                <PromptKitLogo className="h-6 w-6" />
+                <h1 className="leading-none">prompt-kit</h1>
               </Link>
             </SidebarHeader>
             <SidebarGroup className="border-none pr-0 pl-2 md:px-5 md:pt-[3.6rem]">
