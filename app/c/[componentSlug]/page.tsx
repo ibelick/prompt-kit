@@ -1,6 +1,5 @@
 import fs from "fs"
 import path from "path"
-import { ThemeProvider } from "next-themes"
 import { notFound } from "next/navigation"
 import React from "react"
 
@@ -33,11 +32,9 @@ export default async function ComponentPage(props: { params: Params }) {
   }
 
   return (
-    <ThemeProvider attribute="class">
-      <div className="bg-background relative isolate min-h-svh">
-        <Component />
-      </div>
-    </ThemeProvider>
+    <div className="bg-background relative isolate min-h-svh">
+      <Component />
+    </div>
   )
 }
 export async function generateStaticParams() {
