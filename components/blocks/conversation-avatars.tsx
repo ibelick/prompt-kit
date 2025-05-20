@@ -74,7 +74,7 @@ function ConversationWithAvatars() {
               {isAssistant ? (
                 <MessageAvatar
                   className="mb-0.5 h-6 w-6"
-                  src="https://github.com/shadcn.png"
+                  src="https://prompt-kit.com/logo.png"
                   alt={`Avatar of the assistant`}
                 />
               ) : (
