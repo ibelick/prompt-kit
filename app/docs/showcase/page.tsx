@@ -17,6 +17,28 @@ const projects = [
     href: "https://emojis.com",
     thumbnail: "https://attic.sh/_static/emojis/ai-emoji-generator/og.jpg",
   },
+  {
+    title: "ottogrid.ai",
+    href: "https://ottogrid.ai",
+    thumbnail: "https://ottogrid.ai/opengraph-image.png?2ca0b60807e14ef5",
+  },
+  {
+    title: "aiagent.app",
+    href: "https://aiagent.app",
+    thumbnail:
+      "https://aiagent.app/opengraph-image.png?opengraph-image.e8b1925a.png",
+  },
+  {
+    title: "www.findappgaps.com",
+    href: "https://www.findappgaps.com",
+    thumbnail:
+      "https://www.findappgaps.com/opengraph-image.png?fd2d072fb61c49f3",
+  },
+  {
+    title: "faithbase.ai",
+    href: "https://faithbase.ai",
+    thumbnail: "https://faithbase.ai/opengraph.jpg",
+  },
 ]
 
 export default function Showcase() {
@@ -38,7 +60,7 @@ export default function Showcase() {
           </Button>
         </Link>
       </div>
-      <div className="grid w-full grid-cols-1 gap-6 [mask-image:linear-gradient(to_bottom,black_30%,transparent)] md:grid-cols-2 lg:grid-cols-2">
+      <div className="grid w-full grid-cols-1 gap-6 [mask-image:linear-gradient(to_bottom,black_90%,transparent)] md:grid-cols-2 lg:grid-cols-2">
         {projects.map((project) => (
           <div className="relative isolate w-full overflow-hidden rounded-2xl max-md:aspect-[1200/630] md:h-48">
             <Image
@@ -68,9 +90,6 @@ export default function Showcase() {
           </div>
         ))}
 
-        <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-[1200/630] md:h-48 dark:bg-zinc-900"></div>
-        <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-[1200/630] md:h-48 dark:bg-zinc-900"></div>
-        <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-[1200/630] md:h-48 dark:bg-zinc-900"></div>
         <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-[1200/630] md:h-48 dark:bg-zinc-900"></div>
         <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-[1200/630] md:h-48 dark:bg-zinc-900"></div>
       </div>
