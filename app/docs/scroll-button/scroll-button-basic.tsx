@@ -1,9 +1,6 @@
 "use client"
 
-import {
-  ScrollButton,
-  useScrollContainer,
-} from "@/components/prompt-kit/scroll-button"
+import { ScrollButton } from "@/components/prompt-kit/scroll-button"
 import { useRef, useState } from "react"
 
 export function ScrollButtonBasic() {

@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 import { type VariantProps } from "class-variance-authority"
 import { ChevronDown } from "lucide-react"
 import { useEffect, useState } from "react"
-import { useStickToBottom, useStickToBottomContext } from "use-stick-to-bottom"
+import { useStickToBottomContext } from "use-stick-to-bottom"
 
 export type ScrollButtonProps = {
   containerRef?: React.RefObject<HTMLElement | null>
@@ -36,6 +36,7 @@ function ScrollButton({
   const contextAvailable = useIsStickToBottomContextAvailable()
   const context = contextAvailable ? useStickToBottomContext() : null
 
+  // Use context if available, otherwise fallback to containerRef logic
   const shouldShow = context ? !context.isAtBottom : isVisible
 
   useEffect(() => {
@@ -45,14 +46,23 @@ function ScrollButton({
 
     const handleScroll = () => {
       const { scrollTop, scrollHeight, clientHeight } = container
-      setIsVisible(scrollTop + clientHeight < scrollHeight - threshold)
+      const shouldBeVisible =
+        scrollTop + clientHeight < scrollHeight - threshold
+      setIsVisible(shouldBeVisible)
     }
 
-    container.addEventListener("scroll", handleScroll, { passive: true })
+    // Initial check
     handleScroll()
+
+    // Event listener for scroll
+    container.addEventListener("scroll", handleScroll, { passive: true })
+
+    // Also check on resize
+    window.addEventListener("resize", handleScroll)
 
     return () => {
       container.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("resize", handleScroll)
     }
   }, [containerRef, threshold, context])
 
@@ -72,7 +82,7 @@ function ScrollButton({
       variant={variant}
       size={size}
       className={cn(
-        "h-8 w-8 rounded-full transition-all duration-150 ease-out",
+        "h-10 w-10 rounded-full transition-all duration-150 ease-out",
         shouldShow
           ? "translate-y-0 scale-100 opacity-100"
           : "pointer-events-none translate-y-4 scale-95 opacity-0",
@@ -81,42 +91,9 @@ function ScrollButton({
       onClick={handleScroll}
       {...props}
     >
-      <ChevronDown className="h-4 w-4" />
+      <ChevronDown className="h-5 w-5" />
     </Button>
   )
-}
-
-export function useScrollContainer() {
-  const stickToBottom = useStickToBottom()
-
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const container = stickToBottom.scrollRef.current
-    if (!container) return
-
-    const handleScroll = () => {
-      const { scrollTop, scrollHeight, clientHeight } = container
-      setIsVisible(scrollHeight - scrollTop - clientHeight > 10)
-    }
-
-    container.addEventListener("scroll", handleScroll, { passive: true })
-    handleScroll()
-
-    return () => {
-      container.removeEventListener("scroll", handleScroll)
-    }
-  }, [stickToBottom.scrollRef])
-
-  const scrollToBottom = () => {
-    return stickToBottom.scrollToBottom()
-  }
-
-  return {
-    ...stickToBottom,
-    isVisible,
-    scrollToBottom,
-  }
 }
 
 export { ScrollButton }
