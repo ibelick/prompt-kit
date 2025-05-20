@@ -89,7 +89,7 @@ export function PromptInputWithSuggestions() {
   const showCategorySuggestions = activeCategory !== ""
 
   return (
-    <div className="absolute inset-x-0 top-1/2 mx-auto flex max-w-3xl -translate-y-1/2 flex-col items-center justify-center gap-4 p-3 md:p-5">
+    <div className="absolute inset-x-0 top-1/2 mx-auto flex max-w-3xl -translate-y-1/2 flex-col items-center justify-center gap-4 px-3 pb-3 md:px-5 md:pb-5">
       <PromptInput
         className="border-input bg-popover relative z-10 w-full rounded-3xl border p-0 pt-1 shadow-xs"
         value={inputValue}
