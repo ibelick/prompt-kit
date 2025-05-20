@@ -67,7 +67,7 @@ function ConversationWithAvatars() {
           >
             <div
               className={cn(
-                "flex items-end gap-3",
+                "flex w-full items-end gap-3",
                 isAssistant ? "flex-row" : "flex-row-reverse"
               )}
             >
@@ -86,7 +86,7 @@ function ConversationWithAvatars() {
               )}
               {isAssistant ? (
                 <MessageContent
-                  className="prose text-primary flex-1 rounded-lg bg-transparent p-0 py-0"
+                  className="prose text-primary w-full flex-1 rounded-lg bg-transparent p-0 py-0"
                   markdown
                 >
                   {message.content}

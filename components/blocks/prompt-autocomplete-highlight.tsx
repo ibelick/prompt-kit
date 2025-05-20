@@ -70,7 +70,11 @@ function PromptAutocompleteHighlight() {
         {inputValue.trim() &&
           promptSuggestions.length > 0 &&
           promptSuggestions.map((prompt) => (
-            <PromptSuggestion key={prompt} highlight={inputValue}>
+            <PromptSuggestion
+              key={prompt}
+              highlight={inputValue}
+              className="flex h-auto flex-wrap text-left"
+            >
               {prompt}
             </PromptSuggestion>
           ))}

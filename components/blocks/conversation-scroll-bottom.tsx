@@ -65,7 +65,7 @@ function ConversationWithScrollBottom() {
             >
               {isAssistant ? (
                 <MessageContent
-                  className="bg-transparenttext-foreground prose flex-1 rounded-lg p-2"
+                  className="text-foreground prose w-full flex-1 rounded-lg bg-transparent p-2"
                   markdown
                 >
                   {message.content}

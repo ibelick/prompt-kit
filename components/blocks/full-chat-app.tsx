@@ -250,7 +250,7 @@ function ChatContent() {
               )}
             >
               {isAssistant ? (
-                <div className="group flex flex-col gap-0">
+                <div className="group flex w-full flex-col gap-0">
                   <MessageContent
                     className="text-foreground prose flex-1 rounded-lg bg-transparent p-0"
                     markdown

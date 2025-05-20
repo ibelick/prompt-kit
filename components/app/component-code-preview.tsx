@@ -32,7 +32,7 @@ export default function ComponentCodePreview({
     <div
       className={cn(
         !disableNotProse && "not-prose",
-        "relative z-0 flex items-center justify-between pb-3",
+        "relative z-0 -mx-4 flex items-center justify-between pb-3 sm:mx-0",
         classNameContainer
       )}
     >
