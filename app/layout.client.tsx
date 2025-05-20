@@ -77,138 +77,149 @@ function AppSidebar() {
 
   return (
     <Sidebar className="h-full border-none shadow-none">
-      <SidebarContent className="bg-muted/30 border-none">
-        <ScrollArea className="h-full p-0">
-          <div className="flex h-full flex-col pb-20 pl-0">
-            <SidebarHeader className="hidden items-start px-5 pt-8 md:flex">
-              <Link
-                href="/"
-                className="flex items-center gap-2 pl-2 text-xl font-medium tracking-tighter"
+      <SidebarContent
+        className="bg-background border-border border-r border-dashed"
+        style={{ scrollbarWidth: "none" }}
+      >
+        <div className="flex h-full flex-col pb-20 pl-0">
+          <SidebarHeader className="hidden items-start px-5 pt-8 md:flex">
+            <Link
+              href="/"
+              className="flex items-center gap-2 pl-2 text-xl font-medium tracking-tighter"
+            >
+              <PromptKitLogo className="h-6 w-6" />
+              <h1 className="leading-none">prompt-kit</h1>
+            </Link>
+          </SidebarHeader>
+          <SidebarGroup className="border-none pr-0 pl-2 md:px-5 md:pt-[3.6rem]">
+            <SidebarGroupLabel className="text-lg md:text-sm">
+              Core
+            </SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {coreMenuItems.map((item) => {
+                  const isActive = currentPath === item.url
+
+                  return (
+                    <SidebarMenuItem key={item.title}>
+                      <SidebarMenuButton
+                        asChild
+                        className={cn(
+                          "hover:bg-sidebar-accent/50 active:bg-sidebar-accent/50 hover:text-primary text-lg transition-all duration-150 md:text-sm",
+                          isActive &&
+                            "text-primary bg-sidebar-accent hover:bg-sidebar-accent font-medium"
+                        )}
+                      >
+                        <Link href={item.url}>{item.title}</Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )
+                })}
+              </SidebarMenu>
+            </SidebarGroupContent>
+            <SidebarGroupLabel className={cn("mt-8 text-lg md:text-sm")}>
+              Components
+            </SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {componentsMenuItems.map((item) => {
+                  const isActive = currentPath === item.url
+
+                  return (
+                    <SidebarMenuItem key={item.title}>
+                      <SidebarMenuButton
+                        asChild
+                        className={cn(
+                          "hover:bg-sidebar-accent/50 active:bg-sidebar-accent/50 hover:text-primary text-lg transition-all duration-150 md:text-sm",
+                          isActive &&
+                            "text-primary bg-sidebar-accent hover:bg-sidebar-accent font-medium"
+                        )}
+                      >
+                        <Link href={item.url}>{item.title}</Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )
+                })}
+              </SidebarMenu>
+            </SidebarGroupContent>
+            <SidebarGroupLabel className="mt-8 text-lg md:text-sm">
+              <SidebarMenuButton
+                asChild
+                className={cn(
+                  "hover:bg-sidebar-accent/50 active:bg-sidebar-accent/50 hover:text-primary text-lg transition-all duration-150 md:text-sm",
+                  pathname.includes("/blocks") &&
+                    "text-primary bg-sidebar-accent hover:bg-sidebar-accent font-medium"
+                )}
               >
-                <PromptKitLogo className="h-6 w-6" />
-                <h1 className="leading-none">prompt-kit</h1>
-              </Link>
-            </SidebarHeader>
-            <SidebarGroup className="border-none pr-0 pl-2 md:px-5 md:pt-[3.6rem]">
-              <SidebarGroupLabel className="text-lg md:text-sm">
-                Core
-              </SidebarGroupLabel>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {coreMenuItems.map((item) => {
-                    const isActive = currentPath === item.url
-
-                    return (
-                      <SidebarMenuItem key={item.title}>
-                        <SidebarMenuButton
-                          asChild
-                          className={cn(
-                            isActive &&
-                              "text-sidebar-accent-foreground font-semibold",
-                            "text-lg hover:bg-transparent hover:font-semibold active:bg-transparent md:text-sm",
-                            "transition-all duration-200"
-                          )}
+                <Link href="/blocks" className="-m-2">
+                  Blocks
+                </Link>
+              </SidebarMenuButton>
+            </SidebarGroupLabel>
+            <SidebarGroupLabel className={cn("mt-8 text-lg md:text-sm")}>
+              LLMs
+            </SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {llms.map((item) => {
+                  return (
+                    <SidebarMenuItem key={item.title}>
+                      <SidebarMenuButton
+                        asChild
+                        className={cn(
+                          "hover:bg-sidebar-accent/50 active:bg-sidebar-accent/50 hover:text-primary text-lg transition-all duration-150 md:text-sm"
+                        )}
+                      >
+                        <Link href={item.url}>{item.title}</Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )
+                })}
+              </SidebarMenu>
+            </SidebarGroupContent>
+            <SidebarGroupLabel className="mt-8 text-lg md:text-sm">
+              <SidebarMenuButton
+                asChild
+                className={cn(
+                  "hover:bg-sidebar-accent/50 active:bg-sidebar-accent/50 hover:text-primary text-lg transition-all duration-150 md:text-sm",
+                  pathname.includes("/docs/showcase") &&
+                    "text-primary bg-sidebar-accent hover:bg-sidebar-accent font-medium"
+                )}
+              >
+                <Link href="/docs/showcase" className="-m-2">
+                  Showcase
+                </Link>
+              </SidebarMenuButton>
+            </SidebarGroupLabel>
+            <SidebarGroupLabel className="mt-8 text-lg md:text-sm">
+              Social
+            </SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {socialMenuItems.map((item) => {
+                  return (
+                    <SidebarMenuItem key={item.title}>
+                      <SidebarMenuButton
+                        asChild
+                        className={cn(
+                          "hover:bg-sidebar-accent/50 active:bg-sidebar-accent/50 hover:text-primary text-lg transition-all duration-150 md:text-sm"
+                        )}
+                      >
+                        <Link
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
-                          <Link href={item.url}>{item.title}</Link>
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    )
-                  })}
-                </SidebarMenu>
-              </SidebarGroupContent>
-              <SidebarGroupLabel className={cn("mt-8 text-lg md:text-sm")}>
-                Components
-              </SidebarGroupLabel>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {componentsMenuItems.map((item) => {
-                    const isActive = currentPath === item.url
-
-                    return (
-                      <SidebarMenuItem key={item.title}>
-                        <SidebarMenuButton
-                          asChild
-                          className={cn(
-                            isActive &&
-                              "text-sidebar-accent-foreground font-semibold",
-                            "text-lg hover:bg-transparent hover:font-semibold active:bg-transparent md:text-sm",
-                            "transition-all duration-200"
-                          )}
-                        >
-                          <Link href={item.url}>{item.title}</Link>
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    )
-                  })}
-                </SidebarMenu>
-              </SidebarGroupContent>
-              <SidebarGroupLabel className="mt-8 text-lg md:text-sm">
-                <SidebarMenuButton
-                  asChild
-                  className="bg-transparent text-lg transition-all duration-200 hover:bg-transparent hover:font-semibold active:bg-transparent md:text-sm"
-                >
-                  <Link href="/blocks" className="-m-2">
-                    Blocks
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarGroupLabel>
-              <SidebarGroupLabel className={cn("mt-8 text-lg md:text-sm")}>
-                LLMs
-              </SidebarGroupLabel>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {llms.map((item) => {
-                    return (
-                      <SidebarMenuItem key={item.title}>
-                        <SidebarMenuButton
-                          asChild
-                          className="bg-transparent text-lg transition-all duration-200 hover:bg-transparent hover:font-semibold active:bg-transparent md:text-sm"
-                        >
-                          <Link href={item.url}>{item.title}</Link>
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    )
-                  })}
-                </SidebarMenu>
-              </SidebarGroupContent>
-              <SidebarGroupLabel className="mt-8 text-lg md:text-sm">
-                <SidebarMenuButton
-                  asChild
-                  className="bg-transparent text-lg transition-all duration-200 hover:bg-transparent hover:font-semibold active:bg-transparent md:text-sm"
-                >
-                  <Link href="/docs/showcase" className="-m-2">
-                    Showcase
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarGroupLabel>
-              <SidebarGroupLabel className="mt-8 text-lg md:text-sm">
-                Social
-              </SidebarGroupLabel>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {socialMenuItems.map((item) => {
-                    return (
-                      <SidebarMenuItem key={item.title}>
-                        <SidebarMenuButton
-                          asChild
-                          className="bg-transparent text-lg transition-all duration-200 hover:bg-transparent hover:font-semibold active:bg-transparent md:text-sm"
-                        >
-                          <Link
-                            href={item.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {item.title}
-                          </Link>
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    )
-                  })}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
-          </div>
-        </ScrollArea>
+                          {item.title}
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )
+                })}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </div>
       </SidebarContent>
     </Sidebar>
   )
