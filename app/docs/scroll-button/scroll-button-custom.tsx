@@ -1,12 +1,14 @@
 "use client"
 
-import { ScrollButton } from "@/components/prompt-kit/scroll-button"
+import {
+  ScrollButton,
+  useScrollContainer,
+} from "@/components/prompt-kit/scroll-button"
 import { Button } from "@/components/ui/button"
 import { useRef, useState } from "react"
 
 export function ScrollButtonCustom() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const bottomRef = useRef<HTMLDivElement>(null)
   const [variant, setVariant] = useState<"default" | "outline" | "secondary">(
     "secondary"
   )
@@ -74,7 +76,6 @@ export function ScrollButtonCustom() {
           className="flex h-full w-full flex-col items-center justify-center overflow-y-auto"
         >
           {content}
-          <div ref={bottomRef} />
         </div>
 
         <div className="absolute right-4 bottom-4">

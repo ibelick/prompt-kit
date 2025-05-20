@@ -5,13 +5,7 @@ import { cn } from "@/lib/utils"
 import { type VariantProps } from "class-variance-authority"
 import { ChevronDown } from "lucide-react"
 import { useEffect, useState } from "react"
-import { useStickToBottomContext } from "use-stick-to-bottom"
-
-// Type for the context
-type StickToBottomContextValue = {
-  isAtBottom: boolean
-  scrollToBottom: () => boolean | Promise<boolean>
-}
+import { useStickToBottom, useStickToBottomContext } from "use-stick-to-bottom"
 
 export type ScrollButtonProps = {
   containerRef?: React.RefObject<HTMLElement | null>
@@ -21,6 +15,15 @@ export type ScrollButtonProps = {
   size?: VariantProps<typeof buttonVariants>["size"]
 } & React.ButtonHTMLAttributes<HTMLButtonElement>
 
+function useIsStickToBottomContextAvailable() {
+  try {
+    useStickToBottomContext()
+    return true
+  } catch (e) {
+    return false
+  }
+}
+
 function ScrollButton({
   containerRef,
   className,
@@ -29,26 +32,12 @@ function ScrollButton({
   size = "sm",
   ...props
 }: ScrollButtonProps) {
-  // For standalone use with containerRef
   const [isVisible, setIsVisible] = useState(false)
-
-  // Check if we're in a StickToBottom context
   const contextAvailable = useIsStickToBottomContextAvailable()
-  let context: StickToBottomContextValue | undefined = undefined
+  const context = contextAvailable ? useStickToBottomContext() : null
 
-  // Only try to use context if we know it's available
-  if (contextAvailable) {
-    try {
-      context = useStickToBottomContext()
-    } catch (e) {
-      // This shouldn't happen since we checked first
-    }
-  }
-
-  // Show button based on context or ref visibility
   const shouldShow = context ? !context.isAtBottom : isVisible
 
-  // Handle scroll detection when not using context
   useEffect(() => {
     if (context || !containerRef?.current) return
 
@@ -60,14 +49,13 @@ function ScrollButton({
     }
 
     container.addEventListener("scroll", handleScroll, { passive: true })
-    handleScroll() // Check initial state
+    handleScroll()
 
     return () => {
       container.removeEventListener("scroll", handleScroll)
     }
   }, [containerRef, threshold, context])
 
-  // Handle scroll to bottom action
   const handleScroll = () => {
     if (context) {
       context.scrollToBottom()
@@ -98,14 +86,36 @@ function ScrollButton({
   )
 }
 
-// Check if we're inside a StickToBottom component without throwing
-function useIsStickToBottomContextAvailable() {
-  try {
-    // Access the context once as a test - this will throw if not available
-    useStickToBottomContext()
-    return true
-  } catch (e) {
-    return false
+export function useScrollContainer() {
+  const stickToBottom = useStickToBottom()
+
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const container = stickToBottom.scrollRef.current
+    if (!container) return
+
+    const handleScroll = () => {
+      const { scrollTop, scrollHeight, clientHeight } = container
+      setIsVisible(scrollHeight - scrollTop - clientHeight > 10)
+    }
+
+    container.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll()
+
+    return () => {
+      container.removeEventListener("scroll", handleScroll)
+    }
+  }, [stickToBottom.scrollRef])
+
+  const scrollToBottom = () => {
+    return stickToBottom.scrollToBottom()
+  }
+
+  return {
+    ...stickToBottom,
+    isVisible,
+    scrollToBottom,
   }
 }
 

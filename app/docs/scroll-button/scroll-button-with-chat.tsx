@@ -108,8 +108,8 @@ export function ScrollButtonWithChat() {
       </div>
 
       <div ref={containerRef} className="flex-1 overflow-auto">
-        <ChatContainer.Root className="h-full">
-          <ChatContainer.Content className="space-y-4 p-4">
+        <ChatContainerRoot className="h-full">
+          <ChatContainerContent className="space-y-4 p-4">
             {messages.map((message) => {
               const isAssistant = message.role === "assistant"
 
@@ -141,9 +141,8 @@ export function ScrollButtonWithChat() {
                 </Message>
               )
             })}
-          </ChatContainer.Content>
-          <div ref={scrollAnchorRef} className="h-px w-full scroll-mt-4" />
-        </ChatContainer.Root>
+          </ChatContainerContent>
+        </ChatContainerRoot>
       </div>
 
       <div className="absolute right-7 bottom-4">
