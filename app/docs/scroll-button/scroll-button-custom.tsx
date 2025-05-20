@@ -28,7 +28,7 @@ export function ScrollButtonCustom() {
 
   return (
     <div className="flex h-[500px] w-full flex-col overflow-hidden">
-      <div className="flex w-full items-center justify-between gap-2 border-b p-3 overflow-x-scroll">
+      <div className="flex w-full items-center justify-between gap-2 overflow-x-scroll border-b p-3">
         <div />
         <div className="flex gap-2">
           <Button
@@ -80,7 +80,6 @@ export function ScrollButtonCustom() {
         <div className="absolute right-4 bottom-4">
           <ScrollButton
             containerRef={containerRef}
-            scrollRef={bottomRef}
             variant={variant}
             threshold={threshold}
           />
