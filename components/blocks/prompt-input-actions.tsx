@@ -29,7 +29,7 @@ function PromptInputWithActions() {
   }
 
   return (
-    <div className="absolute inset-x-0 bottom-0 mx-auto max-w-3xl p-5">
+    <div className="absolute inset-x-0 bottom-0 mx-auto max-w-3xl p-3 md:p-5">
       <PromptInput
         isLoading={isLoading}
         value={prompt}

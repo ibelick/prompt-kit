@@ -50,7 +50,7 @@ function ConversationWithAvatars() {
 
   return (
     <ChatContainer
-      className="space-y-12 px-6 py-12"
+      className="space-y-12 px-1 py-12 md:px-4"
       ref={containerRef}
       scrollToRef={bottomRef}
     >
@@ -61,7 +61,7 @@ function ConversationWithAvatars() {
           <Message
             key={message.id}
             className={cn(
-              "mx-auto flex w-full max-w-3xl flex-col gap-2 px-6",
+              "mx-auto flex w-full max-w-3xl flex-col gap-2 px-0 md:px-6",
               isAssistant ? "items-start" : "items-end"
             )}
           >
@@ -86,7 +86,7 @@ function ConversationWithAvatars() {
               )}
               {isAssistant ? (
                 <MessageContent
-                  className="prose text-primary w-full flex-1 rounded-lg bg-transparent p-0 py-0"
+                  className="prose text-primary w-full max-w-[85%] flex-1 overflow-x-auto rounded-lg bg-transparent p-0 py-0 sm:max-w-[75%]"
                   markdown
                 >
                   {message.content}

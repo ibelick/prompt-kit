@@ -48,7 +48,7 @@ function ConversationWithScrollBottom() {
   return (
     <div className="relative flex h-[650px] flex-1 flex-col overflow-hidden">
       <ChatContainer
-        className="h-full space-y-12 overflow-y-auto px-6 py-12"
+        className="h-full space-y-12 overflow-y-auto px-4 py-12"
         scrollToRef={bottomRef}
         ref={containerRef}
       >
@@ -59,7 +59,7 @@ function ConversationWithScrollBottom() {
             <Message
               key={message.id}
               className={cn(
-                "mx-auto flex w-full max-w-3xl flex-col gap-2 px-6",
+                "mx-auto flex w-full max-w-3xl flex-col gap-2 px-0 md:px-6",
                 isAssistant ? "items-start" : "items-end"
               )}
             >

@@ -337,7 +337,7 @@ function ChatContent() {
         })}
       </ChatContainer>
 
-      <div className="bg-background z-10 shrink-0 px-4 pb-4">
+      <div className="bg-background z-10 shrink-0 p-3 md:p-5">
         <div className="mx-auto max-w-3xl">
           <PromptInput
             isLoading={isLoading}

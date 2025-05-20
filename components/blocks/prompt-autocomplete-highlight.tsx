@@ -43,7 +43,7 @@ function PromptAutocompleteHighlight() {
   )
 
   return (
-    <div className="absolute inset-x-0 mx-auto flex max-w-3xl flex-col items-start justify-center gap-4 p-5">
+    <div className="absolute inset-x-0 mx-auto flex max-w-3xl flex-col items-start justify-center gap-4 p-3 md:p-5">
       <PromptInput
         className="border-input bg-popover relative z-10 w-full rounded-3xl border p-0 pt-1 shadow-xs"
         value={inputValue}

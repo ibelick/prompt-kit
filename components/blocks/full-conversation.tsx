@@ -41,7 +41,7 @@ const messages = [
 
 function FullConversation() {
   return (
-    <ChatContainer className="w-full space-y-12 overflow-y-auto py-12">
+    <ChatContainer className="w-full space-y-12 overflow-y-auto px-4 py-12">
       {messages.map((message) => {
         const isAssistant = message.role === "assistant"
 
@@ -49,13 +49,13 @@ function FullConversation() {
           <Message
             key={message.id}
             className={cn(
-              "mx-auto flex w-full max-w-3xl flex-col gap-2 px-6",
+              "mx-auto flex w-full max-w-3xl flex-col gap-2 px-0 md:px-6",
               isAssistant ? "items-start" : "items-end"
             )}
           >
             {isAssistant ? (
               <MessageContent
-                className="text-foreground prose flex-1 rounded-lg bg-transparent p-2"
+                className="text-foreground prose w-full flex-1 rounded-lg bg-transparent p-2"
                 markdown
               >
                 {message.content}

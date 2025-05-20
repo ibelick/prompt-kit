@@ -48,7 +48,7 @@ const messages = [
 
 function ConversationWithActions() {
   return (
-    <ChatContainer className="space-y-0 px-6 py-12">
+    <ChatContainer className="space-y-0 px-4 py-12">
       {messages.map((message, index) => {
         const isAssistant = message.role === "assistant"
         const isLastMessage = index === messages.length - 1
@@ -57,7 +57,7 @@ function ConversationWithActions() {
           <Message
             key={message.id}
             className={cn(
-              "mx-auto flex w-full max-w-3xl flex-col gap-2 px-6",
+              "mx-auto flex w-full max-w-3xl flex-col gap-2 px-0 md:px-6",
               isAssistant ? "items-start" : "items-end"
             )}
           >
