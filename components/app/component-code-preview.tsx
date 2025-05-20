@@ -1,5 +1,7 @@
 import { extractCodeFromFilePath } from "@/lib/code"
 import { cn } from "@/lib/utils"
+import { ExternalLink } from "lucide-react"
+import Link from "next/link"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs"
 import { ClientCodeWrapper } from "./client-code-wrapper"
 import { CodeRenderer } from "./code-renderer"
@@ -35,10 +37,22 @@ export default function ComponentCodePreview({
       )}
     >
       <Tabs defaultValue="preview" className="relative mr-auto w-full">
-        <TabsList>
+        <TabsList className="relative">
           <TabsTrigger value="preview">Preview</TabsTrigger>
           <TabsTrigger value="code">Code</TabsTrigger>
+          {url && (
+            <div className="absolute right-2 bottom-2">
+              <Link
+                href={url}
+                target="_blank"
+                className="border-border hover:bg-muted flex size-[22px] items-center justify-center rounded-sm border p-1 transition-colors duration-150"
+              >
+                <ExternalLink className="size-4" />
+              </Link>
+            </div>
+          )}
         </TabsList>
+
         <TabsContent value="preview">
           <ComponentPreview
             component={component}
