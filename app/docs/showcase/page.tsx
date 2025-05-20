@@ -81,7 +81,7 @@ export default function Showcase() {
             </div>
 
             <Link
-              href={project.href}
+              href={`${project.href}?utm_source=prompt-kit.com&utm_medium=referral`}
               target="_blank"
               className="absolute inset-0"
             >
