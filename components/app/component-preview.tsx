@@ -31,9 +31,9 @@ export default function ComponentPreview({
     const updateIframeHeight = () => {
       try {
         const scrollHeight =
-          iframe.contentWindow?.document.documentElement.scrollHeight || 930
+          iframe.contentWindow?.document.documentElement.scrollHeight || 650
         const bodyHeight =
-          iframe.contentWindow?.document.body.offsetHeight || 930
+          iframe.contentWindow?.document.body.offsetHeight || 650
         const newHeight = Math.max(scrollHeight, bodyHeight)
 
         iframe.style.height = `${Math.max(newHeight, 100)}px`
@@ -41,7 +41,7 @@ export default function ComponentPreview({
         console.warn(
           "Could not access iframe content height due to CORS policy"
         )
-        iframe.style.height = "500px"
+        iframe.style.height = "650px"
       }
       setIsLoading(false)
     }
