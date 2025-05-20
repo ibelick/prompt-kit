@@ -16,6 +16,7 @@ const stat = promisify(fs.stat)
 
 // Configuration
 const DOCS_DIR = path.join(process.cwd(), "app", "docs")
+const BLOCKS_FILE = path.join(process.cwd(), "app", "blocks", "page.tsx")
 const OUTPUT_FILE = path.join(process.cwd(), "llms-full.txt")
 const BASIC_INFO_FILE = path.join(process.cwd(), "llms.txt")
 
@@ -156,6 +157,7 @@ function generateTableOfContents() {
   toc += `- [Installation](#installation)\n`
   toc += `- [Introduction](#introduction)\n`
   toc += `- [Components](#components)\n`
+  toc += `- [Blocks](#blocks)\n` // Added blocks section to TOC
 
   // Add component subsections
   const componentSections = COMPONENT_ORDER.filter(
@@ -210,6 +212,53 @@ async function generateHeaderSection() {
 }
 
 /**
+ * Generate blocks section
+ */
+async function generateBlocksSection() {
+  console.log("Generating blocks section...")
+  try {
+    if (!fs.existsSync(BLOCKS_FILE)) {
+      console.warn(`Blocks file not found at ${BLOCKS_FILE}`)
+      return ""
+    }
+
+    const blocksContent = await readFile(BLOCKS_FILE, "utf8")
+
+    // Extract block titles from h4 tags
+    const blockTitlesRegex = /<h4>(.*?)<\/h4>/g
+    let match
+    const blockTitles = []
+
+    while ((match = blockTitlesRegex.exec(blocksContent)) !== null) {
+      blockTitles.push(match[1])
+    }
+
+    console.log(`Found ${blockTitles.length} blocks: ${blockTitles.join(", ")}`)
+
+    // Generate blocks section
+    let blocksSection = `## Blocks
+
+Building blocks for AI apps. Clean, composable blocks built with shadcn/ui and prompt-kit. Use them to ship faster, works with any React framework.
+
+Available blocks:
+
+`
+
+    blockTitles.forEach((title) => {
+      const filename = title.toLowerCase().replace(/\s+/g, "-")
+      blocksSection += `- **${title}**: \`components/blocks/${filename}.tsx\`\n`
+    })
+
+    blocksSection += `\nAll blocks are available at [prompt-kit.com/blocks](https://www.prompt-kit.com/blocks).\n\n`
+
+    return blocksSection
+  } catch (error) {
+    console.error("Error generating blocks section:", error)
+    return ""
+  }
+}
+
+/**
  * Generate resources section
  */
 function generateResourcesSection() {
@@ -218,6 +267,7 @@ function generateResourcesSection() {
 - [GitHub Repository](https://github.com/ibelick/prompt-kit): Source code and issues
 - [Installation Guide](https://www.prompt-kit.com/docs/installation): Detailed installation instructions
 - [Component Documentation](https://www.prompt-kit.com/docs): Complete component API documentation
+- [Blocks](https://www.prompt-kit.com/blocks): Building blocks for AI apps
 - [shadcn/ui Documentation](https://ui.shadcn.com): Documentation for the underlying UI component system
 - [Next.js Documentation](https://nextjs.org/docs): Documentation for the Next.js framework
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs): Documentation for the Tailwind CSS framework
@@ -233,31 +283,32 @@ async function generateLlmsTxt() {
 
     // Generate header
     const header = await generateHeaderSection()
+    console.log("Header section generated")
 
     // Generate table of contents
     const tableOfContents = generateTableOfContents()
+    console.log("Table of contents generated")
+
+    // Generate blocks section
+    const blocksSection = await generateBlocksSection()
+    console.log("Blocks section generated")
 
     // Generate component sections
-    let componentsContent = ""
-    let componentsStarted = false
+    let componentsContent = "## Components\n\n"
 
     for (const componentName of COMPONENT_ORDER) {
-      if (componentName === "prompt-input" && !componentsStarted) {
-        // Add Components header before the first component
-        componentsContent += "## Components\n\n"
-        componentsStarted = true
-      }
-
       // Process component docs
       const sectionContent = await processComponentDocs(componentName)
       componentsContent += sectionContent
     }
+    console.log("Components section generated")
 
     // Generate resources section
     const resources = generateResourcesSection()
+    console.log("Resources section generated")
 
     // Combine all sections
-    const fullContent = `${header}${tableOfContents}${componentsContent}${resources}`
+    const fullContent = `${header}${tableOfContents}${componentsContent}${blocksSection}${resources}`
 
     // Write to file
     await writeFile(OUTPUT_FILE, fullContent)

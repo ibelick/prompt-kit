@@ -7,6 +7,7 @@
 - [Installation](#installation)
 - [Introduction](#introduction)
 - [Components](#components)
+- [Blocks](#blocks)
   - [Prompt input](#prompt-input)
   - [Code block](#code-block)
   - [Markdown](#markdown)
@@ -20,6 +21,8 @@
   - [File upload](#file-upload)
   - [Jsx preview](#jsx-preview)
 - [Showcase](#showcase)
+
+## Components
 
 import { generateMetadata } from "../utils/metadata"
 
@@ -75,8 +78,6 @@ After installation, import and start using the components in your project:
   code={`import { PromptInput } from "@/components/ui/prompt-input";`}
 />
 
-
-## Components
 
 import ComponentCodePreview from "@/components/app/component-code-preview"
 import { generateMetadata } from "../utils/metadata"
@@ -1715,12 +1716,34 @@ const projects = [
   {
     title: "zola.chat",
     href: "https://zola.chat",
-    thumbnail: "https://www.zola.chat/cover_zola.jpg",
+    thumbnail: "https://www.zola.chat/cover_zola.webp",
   },
   {
     title: "emojis.com",
     href: "https://emojis.com",
     thumbnail: "https://attic.sh/_static/emojis/ai-emoji-generator/og.jpg",
+  },
+  {
+    title: "ottogrid.ai",
+    href: "https://ottogrid.ai",
+    thumbnail: "https://ottogrid.ai/opengraph-image.png?2ca0b60807e14ef5",
+  },
+  {
+    title: "aiagent.app",
+    href: "https://aiagent.app",
+    thumbnail:
+      "https://aiagent.app/opengraph-image.png?opengraph-image.e8b1925a.png",
+  },
+  {
+    title: "www.findappgaps.com",
+    href: "https://www.findappgaps.com",
+    thumbnail:
+      "https://www.findappgaps.com/opengraph-image.png?fd2d072fb61c49f3",
+  },
+  {
+    title: "faithbase.ai",
+    href: "https://faithbase.ai",
+    thumbnail: "https://faithbase.ai/opengraph.jpg",
   },
 ]
 
@@ -1743,7 +1766,7 @@ export default function Showcase() {
           </Button>
         </Link>
       </div>
-      <div className="grid w-full grid-cols-1 gap-6 mask-[linear-gradient(to_bottom,black_30%,transparent)] md:grid-cols-2 lg:grid-cols-2">
+      <div className="grid w-full grid-cols-1 gap-6 mask-[linear-gradient(to_bottom,black_90%,transparent)] md:grid-cols-2 lg:grid-cols-2">
         {projects.map((project) => (
           <div className="relative isolate w-full overflow-hidden rounded-2xl max-md:aspect-1200/630 md:h-48">
             <Image
@@ -1753,7 +1776,7 @@ export default function Showcase() {
               unoptimized
               width={1200}
               height={630}
-              className="h-full w-full object-cover object-left"
+              className="h-full w-full object-cover"
             />
 
             <div
@@ -1764,7 +1787,7 @@ export default function Showcase() {
             </div>
 
             <Link
-              href={project.href}
+              href={`${project.href}?utm_source=prompt-kit.com&utm_medium=referral`}
               target="_blank"
               className="absolute inset-0"
             >
@@ -1775,20 +1798,37 @@ export default function Showcase() {
 
         <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-1200/630 md:h-48 dark:bg-zinc-900"></div>
         <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-1200/630 md:h-48 dark:bg-zinc-900"></div>
-        <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-1200/630 md:h-48 dark:bg-zinc-900"></div>
-        <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-1200/630 md:h-48 dark:bg-zinc-900"></div>
-        <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-1200/630 md:h-48 dark:bg-zinc-900"></div>
       </div>
     </div>
   )
 }
 
 
+## Blocks
+
+Building blocks for AI apps. Clean, composable blocks built with shadcn/ui and prompt-kit. Use them to ship faster, works with any React framework.
+
+Available blocks:
+
+- **Prompt input with actions**: `components/blocks/prompt-input-with-actions.tsx`
+- **Prompt input with suggestions**: `components/blocks/prompt-input-with-suggestions.tsx`
+- **Prompt input with autocomplete**: `components/blocks/prompt-input-with-autocomplete.tsx`
+- **Basic full conversation**: `components/blocks/basic-full-conversation.tsx`
+- **Conversation with avatars**: `components/blocks/conversation-with-avatars.tsx`
+- **Conversation with actions**: `components/blocks/conversation-with-actions.tsx`
+- **Conversation with scroll to bottom**: `components/blocks/conversation-with-scroll-to-bottom.tsx`
+- **Conversation with prompt input**: `components/blocks/conversation-with-prompt-input.tsx`
+- **Sidebar with chat history**: `components/blocks/sidebar-with-chat-history.tsx`
+- **Full chat app**: `components/blocks/full-chat-app.tsx`
+
+All blocks are available at [prompt-kit.com/blocks](https://www.prompt-kit.com/blocks).
+
 ## Resources
 
 - [GitHub Repository](https://github.com/ibelick/prompt-kit): Source code and issues
 - [Installation Guide](https://www.prompt-kit.com/docs/installation): Detailed installation instructions
 - [Component Documentation](https://www.prompt-kit.com/docs): Complete component API documentation
+- [Blocks](https://www.prompt-kit.com/blocks): Building blocks for AI apps
 - [shadcn/ui Documentation](https://ui.shadcn.com): Documentation for the underlying UI component system
 - [Next.js Documentation](https://nextjs.org/docs): Documentation for the Next.js framework
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs): Documentation for the Tailwind CSS framework
