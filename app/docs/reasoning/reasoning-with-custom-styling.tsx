@@ -31,7 +31,7 @@ const quickSort = (arr) => {
 `
 
   return (
-    <div className="min-h-[350px] w-full flex-col gap-4 bg-gradient-to-r from-purple-50 to-blue-50 p-6 dark:border-slate-700 dark:from-slate-900 dark:to-slate-800">
+    <div className="min-h-[350px] w-full flex-col gap-4 bg-linear-to-r from-purple-50 to-blue-50 p-6 dark:border-slate-700 dark:from-slate-900 dark:to-slate-800">
       <p className="mb-4 text-base font-medium">
         The most efficient algorithm for this problem is Quick Sort, with O(n
         log n) time complexity.
@@ -45,7 +45,7 @@ const quickSort = (arr) => {
         <ReasoningContent className="mt-4 rounded-md border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900">
           <ReasoningResponse
             text={reasoningText}
-            className="prose-h2:!mt-0 prose-h2:!scroll-m-0 prose-h2:!text-lg p-4 text-sm"
+            className="prose-h2:mt-0! prose-h2:scroll-m-0! prose-h2:text-lg! p-4 text-sm"
             mode="typewriter"
             speed={60}
           />

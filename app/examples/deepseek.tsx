@@ -56,7 +56,7 @@ export function PromptInputDeepSeek() {
             <Button
               variant="ghost"
               aria-label="Use DeepThink (R1) to solve reasoning problems"
-              className="h-7 w-auto gap-1 rounded-[14px] border border-[#0000001f] bg-[#fff] p-1 px-1.5 py-0 text-xs font-normal text-[#4c4c4c] hover:bg-[#E0E4ED] focus-visible:outline-black dark:focus-visible:outline-white [&_svg]:size-5"
+              className="h-7 w-auto gap-1 rounded-[14px] border border-[#0000001f] bg-white p-1 px-1.5 py-0 text-xs font-normal text-[#4c4c4c] hover:bg-[#E0E4ED] focus-visible:outline-black dark:focus-visible:outline-white [&_svg]:size-5"
             >
               <Atom />
               DeepThink (R1)
@@ -77,7 +77,7 @@ export function PromptInputDeepSeek() {
             <Button
               variant="ghost"
               aria-label="Search the web when necessary"
-              className="h-7 w-auto gap-1 rounded-[14px] border border-[#0000001f] bg-[#fff] p-1 px-1.5 py-0 text-xs font-normal text-[#4c4c4c] hover:bg-[#E0E4ED] focus-visible:outline-black dark:focus-visible:outline-white [&_svg]:size-5"
+              className="h-7 w-auto gap-1 rounded-[14px] border border-[#0000001f] bg-white p-1 px-1.5 py-0 text-xs font-normal text-[#4c4c4c] hover:bg-[#E0E4ED] focus-visible:outline-black dark:focus-visible:outline-white [&_svg]:size-5"
             >
               <Globe />
               Search

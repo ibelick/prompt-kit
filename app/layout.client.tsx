@@ -244,7 +244,7 @@ export function LayoutClient({ children }: { children: React.ReactNode }) {
       <div className="w-full">
         <Header triggerViewportWidth={MOBILE_SIDEBAR_VIEWPORT_THRESHOLD} />
         <div className="flex h-full px-4 pt-32">
-          <div className="relative mx-auto grid w-full max-w-screen-2xl grid-cols-6 md:grid-cols-12">
+          <div className="relative mx-auto grid w-full max-w-(--breakpoint-2xl) grid-cols-6 md:grid-cols-12">
             <div
               className={cn(
                 "col-start-1 col-end-7 flex h-full flex-1 flex-col md:col-start-4 md:col-end-12 lg:col-end-10",

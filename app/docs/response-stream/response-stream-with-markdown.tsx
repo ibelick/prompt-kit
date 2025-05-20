@@ -33,7 +33,7 @@ function example() {
 
   return (
     <div className="w-full min-w-full">
-      <Markdown className="prose prose-sm dark:prose-invert prose-h2:!mt-0 prose-h2:!scroll-m-0">
+      <Markdown className="prose prose-sm dark:prose-invert prose-h2:mt-0! prose-h2:scroll-m-0!">
         {displayedText}
       </Markdown>
     </div>
