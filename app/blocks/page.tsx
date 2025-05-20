@@ -1,5 +1,4 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
-import { FullConversation } from "@/components/blocks/full-conversation"
 import LayoutDocs from "../docs/layout"
 
 export default function BlocksPage() {
@@ -7,7 +6,7 @@ export default function BlocksPage() {
     <div className="mb-12 flex flex-col items-start">
       <div className="mb-10 flex flex-col gap-1 text-pretty">
         <p className="text-primary text-3xl font-[450] tracking-tight">
-          Blocks for AI apps.
+          Building blocks for AI apps.
         </p>
         <p className="text-muted-foreground max-w-2xl text-lg font-normal">
           Reusable UI blocks to build high-quality AI apps faster.
@@ -15,7 +14,7 @@ export default function BlocksPage() {
           React components built with shadcn/ui and prompt-kit components.
         </p>
       </div>
-      <LayoutDocs className="flex w-full flex-col gap-8">
+      <LayoutDocs className="flex w-full flex-col gap-12">
         <div>
           <h4>Prompt input with actions</h4>
           <ComponentCodePreview
@@ -85,6 +84,14 @@ export default function BlocksPage() {
           <ComponentCodePreview
             url="http://localhost:3000/c/sidebar-chat-history"
             filePath="components/blocks/sidebar-chat-history.tsx"
+            classNameComponentContainer="p-0 aspect-[16/9] h-[650px] w-full overflow-y-auto"
+          />
+        </div>
+        <div>
+          <h4>Full chat app</h4>
+          <ComponentCodePreview
+            url="http://localhost:3000/c/full-chat-app"
+            filePath="components/blocks/full-chat-app.tsx"
             classNameComponentContainer="p-0 aspect-[16/9] h-[650px] w-full overflow-y-auto"
           />
         </div>
