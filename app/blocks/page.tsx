@@ -1,5 +1,5 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
-import LayoutDocs from "../docs/layout"
+import { LayoutProse } from "@/components/app/layout-prose"
 import { generateMetadata } from "../docs/utils/metadata"
 
 export const metadata = generateMetadata(
@@ -19,7 +19,7 @@ export default function BlocksPage() {
           Use them to ship faster, works with any React framework.
         </p>
       </div>
-      <LayoutDocs className="flex w-full flex-col gap-12">
+      <LayoutProse className="flex w-full flex-col gap-12">
         <div>
           <h4>Prompt input with actions</h4>
           <ComponentCodePreview
@@ -100,7 +100,7 @@ export default function BlocksPage() {
             classNameComponentContainer="p-0 aspect-[16/9] h-[650px] w-full overflow-y-auto"
           />
         </div>
-      </LayoutDocs>
+      </LayoutProse>
     </div>
   )
 }
