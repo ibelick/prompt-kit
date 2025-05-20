@@ -1,7 +1,6 @@
 "use client"
 
 import { PromptKitLogo } from "@/components/app/icon/prompt-kit-logo"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
