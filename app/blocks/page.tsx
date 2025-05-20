@@ -1,5 +1,11 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
 import LayoutDocs from "../docs/layout"
+import { generateMetadata } from "../docs/utils/metadata"
+
+export const metadata = generateMetadata(
+  "Blocks",
+  "Building blocks for AI apps. Clean, composable blocks built with shadcn/ui and prompt-kit. Use them to ship faster, works with any React framework."
+)
 
 export default function BlocksPage() {
   return (
@@ -9,9 +15,8 @@ export default function BlocksPage() {
           Building blocks for AI apps.
         </p>
         <p className="text-muted-foreground max-w-2xl text-lg font-normal">
-          Reusable UI blocks to build high-quality AI apps faster.
-          <br />
-          React components built with shadcn/ui and prompt-kit components.
+          Clean, composable blocks built with shadcn/ui and prompt-kit. <br />
+          Use them to ship faster, works with any React framework.
         </p>
       </div>
       <LayoutDocs className="flex w-full flex-col gap-12">
