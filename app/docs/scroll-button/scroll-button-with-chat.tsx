@@ -17,7 +17,6 @@ import { useEffect, useRef, useState } from "react"
 
 export function ScrollButtonWithChat() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const scrollAnchorRef = useRef<HTMLDivElement>(null)
 
   const [messages, setMessages] = useState([
     {
@@ -142,11 +141,10 @@ export function ScrollButtonWithChat() {
               )
             })}
           </ChatContainerContent>
+          <div className="absolute right-7 bottom-4">
+            <ScrollButton className="shadow-sm" />
+          </div>
         </ChatContainerRoot>
-      </div>
-
-      <div className="absolute right-7 bottom-4">
-        <ScrollButton containerRef={containerRef} className="shadow-sm" />
       </div>
     </div>
   )

@@ -9,7 +9,7 @@ import { Message, MessageContent } from "@/components/prompt-kit/message"
 import { ScrollButton } from "@/components/prompt-kit/scroll-button"
 import { cn } from "@/lib/utils"
 import { useRef } from "react"
-import { useStickToBottom } from "use-stick-to-bottom"
+import { useStickToBottom, useStickToBottomContext } from "use-stick-to-bottom"
 
 const messages = [
   {
@@ -79,17 +79,9 @@ const messages = [
   },
 ]
 
-// @TODO: THIS IS NOT WORKING
-// when we use the scroll with chat container but outside of the chat container, it doesn't work
-// we can't ref ChatContainerRoot
 function ConversationWithScrollBottom() {
-  const containerRef = useRef<HTMLDivElement>(null)
-
   return (
-    <div
-      className="relative flex h-screen flex-1 flex-col overflow-hidden"
-      ref={containerRef}
-    >
+    <div className="relative flex h-screen flex-1 flex-col overflow-hidden">
       <ChatContainerRoot className="h-full overflow-y-auto">
         <ChatContainerContent className="space-y-12 px-4 py-12">
           {messages.map((message) => {
@@ -120,17 +112,15 @@ function ConversationWithScrollBottom() {
           })}
           <ChatContainerScrollAnchor />
         </ChatContainerContent>
-      </ChatContainerRoot>
 
-      <div className="absolute right-7 bottom-4 z-10">
-        <ScrollButton
-          containerRef={containerRef}
-          className="bg-primary hover:bg-primary/90 shadow-sm"
-          variant="default"
-          size="icon"
-          threshold={20}
-        />
-      </div>
+        <div className="absolute right-7 bottom-4 z-10">
+          <ScrollButton
+            className="bg-primary hover:bg-primary/90 shadow-sm"
+            variant="default"
+            size="icon"
+          />
+        </div>
+      </ChatContainerRoot>
     </div>
   )
 }

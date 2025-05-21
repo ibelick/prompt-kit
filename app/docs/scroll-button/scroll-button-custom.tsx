@@ -1,5 +1,9 @@
 "use client"
 
+import {
+  ChatContainerContent,
+  ChatContainerRoot,
+} from "@/components/prompt-kit/chat-container"
 import { ScrollButton } from "@/components/prompt-kit/scroll-button"
 import { Button } from "@/components/ui/button"
 import { useRef, useState } from "react"
@@ -9,9 +13,7 @@ export function ScrollButtonCustom() {
   const [variant, setVariant] = useState<"default" | "outline" | "secondary">(
     "secondary"
   )
-  const [threshold, setThreshold] = useState(50)
 
-  // Sample content to enable scrolling
   const [content] = useState(
     Array(20)
       .fill(0)
@@ -52,19 +54,6 @@ export function ScrollButtonCustom() {
             Secondary
           </Button>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="text-sm">Threshold:</span>
-          <input
-            type="range"
-            min="10"
-            max="500"
-            step="1"
-            value={threshold}
-            onChange={(e) => setThreshold(Number(e.target.value))}
-            className="w-24"
-          />
-          <span className="w-8 text-sm">{threshold}px</span>
-        </div>
       </div>
 
       <div className="relative flex-1 overflow-y-auto">
@@ -72,15 +61,14 @@ export function ScrollButtonCustom() {
           ref={containerRef}
           className="flex h-full w-full flex-col items-center justify-center overflow-y-auto"
         >
-          {content}
-        </div>
-
-        <div className="absolute right-4 bottom-4">
-          <ScrollButton
-            containerRef={containerRef}
-            variant={variant}
-            threshold={threshold}
-          />
+          <ChatContainerRoot className="h-full w-full">
+            <ChatContainerContent className="w-full">
+              {content}
+            </ChatContainerContent>
+            <div className="absolute right-4 bottom-4">
+              <ScrollButton variant={variant} />
+            </div>
+          </ChatContainerRoot>
         </div>
       </div>
     </div>
