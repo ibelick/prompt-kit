@@ -1,6 +1,9 @@
 "use client"
 
-import { ChatContainer } from "@/components/prompt-kit/chat-container"
+import {
+  ChatContainerContent,
+  ChatContainerRoot,
+} from "@/components/prompt-kit/chat-container"
 import { Message, MessageContent } from "@/components/prompt-kit/message"
 import { cn } from "@/lib/utils"
 
@@ -41,34 +44,36 @@ const messages = [
 
 function FullConversation() {
   return (
-    <ChatContainer className="w-full space-y-12 overflow-y-auto px-4 py-12">
-      {messages.map((message) => {
-        const isAssistant = message.role === "assistant"
+    <ChatContainerRoot className="w-full">
+      <ChatContainerContent className="space-y-12 overflow-y-auto px-4 py-12">
+        {messages.map((message) => {
+          const isAssistant = message.role === "assistant"
 
-        return (
-          <Message
-            key={message.id}
-            className={cn(
-              "mx-auto flex w-full max-w-3xl flex-col gap-2 px-0 md:px-6",
-              isAssistant ? "items-start" : "items-end"
-            )}
-          >
-            {isAssistant ? (
-              <MessageContent
-                className="text-foreground prose w-full flex-1 rounded-lg bg-transparent p-2"
-                markdown
-              >
-                {message.content}
-              </MessageContent>
-            ) : (
-              <MessageContent className="bg-primary text-primary-foreground max-w-[85%] sm:max-w-[75%]">
-                {message.content}
-              </MessageContent>
-            )}
-          </Message>
-        )
-      })}
-    </ChatContainer>
+          return (
+            <Message
+              key={message.id}
+              className={cn(
+                "mx-auto flex w-full max-w-3xl flex-col gap-2 px-0 md:px-6",
+                isAssistant ? "items-start" : "items-end"
+              )}
+            >
+              {isAssistant ? (
+                <MessageContent
+                  className="text-foreground prose w-full flex-1 rounded-lg bg-transparent p-2"
+                  markdown
+                >
+                  {message.content}
+                </MessageContent>
+              ) : (
+                <MessageContent className="bg-primary text-primary-foreground max-w-[85%] sm:max-w-[75%]">
+                  {message.content}
+                </MessageContent>
+              )}
+            </Message>
+          )
+        })}
+      </ChatContainerContent>
+    </ChatContainerRoot>
   )
 }
 

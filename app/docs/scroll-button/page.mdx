@@ -6,12 +6,21 @@ import { ScrollButtonWithChat } from "./scroll-button-with-chat"
 
 export const metadata = generateMetadata(
   "Scroll Button",
-  "A floating button component that appears when users scroll up in a container, allowing them to quickly return to the bottom of the content with a single click."
+  "A floating button that appears when the user scrolls up and lets them return to the bottom of the chat."
 )
 
 # Scroll Button
 
-A floating button component that appears when users scroll up in a container, allowing them to quickly return to the bottom of the content with a single click.
+A minimal floating button that appears when the user scrolls up, allowing them to jump back to the bottom of the chat.
+
+---
+
+## Usage
+
+The `ScrollButton` only works inside `ChatContainerRoot`, which uses `use-stick-to-bottom` under the hood.  
+It **will not work** with a plain `div` or custom scroll container.
+
+Place the button inside your layout like this:
 
 ## Examples
 

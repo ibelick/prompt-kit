@@ -1,11 +1,14 @@
 "use client"
 
+import {
+  ChatContainerContent,
+  ChatContainerRoot,
+} from "@/components/prompt-kit/chat-container"
 import { ScrollButton } from "@/components/prompt-kit/scroll-button"
 import { useRef, useState } from "react"
 
 export function ScrollButtonBasic() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const bottomRef = useRef<HTMLDivElement>(null)
 
   const [content] = useState(
     Array(20)
@@ -26,12 +29,14 @@ export function ScrollButtonBasic() {
         ref={containerRef}
         className="flex h-full w-full flex-col items-center justify-center overflow-y-auto"
       >
-        {content}
-        <div ref={bottomRef} />
-      </div>
-
-      <div className="absolute right-12 bottom-4">
-        <ScrollButton containerRef={containerRef} scrollRef={bottomRef} />
+        <ChatContainerRoot className="h-full w-full">
+          <ChatContainerContent className="w-full">
+            {content}
+          </ChatContainerContent>
+          <div className="absolute right-12 bottom-4">
+            <ScrollButton />
+          </div>
+        </ChatContainerRoot>
       </div>
     </div>
   )

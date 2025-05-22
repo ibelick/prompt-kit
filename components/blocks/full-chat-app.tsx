@@ -1,6 +1,9 @@
 "use client"
 
-import { ChatContainer } from "@/components/prompt-kit/chat-container"
+import {
+  ChatContainerContent,
+  ChatContainerRoot,
+} from "@/components/prompt-kit/chat-container"
 import {
   Message,
   MessageAction,
@@ -13,6 +16,7 @@ import {
   PromptInputActions,
   PromptInputTextarea,
 } from "@/components/prompt-kit/prompt-input"
+import { ScrollButton } from "@/components/prompt-kit/scroll-button"
 import { Button } from "@/components/ui/button"
 import {
   Sidebar,
@@ -41,7 +45,7 @@ import {
   ThumbsUp,
   Trash,
 } from "lucide-react"
-import { useState } from "react"
+import { useRef, useState } from "react"
 
 // Initial conversation history
 const conversationHistory = [
@@ -200,6 +204,7 @@ function ChatContent() {
   const [prompt, setPrompt] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [chatMessages, setChatMessages] = useState(initialMessages)
+  const chatContainerRef = useRef<HTMLDivElement>(null)
 
   const handleSubmit = () => {
     if (!prompt.trim()) return
@@ -236,106 +241,114 @@ function ChatContent() {
         <div className="text-foreground">Project roadmap discussion</div>
       </header>
 
-      <ChatContainer className="relative flex-1 space-y-0 overflow-y-auto px-5 py-12">
-        {chatMessages.map((message, index) => {
-          const isAssistant = message.role === "assistant"
-          const isLastMessage = index === chatMessages.length - 1
+      <div ref={chatContainerRef} className="relative flex-1 overflow-y-auto">
+        <ChatContainerRoot className="h-full">
+          <ChatContainerContent className="space-y-0 px-5 py-12">
+            {chatMessages.map((message, index) => {
+              const isAssistant = message.role === "assistant"
+              const isLastMessage = index === chatMessages.length - 1
 
-          return (
-            <Message
-              key={message.id}
-              className={cn(
-                "mx-auto flex w-full max-w-3xl flex-col gap-2 px-6",
-                isAssistant ? "items-start" : "items-end"
-              )}
-            >
-              {isAssistant ? (
-                <div className="group flex w-full flex-col gap-0">
-                  <MessageContent
-                    className="text-foreground prose flex-1 rounded-lg bg-transparent p-0"
-                    markdown
-                  >
-                    {message.content}
-                  </MessageContent>
-                  <MessageActions
-                    className={cn(
-                      "-ml-2.5 flex gap-0 opacity-0 transition-opacity duration-150 group-hover:opacity-100",
-                      isLastMessage && "opacity-100"
-                    )}
-                  >
-                    <MessageAction tooltip="Copy" delayDuration={100}>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="rounded-full"
+              return (
+                <Message
+                  key={message.id}
+                  className={cn(
+                    "mx-auto flex w-full max-w-3xl flex-col gap-2 px-6",
+                    isAssistant ? "items-start" : "items-end"
+                  )}
+                >
+                  {isAssistant ? (
+                    <div className="group flex w-full flex-col gap-0">
+                      <MessageContent
+                        className="text-foreground prose flex-1 rounded-lg bg-transparent p-0"
+                        markdown
                       >
-                        <Copy />
-                      </Button>
-                    </MessageAction>
-                    <MessageAction tooltip="Upvote" delayDuration={100}>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="rounded-full"
+                        {message.content}
+                      </MessageContent>
+                      <MessageActions
+                        className={cn(
+                          "-ml-2.5 flex gap-0 opacity-0 transition-opacity duration-150 group-hover:opacity-100",
+                          isLastMessage && "opacity-100"
+                        )}
                       >
-                        <ThumbsUp />
-                      </Button>
-                    </MessageAction>
-                    <MessageAction tooltip="Downvote" delayDuration={100}>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="rounded-full"
+                        <MessageAction tooltip="Copy" delayDuration={100}>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="rounded-full"
+                          >
+                            <Copy />
+                          </Button>
+                        </MessageAction>
+                        <MessageAction tooltip="Upvote" delayDuration={100}>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="rounded-full"
+                          >
+                            <ThumbsUp />
+                          </Button>
+                        </MessageAction>
+                        <MessageAction tooltip="Downvote" delayDuration={100}>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="rounded-full"
+                          >
+                            <ThumbsDown />
+                          </Button>
+                        </MessageAction>
+                      </MessageActions>
+                    </div>
+                  ) : (
+                    <div className="group flex flex-col items-end gap-1">
+                      <MessageContent className="bg-muted text-primary max-w-[85%] rounded-3xl px-5 py-2.5 sm:max-w-[75%]">
+                        {message.content}
+                      </MessageContent>
+                      <MessageActions
+                        className={cn(
+                          "flex gap-0 opacity-0 transition-opacity duration-150 group-hover:opacity-100"
+                        )}
                       >
-                        <ThumbsDown />
-                      </Button>
-                    </MessageAction>
-                  </MessageActions>
-                </div>
-              ) : (
-                <div className="group flex flex-col items-end gap-1">
-                  <MessageContent className="bg-muted text-primary max-w-[85%] rounded-3xl px-5 py-2.5 sm:max-w-[75%]">
-                    {message.content}
-                  </MessageContent>
-                  <MessageActions
-                    className={cn(
-                      "flex gap-0 opacity-0 transition-opacity duration-150 group-hover:opacity-100"
-                    )}
-                  >
-                    <MessageAction tooltip="Edit" delayDuration={100}>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="rounded-full"
-                      >
-                        <Pencil />
-                      </Button>
-                    </MessageAction>
-                    <MessageAction tooltip="Delete" delayDuration={100}>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="rounded-full"
-                      >
-                        <Trash />
-                      </Button>
-                    </MessageAction>
-                    <MessageAction tooltip="Copy" delayDuration={100}>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="rounded-full"
-                      >
-                        <Copy />
-                      </Button>
-                    </MessageAction>
-                  </MessageActions>
-                </div>
-              )}
-            </Message>
-          )
-        })}
-      </ChatContainer>
+                        <MessageAction tooltip="Edit" delayDuration={100}>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="rounded-full"
+                          >
+                            <Pencil />
+                          </Button>
+                        </MessageAction>
+                        <MessageAction tooltip="Delete" delayDuration={100}>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="rounded-full"
+                          >
+                            <Trash />
+                          </Button>
+                        </MessageAction>
+                        <MessageAction tooltip="Copy" delayDuration={100}>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="rounded-full"
+                          >
+                            <Copy />
+                          </Button>
+                        </MessageAction>
+                      </MessageActions>
+                    </div>
+                  )}
+                </Message>
+              )
+            })}
+          </ChatContainerContent>
+        </ChatContainerRoot>
+      </div>
+
+      <div className="absolute right-7 bottom-20">
+        <ScrollButton containerRef={chatContainerRef} className="shadow-sm" />
+      </div>
 
       <div className="bg-background z-10 shrink-0 px-3 pb-3 md:px-5 md:pb-5">
         <div className="mx-auto max-w-3xl">

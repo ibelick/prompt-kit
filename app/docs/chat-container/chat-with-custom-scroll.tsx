@@ -1,6 +1,9 @@
 "use client"
 
-import { ChatContainer } from "@/components/prompt-kit/chat-container"
+import {
+  ChatContainerContent,
+  ChatContainerRoot,
+} from "@/components/prompt-kit/chat-container"
 import { Markdown } from "@/components/prompt-kit/markdown"
 import {
   Message,
@@ -8,12 +11,10 @@ import {
   MessageContent,
 } from "@/components/prompt-kit/message"
 import { Button } from "@/components/ui/button"
-import { useRef, useState } from "react"
+import { useState } from "react"
 
 export function ChatWithCustomScroll() {
   const [autoScroll, setAutoScroll] = useState(true)
-  const [isStreaming, setIsStreaming] = useState(false)
-  const chatContainerRef = useRef<HTMLDivElement>(null)
 
   const [messages, setMessages] = useState([
     {
@@ -41,8 +42,6 @@ export function ChatWithCustomScroll() {
   ])
 
   const addMessage = () => {
-    setIsStreaming(true)
-
     // Add a new message
     setMessages([
       ...messages,
@@ -56,11 +55,6 @@ export function ChatWithCustomScroll() {
             : "Thanks for the explanation! Could you tell me more about grid areas?",
       },
     ])
-
-    // Simulate streaming by setting isStreaming to false after a delay
-    setTimeout(() => {
-      setIsStreaming(false)
-    }, 500)
   }
 
   return (
@@ -86,43 +80,41 @@ export function ChatWithCustomScroll() {
         </div>
       </div>
 
-      <ChatContainer
-        className="flex-1 space-y-4 p-4"
-        autoScroll={autoScroll}
-        ref={chatContainerRef}
-      >
-        {messages.map((message) => {
-          const isAssistant = message.role === "assistant"
+      <ChatContainerRoot className="flex-1" autoScroll={autoScroll}>
+        <ChatContainerContent className="space-y-4 p-4">
+          {messages.map((message) => {
+            const isAssistant = message.role === "assistant"
 
-          return (
-            <Message
-              key={message.id}
-              className={
-                message.role === "user" ? "justify-end" : "justify-start"
-              }
-            >
-              {isAssistant && (
-                <MessageAvatar
-                  src="/avatars/ai.png"
-                  alt="AI Assistant"
-                  fallback="AI"
-                />
-              )}
-              <div className="max-w-[85%] flex-1 sm:max-w-[75%]">
-                {isAssistant ? (
-                  <div className="bg-secondary text-foreground prose rounded-lg p-2">
-                    <Markdown>{message.content}</Markdown>
-                  </div>
-                ) : (
-                  <MessageContent className="bg-primary text-primary-foreground">
-                    {message.content}
-                  </MessageContent>
+            return (
+              <Message
+                key={message.id}
+                className={
+                  message.role === "user" ? "justify-end" : "justify-start"
+                }
+              >
+                {isAssistant && (
+                  <MessageAvatar
+                    src="/avatars/ai.png"
+                    alt="AI Assistant"
+                    fallback="AI"
+                  />
                 )}
-              </div>
-            </Message>
-          )
-        })}
-      </ChatContainer>
+                <div className="max-w-[85%] flex-1 sm:max-w-[75%]">
+                  {isAssistant ? (
+                    <div className="bg-secondary text-foreground prose rounded-lg p-2">
+                      <Markdown>{message.content}</Markdown>
+                    </div>
+                  ) : (
+                    <MessageContent className="bg-primary text-primary-foreground">
+                      {message.content}
+                    </MessageContent>
+                  )}
+                </div>
+              </Message>
+            )
+          })}
+        </ChatContainerContent>
+      </ChatContainerRoot>
     </div>
   )
 }
