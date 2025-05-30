@@ -14,8 +14,6 @@ import { Button } from "@/components/ui/button"
 import { useState } from "react"
 
 export function ChatWithCustomScroll() {
-  const [autoScroll, setAutoScroll] = useState(true)
-
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -62,25 +60,13 @@ export function ChatWithCustomScroll() {
       <div className="flex items-center justify-between border-b p-3">
         <div />
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1">
-            <input
-              type="checkbox"
-              id="auto-scroll"
-              checked={autoScroll}
-              onChange={(e) => setAutoScroll(e.target.checked)}
-              className="h-4 w-4"
-            />
-            <label htmlFor="auto-scroll" className="text-sm">
-              Auto-scroll
-            </label>
-          </div>
           <Button size="sm" onClick={addMessage}>
             Add Message
           </Button>
         </div>
       </div>
 
-      <ChatContainerRoot className="flex-1" autoScroll={autoScroll}>
+      <ChatContainerRoot className="flex-1">
         <ChatContainerContent className="space-y-4 p-4">
           {messages.map((message) => {
             const isAssistant = message.role === "assistant"

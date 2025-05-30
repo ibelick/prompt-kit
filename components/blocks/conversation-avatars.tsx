@@ -10,7 +10,6 @@ import {
   MessageContent,
 } from "@/components/prompt-kit/message"
 import { cn } from "@/lib/utils"
-import { useRef } from "react"
 
 const messages = [
   {
@@ -49,7 +48,7 @@ const messages = [
 
 function ConversationWithAvatars() {
   return (
-    <ChatContainerRoot className="px-1 py-12 md:px-4" autoScroll={true}>
+    <ChatContainerRoot className="px-1 py-12 md:px-4">
       <ChatContainerContent className="space-y-12 px-1 py-12 md:px-4">
         {messages.map((message) => {
           const isAssistant = message.role === "assistant"
