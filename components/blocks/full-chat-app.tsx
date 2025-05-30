@@ -343,11 +343,10 @@ function ChatContent() {
               )
             })}
           </ChatContainerContent>
+          <div className="absolute bottom-4 left-1/2 flex w-full max-w-3xl -translate-x-1/2 justify-end px-5">
+            <ScrollButton className="shadow-sm" />
+          </div>
         </ChatContainerRoot>
-      </div>
-
-      <div className="absolute right-7 bottom-20">
-        <ScrollButton className="shadow-sm" />
       </div>
 
       <div className="bg-background z-10 shrink-0 px-3 pb-3 md:px-5 md:pb-5">
