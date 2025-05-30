@@ -42,7 +42,6 @@ export function ChatBasic() {
   const [isStreaming, setIsStreaming] = useState(false)
   const streamIntervalRef = useRef<NodeJS.Timeout | null>(null)
   const streamContentRef = useRef("")
-  const chatContainerRef = useRef<HTMLDivElement>(null)
 
   const streamResponse = () => {
     if (isStreaming) return

@@ -24,7 +24,7 @@ export function ClientCodeWrapper({ code, children }: ClientCodeWrapperProps) {
   return (
     <div className="group relative">
       <button
-        className="absolute top-3 right-3 p-2 opacity-0 transition-opacity group-hover:opacity-100"
+        className="bg-background absolute top-3 right-3 p-2 opacity-0 transition-opacity group-hover:opacity-100"
         onClick={onCopy}
         type="button"
         aria-label="Copy code"

@@ -8,8 +8,6 @@ import {
 import { Message, MessageContent } from "@/components/prompt-kit/message"
 import { ScrollButton } from "@/components/prompt-kit/scroll-button"
 import { cn } from "@/lib/utils"
-import { useRef } from "react"
-import { useStickToBottom, useStickToBottomContext } from "use-stick-to-bottom"
 
 const messages = [
   {

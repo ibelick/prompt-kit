@@ -6,7 +6,6 @@ import { StickToBottom } from "use-stick-to-bottom"
 export type ChatContainerRootProps = {
   children: React.ReactNode
   className?: string
-  autoScroll?: boolean
 } & React.HTMLAttributes<HTMLDivElement>
 
 export type ChatContainerContentProps = {
@@ -22,7 +21,6 @@ export type ChatContainerScrollAnchorProps = {
 function ChatContainerRoot({
   children,
   className,
-  autoScroll = true,
   ...props
 }: ChatContainerRootProps) {
   return (
