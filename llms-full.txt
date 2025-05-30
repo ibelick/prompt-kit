@@ -694,18 +694,16 @@ import { ChatWithCustomScroll } from "./chat-with-custom-scroll"
 
 export const metadata = generateMetadata(
   "Chat Container",
-  "A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth and responsive user experience in conversation interfaces."
+  "A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth experience in conversation interfaces."
 )
 
 # Chat Container
 
-A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth and responsive user experience in conversation interfaces.
+A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth experience in conversation interfaces.
 
 ## Examples
 
-### Chat with Custom Scroll Behavior
-
-Customize the auto-scroll behavior by toggling the auto-scroll feature on or off. This example demonstrates how to give users control over the scrolling behavior.
+### Chat container basic
 
 <ComponentCodePreview
   component={<ChatWithCustomScroll />}
@@ -759,70 +757,83 @@ A chat container that demonstrates text streaming with automatic scrolling. Clic
 
 ## Component API
 
-### ChatContainer
+The ChatContainer is built using three separate components that work together:
 
-| Prop        | Type                                   | Default | Description                                                 |
-| :---------- | :------------------------------------- | :------ | :---------------------------------------------------------- |
-| children    | React.ReactNode                        |         | Child components to render inside the container             |
-| className   | string                                 |         | Additional CSS classes                                      |
-| autoScroll  | boolean                                | true    | Whether to automatically scroll to bottom on content change |
-| scrollToRef | React.RefObject\<HTMLDivElement\>      |         | Optional custom reference for scroll target                 |
-| ...props    | React.HTMLAttributes\<HTMLDivElement\> |         | All other div props                                         |
+### ChatContainerRoot
+
+The main container that provides auto-scrolling functionality using the `use-stick-to-bottom` library.
+
+| Prop      | Type                                   | Default | Description                                     |
+| :-------- | :------------------------------------- | :------ | :---------------------------------------------- |
+| children  | React.ReactNode                        |         | Child components to render inside the container |
+| className | string                                 |         | Additional CSS classes                          |
+| ...props  | React.HTMLAttributes\<HTMLDivElement\> |         | All other div props                             |
+
+### ChatContainerContent
+
+The content wrapper that should contain your messages.
+
+| Prop      | Type                                   | Default | Description                                             |
+| :-------- | :------------------------------------- | :------ | :------------------------------------------------------ |
+| children  | React.ReactNode                        |         | Child components to render inside the content container |
+| className | string                                 |         | Additional CSS classes                                  |
+| ...props  | React.HTMLAttributes\<HTMLDivElement\> |         | All other div props                                     |
+
+### ChatContainerScrollAnchor
+
+An optional scroll anchor element that can be used for scroll targeting.
+
+| Prop      | Type                                   | Default | Description                                |
+| :-------- | :------------------------------------- | :------ | :----------------------------------------- |
+| className | string                                 |         | Additional CSS classes                     |
+| ref       | React.RefObject\<HTMLDivElement\>      |         | Optional ref for the scroll anchor element |
+| ...props  | React.HTMLAttributes\<HTMLDivElement\> |         | All other div props                        |
 
 ## Auto-Scroll Behavior
 
-The component implements sophisticated scrolling logic to provide a natural user experience:
+The component uses the `use-stick-to-bottom` library to provide sophisticated auto-scrolling:
 
-- **New Messages**: Automatically scrolls to the bottom when new messages are added
-- **Content Updates**: Scrolls to follow streaming content when already at the bottom
-- **User Control**:
-  - Temporarily disables auto-scrolling when users scroll up or use mouse wheel up
-  - Maintains scroll position during content updates when user has scrolled up
-  - Supports touch interactions by tracking touch start/move/end events
-- **Resume Auto-Scroll**: Re-enables auto-scrolling when users scroll back to the bottom
+- **Smooth Animations**: Uses velocity-based spring animations for natural scrolling
+- **Content Resizing**: Automatically detects content changes using ResizeObserver API
+- **User Control**: Automatically disables sticky behavior when users scroll up
+- **Mobile Support**: Works seamlessly on touch devices
+- **Performance**: Zero dependencies and optimized for chat applications
+- **Scroll Anchoring**: Prevents content jumping when new content is added above the viewport
+
+Key behaviors:
+
+- **Stick to Bottom**: Automatically scrolls to bottom when new content is added (if already at bottom)
+- **Smart Scrolling**: Only scrolls when user is at the bottom, preserves scroll position otherwise
+- **Cancel on Scroll**: User can scroll up to cancel auto-scrolling behavior
+- **Resume Auto-Scroll**: Returns to auto-scrolling when user scrolls back to bottom
 
 ## Using with ScrollButton
 
-The ChatContainer pairs well with the ScrollButton component to provide a complete chat interface experience:
+The ChatContainer pairs perfectly with the ScrollButton component. The ScrollButton automatically appears when the user scrolls up and disappears when at the bottom:
 
 <CodeBlock
-  code={`import { useRef } from "react"
-import { ChatContainer } from "@/components/prompt-kit/chat-container"
+  code={`import { ChatContainerRoot, ChatContainerContent, 
+ChatContainerScrollAnchor } from "@/components/prompt-kit/chat-container"
 import { ScrollButton } from "@/components/prompt-kit/scroll-button"
 
 function ChatInterface() {
-const containerRef = useRef<HTMLDivElement>(null)
-const bottomRef = useRef<HTMLDivElement>(null)
-
 return (
 
 <div className="relative h-[500px]">
-<ChatContainer ref={containerRef}>
-{/* Your chat messages here */}
-</ChatContainer>
-
-      <div className="absolute bottom-4 right-4">
-        <ScrollButton
-          containerRef={containerRef}
-          scrollRef={bottomRef}
-        />
-      </div>
+  <ChatContainerRoot className="h-full">
+    <ChatContainerContent className="space-y-4">
+      {/* Your chat messages here */}
+      <div>Message 1</div>
+      <div>Message 2</div>
+      <div>Message 3</div>
+    </ChatContainerContent>
+    <ChatContainerScrollAnchor />
+    <div className="absolute right-4 bottom-4">
+      <ScrollButton className="shadow-sm" />
     </div>
-
-)
-}`}
-language="tsx"
-/>
-
-## Performance Considerations
-
-The ChatContainer component is optimized for performance in chat applications:
-
-1. Uses passive event listeners to avoid blocking the main thread
-2. Implements efficient scroll detection with browser-native APIs
-3. Uses `requestAnimationFrame` for smooth scrolling animations
-
-For large chat histories, consider implementing virtualization or pagination to maintain performance.
+  </ChatContainerRoot>
+</div>
+) } `} language="tsx" />
 
 
 import ComponentCodePreview from "@/components/app/component-code-preview"
@@ -833,12 +844,17 @@ import { ScrollButtonWithChat } from "./scroll-button-with-chat"
 
 export const metadata = generateMetadata(
   "Scroll Button",
-  "A floating button component that appears when users scroll up in a container, allowing them to quickly return to the bottom of the content with a single click."
+  "A floating button that appears when the user scrolls up and lets them return to the bottom of the chat."
 )
 
 # Scroll Button
 
-A floating button component that appears when users scroll up in a container, allowing them to quickly return to the bottom of the content with a single click.
+A minimal floating button that appears when the user scrolls up, allowing them to jump back to the bottom of the chat.
+
+## Usage
+
+The `ScrollButton` only works inside `ChatContainerRoot`, which uses `use-stick-to-bottom` under the hood.  
+It **will not work** with a plain `div` or custom scroll container.
 
 ## Examples
 

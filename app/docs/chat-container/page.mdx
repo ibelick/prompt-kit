@@ -5,18 +5,16 @@ import { ChatWithCustomScroll } from "./chat-with-custom-scroll"
 
 export const metadata = generateMetadata(
   "Chat Container",
-  "A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth and responsive user experience in conversation interfaces."
+  "A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth experience in conversation interfaces."
 )
 
 # Chat Container
 
-A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth and responsive user experience in conversation interfaces.
+A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth experience in conversation interfaces.
 
 ## Examples
 
-### Chat with Custom Scroll Behavior
-
-Customize the auto-scroll behavior by toggling the auto-scroll feature on or off. This example demonstrates how to give users control over the scrolling behavior.
+### Chat container basic
 
 <ComponentCodePreview
   component={<ChatWithCustomScroll />}
@@ -70,7 +68,7 @@ A chat container that demonstrates text streaming with automatic scrolling. Clic
 
 ## Component API
 
-The ChatContainer is now built using three separate components that work together:
+The ChatContainer is built using three separate components that work together:
 
 ### ChatContainerRoot
 
@@ -130,21 +128,20 @@ ChatContainerScrollAnchor } from "@/components/prompt-kit/chat-container"
 import { ScrollButton } from "@/components/prompt-kit/scroll-button"
 
 function ChatInterface() {
-    return (
-      <div className="relative h-[500px]">
-        <ChatContainerRoot className="h-full">
-          <ChatContainerContent className="space-y-4">
-            {/* Your chat messages here */}
-            <div>Message 1</div>
-            <div>Message 2</div>
-            <div>Message 3</div>
-          </ChatContainerContent>
-          <ChatContainerScrollAnchor />
-          <div className="absolute bottom-4 right-4">
-            <ScrollButton className="shadow-sm" />
-          </div>
-        </ChatContainerRoot>
-      </div>
-    )
-}
-`} language="tsx" />
+return (
+
+<div className="relative h-[500px]">
+  <ChatContainerRoot className="h-full">
+    <ChatContainerContent className="space-y-4">
+      {/* Your chat messages here */}
+      <div>Message 1</div>
+      <div>Message 2</div>
+      <div>Message 3</div>
+    </ChatContainerContent>
+    <ChatContainerScrollAnchor />
+    <div className="absolute right-4 bottom-4">
+      <ScrollButton className="shadow-sm" />
+    </div>
+  </ChatContainerRoot>
+</div>
+) } `} language="tsx" />
