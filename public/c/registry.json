@@ -122,7 +122,9 @@
       "type": "registry:ui",
       "title": "Chat Container",
       "description": "A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth and responsive user experience",
-      "dependencies": [],
+      "dependencies": [
+        "use-stick-to-bottom"
+      ],
       "devDependencies": [],
       "registryDependencies": [
         "use-stick-to-bottom"

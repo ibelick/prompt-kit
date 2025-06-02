@@ -77,7 +77,7 @@ export const components: ComponentDefinition[] = [
     description:
       "A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth and responsive user experience",
     path: path.join(__dirname, "../components/prompt-kit/chat-container.tsx"),
-    registryDependencies: ["use-stick-to-bottom"],
+    dependencies: ["use-stick-to-bottom"],
   },
   {
     name: "scroll-button",
