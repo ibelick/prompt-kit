@@ -9,7 +9,8 @@
     "react-markdown",
     "remark-gfm",
     "shiki",
-    "marked"
+    "marked",
+    "remark-breaks"
   ],
   "devDependencies": [],
   "tailwind": {},

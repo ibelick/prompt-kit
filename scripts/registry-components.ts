@@ -53,7 +53,13 @@ export const components: ComponentDefinition[] = [
     description:
       "A component for displaying chat messages with support for avatars, markdown content, and interactive actions",
     path: path.join(__dirname, "../components/prompt-kit/message.tsx"),
-    dependencies: ["react-markdown", "remark-gfm", "shiki", "marked", "remark-breaks"],
+    dependencies: [
+      "react-markdown",
+      "remark-gfm",
+      "shiki",
+      "marked",
+      "remark-breaks",
+    ],
     registryDependencies: ["avatar", "tooltip"],
     files: [
       {
@@ -71,7 +77,7 @@ export const components: ComponentDefinition[] = [
     description:
       "A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth and responsive user experience",
     path: path.join(__dirname, "../components/prompt-kit/chat-container.tsx"),
-    registryDependencies: [],
+    registryDependencies: ["use-stick-to-bottom"],
   },
   {
     name: "scroll-button",

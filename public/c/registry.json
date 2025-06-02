@@ -87,7 +87,8 @@
         "react-markdown",
         "remark-gfm",
         "shiki",
-        "marked"
+        "marked",
+        "remark-breaks"
       ],
       "devDependencies": [],
       "registryDependencies": [
@@ -123,7 +124,9 @@
       "description": "A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth and responsive user experience",
       "dependencies": [],
       "devDependencies": [],
-      "registryDependencies": [],
+      "registryDependencies": [
+        "use-stick-to-bottom"
+      ],
       "files": [
         {
           "path": "components/prompt-kit/chat-container.tsx",
