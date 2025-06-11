@@ -10,7 +10,7 @@ const projects = [
   {
     title: "zola.chat",
     href: "https://zola.chat",
-    thumbnail: "https://www.zola.chat/cover_zola.webp",
+    thumbnail: "https://www.zola.chat/cover_zola.jpg",
   },
   {
     title: "emojis.com",
@@ -60,7 +60,7 @@ export default function Showcase() {
           </Button>
         </Link>
       </div>
-      <div className="grid w-full grid-cols-1 gap-6 mask-[linear-gradient(to_bottom,black_90%,transparent)] md:grid-cols-2 lg:grid-cols-2">
+      <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
         {projects.map((project) => (
           <div className="relative isolate w-full overflow-hidden rounded-2xl max-md:aspect-1200/630 md:h-48">
             <Image
@@ -89,9 +89,6 @@ export default function Showcase() {
             </Link>
           </div>
         ))}
-
-        <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-1200/630 md:h-48 dark:bg-zinc-900"></div>
-        <div className="w-full rounded-2xl bg-zinc-100 max-md:aspect-1200/630 md:h-48 dark:bg-zinc-900"></div>
       </div>
     </div>
   )
