@@ -5,16 +5,19 @@ import {
   Children,
   cloneElement,
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useRef,
   useState,
 } from "react"
+import { createPortal } from "react-dom"
 
 type FileUploadContextValue = {
   isDragging: boolean
   inputRef: React.RefObject<HTMLInputElement | null>
   multiple?: boolean
+  disabled?: boolean
 }
 
 const FileUploadContext = createContext<FileUploadContextValue | null>(null)
@@ -24,6 +27,7 @@ export type FileUploadProps = {
   children: React.ReactNode
   multiple?: boolean
   accept?: string
+  disabled?: boolean
 }
 
 function FileUpload({
@@ -31,19 +35,23 @@ function FileUpload({
   children,
   multiple = true,
   accept,
+  disabled = false,
 }: FileUploadProps) {
   const inputRef = useRef<HTMLInputElement>(null)
   const [isDragging, setIsDragging] = useState(false)
   const dragCounter = useRef(0)
 
-  const handleFiles = (files: FileList) => {
-    const newFiles = Array.from(files)
-    if (multiple) {
-      onFilesAdded(newFiles)
-    } else {
-      onFilesAdded(newFiles.slice(0, 1))
-    }
-  }
+  const handleFiles = useCallback(
+    (files: FileList) => {
+      const newFiles = Array.from(files)
+      if (multiple) {
+        onFilesAdded(newFiles)
+      } else {
+        onFilesAdded(newFiles.slice(0, 1))
+      }
+    },
+    [multiple, onFilesAdded]
+  )
 
   useEffect(() => {
     const handleDrag = (e: DragEvent) => {
@@ -93,7 +101,9 @@ function FileUpload({
   }
 
   return (
-    <FileUploadContext.Provider value={{ isDragging, inputRef, multiple }}>
+    <FileUploadContext.Provider
+      value={{ isDragging, inputRef, multiple, disabled }}
+    >
       <input
         type="file"
         ref={inputRef}
@@ -102,6 +112,7 @@ function FileUpload({
         multiple={multiple}
         accept={accept}
         aria-hidden
+        disabled={disabled}
       />
       {children}
     </FileUploadContext.Provider>
@@ -153,8 +164,18 @@ type FileUploadContentProps = React.HTMLAttributes<HTMLDivElement>
 
 function FileUploadContent({ className, ...props }: FileUploadContentProps) {
   const context = useContext(FileUploadContext)
+  const [mounted, setMounted] = useState(false)
 
-  return context?.isDragging ? (
+  useEffect(() => {
+    setMounted(true)
+    return () => setMounted(false)
+  }, [])
+
+  if (!context?.isDragging || !mounted || context?.disabled) {
+    return null
+  }
+
+  const content = (
     <div
       className={cn(
         "bg-background/80 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm",
@@ -163,7 +184,9 @@ function FileUploadContent({ className, ...props }: FileUploadContentProps) {
       )}
       {...props}
     />
-  ) : null
+  )
+
+  return createPortal(content, document.body)
 }
 
 export { FileUpload, FileUploadTrigger, FileUploadContent }
