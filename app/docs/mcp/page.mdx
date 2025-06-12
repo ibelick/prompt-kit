@@ -1,0 +1,80 @@
+import { generateMetadata } from "../utils/metadata"
+
+export const metadata = generateMetadata(
+  "Model Context Protocol",
+  "Use prompt-kit components directly in your AI tools through MCP."
+)
+
+# Model Context Protocol
+
+The **Model Context Protocol (MCP)** allows AI tools to access prompt-kit components directly. This enables you to browse, preview, and add components without leaving your coding environment.
+
+## What is MCP?
+
+MCP is an open protocol that standardizes how applications provide context to LLMs. Think of it as a plugin system that connects your AI tools to external data sources and tools.
+
+Learn more about MCP:
+
+- [Cursor MCP Documentation](https://docs.cursor.com/context/model-context-protocol)
+- [Official MCP Documentation](https://modelcontextprotocol.io/introduction)
+
+## Setup
+
+The setup process depends on your AI tool.
+
+### Cursor
+
+1. Create a `.cursor/mcp.json` file in your project root
+2. Add the prompt-kit MCP server configuration
+
+<CodeBlock
+  language="json"
+  code={`{
+  "mcpServers": {
+    "prompt-kit": {
+      "description": "prompt-kit registry",
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "shadcn@canary", "registry:mcp"],
+      "env": {
+        "REGISTRY_URL": "https://www.prompt-kit.com/c/registry.json"
+      }
+    }
+  }
+}`}
+/>
+
+3. Restart Cursor
+
+### Other AI Tools
+
+For other AI tools that support MCP, refer to their specific documentation on how to configure MCP servers. Use the same server configuration above, adapting the file location as needed.
+
+## Usage
+
+Once configured, you can start using the prompt-kit components in your AI tool's chat.
+
+### Browse Components
+
+<CodeBlock language="text" code="Show me all available prompt-kit components" />
+
+### Add a Specific Component
+
+<CodeBlock
+  language="text"
+  code="Add the PromptInput component from prompt-kit to my project"
+/>
+
+### Get Component Details
+
+<CodeBlock
+  language="text"
+  code="Show me the documentation and preview for the PromptTextarea component"
+/>
+
+### Build a basic chat app
+
+<CodeBlock
+  language="text"
+  code="Build a chat app with prompt-kit using: ChatContainer with ScrollButton inside, plus Message and PromptInput"
+/>

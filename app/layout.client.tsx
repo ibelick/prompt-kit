@@ -72,7 +72,7 @@ function AppSidebar() {
 
   useEffect(() => {
     setOpenMobile(false)
-  }, [pathname, setOpenMobile])
+  }, [setOpenMobile])
 
   return (
     <Sidebar className="h-full border-none shadow-none">
@@ -92,7 +92,7 @@ function AppSidebar() {
           </SidebarHeader>
           <SidebarGroup className="border-none pr-0 pl-2 md:px-5 md:pt-[3.6rem]">
             <SidebarGroupLabel className="text-lg md:text-sm">
-              Core
+              Get Started
             </SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
