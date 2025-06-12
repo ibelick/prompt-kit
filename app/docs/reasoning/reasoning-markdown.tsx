@@ -3,25 +3,32 @@
 import {
   Reasoning,
   ReasoningContent,
-  // ReasoningResponse,
   ReasoningTrigger,
 } from "@/components/prompt-kit/reasoning"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 
-// Simulated streaming function
-const simulateReasoningStream = async (
+// Simulated streaming function with markdown content
+const simulateMarkdownStream = async (
   setText: (text: string) => void,
   setIsStreaming: (streaming: boolean) => void
 ) => {
-  const reasoning = `I calculated the best color balance for the image:
+  const reasoning = `# Solving: Square Root of 144
 
-1. First, I analyzed the color of the car - a deep blue metallic finish
-2. Then, I examined the color of the sky - overcast with neutral tones  
-3. Next, I considered the color of the grass - vibrant green in the foreground
-4. I calculated the optimal white balance to enhance all elements
-5. Applied selective color adjustments to maintain natural appearance
-6. Final result: improved contrast and color harmony`
+## Step 1: Problem Analysis
+I need to find a number that, when **multiplied by itself**, equals 144.
+
+## Step 2: Testing Values
+- \`10² = 100\` ❌ (too small)
+- \`13² = 169\` ❌ (too large) 
+- \`12² = 144\` ✅ (perfect!)
+
+## Step 3: Verification
+\`\`\`
+12 × 12 = 144 ✓
+\`\`\`
+
+> **Answer:** The square root of 144 is **12**.`
 
   setIsStreaming(true)
   setText("")
@@ -29,18 +36,18 @@ const simulateReasoningStream = async (
   // Simulate character-by-character streaming
   for (let i = 0; i <= reasoning.length; i++) {
     setText(reasoning.slice(0, i))
-    await new Promise((resolve) => setTimeout(resolve, 30))
+    await new Promise((resolve) => setTimeout(resolve, 20))
   }
 
   setIsStreaming(false)
 }
 
-export function ReasoningBasic() {
+export function ReasoningMarkdown() {
   const [reasoningText, setReasoningText] = useState("")
   const [isStreaming, setIsStreaming] = useState(false)
 
   const handleGenerateReasoning = () => {
-    simulateReasoningStream(setReasoningText, setIsStreaming)
+    simulateMarkdownStream(setReasoningText, setIsStreaming)
   }
 
   return (
@@ -51,12 +58,15 @@ export function ReasoningBasic() {
         onClick={handleGenerateReasoning}
         disabled={isStreaming}
       >
-        {isStreaming ? "Generating..." : "Generate Reasoning"}
+        {isStreaming ? "Thinking..." : "Generate Reasoning"}
       </Button>
 
       <Reasoning isStreaming={isStreaming}>
-        <ReasoningTrigger>Show reasoning</ReasoningTrigger>
-        <ReasoningContent className="ml-2 border-l-2 border-l-slate-200 px-2 pb-1 dark:border-l-slate-700">
+        <ReasoningTrigger>Show AI reasoning</ReasoningTrigger>
+        <ReasoningContent
+          markdown
+          className="ml-2 border-l-2 border-l-slate-200 px-2 pb-1 dark:border-l-slate-700"
+        >
           {reasoningText}
         </ReasoningContent>
       </Reasoning>

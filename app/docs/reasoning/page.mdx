@@ -1,64 +1,39 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
 import { generateMetadata } from "../utils/metadata"
 import { ReasoningBasic } from "./reasoning-basic"
-import { ReasoningControlled } from "./reasoning-controlled"
-import { ReasoningWithAIResponse } from "./reasoning-with-ai-response"
-import { ReasoningWithCustomStyling } from "./reasoning-with-custom-styling"
+import { ReasoningMarkdown } from "./reasoning-markdown"
 
 export const metadata = generateMetadata(
   "Reasoning",
-  "A component for displaying collapsible reasoning or thought process content, perfect for AI applications that need to show their 'thinking' or step-by-step explanations."
+  "A collapsible component for showing AI reasoning, explanations, or logic. You can control it manually or let it auto-close when the stream ends. Markdown is supported."
 )
 
 # Reasoning
 
-A component for displaying collapsible reasoning or thought process content, perfect for AI applications that need to show their "thinking" or step-by-step explanations.
+A collapsible component for showing AI reasoning, explanations, or logic. You can control it manually or let it auto-close when the stream ends. Markdown is supported.
 
 ## Examples
 
 ### Basic Usage
 
-The most basic implementation of the Reasoning component with collapsible content.
+The most basic implementation of the Reasoning component with auto-close functionality when streaming ends.
 
 <ComponentCodePreview
   component={<ReasoningBasic />}
   filePath="app/docs/reasoning/reasoning-basic.tsx"
-  classNameComponentContainer="p-8 justify-start items-start min-h-[200px]"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[300px]"
   hasReTrigger
 />
 
-### With AI Response
+### With Markdown
 
-Combine with the ResponseStream component to show streaming AI reasoning content.
-
-<ComponentCodePreview
-  component={<ReasoningWithAIResponse />}
-  filePath="app/docs/reasoning/reasoning-with-ai-response.tsx"
-  classNameComponentContainer="p-8 justify-start items-start min-h-[250px]"
-  hasReTrigger
-/>
-
-### Controlled Component
-
-Control the open state programmatically for advanced use cases.
+Show rich formatting with markdown support for better structured reasoning content.
 
 <ComponentCodePreview
-  component={<ReasoningControlled />}
-  filePath="app/docs/reasoning/reasoning-controlled.tsx"
-  classNameComponentContainer="p-8 justify-start items-start min-h-[250px]"
+  component={<ReasoningMarkdown />}
+  filePath="app/docs/reasoning/reasoning-markdown.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[400px]"
   hasReTrigger
-/>
-
-### Custom Styling
-
-Customize the appearance of the Reasoning component to match your application's design.
-You can also use markdown in the ReasoningResponse component to style the content.
-
-<ComponentCodePreview
-  component={<ReasoningWithCustomStyling />}
-  filePath="app/docs/reasoning/reasoning-with-custom-styling.tsx"
-  hasReTrigger
-  disableNotProse
 />
 
 ## Installation
@@ -99,12 +74,13 @@ You can also use markdown in the ReasoningResponse component to style the conten
 
 ### Reasoning
 
-| Prop         | Type                    | Default | Description                                         |
-| :----------- | :---------------------- | :------ | :-------------------------------------------------- |
-| children     | React.ReactNode         |         | The content of the component                        |
-| className    | string                  |         | Additional CSS classes                              |
-| open         | boolean                 |         | Control the open state (makes component controlled) |
-| onOpenChange | (open: boolean) => void |         | Callback when open state changes                    |
+| Prop         | Type                    | Default | Description                                                 |
+| :----------- | :---------------------- | :------ | :---------------------------------------------------------- |
+| children     | React.ReactNode         |         | The content of the component                                |
+| className    | string                  |         | Additional CSS classes                                      |
+| open         | boolean                 |         | Control the open state (makes component controlled)         |
+| onOpenChange | (open: boolean) => void |         | Callback when open state changes                            |
+| isStreaming  | boolean                 |         | When false, automatically closes the reasoning (auto-close) |
 
 ### ReasoningTrigger
 
@@ -116,16 +92,9 @@ You can also use markdown in the ReasoningResponse component to style the conten
 
 ### ReasoningContent
 
-| Prop      | Type            | Default | Description                 |
-| :-------- | :-------------- | :------ | :-------------------------- |
-| children  | React.ReactNode |         | The content to be displayed |
-| className | string          |         | Additional CSS classes      |
-| ...props  | HTMLAttributes  |         | Additional HTML div props   |
-
-### ReasoningResponse
-
-| Prop      | Type                              | Default | Description                                         |
-| :-------- | :-------------------------------- | :------ | :-------------------------------------------------- |
-| text      | string \| AsyncIterable\<string\> |         | The text to display or stream                       |
-| className | string                            |         | Additional CSS classes                              |
-| ...props  | ResponseStreamProps               |         | Additional ResponseStream props (except textStream) |
+| Prop      | Type            | Default | Description                               |
+| :-------- | :-------------- | :------ | :---------------------------------------- |
+| children  | React.ReactNode |         | The content to be displayed               |
+| className | string          |         | Additional CSS classes                    |
+| markdown  | boolean         | false   | Enable markdown rendering for the content |
+| ...props  | HTMLAttributes  |         | Additional HTML div props                 |

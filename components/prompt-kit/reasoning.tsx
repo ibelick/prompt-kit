@@ -10,7 +10,6 @@ import React, {
   useState,
 } from "react"
 import { Markdown } from "./markdown"
-import { useTextStream, type Mode } from "./response-stream"
 
 type ReasoningContextType = {
   isOpen: boolean
@@ -36,15 +35,18 @@ export type ReasoningProps = {
   className?: string
   open?: boolean
   onOpenChange?: (open: boolean) => void
+  isStreaming?: boolean
 }
-
 function Reasoning({
   children,
   className,
   open,
   onOpenChange,
+  isStreaming,
 }: ReasoningProps) {
-  const [internalOpen, setInternalOpen] = useState(true)
+  const [internalOpen, setInternalOpen] = useState(false)
+  const [wasAutoOpened, setWasAutoOpened] = useState(false)
+
   const isControlled = open !== undefined
   const isOpen = isControlled ? open : internalOpen
 
@@ -54,6 +56,18 @@ function Reasoning({
     }
     onOpenChange?.(newOpen)
   }
+
+  useEffect(() => {
+    if (isStreaming && !wasAutoOpened) {
+      if (!isControlled) setInternalOpen(true)
+      setWasAutoOpened(true)
+    }
+
+    if (!isStreaming && wasAutoOpened) {
+      if (!isControlled) setInternalOpen(false)
+      setWasAutoOpened(false)
+    }
+  }, [isStreaming, wasAutoOpened, isControlled])
 
   return (
     <ReasoningContext.Provider
@@ -101,11 +115,13 @@ function ReasoningTrigger({
 export type ReasoningContentProps = {
   children: React.ReactNode
   className?: string
+  markdown?: boolean
 } & React.HTMLAttributes<HTMLDivElement>
 
 function ReasoningContent({
   children,
   className,
+  markdown = false,
   ...props
 }: ReasoningContentProps) {
   const contentRef = useRef<HTMLDivElement>(null)
@@ -130,68 +146,31 @@ function ReasoningContent({
     return () => observer.disconnect()
   }, [isOpen])
 
+  const containerClassName = cn(
+    "overflow-hidden transition-[max-height] duration-150 ease-out",
+    className
+  )
+
+  const content = markdown ? (
+    <Markdown className="text-muted-foreground prose prose-sm dark:prose-invert">
+      {children as string}
+    </Markdown>
+  ) : (
+    children
+  )
+
   return (
     <div
       ref={contentRef}
-      className={cn(
-        "overflow-hidden transition-[max-height] duration-300 ease-out",
-        className
-      )}
+      className={containerClassName}
       style={{
         maxHeight: isOpen ? contentRef.current?.scrollHeight : "0px",
       }}
       {...props}
     >
-      <div ref={innerRef}>{children}</div>
+      <div ref={innerRef}>{content}</div>
     </div>
   )
 }
 
-export type ReasoningResponseProps = {
-  text: string | AsyncIterable<string>
-  className?: string
-  speed?: number
-  mode?: Mode
-  onComplete?: () => void
-  fadeDuration?: number
-  segmentDelay?: number
-  characterChunkSize?: number
-}
-
-function ReasoningResponse({
-  text,
-  className,
-  speed = 20,
-  mode = "typewriter",
-  onComplete,
-  fadeDuration,
-  segmentDelay,
-  characterChunkSize,
-}: ReasoningResponseProps) {
-  const { isOpen } = useReasoningContext()
-  const { displayedText } = useTextStream({
-    textStream: text,
-    speed,
-    mode,
-    onComplete,
-    fadeDuration,
-    segmentDelay,
-    characterChunkSize,
-  })
-
-  return (
-    <div
-      className={cn(
-        "text-muted-foreground prose prose-sm dark:prose-invert text-sm transition-opacity duration-300 ease-out",
-        className
-      )}
-      style={{
-        opacity: isOpen ? 1 : 0,
-      }}
-    >
-      <Markdown>{displayedText}</Markdown>
-    </div>
-  )
-}
-
-export { Reasoning, ReasoningTrigger, ReasoningContent, ReasoningResponse }
+export { Reasoning, ReasoningTrigger, ReasoningContent }
