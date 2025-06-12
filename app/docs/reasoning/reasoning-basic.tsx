@@ -3,7 +3,6 @@
 import {
   Reasoning,
   ReasoningContent,
-  // ReasoningResponse,
   ReasoningTrigger,
 } from "@/components/prompt-kit/reasoning"
 import { Button } from "@/components/ui/button"

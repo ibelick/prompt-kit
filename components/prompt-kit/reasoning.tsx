@@ -116,11 +116,13 @@ export type ReasoningContentProps = {
   children: React.ReactNode
   className?: string
   markdown?: boolean
+  contentClassName?: string
 } & React.HTMLAttributes<HTMLDivElement>
 
 function ReasoningContent({
   children,
   className,
+  contentClassName,
   markdown = false,
   ...props
 }: ReasoningContentProps) {
@@ -146,15 +148,8 @@ function ReasoningContent({
     return () => observer.disconnect()
   }, [isOpen])
 
-  const containerClassName = cn(
-    "overflow-hidden transition-[max-height] duration-150 ease-out",
-    className
-  )
-
   const content = markdown ? (
-    <Markdown className="text-muted-foreground prose prose-sm dark:prose-invert">
-      {children as string}
-    </Markdown>
+    <Markdown>{children as string}</Markdown>
   ) : (
     children
   )
@@ -162,13 +157,24 @@ function ReasoningContent({
   return (
     <div
       ref={contentRef}
-      className={containerClassName}
+      className={cn(
+        "overflow-hidden transition-[max-height] duration-150 ease-out",
+        className
+      )}
       style={{
         maxHeight: isOpen ? contentRef.current?.scrollHeight : "0px",
       }}
       {...props}
     >
-      <div ref={innerRef}>{content}</div>
+      <div
+        ref={innerRef}
+        className={cn(
+          "text-muted-foreground prose prose-sm dark:prose-invert",
+          contentClassName
+        )}
+      >
+        {content}
+      </div>
     </div>
   )
 }
