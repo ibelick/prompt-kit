@@ -222,12 +222,12 @@ export const components: ComponentDefinition[] = [
   {
     name: "response-stream",
     description:
-      "A component for displaying text with streaming animations, perfect for chat interfaces, AI responses, or any text that should appear progressively.",
+      "A component to simulate streaming text on the client side, perfect for fake responses, or any controlled progressive text display.",
     path: path.join(__dirname, "../components/prompt-kit/response-stream.tsx"),
   },
   {
     name: "reasoning",
-    description: `A component for displaying collapsible reasoning or thought process content, perfect for AI applications that need to show their "thinking" or step-by-step explanations.`,
+    description: `A collapsible component for showing AI reasoning, explanations, or logic. You can control it manually or let it auto-close when the stream ends. Markdown is supported.`,
     path: path.join(__dirname, "../components/prompt-kit/reasoning.tsx"),
     dependencies: ["lucide-react"],
     files: [

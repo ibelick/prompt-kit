@@ -2,7 +2,9 @@
   "name": "chat-container",
   "type": "registry:ui",
   "registryDependencies": [],
-  "dependencies": ["use-stick-to-bottom"],
+  "dependencies": [
+    "use-stick-to-bottom"
+  ],
   "devDependencies": [],
   "tailwind": {},
   "cssVars": {

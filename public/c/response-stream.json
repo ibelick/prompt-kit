@@ -9,7 +9,7 @@
     "light": {},
     "dark": {}
   },
-  "description": "A component for displaying text with streaming animations, perfect for chat interfaces, AI responses, or any text that should appear progressively.",
+  "description": "A component to simulate streaming text on the client side, perfect for fake responses, or any controlled progressive text display.",
   "files": [
     {
       "path": "response-stream.tsx",
