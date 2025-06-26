@@ -11,7 +11,7 @@ export const metadata = generateMetadata(
 
 # Tool
 
-A component for displaying tool invocations with their arguments, results, and execution state. Perfect for showing AI tool usage in chat interfaces.
+A component for displaying tool invocations with their arguments, results, and execution state. Perfect for showing AI tool usage in chat interfaces. **Compatible with AI SDK v5** architecture.
 
 ## Examples
 
@@ -98,10 +98,11 @@ Group multiple tools together for better organization.
 
 ### ToolInvocation Type
 
-| Property | Type                                             | Description                       |
-| :------- | :----------------------------------------------- | :-------------------------------- |
-| toolName | string                                           | Name of the tool                  |
-| state    | "pending" \| "running" \| "completed" \| "error" | Current execution state           |
-| args     | `Record<string, unknown>`                        | Arguments passed to the tool      |
-| result   | unknown                                          | Result returned by the tool       |
-| error    | string                                           | Error message if execution failed |
+| Property   | Type                                             | Description                       |
+| :--------- | :----------------------------------------------- | :-------------------------------- |
+| toolName   | string                                           | Name of the tool                  |
+| state      | "pending" \| "running" \| "completed" \| "error" | Current execution state           |
+| args       | `Record<string, unknown>`                        | Arguments passed to the tool      |
+| result     | unknown                                          | Result returned by the tool       |
+| error      | string                                           | Error message if execution failed |
+| toolCallId | string                                           | Tool call identifier (AI SDK v5)  |

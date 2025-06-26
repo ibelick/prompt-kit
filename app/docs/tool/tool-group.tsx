@@ -3,6 +3,7 @@ import { ToolGroup } from "@/components/prompt-kit/tool"
 export function ToolGroupExample() {
   return (
     <ToolGroup
+      className="w-full max-w-md"
       title="Data Processing Tools"
       tools={[
         {

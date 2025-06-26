@@ -2,7 +2,7 @@ import { Tool } from "@/components/prompt-kit/tool"
 
 export function ToolStates() {
   return (
-    <div className="space-y-4">
+    <div className="flex w-full flex-col items-center justify-center space-y-4">
       <Tool
         className="w-full max-w-md"
         toolInvocation={{

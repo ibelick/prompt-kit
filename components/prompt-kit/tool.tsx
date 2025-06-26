@@ -16,6 +16,7 @@ export type ToolInvocation = {
   args?: Record<string, unknown>
   result?: unknown
   error?: string
+  toolCallId?: string
 }
 
 export type ToolProps = {
@@ -30,7 +31,7 @@ const Tool = ({
   className,
 }: ToolProps) => {
   const [isOpen, setIsOpen] = useState(defaultOpen)
-  const { toolName, state, args, result, error } = toolInvocation
+  const { toolName, state, args, result, error, toolCallId } = toolInvocation
 
   const getStateIcon = () => {
     switch (state) {
@@ -106,12 +107,12 @@ const Tool = ({
   }
 
   return (
-    <div className={cn("rounded-lg border", className)}>
+    <div className={cn("overflow-hidden rounded-lg border", className)}>
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
         <CollapsibleTrigger asChild>
           <Button
             variant="ghost"
-            className="h-auto w-full justify-between p-3 font-normal"
+            className="h-auto w-full justify-between rounded-b-none p-3 font-normal"
           >
             <div className="flex items-center gap-2">
               {getStateIcon()}
@@ -163,6 +164,12 @@ const Tool = ({
                 <div className="rounded border border-red-200 bg-red-50 p-2 text-sm dark:border-red-800 dark:bg-red-900/20">
                   {error}
                 </div>
+              </div>
+            )}
+
+            {toolCallId && (
+              <div className="text-muted-foreground border-t pt-2 text-xs">
+                <span className="font-mono">ID: {toolCallId}</span>
               </div>
             )}
           </div>
