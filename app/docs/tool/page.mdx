@@ -1,0 +1,107 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
+import { ToolBasic } from "./tool-basic"
+import { ToolGroupExample } from "./tool-group"
+import { ToolStates } from "./tool-states"
+
+export const metadata = generateMetadata(
+  "Tool",
+  "A component for displaying tool invocations with their arguments, results, and execution state."
+)
+
+# Tool
+
+A component for displaying tool invocations with their arguments, results, and execution state. Perfect for showing AI tool usage in chat interfaces.
+
+## Examples
+
+### Basic Tool
+
+<ComponentCodePreview
+  component={<ToolBasic />}
+  filePath="app/docs/tool/tool-basic.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### Tool States
+
+Show different states of tool execution: pending, running, completed, and error.
+
+<ComponentCodePreview
+  component={<ToolStates />}
+  filePath="app/docs/tool/tool-states.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### Tool Group
+
+Group multiple tools together for better organization.
+
+<ComponentCodePreview
+  component={<ToolGroupExample />}
+  filePath="app/docs/tool/tool-group.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/tool.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/tool.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### Tool
+
+| Prop           | Type           | Default | Description                                      |
+| :------------- | :------------- | :------ | :----------------------------------------------- |
+| toolInvocation | ToolInvocation |         | The tool invocation data to display              |
+| defaultOpen    | boolean        | false   | Whether the tool details are expanded by default |
+| className      | string         |         | Additional CSS classes                           |
+
+### ToolGroup
+
+| Prop        | Type             | Default | Description                              |
+| :---------- | :--------------- | :------ | :--------------------------------------- |
+| tools       | ToolInvocation[] |         | Array of tool invocations to display     |
+| defaultOpen | boolean          | false   | Whether the group is expanded by default |
+| className   | string           |         | Additional CSS classes                   |
+| title       | string           | "Tools" | Title to display for the group           |
+
+### ToolInvocation Type
+
+| Property | Type                                             | Description                       |
+| :------- | :----------------------------------------------- | :-------------------------------- |
+| toolName | string                                           | Name of the tool                  |
+| state    | "pending" \| "running" \| "completed" \| "error" | Current execution state           |
+| args     | `Record<string, unknown>`                        | Arguments passed to the tool      |
+| result   | unknown                                          | Result returned by the tool       |
+| error    | string                                           | Error message if execution failed |

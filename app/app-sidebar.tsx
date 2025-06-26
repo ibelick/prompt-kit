@@ -14,7 +14,7 @@ import {
 import { useBreakpoint } from "@/hooks/use-breakpoint"
 import { cn } from "@/lib/utils"
 import { Slot } from "@radix-ui/react-slot"
-import { cva, VariantProps } from "class-variance-authority"
+import { cva, type VariantProps } from "class-variance-authority"
 import { PanelLeft } from "lucide-react"
 import * as React from "react"
 
@@ -100,7 +100,7 @@ const SidebarProvider = React.forwardRef<
       return isMobileView
         ? setOpenMobile((open) => !open)
         : setOpen((open) => !open)
-    }, [isMobileView, setOpen, setOpenMobile])
+    }, [isMobileView, setOpen])
 
     // Adds a keyboard shortcut to toggle the sidebar.
     React.useEffect(() => {
@@ -133,16 +133,7 @@ const SidebarProvider = React.forwardRef<
         setOpenMobile,
         toggleSidebar,
       }),
-      [
-        state,
-        open,
-        setOpen,
-        isMobileView,
-        isMdView,
-        openMobile,
-        setOpenMobile,
-        toggleSidebar,
-      ]
+      [state, open, setOpen, isMobileView, isMdView, openMobile, toggleSidebar]
     )
 
     return (
