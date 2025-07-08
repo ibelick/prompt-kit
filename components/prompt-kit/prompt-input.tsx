@@ -23,6 +23,7 @@ type PromptInputContextType = {
   maxHeight: number | string
   onSubmit?: () => void
   disabled?: boolean
+  textareaRef: React.RefObject<HTMLTextAreaElement | null>
 }
 
 const PromptInputContext = createContext<PromptInputContextType>({
@@ -32,6 +33,7 @@ const PromptInputContext = createContext<PromptInputContextType>({
   maxHeight: 240,
   onSubmit: undefined,
   disabled: false,
+  textareaRef: React.createRef<HTMLTextAreaElement>(),
 })
 
 function usePromptInput() {
@@ -62,6 +64,7 @@ function PromptInput({
   children,
 }: PromptInputProps) {
   const [internalValue, setInternalValue] = useState(value || "")
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   const handleChange = (newValue: string) => {
     setInternalValue(newValue)
@@ -77,13 +80,15 @@ function PromptInput({
           setValue: onValueChange ?? handleChange,
           maxHeight,
           onSubmit,
+          textareaRef,
         }}
       >
         <div
           className={cn(
-            "border-input bg-background rounded-3xl border p-2 shadow-xs",
+            "border-input bg-background cursor-text rounded-3xl border p-2 shadow-xs",
             className
           )}
+          onClick={() => textareaRef.current?.focus()}
         >
           {children}
         </div>
@@ -102,8 +107,8 @@ function PromptInputTextarea({
   disableAutosize = false,
   ...props
 }: PromptInputTextareaProps) {
-  const { value, setValue, maxHeight, onSubmit, disabled } = usePromptInput()
-  const textareaRef = useRef<HTMLTextAreaElement>(null)
+  const { value, setValue, maxHeight, onSubmit, disabled, textareaRef } =
+    usePromptInput()
 
   useEffect(() => {
     if (disableAutosize) return
@@ -173,7 +178,7 @@ function PromptInputAction({
 
   return (
     <Tooltip {...props}>
-      <TooltipTrigger asChild disabled={disabled}>
+      <TooltipTrigger asChild disabled={disabled} onClick={event => event.stopPropagation()}>
         {children}
       </TooltipTrigger>
       <TooltipContent side={side} className={className}>

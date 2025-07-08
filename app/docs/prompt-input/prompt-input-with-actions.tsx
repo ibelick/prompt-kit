@@ -55,6 +55,7 @@ export function PromptInputWithActions() {
             <div
               key={index}
               className="bg-secondary flex items-center gap-2 rounded-lg px-3 py-2 text-sm"
+              onClick={e => e.stopPropagation()}
             >
               <Paperclip className="size-4" />
               <span className="max-w-[120px] truncate">{file.name}</span>

@@ -57,6 +57,7 @@ export function CustomFileUpload() {
               <div
                 key={index}
                 className="bg-secondary flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-sm"
+                onClick={e => e.stopPropagation()}
               >
                 <div className="flex items-center gap-2">
                   <Paperclip className="size-4" />

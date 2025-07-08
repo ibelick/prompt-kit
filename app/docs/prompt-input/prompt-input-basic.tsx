@@ -14,7 +14,8 @@ export function PromptInputBasic() {
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = () => {
+  const handleSubmit = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.stopPropagation()
     setIsLoading(true)
     setTimeout(() => {
       setIsLoading(false)
@@ -30,7 +31,7 @@ export function PromptInputBasic() {
       value={input}
       onValueChange={handleValueChange}
       isLoading={isLoading}
-      onSubmit={handleSubmit}
+      onSubmit={() => handleSubmit}
       className="w-full max-w-(--breakpoint-md)"
     >
       <PromptInputTextarea placeholder="Ask me anything..." />
@@ -42,7 +43,7 @@ export function PromptInputBasic() {
             variant="default"
             size="icon"
             className="h-8 w-8 rounded-full"
-            onClick={handleSubmit}
+            onClick={() => handleSubmit}
           >
             {isLoading ? (
               <Square className="size-5 fill-current" />

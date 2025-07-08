@@ -142,6 +142,7 @@ function FileUploadTrigger({
       role: "button",
       className: cn(className, child.props.className),
       onClick: (e: React.MouseEvent) => {
+        e.stopPropagation()
         handleClick()
         child.props.onClick?.(e as React.MouseEvent<HTMLElement>)
       },

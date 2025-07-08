@@ -7,7 +7,6 @@ import {
   PromptInputTextarea,
 } from "@/components/prompt-kit/prompt-input"
 import { Button } from "@/components/ui/button"
-import { Arrow } from "@radix-ui/react-tooltip"
 import { ArrowUp, Ellipsis, Globe, Plus, Square } from "lucide-react"
 import { useState } from "react"
 
@@ -43,14 +42,7 @@ export function PromptInputChatGPT() {
           <PromptInputAction
             delayDuration={0}
             className="duration-0 data-[state=closed]:duration-0"
-            tooltip={
-              <div className="bg-black">
-                <Arrow className="fill-black" />
-                <span className="text-xs leading-none font-semibold text-white">
-                  Attach files
-                </span>
-              </div>
-            }
+            tooltip="Attach files"
           >
             <Button
               variant="ghost"
@@ -64,14 +56,7 @@ export function PromptInputChatGPT() {
           <PromptInputAction
             delayDuration={0}
             className="duration-0 data-[state=closed]:duration-0"
-            tooltip={
-              <div className="bg-black">
-                <Arrow className="fill-black" />
-                <span className="text-xs leading-none font-semibold text-white">
-                  Search the web
-                </span>
-              </div>
-            }
+            tooltip="Search the web"
           >
             <Button
               variant="ghost"
@@ -86,14 +71,7 @@ export function PromptInputChatGPT() {
           <PromptInputAction
             delayDuration={0}
             className="duration-0 data-[state=closed]:duration-0"
-            tooltip={
-              <div className="bg-black">
-                <Arrow className="fill-black" />
-                <span className="text-xs leading-none font-semibold text-white">
-                  View tools
-                </span>
-              </div>
-            }
+            tooltip="View tools"
           >
             <Button
               variant="ghost"
@@ -108,14 +86,7 @@ export function PromptInputChatGPT() {
         <PromptInputAction
           delayDuration={0}
           className="duration-0 data-[state=closed]:duration-0"
-          tooltip={
-            <div className="bg-black">
-              <Arrow className="fill-black duration-0" />
-              <span className="text-xs leading-none font-semibold text-white">
-                {isLoading ? "Stop generation" : "Send message"}
-              </span>
-            </div>
-          }
+          tooltip={isLoading ? "Stop generation" : "Send message"}
         >
           <Button
             variant="default"
