@@ -36,13 +36,6 @@ const componentsMenuItems = routes
     url: route.path,
   }))
 
-const blocksMenuItems = routes
-  .filter((route) => route.type === "block")
-  .map((route) => ({
-    title: route.label,
-    url: route.path,
-  }))
-
 const socialMenuItems = [
   {
     title: "GitHub",
