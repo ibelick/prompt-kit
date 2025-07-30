@@ -1,0 +1,88 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
+import { ToolBasic } from "./tool-basic"
+import { ToolStates } from "./tool-states"
+
+export const metadata = generateMetadata(
+  "Tool",
+  "Displays tool call details including input, output, status, and errors. Ideal for visualizing AI tool usage in chat UIs."
+)
+
+# Tool
+
+Displays tool call details including input, output, status, and errors. Ideal for visualizing AI tool usage in chat UIs. **Compatible with AI SDK v5** architecture.
+
+## Examples
+
+### Basic Tool
+
+<ComponentCodePreview
+  component={<ToolBasic />}
+  filePath="app/docs/tool/tool-basic.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### Tool States
+
+Show different states of tool execution: pending, running, completed, and error.
+
+<ComponentCodePreview
+  component={<ToolStates />}
+  filePath="app/docs/tool/tool-states.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/tool.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/tool.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### Tool
+
+| Prop        | Type     | Default | Description                                      |
+| :---------- | :------- | :------ | :----------------------------------------------- |
+| toolPart    | ToolPart |         | The tool invocation data to display              |
+| defaultOpen | boolean  | false   | Whether the tool details are expanded by default |
+| className   | string   |         | Additional CSS classes                           |
+
+### ToolPart
+
+| Prop       | Type                      | Default | Description                                  |
+| :--------- | :------------------------ | :------ | :------------------------------------------- |
+| type       | string                    |         | The type of the tool                         |
+| state      | string                    |         | The state of the tool                        |
+| input      | `Record<string, unknown>` |         | The input data to the tool                   |
+| output     | `Record<string, unknown>` |         | The output data from the tool                |
+| toolCallId | string                    |         | The tool call identifier                     |
+| errorText  | string                    |         | The error text if the tool failed to execute |
