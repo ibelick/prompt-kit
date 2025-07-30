@@ -257,4 +257,12 @@ export const components: ComponentDefinition[] = [
     path: path.join(__dirname, "../components/prompt-kit/jsx-preview.tsx"),
     dependencies: ["react-jsx-parser"],
   },
+  {
+    name: "tool",
+    description:
+      "Displays tool call details including input, output, status, and errors. Ideal for visualizing AI tool usage in chat UIs.",
+    path: path.join(__dirname, "../components/prompt-kit/tool.tsx"),
+    dependencies: ["lucide-react"],
+    registryDependencies: ["collapsible", "button"],
+  },
 ]
