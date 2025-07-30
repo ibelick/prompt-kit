@@ -2,41 +2,39 @@ import { Tool } from "@/components/prompt-kit/tool"
 
 export function ToolStates() {
   return (
-    <div className="flex w-full flex-col items-center justify-center space-y-4">
+    <div className="flex w-full flex-col items-center justify-center space-y-2">
       <Tool
         className="w-full max-w-md"
-        toolInvocation={{
-          toolName: "file_search",
-          state: "pending",
-          args: {
+        toolPart={{
+          type: "file_search",
+          state: "input-streaming",
+          input: {
             pattern: "*.tsx",
             directory: "/components",
           },
         }}
       />
-
       <Tool
         className="w-full max-w-md"
-        toolInvocation={{
-          toolName: "api_call",
-          state: "running",
-          args: {
+        toolPart={{
+          type: "api_call",
+          state: "input-available",
+          input: {
             endpoint: "/api/users",
             method: "GET",
           },
         }}
       />
-
       <Tool
         className="w-full max-w-md"
-        toolInvocation={{
-          toolName: "database_query",
-          state: "completed",
-          args: {
+        toolPart={{
+          type: "database_query",
+          state: "output-available",
+          input: {
             table: "users",
             limit: 10,
           },
-          result: {
+          output: {
             count: 42,
             data: [
               { id: 1, name: "John Doe" },
@@ -48,14 +46,14 @@ export function ToolStates() {
 
       <Tool
         className="w-full max-w-md"
-        toolInvocation={{
-          toolName: "email_send",
-          state: "error",
-          args: {
+        toolPart={{
+          type: "email_send",
+          state: "output-error",
+          output: {
             to: "user@example.com",
             subject: "Welcome!",
           },
-          error: "Failed to connect to SMTP server",
+          errorText: "Failed to connect to SMTP server",
         }}
       />
     </div>

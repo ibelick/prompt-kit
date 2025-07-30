@@ -1,7 +1,6 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
 import { generateMetadata } from "../utils/metadata"
 import { ToolBasic } from "./tool-basic"
-import { ToolGroupExample } from "./tool-group"
 import { ToolStates } from "./tool-states"
 
 export const metadata = generateMetadata(
@@ -30,16 +29,6 @@ Show different states of tool execution: pending, running, completed, and error.
 <ComponentCodePreview
   component={<ToolStates />}
   filePath="app/docs/tool/tool-states.tsx"
-  classNameComponentContainer="p-8"
-/>
-
-### Tool Group
-
-Group multiple tools together for better organization.
-
-<ComponentCodePreview
-  component={<ToolGroupExample />}
-  filePath="app/docs/tool/tool-group.tsx"
   classNameComponentContainer="p-8"
 />
 
@@ -81,28 +70,19 @@ Group multiple tools together for better organization.
 
 ### Tool
 
-| Prop           | Type           | Default | Description                                      |
-| :------------- | :------------- | :------ | :----------------------------------------------- |
-| toolInvocation | ToolInvocation |         | The tool invocation data to display              |
-| defaultOpen    | boolean        | false   | Whether the tool details are expanded by default |
-| className      | string         |         | Additional CSS classes                           |
+| Prop        | Type     | Default | Description                                      |
+| :---------- | :------- | :------ | :----------------------------------------------- |
+| toolPart    | ToolPart |         | The tool invocation data to display              |
+| defaultOpen | boolean  | false   | Whether the tool details are expanded by default |
+| className   | string   |         | Additional CSS classes                           |
 
-### ToolGroup
+### ToolPart
 
-| Prop        | Type             | Default | Description                              |
-| :---------- | :--------------- | :------ | :--------------------------------------- |
-| tools       | ToolInvocation[] |         | Array of tool invocations to display     |
-| defaultOpen | boolean          | false   | Whether the group is expanded by default |
-| className   | string           |         | Additional CSS classes                   |
-| title       | string           | "Tools" | Title to display for the group           |
-
-### ToolInvocation Type
-
-| Property   | Type                                             | Description                       |
-| :--------- | :----------------------------------------------- | :-------------------------------- |
-| toolName   | string                                           | Name of the tool                  |
-| state      | "pending" \| "running" \| "completed" \| "error" | Current execution state           |
-| args       | `Record<string, unknown>`                        | Arguments passed to the tool      |
-| result     | unknown                                          | Result returned by the tool       |
-| error      | string                                           | Error message if execution failed |
-| toolCallId | string                                           | Tool call identifier (AI SDK v5)  |
+| Prop       | Type                      | Default | Description                                  |
+| :--------- | :------------------------ | :------ | :------------------------------------------- |
+| type       | string                    |         | The type of the tool                         |
+| state      | string                    |         | The state of the tool                        |
+| input      | `Record<string, unknown>` |         | The input data to the tool                   |
+| output     | `Record<string, unknown>` |         | The output data from the tool                |
+| toolCallId | string                    |         | The tool call identifier                     |
+| errorText  | string                    |         | The error text if the tool failed to execute |
