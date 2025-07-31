@@ -30,6 +30,15 @@ export default function PrimitivesPage() {
             classNameComponentContainer="p-0 aspect-video h-[650px] w-full overflow-y-auto"
           />
         </div>
+        <div>
+          <h4>Tool calling</h4>
+          <FullStackPreview
+            url={`${baseUrl}/p/tool-calling`}
+            uiFilePath="components/primitives/tool-calling.tsx"
+            apiFilePath="app/api/tool-calling/route.ts"
+            classNameComponentContainer="p-0 aspect-video h-[650px] w-full overflow-y-auto"
+          />
+        </div>
       </LayoutProse>
       <div className="border-border mt-12 flex w-full flex-col items-center justify-center gap-2 rounded-md border border-dashed p-6">
         <p className="text-muted-foreground mb-0.5 text-sm">
