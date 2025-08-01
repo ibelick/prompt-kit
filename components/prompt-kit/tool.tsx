@@ -146,17 +146,16 @@ const Tool = ({ toolPart, defaultOpen = false, className }: ToolProps) => {
               </span>
               {getStateBadge()}
             </div>
-            <ChevronDown
-              className={cn(
-                "h-4 w-4 transition-transform",
-                isOpen && "rotate-180"
-              )}
-            />
+            <ChevronDown className={cn("h-4 w-4", isOpen && "rotate-180")} />
           </Button>
         </CollapsibleTrigger>
-        <CollapsibleContent className="border-border border-t">
+        <CollapsibleContent
+          className={cn(
+            "border-border border-t",
+            "data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down overflow-hidden"
+          )}
+        >
           <div className="bg-background space-y-3 p-3">
-            {/* Show input when available */}
             {input && Object.keys(input).length > 0 && (
               <div>
                 <h4 className="text-muted-foreground mb-2 text-sm font-medium">
