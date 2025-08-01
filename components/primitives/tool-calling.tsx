@@ -221,4 +221,3 @@ function ToolCallingChatbot() {
 }
 
 export default ToolCallingChatbot
-export { ToolCallingChatbot }

@@ -139,6 +139,20 @@ function AppSidebar() {
                 asChild
                 className={cn(
                   "hover:bg-sidebar-accent/50 active:bg-sidebar-accent/50 hover:text-primary text-lg transition-all duration-150 md:text-sm",
+                  pathname.includes("/blocks") &&
+                    "text-primary bg-sidebar-accent hover:bg-sidebar-accent font-medium"
+                )}
+              >
+                <Link href="/blocks" className="-m-2">
+                  Blocks
+                </Link>
+              </SidebarMenuButton>
+            </SidebarGroupLabel>
+            <SidebarGroupLabel className="mt-8 text-lg md:text-sm">
+              <SidebarMenuButton
+                asChild
+                className={cn(
+                  "hover:bg-sidebar-accent/50 active:bg-sidebar-accent/50 hover:text-primary text-lg transition-all duration-150 md:text-sm",
                   pathname.includes("/primitives") &&
                     "text-primary bg-sidebar-accent hover:bg-sidebar-accent font-medium"
                 )}

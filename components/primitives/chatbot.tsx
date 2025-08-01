@@ -161,7 +161,7 @@ function ConversationPromptInput() {
               className="min-h-[44px] pt-3 pl-4 text-base leading-[1.3] sm:text-base md:text-base"
             />
 
-            <PromptInputActions className="mt-5 flex w-full items-center justify-between gap-2 px-3 pb-3">
+            <PromptInputActions className="mt-3 flex w-full items-center justify-between gap-2 p-2">
               <div className="flex items-center gap-2"></div>
               <div className="flex items-center gap-2">
                 <Button
@@ -186,4 +186,3 @@ function ConversationPromptInput() {
 }
 
 export default ConversationPromptInput
-export { ConversationPromptInput }
