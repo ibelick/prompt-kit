@@ -5,17 +5,17 @@ import React from "react"
 
 async function importComponent(componentName: string) {
   try {
-    const module = await import(`@/components/blocks/${componentName}`)
+    const module = await import(`@/components/demo/${componentName}`)
     return module.default || Object.values(module)[0]
   } catch (error) {
-    console.error(`Failed to import component ${componentName}:`, error)
+    console.error(`Failed to import demo component ${componentName}:`, error)
     return null
   }
 }
 
 type Params = Promise<{ componentSlug: string }>
 
-export default async function ComponentPage(props: { params: Params }) {
+export default async function DemoComponentPage(props: { params: Params }) {
   const params = await props.params
   const componentSlug = params.componentSlug
 
@@ -27,7 +27,7 @@ export default async function ComponentPage(props: { params: Params }) {
   const Component = await importComponent(componentSlug)
 
   if (!Component) {
-    console.error(`Component not found: ${componentSlug}`)
+    console.error(`Demo component not found: ${componentSlug}`)
     notFound()
   }
 
@@ -37,12 +37,13 @@ export default async function ComponentPage(props: { params: Params }) {
     </div>
   )
 }
+
 export async function generateStaticParams() {
   try {
-    const componentsDir = path.join(process.cwd(), "components", "blocks")
+    const componentsDir = path.join(process.cwd(), "components", "demo")
 
     if (!fs.existsSync(componentsDir)) {
-      console.warn("Blocks directory not found")
+      console.warn("Demo directory not found")
       return []
     }
 
@@ -51,16 +52,16 @@ export async function generateStaticParams() {
       .filter((file: string) => file.endsWith(".tsx") || file.endsWith(".jsx"))
       .map((file: string) => {
         const component = file.replace(/\.(tsx|jsx)$/, "")
-        console.log("Generated param for component:", component)
+        console.log("Generated param for demo component:", component)
         return {
           componentSlug: component,
         }
       })
 
-    console.log("Generated params:", params)
+    console.log("Generated demo params:", params)
     return params
   } catch (error) {
-    console.error("Error generating static params:", error)
+    console.error("Error generating demo static params:", error)
     return []
   }
 }
