@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { useApiKey } from "@/hooks/use-api-key"
 import { useState } from "react"
 
 export function getOpenAIApiKey(): string | null {
@@ -11,19 +12,32 @@ export function getOpenAIApiKey(): string | null {
   return null
 }
 
+function maskApiKey(apiKey: string | null) {
+  if (!apiKey) return ""
+  return apiKey.replace(/./g, "*")
+}
+
 export function InputByok() {
-  const [apiKey, setApiKey] = useState(getOpenAIApiKey() || "")
-  const [hasApiKey, setHasApiKey] = useState(!!getOpenAIApiKey())
+  const {
+    apiKey: storedApiKey,
+    hasApiKey,
+    saveApiKey,
+    deleteApiKey,
+  } = useApiKey()
+  const [inputValue, setInputValue] = useState(
+    maskApiKey(getOpenAIApiKey()) || ""
+  )
 
   const handleSave = () => {
-    localStorage.setItem("OPENAI_API_KEY", apiKey)
-    setHasApiKey(true)
+    if (inputValue.trim()) {
+      saveApiKey(inputValue.trim())
+      setInputValue(maskApiKey(getOpenAIApiKey()))
+    }
   }
 
   const handleDelete = () => {
-    localStorage.removeItem("OPENAI_API_KEY")
-    setApiKey("")
-    setHasApiKey(false)
+    deleteApiKey()
+    setInputValue("")
   }
 
   return (
@@ -31,16 +45,15 @@ export function InputByok() {
       <div className="relative w-full max-w-xs">
         <Input
           placeholder="OPENAI_API_KEY"
-          value={apiKey}
-          onChange={(e) => setApiKey(e.target.value)}
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
         />
-        {apiKey && (
+        {inputValue && (
           <div className="absolute top-[2px] right-0.5">
             <Button
               size="sm"
               onClick={handleSave}
-              className="h-8 rounded-[6px]"
-              variant="ghost"
+              className="bg-primary text-primary-foreground h-8 rounded-[6px]"
             >
               Save
             </Button>

@@ -44,18 +44,18 @@ export default function PrimitivesPage() {
         <div>
           <h4>Full chatbot</h4>
           <FullStackPreview
-            url={`${baseUrl}/p/chatbot`}
-            uiFilePath="components/primitives/chatbot.tsx"
-            apiFilePath="app/api/chatbot/route.ts"
+            url={`${baseUrl}/demo/chatbot`}
+            uiFilePath="components/demo/chatbot.tsx"
+            apiFilePath="app/api/demo/chatbot/route.ts"
             classNameComponentContainer="p-0 aspect-video h-[650px] w-full overflow-y-auto"
           />
         </div>
         <div>
           <h4>Tool calling</h4>
           <FullStackPreview
-            url={`${baseUrl}/p/tool-calling`}
-            uiFilePath="components/primitives/tool-calling.tsx"
-            apiFilePath="app/api/tool-calling/route.ts"
+            url={`${baseUrl}/demo/tool-calling`}
+            uiFilePath="components/demo/tool-calling.tsx"
+            apiFilePath="app/api/demo/tool-calling/route.ts"
             classNameComponentContainer="p-0 aspect-video h-[650px] w-full overflow-y-auto"
           />
         </div>
