@@ -18,13 +18,18 @@ import {
   PromptInputTextarea,
 } from "@/components/prompt-kit/prompt-input"
 import { Button } from "@/components/ui/button"
-import { useApiKey } from "@/hooks/use-api-key"
 import { cn } from "@/lib/utils"
 import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
 import type { UIMessage } from "ai"
-import { ArrowUp, Copy, ThumbsDown, ThumbsUp } from "lucide-react"
-import { memo, useEffect, useState } from "react"
+import {
+  AlertTriangle,
+  ArrowUp,
+  Copy,
+  ThumbsDown,
+  ThumbsUp,
+} from "lucide-react"
+import { memo, useState } from "react"
 
 type MessageComponentProps = {
   message: UIMessage
@@ -114,11 +119,23 @@ const LoadingMessage = memo(() => (
 
 LoadingMessage.displayName = "LoadingMessage"
 
+const ErrorMessage = memo(({ error }: { error: Error }) => (
+  <Message className="not-prose mx-auto flex w-full max-w-3xl flex-col items-start gap-2 px-0 md:px-6">
+    <div className="group flex w-full flex-col items-start gap-0">
+      <div className="text-primary flex min-w-0 flex-1 flex-row items-center gap-2 rounded-lg border-2 border-red-300 bg-red-300/20 px-2 py-1">
+        <AlertTriangle size={16} className="text-red-500" />
+        <p className="text-red-500">{error.message}</p>
+      </div>
+    </div>
+  </Message>
+))
+
+ErrorMessage.displayName = "ErrorMessage"
+
 function ConversationPromptInput() {
   const [input, setInput] = useState("")
-  const { hasApiKey } = useApiKey()
 
-  const { messages, sendMessage, status } = useChat({
+  const { messages, sendMessage, status, error } = useChat({
     transport: new DefaultChatTransport({
       api: "/api/demo/chatbot",
       fetch: async (input: RequestInfo | URL, init?: RequestInit) => {
@@ -159,6 +176,7 @@ function ConversationPromptInput() {
           })}
 
           {status === "submitted" && <LoadingMessage />}
+          {status === "error" && error && <ErrorMessage error={error} />}
         </ChatContainerContent>
       </ChatContainerRoot>
       <div className="inset-x-0 bottom-0 mx-auto w-full max-w-3xl shrink-0 px-3 pb-3 md:px-5 md:pb-5">
@@ -180,11 +198,13 @@ function ConversationPromptInput() {
               <div className="flex items-center gap-2">
                 <Button
                   size="icon"
-                  disabled={!input.trim() || status !== "ready"}
+                  disabled={
+                    !input.trim() || (status !== "ready" && status !== "error")
+                  }
                   onClick={handleSubmit}
                   className="size-9 rounded-full"
                 >
-                  {status === "ready" ? (
+                  {status === "ready" || status === "error" ? (
                     <ArrowUp size={18} />
                   ) : (
                     <span className="size-3 rounded-xs bg-white" />
