@@ -18,12 +18,7 @@ function maskApiKey(apiKey: string | null) {
 }
 
 export function InputByok() {
-  const {
-    apiKey: storedApiKey,
-    hasApiKey,
-    saveApiKey,
-    deleteApiKey,
-  } = useApiKey()
+  const { apiKey, hasApiKey, saveApiKey, deleteApiKey } = useApiKey()
   const [inputValue, setInputValue] = useState(
     maskApiKey(getOpenAIApiKey()) || ""
   )
