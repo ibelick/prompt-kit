@@ -1,5 +1,11 @@
 import { openai } from "@ai-sdk/openai"
-import { convertToModelMessages, streamText, tool, UIMessage } from "ai"
+import {
+  convertToModelMessages,
+  stepCountIs,
+  streamText,
+  tool,
+  UIMessage,
+} from "ai"
 import { z } from "zod"
 
 // Allow streaming responses up to 30 seconds
@@ -13,6 +19,7 @@ export async function POST(req: Request) {
     system:
       "You are a helpful assistant with access to tools. Use the getCurrentDate tool when users ask about dates, time, or current information. You are also able to use the getTime tool to get the current time in a specific timezone.",
     messages: convertToModelMessages(messages),
+    stopWhen: stepCountIs(5),
     tools: {
       getTime: tool({
         description: "Get the current time in a specific timezone",
