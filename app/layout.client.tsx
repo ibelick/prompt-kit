@@ -157,8 +157,11 @@ function AppSidebar() {
                     "text-primary bg-sidebar-accent hover:bg-sidebar-accent font-medium"
                 )}
               >
-                <Link href="/primitives" className="-m-2">
+                <Link href="/primitives" className="relative -m-2">
                   Primitives
+                  <div className="absolute top-[5px] right-[10px]">
+                    <span className="text-primary text-xs">new</span>
+                  </div>
                 </Link>
               </SidebarMenuButton>
             </SidebarGroupLabel>
@@ -239,8 +242,9 @@ export function LayoutClient({ children }: { children: React.ReactNode }) {
   const isPrimitivesPage = usePathname() === "/primitives"
   const isComponentPage = usePathname().includes("/c/")
   const isFullStackPreview = usePathname().includes("/p/")
+  const isDemoPage = usePathname().includes("/demo/")
 
-  if (isComponentPage || isFullStackPreview) {
+  if (isComponentPage || isFullStackPreview || isDemoPage) {
     return <>{children}</>
   }
 
