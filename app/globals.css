@@ -2,7 +2,7 @@
 /*
   ---break---
 */
-@plugin 'tailwindcss-animate';
+@import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 
 /*
