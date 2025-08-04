@@ -109,9 +109,15 @@ export const routes: Route[] = [
     type: "component",
   },
   {
-    path: "/docs/blocks",
-    label: "Blocks",
+    path: "/docs/source",
+    label: "Source",
     order: 17,
+    type: "component",
+  },
+  {
+    path: "/blocks",
+    label: "Blocks",
+    order: 18,
     type: "block",
   },
 ]

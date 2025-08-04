@@ -1,0 +1,90 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
+import { SourceBasic } from "./source-basic"
+import { SourceCustom } from "./source-custom"
+
+export const metadata = generateMetadata(
+  "Source",
+  "Displays website sources used by AI-generated content, showing URL details, titles, and descriptions on hover."
+)
+
+# Source
+
+Displays website sources used by AI-generated content, showing URL details, titles, and descriptions on hover.
+
+## Examples
+
+### Basic Source
+
+<ComponentCodePreview
+  component={<SourceBasic />}
+  filePath="app/docs/source/source-basic.tsx"
+  classNameComponentContainer="p-0"
+/>
+
+### Custom Source
+
+<ComponentCodePreview
+  component={<SourceCustom />}
+  filePath="app/docs/source/source-custom.tsx"
+  classNameComponentContainer="p-0"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/source.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/source.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### Source
+
+| Prop     | Type            | Default | Description            |
+| :------- | :-------------- | :------ | :--------------------- |
+| href     | string          |         | The URL of the source  |
+| children | React.ReactNode |         | The content to display |
+
+### SourceTrigger
+
+| Prop        | Type    | Default | Description                 |
+| :---------- | :------ | :------ | :-------------------------- |
+| label       | string  |         | The label to display        |
+| showFavicon | boolean | false   | Whether to show the favicon |
+| className   | string  |         | Additional CSS classes      |
+
+### SourceContent
+
+| Prop        | Type   | Default | Description                |
+| :---------- | :----- | :------ | :------------------------- |
+| title       | string |         | The title to display       |
+| description | string |         | The description to display |
+| className   | string |         | Additional CSS classes     |

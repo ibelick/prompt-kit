@@ -265,4 +265,11 @@ export const components: ComponentDefinition[] = [
     dependencies: ["lucide-react"],
     registryDependencies: ["collapsible", "button"],
   },
+  {
+    name: "source",
+    description:
+      "Displays website sources used by AI-generated content, showing URL details, titles, and descriptions on hover.",
+    path: path.join(__dirname, "../components/prompt-kit/source.tsx"),
+    registryDependencies: ["hover-card"],
+  },
 ]

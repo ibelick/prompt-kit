@@ -62,13 +62,13 @@ for (const component of components) {
 const registryItems = components.map((component) => {
   // Get file content for each component
   const content = fs.readFileSync(component.path, "utf8")
-  
+
   const componentFiles = [
     {
       path: `components/prompt-kit/${path.basename(component.path)}`,
       type: "registry:component",
-      content
-    }
+      content,
+    },
   ]
 
   // Add additional files if specified
@@ -78,7 +78,7 @@ const registryItems = components.map((component) => {
       componentFiles.push({
         path: `components/prompt-kit/${file.name}`,
         type: "registry:component",
-        content: fileContent
+        content: fileContent,
       })
     }
   }
@@ -86,21 +86,24 @@ const registryItems = components.map((component) => {
   return {
     name: component.name,
     type: "registry:ui",
-    title: component.name.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+    title: component.name
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" "),
     description: component.description,
     dependencies: component.dependencies || [],
     devDependencies: component.devDependencies || [],
     registryDependencies: component.registryDependencies || [],
     files: componentFiles,
-    categories: ["ai", "prompt-kit"]
+    categories: ["ai", "prompt-kit"],
   }
 })
 
 const registry = {
-  "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "prompt-kit",
-  "homepage": "https://prompt-kit.com",
-  "items": registryItems
+  $schema: "https://ui.shadcn.com/schema/registry.json",
+  name: "prompt-kit",
+  homepage: "https://prompt-kit.com",
+  items: registryItems,
 }
 
 fs.writeFileSync(
