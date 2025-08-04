@@ -42,7 +42,7 @@ Displays website sources used by AI-generated content, showing URL details, titl
 <TabsContent value="cli">
 
 <CodeBlock
-  code={`npx shadcn add "https://prompt-kit.com/c/jsx-preview.json"`}
+  code={`npx shadcn add "https://prompt-kit.com/c/source.json"`}
   language="bash"
 />
 
@@ -54,7 +54,7 @@ Displays website sources used by AI-generated content, showing URL details, titl
 
 <Step>Copy and paste the following code into your project.</Step>
 
-<CodeBlock filePath="components/prompt-kit/jsx-preview.tsx" language="tsx" />
+<CodeBlock filePath="components/prompt-kit/source.tsx" language="tsx" />
 
 <Step>Update the import paths to match your project setup.</Step>
 
@@ -66,11 +66,25 @@ Displays website sources used by AI-generated content, showing URL details, titl
 
 ## Component API
 
-### JSXPreview
+### Source
 
-| Prop        | Type             | Default | Description                                                          |
-| :---------- | :--------------- | :------ | :------------------------------------------------------------------- |
-| jsx         | string           |         | The JSX string to render                                             |
-| isStreaming | boolean          | false   | Whether the JSX is being streamed (enables automatic tag completion) |
-| className   | string           |         | Additional CSS classes                                               |
-| ...props    | `JsxParserProps` |         | All other props from `react-jsx-parser`                              |
+| Prop     | Type            | Default | Description            |
+| :------- | :-------------- | :------ | :--------------------- |
+| href     | string          |         | The URL of the source  |
+| children | React.ReactNode |         | The content to display |
+
+### SourceTrigger
+
+| Prop        | Type    | Default | Description                 |
+| :---------- | :------ | :------ | :-------------------------- |
+| label       | string  |         | The label to display        |
+| showFavicon | boolean | false   | Whether to show the favicon |
+| className   | string  |         | Additional CSS classes      |
+
+### SourceContent
+
+| Prop        | Type   | Default | Description                |
+| :---------- | :----- | :------ | :------------------------- |
+| title       | string |         | The title to display       |
+| description | string |         | The description to display |
+| className   | string |         | Additional CSS classes     |

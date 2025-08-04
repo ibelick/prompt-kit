@@ -87,13 +87,18 @@ export function SourceTrigger({
 export type SourceContentProps = {
   title: string
   description: string
+  className?: string
 }
 
-export function SourceContent({ title, description }: SourceContentProps) {
+export function SourceContent({
+  title,
+  description,
+  className,
+}: SourceContentProps) {
   const { href, domain } = useSourceContext()
 
   return (
-    <HoverCardContent className="w-80 p-0 shadow-xs">
+    <HoverCardContent className={cn("w-80 p-0 shadow-xs", className)}>
       <a
         href={href}
         target="_blank"
