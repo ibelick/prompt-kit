@@ -74,7 +74,7 @@ export const primitives = [
       "marked",
       "remark-breaks",
     ],
-    registryDependencies: ["avatar", "tooltip", "textarea"],
+    registryDependencies: ["avatar", "tooltip", "textarea", "collapsible"],
     files: [
       {
         path: "components/primitives/tool-calling.tsx",

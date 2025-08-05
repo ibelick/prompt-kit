@@ -19,7 +19,8 @@
   "registryDependencies": [
     "avatar",
     "tooltip",
-    "textarea"
+    "textarea",
+    "collapsible"
   ],
   "files": [
     {
