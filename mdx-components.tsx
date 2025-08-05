@@ -1,10 +1,8 @@
-import { ClientCodeWrapper } from "@/components/app/client-code-wrapper"
+import { DocCodeBlock } from "@/components/app/doc-code-block"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { codeToHtml } from "@/lib/shiki"
 import { cn } from "@/lib/utils"
 import type { MDXComponents } from "mdx/types"
 import Link from "next/link"
-import { extractCodeFromFilePath } from "./lib/code"
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -36,19 +34,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       code: string
       filePath?: string
     } & React.HTMLAttributes<HTMLDivElement>) => {
-      const fileContent = filePath
-        ? extractCodeFromFilePath(filePath)
-        : code || ""
-      const html = await codeToHtml({ code: fileContent, lang: language })
-
       return (
-        <ClientCodeWrapper code={fileContent}>
-          <div
-            dangerouslySetInnerHTML={{ __html: html }}
-            className="not-prose bg-background overflow-auto rounded-md border border-zinc-200 p-2 text-[13px]"
-            {...props}
-          />
-        </ClientCodeWrapper>
+        <DocCodeBlock
+          language={language}
+          code={code}
+          filePath={filePath}
+          {...props}
+        />
       )
     },
     Step: ({ className, children, ...props }: React.ComponentProps<"h3">) => (

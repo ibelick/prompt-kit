@@ -1,4 +1,5 @@
 import { InputByok } from "@/app/primitives/demo/input-byok"
+import { DocCodeBlock } from "@/components/app/doc-code-block"
 import FullStackPreview from "@/components/app/fullstack-preview"
 import { LayoutProse } from "@/components/app/layout-prose"
 import { Button } from "@/components/ui/button"
@@ -49,6 +50,10 @@ export default function PrimitivesPage() {
             apiFilePath="app/api/demo/chatbot/route.ts"
             classNameComponentContainer="p-0 aspect-video h-[650px] w-full overflow-y-auto"
           />
+          <DocCodeBlock
+            language="bash"
+            code={`npx shadcn@latest add "https://prompt-kit.com/c/chatbot.json"`}
+          />
         </div>
         <div>
           <h4>Tool calling</h4>
@@ -57,6 +62,10 @@ export default function PrimitivesPage() {
             uiFilePath="components/demo/tool-calling.tsx"
             apiFilePath="app/api/demo/tool-calling/route.ts"
             classNameComponentContainer="p-0 aspect-video h-[650px] w-full overflow-y-auto"
+          />
+          <DocCodeBlock
+            language="bash"
+            code={`npx shadcn@latest add "https://prompt-kit.com/c/tool-calling.json"`}
           />
         </div>
       </LayoutProse>

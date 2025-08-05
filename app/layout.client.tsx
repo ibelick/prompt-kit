@@ -159,7 +159,7 @@ function AppSidebar() {
               >
                 <Link href="/primitives" className="relative -m-2">
                   Primitives
-                  <div className="absolute top-[5px] right-[10px]">
+                  <div className="absolute top-[5px] right-[10px] leading-none">
                     <span className="text-primary text-xs">new</span>
                   </div>
                 </Link>
