@@ -15,14 +15,19 @@ prompt-kit is built on top of shadcn/ui and extends it with specialized componen
 - [components/prompt-kit/code-block.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/code-block.tsx): A component for displaying code snippets with syntax highlighting and customizable styling
 - [components/prompt-kit/markdown.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/markdown.tsx): A component for rendering Markdown content with support for code blocks, GFM, and custom styling
 - [components/prompt-kit/message.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/message.tsx): A component for displaying chat messages with support for avatars, markdown content, and interactive actions
-- [components/prompt-kit/chat-container.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/chat-container.tsx): A component for creating chat interfaces with intelligent auto-scrolling behavior for a smooth user experience
-- [components/prompt-kit/scroll-button.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/scroll-button.tsx): A floating button component that appears when users scroll up in a container, allowing them to quickly return to the bottom
-- [components/prompt-kit/loader.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/loader.tsx): A component for displaying loading indicators with multiple variants and customizable styling
-- [components/prompt-kit/prompt-suggestion.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/prompt-suggestion.tsx): A component for implementing interactive prompt suggestions in AI interfaces with both normal and highlight modes
-- [components/prompt-kit/response-stream.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/response-stream.tsx): A component for displaying text with streaming animations, perfect for AI responses or progressively appearing text
-- [components/prompt-kit/reasoning.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/reasoning.tsx): A component for displaying collapsible reasoning or thought process content, perfect for showing AI "thinking"
-- [components/prompt-kit/file-upload.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/file-upload.tsx): A component for creating drag-and-drop file upload interfaces with support for single or multiple files
-- [components/prompt-kit/jsx-preview.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/jsx-preview.tsx): A component for rendering JSX strings as React components, with support for streaming content and tag completion
+- [components/prompt-kit/chat-container.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/chat-container.tsx): A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth and responsive user experience
+- [components/prompt-kit/scroll-button.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/scroll-button.tsx): A floating button component that appears when users scroll up in a container, allowing them to quickly return to the bottom of the content
+- [components/prompt-kit/loader.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/loader.tsx): A component for displaying a loading indicator with multiple variants and customizable styling
+- [components/prompt-kit/response-stream.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/response-stream.tsx): A component to simulate streaming text on the client side, perfect for fake responses, or any controlled progressive text display.
+- [components/prompt-kit/file-upload.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/file-upload.tsx): A component for creating drag-and-drop file upload interfaces with support for single or multiple files, custom triggers, and visual feedback during file dragging operations.
+- [components/prompt-kit/jsx-preview.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/jsx-preview.tsx): A component for rendering JSX strings as React components, with support for streaming content and automatic tag completion.
+- [components/prompt-kit/tool.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/tool.tsx): Displays tool call details including input, output, status, and errors. Ideal for visualizing AI tool usage in chat UIs.
+- [components/prompt-kit/source.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/source.tsx): Displays website sources used by AI-generated content, showing URL details, titles, and descriptions on hover.
+
+## Primitives
+
+- [Chatbot](https://www.prompt-kit.com/primitives/chatbot): A chatbot component that allows users to chat with an AI model. It uses prompt-kit, shadcn/ui, and AI SDK V5.
+- [Tool calling](https://www.prompt-kit.com/primitives/tool-calling): A chatbot with tool calling feature. It uses prompt-kit, shadcn/ui, and AI SDK V5.
 
 ## Optional
 
