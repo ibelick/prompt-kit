@@ -159,8 +159,8 @@ function AppSidebar() {
               >
                 <Link href="/primitives" className="relative -m-2">
                   Primitives
-                  <div className="absolute top-[5px] right-[10px] leading-none">
-                    <span className="text-primary text-xs">new</span>
+                  <div className="text-primary absolute top-[10px] right-[10px] text-xs leading-none">
+                    new
                   </div>
                 </Link>
               </SidebarMenuButton>
