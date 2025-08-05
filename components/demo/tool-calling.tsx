@@ -223,20 +223,22 @@ function ToolCallingChatbot() {
         >
           <div className="flex flex-col">
             <PromptInputTextarea
-              placeholder="Ask about the current date and time..."
+              placeholder="Ask anything"
               className="min-h-[44px] pt-3 pl-4 text-base leading-[1.3] sm:text-base md:text-base"
             />
 
-            <PromptInputActions className="mt-5 flex w-full items-center justify-between gap-2 px-3 pb-3">
+            <PromptInputActions className="mt-3 flex w-full items-center justify-between gap-2 p-2">
               <div />
               <div className="flex items-center gap-2">
                 <Button
                   size="icon"
-                  disabled={!input.trim() || status !== "ready"}
+                  disabled={
+                    !input.trim() || (status !== "ready" && status !== "error")
+                  }
                   onClick={handleSubmit}
                   className="size-9 rounded-full"
                 >
-                  {status === "ready" ? (
+                  {status === "ready" || status === "error" ? (
                     <ArrowUp size={18} />
                   ) : (
                     <span className="size-3 rounded-xs bg-white" />
