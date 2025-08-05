@@ -109,7 +109,7 @@ function AppSidebar() {
                 })}
               </SidebarMenu>
             </SidebarGroupContent>
-            <SidebarGroupLabel className={cn("mt-8 text-lg md:text-sm")}>
+            <SidebarGroupLabel className="mt-8 text-lg md:text-sm">
               Components
             </SidebarGroupLabel>
             <SidebarGroupContent>
@@ -165,7 +165,7 @@ function AppSidebar() {
                 </Link>
               </SidebarMenuButton>
             </SidebarGroupLabel>
-            <SidebarGroupLabel className={cn("mt-8 text-lg md:text-sm")}>
+            <SidebarGroupLabel className="mt-8 text-lg md:text-sm">
               LLMs
             </SidebarGroupLabel>
             <SidebarGroupContent>

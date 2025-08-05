@@ -2,7 +2,7 @@ export type Route = {
   path: string
   label: string
   order: number
-  type: "component" | "core" | "block"
+  type: "component" | "core" | "block" | "primitive"
 }
 
 export const routes: Route[] = [
@@ -119,6 +119,12 @@ export const routes: Route[] = [
     label: "Blocks",
     order: 18,
     type: "block",
+  },
+  {
+    path: "/primitives",
+    label: "Primitives",
+    order: 19,
+    type: "primitive",
   },
 ]
 

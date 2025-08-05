@@ -1,8 +1,8 @@
 import { InputByok } from "@/app/primitives/demo/input-byok"
+import { ContributeCta } from "@/components/app/contribute-cta"
 import { DocCodeBlock } from "@/components/app/doc-code-block"
 import FullStackPreview from "@/components/app/fullstack-preview"
 import { LayoutProse } from "@/components/app/layout-prose"
-import { Button } from "@/components/ui/button"
 import { getBaseUrl } from "@/lib/utils"
 import { generateMetadata } from "../docs/utils/metadata"
 
@@ -69,20 +69,7 @@ export default function PrimitivesPage() {
           />
         </div>
       </LayoutProse>
-      <div className="border-border mt-12 flex w-full flex-col items-center justify-center gap-2 rounded-md border border-dashed p-6">
-        <p className="text-muted-foreground mb-0.5 text-sm">
-          Something missing?
-        </p>
-        <Button variant="outline" asChild size="sm">
-          <a
-            href="https://github.com/ibelick/prompt-kit/issues/new?title=%5BBlock+Request%5D+&labels=block&template=block_request.yml"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Suggest a new block
-          </a>
-        </Button>
-      </div>
+      <ContributeCta type="primitive" />
     </div>
   )
 }
