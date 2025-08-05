@@ -14,7 +14,7 @@ export function getOpenAIApiKey(): string | null {
 
 function maskApiKey(apiKey: string | null) {
   if (!apiKey) return ""
-  return apiKey.replace(/./g, "*")
+  return apiKey.slice(0, 4) + "..." + apiKey.slice(-4)
 }
 
 export function InputByok() {
@@ -48,7 +48,7 @@ export function InputByok() {
             <Button
               size="sm"
               onClick={handleSave}
-              className="bg-primary text-primary-foreground h-8 rounded-[6px]"
+              className="bg-primary text-primary-foreground relative h-8 rounded-[6px]"
             >
               Save
             </Button>

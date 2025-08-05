@@ -136,7 +136,7 @@ function ConversationPromptInput() {
 
   const { messages, sendMessage, status, error } = useChat({
     transport: new DefaultChatTransport({
-      api: "/api/chatbot",
+      api: "/api/primitives/chatbot",
     }),
   })
 

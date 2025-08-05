@@ -156,7 +156,7 @@ function ToolCallingChatbot() {
 
   const { messages, sendMessage, status, error } = useChat({
     transport: new DefaultChatTransport({
-      api: "/api/tool-calling",
+      api: "/api/primitives/tool-calling",
     }),
   })
 

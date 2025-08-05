@@ -1,6 +1,6 @@
 "use client"
 
-import { getOpenAIApiKey, InputByok } from "@/app/primitives/demo/input-byok"
+import { getOpenAIApiKey } from "@/app/primitives/demo/input-byok"
 import {
   ChatContainerContent,
   ChatContainerRoot,
