@@ -2,12 +2,13 @@
 
 > prompt-kit is a library of customizable, high-quality UI components for AI applications. It provides ready-to-use components for building chat experiences, AI agents, autonomous assistants, and more, with a focus on rapid development and beautiful design.
 
+prompt-kit is built on top of shadcn/ui and extends it with specialized components for AI interfaces. It uses Next.js, React 19, and Tailwind CSS. The components are designed to be easily customizable and can be installed individually using the shadcn CLI.
+
 ## Table of Contents
 
 - [Installation](#installation)
 - [Introduction](#introduction)
 - [Components](#components)
-- [Blocks](#blocks)
   - [Prompt input](#prompt-input)
   - [Code block](#code-block)
   - [Markdown](#markdown)
@@ -20,6 +21,10 @@
   - [Reasoning](#reasoning)
   - [File upload](#file-upload)
   - [Jsx preview](#jsx-preview)
+  - [Tool](#tool)
+  - [Source](#source)
+- [Blocks](#blocks)
+- [Primitives](#primitives)
 - [Showcase](#showcase)
 
 ## Components
@@ -1274,9 +1279,11 @@ export const metadata = generateMetadata(
   "A component to simulate streaming text on the client side, perfect for fake responses, or any controlled progressive text display."
 )
 
-# Response Stream
+# Response Stream (experimental)
 
 A component to simulate streaming text on the client side, perfect for fake responses, or any controlled progressive text display.
+
+**We don't recommend to use it for LLM output.**
 
 ## Examples
 
@@ -1611,7 +1618,7 @@ export const metadata = generateMetadata(
   "A component for rendering JSX strings as React components, with support for streaming content and automatic tag completion."
 )
 
-# JSX Preview
+# JSX Preview (experimental)
 
 A component for rendering JSX strings as React components, with support for streaming content and automatic tag completion.
 
@@ -1682,6 +1689,188 @@ The `isStreaming` prop enables real-time rendering of JSX as it's being streamed
 | isStreaming | boolean          | false   | Whether the JSX is being streamed (enables automatic tag completion) |
 | className   | string           |         | Additional CSS classes                                               |
 | ...props    | `JsxParserProps` |         | All other props from `react-jsx-parser`                              |
+
+
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
+import { ToolBasic } from "./tool-basic"
+import { ToolStates } from "./tool-states"
+
+export const metadata = generateMetadata(
+  "Tool",
+  "Displays tool call details including input, output, status, and errors. Ideal for visualizing AI tool usage in chat UIs."
+)
+
+# Tool
+
+Displays tool call details including input, output, status, and errors. Ideal for visualizing AI tool usage in chat UIs. **Compatible with AI SDK v5** architecture.
+
+## Examples
+
+### Basic Tool
+
+<ComponentCodePreview
+  component={<ToolBasic />}
+  filePath="app/docs/tool/tool-basic.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### Tool States
+
+Show different states of tool execution: pending, running, completed, and error.
+
+<ComponentCodePreview
+  component={<ToolStates />}
+  filePath="app/docs/tool/tool-states.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/tool.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/tool.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### Tool
+
+| Prop        | Type     | Default | Description                                      |
+| :---------- | :------- | :------ | :----------------------------------------------- |
+| toolPart    | ToolPart |         | The tool invocation data to display              |
+| defaultOpen | boolean  | false   | Whether the tool details are expanded by default |
+| className   | string   |         | Additional CSS classes                           |
+
+### ToolPart
+
+| Prop       | Type                      | Default | Description                                  |
+| :--------- | :------------------------ | :------ | :------------------------------------------- |
+| type       | string                    |         | The type of the tool                         |
+| state      | string                    |         | The state of the tool                        |
+| input      | `Record<string, unknown>` |         | The input data to the tool                   |
+| output     | `Record<string, unknown>` |         | The output data from the tool                |
+| toolCallId | string                    |         | The tool call identifier                     |
+| errorText  | string                    |         | The error text if the tool failed to execute |
+
+
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
+import { SourceBasic } from "./source-basic"
+import { SourceCustom } from "./source-custom"
+
+export const metadata = generateMetadata(
+  "Source",
+  "Displays website sources used by AI-generated content, showing URL details, titles, and descriptions on hover."
+)
+
+# Source
+
+Displays website sources used by AI-generated content, showing URL details, titles, and descriptions on hover.
+
+## Examples
+
+### Basic Source
+
+<ComponentCodePreview
+  component={<SourceBasic />}
+  filePath="app/docs/source/source-basic.tsx"
+  classNameComponentContainer="p-0"
+/>
+
+### Custom Source
+
+<ComponentCodePreview
+  component={<SourceCustom />}
+  filePath="app/docs/source/source-custom.tsx"
+  classNameComponentContainer="p-0"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/source.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/source.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### Source
+
+| Prop     | Type            | Default | Description            |
+| :------- | :-------------- | :------ | :--------------------- |
+| href     | string          |         | The URL of the source  |
+| children | React.ReactNode |         | The content to display |
+
+### SourceTrigger
+
+| Prop        | Type    | Default | Description                 |
+| :---------- | :------ | :------ | :-------------------------- |
+| label       | string  |         | The label to display        |
+| showFavicon | boolean | false   | Whether to show the favicon |
+| className   | string  |         | Additional CSS classes      |
+
+### SourceContent
+
+| Prop        | Type   | Default | Description                |
+| :---------- | :----- | :------ | :------------------------- |
+| title       | string |         | The title to display       |
+| description | string |         | The description to display |
+| className   | string |         | Additional CSS classes     |
 
 
 ## Showcase
@@ -1806,12 +1995,55 @@ Available blocks:
 
 All blocks are available at [prompt-kit.com/blocks](https://www.prompt-kit.com/blocks).
 
+## Primitives
+
+Ready-to-use primitives for AI applications. These are complete, production-ready components that you can install and use immediately in your projects. They include both frontend components and backend API routes.
+
+Available primitives:
+
+### Chatbot
+
+**Name**: `chatbot`  
+**Description**: A chatbot component that allows users to chat with an AI model. It uses prompt-kit, shadcn/ui, and AI SDK V5.
+
+**Installation**:
+```bash
+npx shadcn add "https://prompt-kit.com/c/chatbot.json"
+```
+
+**Features**:
+- Complete frontend and backend implementation
+- Built with prompt-kit components
+- shadcn/ui compatible
+- Type-safe with TypeScript
+- Production ready
+
+### Tool calling
+
+**Name**: `tool-calling`  
+**Description**: A chatbot with tool calling feature. It uses prompt-kit, shadcn/ui, and AI SDK V5.
+
+**Installation**:
+```bash
+npx shadcn add "https://prompt-kit.com/c/tool-calling.json"
+```
+
+**Features**:
+- Complete frontend and backend implementation
+- Built with prompt-kit components
+- shadcn/ui compatible
+- Type-safe with TypeScript
+- Production ready
+
+All primitives are available as registry items that can be installed via the shadcn CLI. Each primitive includes both the React component and any necessary API routes.
+
 ## Resources
 
 - [GitHub Repository](https://github.com/ibelick/prompt-kit): Source code and issues
 - [Installation Guide](https://www.prompt-kit.com/docs/installation): Detailed installation instructions
 - [Component Documentation](https://www.prompt-kit.com/docs): Complete component API documentation
 - [Blocks](https://www.prompt-kit.com/blocks): Building blocks for AI apps
+- [Primitives](https://www.prompt-kit.com/primitives): Ready-to-use AI primitives
 - [shadcn/ui Documentation](https://ui.shadcn.com): Documentation for the underlying UI component system
 - [Next.js Documentation](https://nextjs.org/docs): Documentation for the Next.js framework
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs): Documentation for the Tailwind CSS framework

@@ -1,6 +1,7 @@
 import fs from "fs"
 import path from "path"
 import { components } from "./registry-components"
+import { primitives } from "./registry-primitives"
 import { Schema } from "./registry-schema"
 
 const registryComponents = path.join(__dirname, "../public/c")
@@ -58,8 +59,58 @@ for (const component of components) {
   )
 }
 
+// Process primitives
+for (const primitive of primitives) {
+  const files = []
+
+  // Process each file in the primitive
+  for (const file of primitive.files) {
+    const filePath = path.join(__dirname, `../${file.path}`)
+
+    if (!fs.existsSync(filePath)) {
+      console.warn(
+        `Warning: File not found for primitive ${primitive.name}: ${filePath}`
+      )
+      continue
+    }
+
+    const content = fs.readFileSync(filePath, "utf8")
+
+    // Create the file object according to shadcn spec
+    const fileObj: any = {
+      path: file.path,
+      content,
+      type: file.type as "registry:component" | "registry:file",
+    }
+
+    // Add target for registry:file types (required by shadcn spec)
+    if (file.type === "registry:file") {
+      fileObj.target = file.path
+    }
+
+    files.push(fileObj)
+  }
+
+  const schema = {
+    name: primitive.name,
+    type: "registry:item",
+    title: primitive.title,
+    description: primitive.description,
+    dependencies: primitive.dependencies || [],
+    devDependencies: (primitive as any).devDependencies || [],
+    registryDependencies: (primitive as any).registryDependencies || [],
+    files,
+    envVars: primitive.envVars || {},
+  } satisfies Schema
+
+  fs.writeFileSync(
+    path.join(registryComponents, `${primitive.name}.json`),
+    JSON.stringify(schema, null, 2)
+  )
+}
+
 // Generate consolidated registry.json file in shadcn/ui format
-const registryItems = components.map((component) => {
+const componentItems = components.map((component) => {
   // Get file content for each component
   const content = fs.readFileSync(component.path, "utf8")
 
@@ -99,6 +150,49 @@ const registryItems = components.map((component) => {
   }
 })
 
+// Generate primitive items for registry
+const primitiveItems = primitives.map((primitive) => {
+  const primitiveFiles = []
+
+  // Process each file in the primitive
+  for (const file of primitive.files) {
+    const filePath = path.join(__dirname, `../${file.path}`)
+
+    if (fs.existsSync(filePath)) {
+      const content = fs.readFileSync(filePath, "utf8")
+
+      // Create the file object according to shadcn spec
+      const fileObj: any = {
+        path: file.path,
+        type: file.type as "registry:component" | "registry:file",
+        content,
+      }
+
+      // Add target for registry:file types (required by shadcn spec)
+      if (file.type === "registry:file") {
+        fileObj.target = file.path
+      }
+
+      primitiveFiles.push(fileObj)
+    }
+  }
+
+  return {
+    name: primitive.name,
+    type: "registry:item",
+    title: primitive.title,
+    description: primitive.description,
+    dependencies: primitive.dependencies || [],
+    devDependencies: (primitive as any).devDependencies || [],
+    registryDependencies: (primitive as any).registryDependencies || [],
+    files: primitiveFiles,
+    envVars: primitive.envVars || {},
+    categories: ["ai", "prompt-kit"],
+  }
+})
+
+const registryItems = [...componentItems, ...primitiveItems]
+
 const registry = {
   $schema: "https://ui.shadcn.com/schema/registry.json",
   name: "prompt-kit",
@@ -112,3 +206,6 @@ fs.writeFileSync(
 )
 
 console.log(`Registry files generated in ${registryComponents}`)
+console.log(
+  `Generated ${components.length} components and ${primitives.length} primitives`
+)

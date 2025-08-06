@@ -1,12 +1,12 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
+import { ContributeCta } from "@/components/app/contribute-cta"
 import { LayoutProse } from "@/components/app/layout-prose"
-import { Button } from "@/components/ui/button"
 import { getBaseUrl } from "@/lib/utils"
 import { generateMetadata } from "../docs/utils/metadata"
 
 export const metadata = generateMetadata(
   "Blocks",
-  "Building blocks for AI apps. Clean, composable blocks built with shadcn/ui and prompt-kit. Use them to ship faster, works with any React framework."
+  "Clean blocks of UI for AI applications built with shadcn/ui and prompt-kit. Use them to ship faster, works with any React framework."
 )
 
 export default function BlocksPage() {
@@ -16,10 +16,11 @@ export default function BlocksPage() {
     <div className="mb-12 flex flex-col items-start">
       <div className="mb-10 flex flex-col gap-1 text-pretty">
         <p className="text-primary text-3xl font-[450] tracking-tight">
-          Building blocks for AI apps.
+          Blocks
         </p>
-        <p className="text-muted-foreground max-w-2xl text-lg font-normal">
-          Clean, composable blocks built with shadcn/ui and prompt-kit. <br />
+        <p className="mt-5 max-w-2xl text-base font-normal text-[var(--tw-prose-body)]">
+          Clean blocks of UI for AI applications, built with shadcn/ui and
+          prompt-kit. <br />
           Use them to ship faster, works with any React framework.
         </p>
       </div>
@@ -105,20 +106,8 @@ export default function BlocksPage() {
           />
         </div>
       </LayoutProse>
-      <div className="border-border mt-12 flex w-full flex-col items-center justify-center gap-2 rounded-md border border-dashed p-6">
-        <p className="text-muted-foreground mb-0.5 text-sm">
-          Something missing?
-        </p>
-        <Button variant="outline" asChild size="sm">
-          <a
-            href="https://github.com/ibelick/prompt-kit/issues/new?title=%5BBlock+Request%5D+&labels=block&template=block_request.yml"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Suggest a new block
-          </a>
-        </Button>
-      </div>
+
+      <ContributeCta type="block" />
     </div>
   )
 }

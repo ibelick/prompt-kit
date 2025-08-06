@@ -109,7 +109,7 @@ function AppSidebar() {
                 })}
               </SidebarMenu>
             </SidebarGroupContent>
-            <SidebarGroupLabel className={cn("mt-8 text-lg md:text-sm")}>
+            <SidebarGroupLabel className="mt-8 text-lg md:text-sm">
               Components
             </SidebarGroupLabel>
             <SidebarGroupContent>
@@ -148,7 +148,24 @@ function AppSidebar() {
                 </Link>
               </SidebarMenuButton>
             </SidebarGroupLabel>
-            <SidebarGroupLabel className={cn("mt-8 text-lg md:text-sm")}>
+            <SidebarGroupLabel className="mt-8 text-lg md:text-sm">
+              <SidebarMenuButton
+                asChild
+                className={cn(
+                  "hover:bg-sidebar-accent/50 active:bg-sidebar-accent/50 hover:text-primary text-lg transition-all duration-150 md:text-sm",
+                  pathname.includes("/primitives") &&
+                    "text-primary bg-sidebar-accent hover:bg-sidebar-accent font-medium"
+                )}
+              >
+                <Link href="/primitives" className="relative -m-2">
+                  Primitives
+                  <div className="text-primary absolute top-[10px] right-[10px] text-xs leading-none">
+                    new
+                  </div>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarGroupLabel>
+            <SidebarGroupLabel className="mt-8 text-lg md:text-sm">
               LLMs
             </SidebarGroupLabel>
             <SidebarGroupContent>
@@ -186,7 +203,7 @@ function AppSidebar() {
             <SidebarGroupLabel className="mt-8 text-lg md:text-sm">
               Social
             </SidebarGroupLabel>
-            <SidebarGroupContent>
+            <SidebarGroupContent className="pb-12">
               <SidebarMenu>
                 {socialMenuItems.map((item) => {
                   return (
@@ -222,9 +239,12 @@ export function LayoutClient({ children }: { children: React.ReactNode }) {
   const MD_SIDEBAR_VIEWPORT_THRESHOLD = 1024
 
   const isBlocksPage = usePathname() === "/blocks"
+  const isPrimitivesPage = usePathname() === "/primitives"
   const isComponentPage = usePathname().includes("/c/")
+  const isFullStackPreview = usePathname().includes("/p/")
+  const isDemoPage = usePathname().includes("/demo/")
 
-  if (isComponentPage) {
+  if (isComponentPage || isFullStackPreview || isDemoPage) {
     return <>{children}</>
   }
 
@@ -241,7 +261,7 @@ export function LayoutClient({ children }: { children: React.ReactNode }) {
             <div
               className={cn(
                 "col-start-1 col-end-7 flex h-full flex-1 flex-col md:col-start-4 md:col-end-12 lg:col-end-10",
-                isBlocksPage && "lg:col-end-12"
+                Boolean(isBlocksPage || isPrimitivesPage) && "lg:col-end-12"
               )}
             >
               <main className="flex-1">{children}</main>
