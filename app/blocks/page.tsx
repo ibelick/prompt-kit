@@ -19,9 +19,8 @@ export default function BlocksPage() {
           Blocks
         </p>
         <p className="mt-5 max-w-2xl text-base font-normal text-[var(--tw-prose-body)]">
-          Clean blocks of UI for AI applications, built with shadcn/ui and
-          prompt-kit. <br />
-          Use them to ship faster, works with any React framework.
+          UI blocks for AI applications, built with shadcn/ui and prompt-kit.{" "}
+          <br />
         </p>
       </div>
       <LayoutProse className="flex w-full flex-col gap-12">

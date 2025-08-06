@@ -21,7 +21,7 @@ export default function PrimitivesPage() {
           Primitives
         </p>
         <p className="mt-5 max-w-2xl text-base font-normal text-[var(--tw-prose-body)]">
-          Fullstack building blocks for AI apps. Each one includes a UI
+          Fullstack building blocks for AI applications. Each one includes a UI
           component and an API route using the{" "}
           <a
             href="https://v5.ai-sdk.dev"
