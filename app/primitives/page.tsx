@@ -36,8 +36,8 @@ export default function PrimitivesPage() {
       </div>
       <div className="mt-8 mb-10 flex flex-col gap-2">
         <p className="max-w-2xl text-base font-normal text-[var(--tw-prose-body)]">
-          To test the blocks, set your <code>OPENAI_API_KEY</code> below. It’s
-          stored in localStorage.
+          To test the demos, set your <code>OPENAI_API_KEY</code> below.{" "}
+          <span>It’s stored in localStorage.</span>
         </p>
         <InputByok />
       </div>
