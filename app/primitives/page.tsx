@@ -21,7 +21,7 @@ export default function PrimitivesPage() {
           Primitives
         </p>
         <p className="mt-5 max-w-2xl text-base font-normal text-[var(--tw-prose-body)]">
-          Fullstack building blocks for AI apps. Each one includes a UI
+          Fullstack building blocks for AI applications. Each one includes a UI
           component and an API route using the{" "}
           <a
             href="https://v5.ai-sdk.dev"
@@ -36,8 +36,8 @@ export default function PrimitivesPage() {
       </div>
       <div className="mt-8 mb-10 flex flex-col gap-2">
         <p className="max-w-2xl text-base font-normal text-[var(--tw-prose-body)]">
-          To test the blocks, set your <code>OPENAI_API_KEY</code> below. It’s
-          stored in localStorage.
+          To test the demos, set your <code>OPENAI_API_KEY</code> below.{" "}
+          <span>It’s stored in localStorage.</span>
         </p>
         <InputByok />
       </div>

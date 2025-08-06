@@ -24,7 +24,7 @@ export function ContributeCta({ type }: ContributeCtaProps) {
   return (
     <div className="border-border mt-12 flex w-full flex-col items-center justify-center gap-2 rounded-md border border-dashed p-6">
       <p className="text-muted-foreground mb-0.5 text-sm">Something missing?</p>
-      <div className="flex items-center gap-2">
+      <div className="flex w-full flex-wrap items-center justify-center gap-2">
         <Button variant="outline" asChild size="sm">
           <a href={suggestHref[type]} target="_blank" rel="noreferrer">
             {suggestLabel[type]}
