@@ -1,3 +1,7 @@
+import { CodeBlockPython } from "@/app/docs/code-block/code-block-python"
+import { PromptInputWithActions } from "@/app/docs/prompt-input/prompt-input-with-actions"
+import { SourceBasic } from "@/app/docs/source/source-basic"
+
 export const slugs = ["openai-sdk", "vercel-ai-sdk", "chat-ui", "ai-sdk"]
 
 export const titles = [
@@ -7,24 +11,12 @@ export const titles = [
   "Composable UI + API primitives for any AI SDK",
 ]
 
-function PromptInput() {
-  return <div>PromptInput</div>
-}
-
-function PromptOutput() {
-  return <div>PromptOutput</div>
-}
-
-function PromptButton() {
-  return <div>PromptButton</div>
-}
-
 export const heroSections = {
   "openai-sdk": {
     badge: "openai sdk",
-    title: "Build better AI apps with the OpenAI SDK",
+    title: "The UI for your OpenAI SDK apps",
     description:
-      "UI components and fullstack building blocks designed for apps powered by the OpenAI SDK.",
+      "Build better interfaces for OpenAI-powered apps. Drop-in components for chats, prompts, tool use, and more.",
   },
   "vercel-ai-sdk": {
     badge: "vercel ai sdk",
@@ -113,20 +105,23 @@ export const featuresComponents = {
     {
       id: "prompt-input",
       title: "Prompt Input",
-      content: "A text input that allows you to enter a prompt",
-      component: <PromptInput />,
+      content:
+        "An input field that allows users to enter and submit text to an AI model.",
+      component: <PromptInputWithActions />,
     },
     {
-      id: "prompt-output",
-      title: "Prompt Output",
-      content: "A text output that displays the result of the prompt",
-      component: <PromptOutput />,
+      id: "source",
+      title: "Source",
+      content:
+        "Displays website sources used by AI-generated content, showing URL details, titles, and descriptions on hover.",
+      component: <SourceBasic />,
     },
     {
-      id: "prompt-button",
-      title: "Prompt Button",
-      content: "A button that allows you to submit a prompt",
-      component: <PromptButton />,
+      id: "code-block",
+      title: "Code Block",
+      content:
+        "A component for displaying code snippets with syntax highlighting and customizable styling..",
+      component: <CodeBlockPython />,
     },
   ],
 }

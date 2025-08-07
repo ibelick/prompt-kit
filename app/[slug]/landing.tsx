@@ -1,5 +1,6 @@
 "use client"
 
+import { DemoPromptInput } from "@/components/app/demo-prompt-input"
 import {
   Accordion,
   AccordionContent,
@@ -29,9 +30,9 @@ function FeaturesComponent({
   )
 
   return (
-    <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl">
       <div className="flex flex-col lg:grid lg:grid-cols-2">
-        <div className="bg-muted relative hidden h-auto lg:flex lg:items-center lg:justify-center">
+        <div className="bg-muted relative hidden h-auto p-4 lg:flex lg:items-center lg:justify-center">
           {features.find((item) => item.id === activeAccordionId)?.component}
         </div>
         <div className="p-0 sm:p-8 lg:p-16">
@@ -78,9 +79,9 @@ function FeaturesComponent({
 
 export default function Landing({ content }: { content: LandingContent }) {
   return (
-    <div className="bg-background flex min-h-screen w-full flex-col gap-52">
+    <div className="bg-background flex min-h-screen w-full flex-col gap-48">
       {/* Hero Section */}
-      <div className="mx-auto mt-36 max-w-4xl px-4 text-center">
+      <div className="mx-auto max-w-4xl text-center">
         <span className="text-foreground mb-6 block text-sm">
           {content.hero.badge}
         </span>
@@ -93,22 +94,17 @@ export default function Landing({ content }: { content: LandingContent }) {
         </a>
       </div>
 
-      {/* code block? */}
-      <div className="mx-auto w-full max-w-2xl px-6 lg:px-8">
-        <div className="h-80 w-full rounded-lg bg-gradient-to-br from-cyan-200 to-blue-400 p-6">
-          <pre className="text-sm">
-            <code>{content.code.code}</code>
-          </pre>
-        </div>
+      <div className="mx-auto w-full max-w-3xl">
+        <DemoPromptInput />
       </div>
 
       {/* features list */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl">
         <h2 className="text-foreground mb-16 text-center text-3xl font-medium">
           {content.features_core.title}
         </h2>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-3">
           {content.features_core.content.map((feature) => {
             return (
               <div className="border-border bg-card rounded-lg border p-6">
@@ -116,9 +112,12 @@ export default function Landing({ content }: { content: LandingContent }) {
                   {feature.title}
                 </h3>
                 <ul className="space-y-4">
-                  {feature.content.map((item) => {
+                  {feature.content.map((item, index) => {
                     return (
-                      <li className="flex items-center gap-2">
+                      <li
+                        className="flex items-center gap-2"
+                        key={`${feature.title}-${index}`}
+                      >
                         <CheckIcon className="h-4 w-4" />
                         <span className="text-muted-foreground">{item}</span>
                       </li>
@@ -129,7 +128,7 @@ export default function Landing({ content }: { content: LandingContent }) {
             )
           })}
         </div>
-      </section>
+      </div>
 
       <FeaturesComponent
         title={content.features_components.title}
@@ -166,21 +165,18 @@ export default function Landing({ content }: { content: LandingContent }) {
         </div>
       </div>
 
-      {/* installation*/}
-      <section>
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="text-foreground mb-4 text-left text-3xl font-medium">
-            One command to install
-          </div>
-          <div className="bg-muted w-full rounded-lg p-4">
-            <pre className="text-sm">
-              <code>npx shadcn@latest add [COMPONENT]</code>
-            </pre>
-          </div>
+      <div className="mx-auto w-full max-w-xl">
+        <div className="text-foreground mb-4 text-left text-3xl font-medium">
+          One command to install
         </div>
-      </section>
+        <div className="bg-muted w-full rounded-lg p-4">
+          <pre className="text-sm">
+            <code>npx shadcn@latest add [COMPONENT]</code>
+          </pre>
+        </div>
+      </div>
 
-      <div className="relative mx-auto max-w-xl px-6 py-12">
+      <div className="relative mx-auto max-w-xl py-12">
         <div className="mb-10 text-left">
           <h2 className="text-foreground mb-4 text-3xl font-medium">
             Frequently asked questions

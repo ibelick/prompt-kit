@@ -17,7 +17,7 @@ export function LayoutClient({ children }: { children: React.ReactNode }) {
   const isFullStackPreview = usePathname().includes("/p/")
   const isDemoPage = usePathname().includes("/demo/")
   const isLanding = integrationsMenuItems
-    .map((item) => item.url)
+    ?.map((item) => item.url)
     .includes(usePathname())
 
   if (isComponentPage || isFullStackPreview || isDemoPage) {
