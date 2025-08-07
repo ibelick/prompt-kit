@@ -278,4 +278,10 @@ export const components: ComponentDefinition[] = [
     path: path.join(__dirname, "../components/prompt-kit/source.tsx"),
     registryDependencies: ["hover-card"],
   },
+  {
+    name: "image",
+    description:
+      "A component for displaying images from base64 or Uint8Array data, with full accessibility and responsive styling. Perfect for AI-generated or user-uploaded images.",
+    path: path.join(__dirname, "../components/prompt-kit/image.tsx"),
+  },
 ]

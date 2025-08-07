@@ -1,0 +1,65 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import ImageBasic from "./image-basic"
+
+export const metadata = {
+  title: "Image",
+  description:
+    "Display AI-generated or user-provided images with base64 or Uint8Array data, with full accessibility and styling support. **Compatible with AI SDK v5** architecture.",
+}
+
+# Image
+
+The `Image` component displays images from base64 or Uint8Array data, supporting all standard HTML image attributes. It is ideal for showing AI-generated images or user uploads in chat and AI apps. **Compatible with AI SDK v5** architecture
+
+## Examples
+
+### Basic Usage
+
+<ComponentCodePreview
+  component={<ImageBasic />}
+  filePath="app/docs/image/image-basic.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+  <TabsList>
+    <TabsTrigger value="cli">CLI</TabsTrigger>
+    <TabsTrigger value="manual">Manual</TabsTrigger>
+  </TabsList>
+  <TabsContent value="cli">
+    <CodeBlock
+      code={`npx shadcn add \"https://prompt-kit.com/c/image.json\"`}
+      language="bash"
+    />
+  </TabsContent>
+  <TabsContent value="manual">
+    <Steps>
+      <Step>Copy and paste the following code into your project.</Step>
+      <CodeBlock filePath="components/prompt-kit/image.tsx" language="tsx" />
+      <Step>Update the import paths to match your project setup.</Step>
+    </Steps>
+  </TabsContent>
+</Tabs>
+
+## Component API
+
+### Image
+
+| Prop        | Type         | Default      | Description                                      |
+| :---------- | :----------- | :----------- | :----------------------------------------------- |
+| base64      | string       |              | Base64-encoded image data                        |
+| uint8Array  | Uint8Array   |              | Raw image data as Uint8Array                     |
+| mediaType   | string       | 'image/png'  | MIME type of the image (e.g., 'image/jpeg')      |
+| alt         | string       | (required)   | Alternative text for accessibility               |
+| className   | string       |              | Additional CSS classes                           |
+| ...props    | img props    |              | All standard HTML `<img>` attributes             |
+
+## Features
+
+- Accepts base64 or Uint8Array image data
+- Supports all standard HTML image attributes
+- Responsive by default with `max-w-full h-auto`
+- Customizable with Tailwind classes
+- Fully accessible (alt required)
