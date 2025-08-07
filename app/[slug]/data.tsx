@@ -1,0 +1,222 @@
+export const slugs = ["openai-sdk", "vercel-ai-sdk", "chat-ui", "ai-sdk"]
+
+export const titles = [
+  "Build faster with the OpenAI SDK and ready-to-use UI",
+  "Ship faster using Vercel AI SDK + beautiful components",
+  "Drop-in Chat UI for modern AI apps",
+  "Composable UI + API primitives for any AI SDK",
+]
+
+function PromptInput() {
+  return <div>PromptInput</div>
+}
+
+function PromptOutput() {
+  return <div>PromptOutput</div>
+}
+
+function PromptButton() {
+  return <div>PromptButton</div>
+}
+
+export const heroSections = {
+  "openai-sdk": {
+    badge: "openai sdk",
+    title: "Build better AI apps with the OpenAI SDK",
+    description:
+      "UI components and fullstack building blocks designed for apps powered by the OpenAI SDK.",
+  },
+  "vercel-ai-sdk": {
+    badge: "vercel ai sdk",
+    title: "The UI layer for the Vercel AI SDK",
+    description:
+      "Build chat UIs, tool calling, and more using ready-made components for the Vercel AI SDK.",
+  },
+  "chat-ui": {
+    badge: "chat ui",
+    title: "Build world-class Chat UIs in minutes",
+    description:
+      "Components and primitives for fast, beautiful, and flexible chat interfaces — works with any AI model.",
+  },
+  "ai-sdk": {
+    badge: "ai sdk",
+    title: "Build interfaces on top of any AI SDK",
+    description:
+      "Drop-in UI and fullstack components built to work with the AI SDK ecosystem — OpenAI, Mistral, DeepSeek, and more.",
+  },
+}
+
+export const codeSections = {
+  title: "easy to install",
+  code: `
+      npm install @prompt-kit/sdk
+      `,
+}
+
+export const componentsSections = {
+  title: "differents components",
+  components: [
+    {
+      component: "prompt-input",
+    },
+    {
+      component: "prompt-output",
+    },
+    {
+      component: "prompt-button",
+    },
+    {
+      component: "prompt-chat",
+    },
+    {
+      component: "prompt-list",
+    },
+  ],
+}
+
+export const featuresSections = {
+  title: "The foundation for your AI application",
+  content: [
+    {
+      title: "Components",
+      content: [
+        "Everything to build your own UI",
+        "UI for AI elements",
+        "Headless logic",
+        "React, shadcn/ui and Tailwind CSS",
+      ],
+    },
+    {
+      title: "Blocks",
+      content: [
+        "Ready-to-use UI pieces",
+        "Pure frontend",
+        "React, shadcn/ui and Tailwind CSS",
+        "Composable",
+      ],
+    },
+    {
+      title: "Primitives",
+      content: [
+        "Fullstack blocks",
+        "UI components",
+        "API logic",
+        "Vercel AI SDK",
+      ],
+    },
+  ],
+}
+
+export const featuresComponents = {
+  title: "Perfect components to build your next AI application",
+  content: [
+    {
+      id: "prompt-input",
+      title: "Prompt Input",
+      content: "A text input that allows you to enter a prompt",
+      component: <PromptInput />,
+    },
+    {
+      id: "prompt-output",
+      title: "Prompt Output",
+      content: "A text output that displays the result of the prompt",
+      component: <PromptOutput />,
+    },
+    {
+      id: "prompt-button",
+      title: "Prompt Button",
+      content: "A button that allows you to submit a prompt",
+      component: <PromptButton />,
+    },
+  ],
+}
+
+export const faq = {
+  title: "Frequently asked questions",
+  content: [
+    {
+      id: "what-is-prompt-kit",
+      title: "What is prompt-kit?",
+      content:
+        "A library of high-quality UI components and fullstack building blocks for modern AI applications. Built with shadcn/ui.",
+    },
+    {
+      id: "whats-included",
+      title: "What's included?",
+      content:
+        "Prompt inputs, chat UIs, message containers, tool calling examples, and more. UI-only components, fullstack primitives, and ready-to-use blocks.",
+    },
+    {
+      id: "how-to-install",
+      title: "How to install prompt-kit?",
+      content:
+        "Use the shadcn CLI to install any block or primitive with one command.",
+    },
+    {
+      id: "which-sdks-are-supported",
+      title: "Which SDKs are supported?",
+      content:
+        "OpenAI, Vercel AI SDK v5, and anything compatible with the AI SDK ecosystem. More to come.",
+    },
+    {
+      id: "react-framework",
+      title: "Can I use it with my React framework?",
+      content:
+        "Yes. Works with Next.js, Vite, Remix, and more. Built with Tailwind + shadcn/ui.",
+    },
+    {
+      id: "is-it-open-source",
+      title: "Is it open source?",
+      content:
+        "Yes, under the MIT license. You can use it freely in personal or commercial projects.",
+    },
+    {
+      id: "how-to-contribute",
+      title: "How can I contribute?",
+      content:
+        "Open a PR or check out the contributing guide. We welcome components, blocks, and fullstack primitives.",
+    },
+  ],
+}
+
+export type LandingContent = {
+  hero: {
+    badge: string
+    title: string
+    description: string
+  }
+  code: {
+    title: string
+    code: string
+  }
+  components: {
+    title: string
+    components: {
+      component: string
+    }[]
+  }
+  features_core: {
+    title: string
+    content: {
+      title: string
+      content: string[]
+    }[]
+  }
+  features_components: {
+    title: string
+    content: {
+      id: string
+      title: string
+      content: string
+      component: React.ReactNode
+    }[]
+  }
+  faq: {
+    title: string
+    content: {
+      id: string
+      title: string
+      content: string
+    }[]
+  }
+}
