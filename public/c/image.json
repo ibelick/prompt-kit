@@ -1,0 +1,20 @@
+{
+  "name": "image",
+  "type": "registry:ui",
+  "registryDependencies": [],
+  "dependencies": [],
+  "devDependencies": [],
+  "tailwind": {},
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "description": "A component for displaying images from base64 or Uint8Array data, with full accessibility and responsive styling. Perfect for AI-generated or user-uploaded images.",
+  "files": [
+    {
+      "path": "image.tsx",
+      "content": "\"use client\"\n\nimport React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nexport interface GeneratedImageProps\n  extends React.ImgHTMLAttributes<HTMLImageElement> {\n  base64?: string\n  uint8Array?: Uint8Array\n  mediaType?: string\n  alt: string\n  className?: string\n}\n\nfunction getImageSrc({ base64, uint8Array, mediaType }: { base64?: string; uint8Array?: Uint8Array; mediaType?: string }) {\n  if (base64 && mediaType) {\n    return `data:${mediaType};base64,${base64}`\n  }\n  if (uint8Array && mediaType) {\n    const blob = new Blob([uint8Array], { type: mediaType })\n    return URL.createObjectURL(blob)\n  }\n  return undefined\n}\n\nconst Image = React.forwardRef<HTMLImageElement, GeneratedImageProps>(\n  ({ base64, uint8Array, mediaType = \"image/png\", alt, className, ...props }, ref) => {\n    const src = getImageSrc({ base64, uint8Array, mediaType })\n    return (\n      <img\n        ref={ref}\n        src={src}\n        alt={alt}\n        className={cn(\"max-w-full h-auto rounded-lg border\", className)}\n        role=\"img\"\n        {...props}\n      />\n    )\n  }\n)\n\nImage.displayName = \"Image\"\n\nexport { Image, type GeneratedImageProps }\n",
+      "type": "registry:ui"
+    }
+  ]
+}
