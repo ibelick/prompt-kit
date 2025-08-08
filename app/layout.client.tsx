@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation"
 import { SidebarProvider } from "./app-sidebar"
 import { Footer } from "./footer"
 import { Header } from "./header"
-import { AppSidebar } from "./sidebar"
+import { AppSidebar, integrationsMenuItems } from "./sidebar"
 
 export function LayoutClient({ children }: { children: React.ReactNode }) {
   const MOBILE_SIDEBAR_VIEWPORT_THRESHOLD = 768
@@ -16,6 +16,9 @@ export function LayoutClient({ children }: { children: React.ReactNode }) {
   const isComponentPage = usePathname().includes("/c/")
   const isFullStackPreview = usePathname().includes("/p/")
   const isDemoPage = usePathname().includes("/demo/")
+  const isLanding = integrationsMenuItems
+    ?.map((item) => item.url)
+    .includes(usePathname())
 
   if (isComponentPage || isFullStackPreview || isDemoPage) {
     return <>{children}</>
@@ -34,7 +37,8 @@ export function LayoutClient({ children }: { children: React.ReactNode }) {
             <div
               className={cn(
                 "col-start-1 col-end-7 flex h-full flex-1 flex-col md:col-start-4 md:col-end-12 lg:col-end-10",
-                Boolean(isBlocksPage || isPrimitivesPage) && "lg:col-end-12"
+                Boolean(isBlocksPage || isPrimitivesPage || isLanding) &&
+                  "lg:col-end-12"
               )}
             >
               <main className="flex-1">{children}</main>

@@ -1,38 +1,15 @@
 "use client"
 
+import { DemoPromptInput } from "@/components/app/demo-prompt-input"
 import {
   CodeBlock,
   CodeBlockCode,
   CodeBlockGroup,
 } from "@/components/prompt-kit/code-block"
-import { AnimatedBackground } from "@/components/ui/animated-background"
 import { TextMorph } from "@/components/ui/text-morph"
-import { cn } from "@/lib/utils"
 import { Github } from "lucide-react"
-import { AnimatePresence, motion } from "motion/react"
 import Link from "next/link"
 import { useState } from "react"
-import { PromptInputChatGPT } from "./examples/chatgpt"
-import { PromptInputDeepSeek } from "./examples/deepseek"
-import { PromptInputMistralAI } from "./examples/mistralai"
-
-const TABS = [
-  {
-    label: "ChatGPT",
-    component: PromptInputChatGPT,
-    img: "/openai_logo.png",
-  },
-  {
-    label: "Mistral AI",
-    component: PromptInputMistralAI,
-    img: "/mistral_logo.png",
-  },
-  {
-    label: "DeepSeek",
-    component: PromptInputDeepSeek,
-    img: "/deepseek_logo.png",
-  },
-]
 
 const CODE_SAMPLE = `import {
   PromptInput,
@@ -56,14 +33,7 @@ function PromptInputBasic() {
   );
 }`
 
-const MOTION_TRANSITION = {
-  duration: 0.25,
-  type: "spring",
-  bounce: 0,
-}
-
 export default function Home() {
-  const [activeTab, setActiveTab] = useState(TABS[0])
   const [hasCopyLabel, setHasCopyLabel] = useState(false)
 
   const onCopy = () => {
@@ -104,58 +74,8 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <div className="-mx-6 mb-40 flex flex-col gap-10 sm:mx-0">
-        <div className="flex min-h-[350px] w-full items-end rounded border border-zinc-200 p-4 sm:p-8">
-          <AnimatePresence initial={false} mode="wait">
-            <motion.div
-              key={activeTab.label}
-              className="w-full"
-              initial={{ opacity: 0, scale: 0.95, filter: "blur(4px)" }}
-              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-              exit={{ opacity: 0, scale: 0.95, filter: "blur(4px)" }}
-              transition={MOTION_TRANSITION}
-            >
-              {activeTab.component()}
-            </motion.div>
-          </AnimatePresence>
-        </div>
-        <div className="flex flex-row justify-center gap-8">
-          <AnimatedBackground
-            defaultValue={activeTab.label}
-            className={cn(
-              "rounded-lg bg-zinc-100 transition-colors group-hover:bg-zinc-200/60 group-active:bg-zinc-200"
-            )}
-            transition={MOTION_TRANSITION}
-            onValueChange={(newActiveId) => {
-              const newActiveTab = TABS.find((tab) => tab.label === newActiveId)
-              if (newActiveTab) {
-                setActiveTab(newActiveTab)
-              }
-            }}
-          >
-            {TABS.map((tab) => (
-              <button
-                key={tab.label}
-                data-id={tab.label}
-                className={cn(
-                  "rounded-md px-2 py-1 text-sm text-zinc-500 transition-all hover:text-black active:scale-[0.98]",
-                  "group",
-                  activeTab.label === tab.label && "text-black"
-                )}
-                type="button"
-              >
-                <span className="flex flex-row items-center gap-1">
-                  <img
-                    src={tab.img}
-                    alt={`${tab.label} logo`}
-                    className="h-auto w-4"
-                  />
-                  {tab.label}
-                </span>
-              </button>
-            ))}
-          </AnimatedBackground>
-        </div>
+      <div className="-mx-6 mb-40 sm:mx-0">
+        <DemoPromptInput />
       </div>
       <CodeBlock className="relative mb-20 rounded">
         <CodeBlockGroup className="absolute top-4 right-4">

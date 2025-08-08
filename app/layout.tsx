@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: "prompt-kit",
   description:
     "Core building blocks for AI apps. High-quality, accessible, and customizable components for AI interfaces. Built with React, shadcn/ui and Tailwind CSS.",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://prompt-kit.com"
+  ),
 }
 
 export default function RootLayout({

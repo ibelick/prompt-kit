@@ -8,7 +8,7 @@ import {
 
 export function SourceBasic() {
   return (
-    <div className="flex gap-2">
+    <div className="flex flex-wrap justify-center gap-2">
       <Source href="https://ibelick.com">
         <SourceTrigger showFavicon />
         <SourceContent

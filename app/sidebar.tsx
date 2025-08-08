@@ -44,6 +44,25 @@ const socialMenuItems = [
   },
 ]
 
+export const integrationsMenuItems = [
+  {
+    title: "OpenAI SDK",
+    url: "/openai-sdk",
+  },
+  {
+    title: "Vercel AI SDK",
+    url: "/vercel-ai-sdk",
+  },
+  {
+    title: "Chat UI",
+    url: "/chat-ui",
+  },
+  {
+    title: "AI SDK",
+    url: "/ai-sdk",
+  },
+]
+
 const llms = [
   {
     title: "llms.txt",
@@ -161,6 +180,31 @@ export function AppSidebar() {
                   </Link>
                 </SidebarMenuButton>
               </SidebarGroupLabel>
+            </SidebarGroupContent>
+            <SidebarGroupLabel className="mt-8 text-lg md:text-sm">
+              Integrations
+            </SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {integrationsMenuItems.map((item) => {
+                  const isActive = currentPath === item.url
+
+                  return (
+                    <SidebarMenuItem key={item.title} className="flex">
+                      <SidebarMenuButton
+                        asChild
+                        className={cn(
+                          "hover:bg-sidebar-accent/50 active:bg-sidebar-accent/50 hover:text-primary w-auto text-lg transition-all duration-150 md:text-sm",
+                          isActive &&
+                            "text-primary bg-sidebar-accent hover:bg-sidebar-accent font-medium"
+                        )}
+                      >
+                        <Link href={item.url}>{item.title}</Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )
+                })}
+              </SidebarMenu>
             </SidebarGroupContent>
             <SidebarGroupLabel className="mt-8 flex text-lg md:text-sm">
               LLMs
