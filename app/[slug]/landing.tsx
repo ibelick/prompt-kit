@@ -1,6 +1,5 @@
-"use client"
-
 import { DemoPromptInput } from "@/components/app/demo-prompt-input"
+import { DocCodeBlock } from "@/components/app/doc-code-block"
 import {
   Accordion,
   AccordionContent,
@@ -9,78 +8,13 @@ import {
 } from "@/components/ui/accordion"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
 import { CheckIcon, ChevronUp } from "lucide-react"
-import { useState } from "react"
 import type { LandingContent } from "./data"
-
-function FeaturesComponent({
-  features,
-}: {
-  title: string
-  features: {
-    id: string
-    title: string
-    content: string
-    component: React.ReactNode
-  }[]
-}) {
-  const [activeAccordionId, setActiveAccordionId] = useState<string>(
-    features[0].id
-  )
-
-  return (
-    <div className="mx-auto max-w-7xl">
-      <div className="flex flex-col lg:grid lg:grid-cols-2">
-        <div className="bg-muted relative hidden h-auto p-4 lg:flex lg:items-center lg:justify-center">
-          {features.find((item) => item.id === activeAccordionId)?.component}
-        </div>
-        <div className="p-0 sm:p-8 lg:p-16">
-          <h2 className="text-foreground mb-16 text-left text-3xl font-medium">
-            Perfect components to build your next AI application
-          </h2>
-          <Accordion
-            onValueChange={(value) => {
-              if (!value) return
-              setActiveAccordionId(value as string)
-            }}
-            expandedValue={activeAccordionId}
-            className="flex flex-col divide-y divide-zinc-200 dark:divide-zinc-800"
-          >
-            {features.map((item) => (
-              <AccordionItem key={item.id} value={item.id}>
-                <AccordionTrigger
-                  className={cn(
-                    "flex w-full items-center justify-between py-3.5",
-                    item.id === activeAccordionId && "cursor-default"
-                  )}
-                >
-                  <h3 className="text-left text-lg text-zinc-950 dark:text-zinc-50">
-                    {item.title}
-                  </h3>
-                  <ChevronUp className="h-4 w-4 text-zinc-950 transition-transform duration-200 group-data-[expanded]:-rotate-180 dark:text-zinc-50" />
-                </AccordionTrigger>
-                <AccordionContent>
-                  <p className="pb-6 text-left text-zinc-500 lg:pb-8 dark:text-zinc-400">
-                    {item.content}
-                  </p>
-                  <div className="bg-muted mb-6 flex items-center justify-center pb-8 lg:mb-0 lg:hidden">
-                    {item.component}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </div>
-    </div>
-  )
-}
+import { FeaturesComponent } from "./features-component"
 
 export default function Landing({ content }: { content: LandingContent }) {
   return (
     <div className="bg-background flex min-h-screen w-full flex-col gap-48">
-      {/* Hero Section */}
       <div className="mx-auto max-w-4xl text-center">
         <span className="text-foreground mb-6 block text-sm">
           {content.hero.badge}
@@ -94,17 +28,19 @@ export default function Landing({ content }: { content: LandingContent }) {
         </a>
       </div>
 
-      <div className="mx-auto w-full max-w-3xl">
+      <div className="relative mx-auto w-full max-w-3xl">
+        <h2 className="text-foreground mb-8 text-center text-3xl font-medium">
+          The best way to build AI interfaces
+        </h2>
         <DemoPromptInput />
       </div>
 
-      {/* features list */}
       <div className="mx-auto max-w-6xl">
-        <h2 className="text-foreground mb-16 text-center text-3xl font-medium">
+        <h2 className="text-foreground mb-8 text-center text-3xl font-medium">
           {content.features_core.title}
         </h2>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {content.features_core.content.map((feature) => {
             return (
               <div className="border-border bg-card rounded-lg border p-6">
@@ -166,17 +102,16 @@ export default function Landing({ content }: { content: LandingContent }) {
       </div>
 
       <div className="mx-auto w-full max-w-xl">
-        <div className="text-foreground mb-4 text-left text-3xl font-medium">
+        <div className="text-foreground mb-8 text-left text-3xl font-medium">
           One command to install
         </div>
-        <div className="bg-muted w-full rounded-lg p-4">
-          <pre className="text-sm">
-            <code>npx shadcn@latest add [COMPONENT]</code>
-          </pre>
-        </div>
+        <DocCodeBlock
+          language="bash"
+          code={`npx shadcn@latest add "https://prompt-kit.com/c/[COMPONENT].json"`}
+        />
       </div>
 
-      <div className="relative mx-auto max-w-xl py-12">
+      <div className="relative mx-auto w-full max-w-xl py-12">
         <div className="mb-10 text-left">
           <h2 className="text-foreground mb-4 text-3xl font-medium">
             Frequently asked questions

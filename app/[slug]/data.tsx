@@ -100,7 +100,7 @@ export const featuresSections = {
 }
 
 export const featuresComponents = {
-  title: "Perfect components to build your next AI application",
+  title: "Prebuilt, composable AI components",
   content: [
     {
       id: "prompt-input",

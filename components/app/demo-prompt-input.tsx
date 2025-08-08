@@ -1,9 +1,11 @@
+"use client"
+
 import { PromptInputChatGPT } from "@/app/examples/chatgpt"
 import { PromptInputDeepSeek } from "@/app/examples/deepseek"
 import { PromptInputMistralAI } from "@/app/examples/mistralai"
 import { AnimatedBackground } from "@/components/ui/animated-background"
 import { cn } from "@/lib/utils"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, motion } from "motion/react"
 import React, { useState } from "react"
 
 const TABS = [
