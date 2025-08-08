@@ -12,7 +12,7 @@ export default function ImageBasic() {
         uint8Array={new Uint8Array()} // Provide empty Uint8Array
         mediaType="image/svg+xml"
         alt="Compact gradient chat icon"
-        className="h-24 w-24 border"
+        className="h-24 w-24 rounded-md"
       />
       <span className="text-muted-foreground text-xs">
         Compact SVG chat icon
