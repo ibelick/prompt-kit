@@ -35,7 +35,7 @@ export default function Landing({ content }: { content: LandingContent }) {
         <DemoPromptInput />
       </div>
 
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto w-full max-w-6xl">
         <h2 className="text-foreground mb-8 text-center text-3xl font-medium">
           {content.features_core.title}
         </h2>
@@ -43,7 +43,10 @@ export default function Landing({ content }: { content: LandingContent }) {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {content.features_core.content.map((feature) => {
             return (
-              <div className="border-border bg-card rounded-lg border p-6">
+              <div
+                className="border-border bg-card flex flex-col rounded-lg border p-6"
+                key={feature.title}
+              >
                 <h3 className="text-card-foreground mb-6 text-xl font-medium">
                   {feature.title}
                 </h3>
@@ -60,6 +63,14 @@ export default function Landing({ content }: { content: LandingContent }) {
                     )
                   })}
                 </ul>
+                <div className="mt-12 flex flex-1 items-end">
+                  <a
+                    href={feature.href}
+                    className="text-primary inline-flex items-center gap-1 hover:underline"
+                  >
+                    See more
+                  </a>
+                </div>
               </div>
             )
           })}

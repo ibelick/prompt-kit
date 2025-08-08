@@ -147,6 +147,7 @@ export const featuresSections = {
   content: [
     {
       title: "Components",
+      href: "/docs/prompt-input",
       content: [
         "Everything to build your own UI",
         "UI for AI elements",
@@ -156,6 +157,7 @@ export const featuresSections = {
     },
     {
       title: "Blocks",
+      href: "/blocks",
       content: [
         "Ready-to-use UI pieces",
         "Pure frontend",
@@ -165,6 +167,7 @@ export const featuresSections = {
     },
     {
       title: "Primitives",
+      href: "/primitives",
       content: [
         "Fullstack blocks",
         "UI components",
@@ -270,6 +273,7 @@ export type LandingContent = {
     title: string
     content: {
       title: string
+      href: string
       content: string[]
     }[]
   }
