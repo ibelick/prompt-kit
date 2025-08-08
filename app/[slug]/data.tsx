@@ -38,6 +38,82 @@ export const heroSections = {
   },
 }
 
+export const metadataBySlug: Record<
+  (typeof slugs)[number],
+  {
+    title: string
+    description: string
+    keywords: string[]
+  }
+> = {
+  "openai-sdk": {
+    title: "OpenAI SDK UI components & chat templates",
+    description:
+      "Build OpenAI SDK apps faster with ready‑made UI components, chat interfaces, tool calling patterns, and primitives. Built with React, Tailwind CSS, and shadcn/ui.",
+    keywords: [
+      "OpenAI SDK UI",
+      "OpenAI components",
+      "OpenAI chat UI",
+      "tool calling UI",
+      "LLM UI",
+      "React",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "prompt-kit",
+    ],
+  },
+  "vercel-ai-sdk": {
+    title: "Vercel AI SDK UI components & examples",
+    description:
+      "Production‑ready UI for the Vercel AI SDK: chat UIs, prompt inputs, streaming responses, tool calling, and fullstack primitives to ship faster.",
+    keywords: [
+      "Vercel AI SDK UI",
+      "Vercel AI components",
+      "AI SDK UI",
+      "chat components",
+      "tool calling",
+      "React",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "prompt-kit",
+    ],
+  },
+  "chat-ui": {
+    title: "Chat UI components for AI apps",
+    description:
+      "Drop‑in chat components for modern AI apps: message list, avatars, prompt input, markdown rendering, streaming response UI, sources, and more.",
+    keywords: [
+      "chat UI",
+      "AI chat components",
+      "message list",
+      "prompt input",
+      "markdown",
+      "streaming UI",
+      "React",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "prompt-kit",
+    ],
+  },
+  "ai-sdk": {
+    title: "AI SDK compatible UI components",
+    description:
+      "Composable UI and API primitives that work with OpenAI, Mistral, DeepSeek, and the broader AI SDK ecosystem. Build faster with ready‑to‑use blocks.",
+    keywords: [
+      "AI SDK UI",
+      "LLM UI components",
+      "OpenAI UI",
+      "Mistral UI",
+      "DeepSeek UI",
+      "tool calling",
+      "React",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "prompt-kit",
+    ],
+  },
+}
+
 export const codeSections = {
   title: "easy to install",
   code: `
