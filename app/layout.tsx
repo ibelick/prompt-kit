@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Geist_Mono, Inter } from "next/font/google"
 import "./globals.css"
+import { ThemeProvider } from "@/components/theme-provider"
 import Script from "next/script"
 import { LayoutClient } from "./layout.client"
 
@@ -42,7 +43,14 @@ export default function RootLayout({
       <body
         className={`${inter.className} ${geistMono.variable} font-sans antialiased`}
       >
-        <LayoutClient>{children}</LayoutClient>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <LayoutClient>{children}</LayoutClient>
+        </ThemeProvider>
       </body>
     </html>
   )
