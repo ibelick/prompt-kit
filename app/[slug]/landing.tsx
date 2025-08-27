@@ -9,6 +9,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { CheckIcon, ChevronUp } from "lucide-react"
+import Link from "next/link"
 import type { LandingContent } from "./data"
 import { FeaturesComponent } from "./features-component"
 
@@ -23,9 +24,9 @@ export default function Landing({ content }: { content: LandingContent }) {
         <p className="text-muted-foreground mx-auto mb-12 max-w-2xl text-lg">
           {content.hero.description}
         </p>
-        <a href="/docs">
+        <Link href="/docs">
           <Button>Get Started</Button>
-        </a>
+        </Link>
       </div>
 
       <div className="relative mx-auto w-full max-w-3xl">
@@ -88,12 +89,12 @@ export default function Landing({ content }: { content: LandingContent }) {
           target="_blank"
           className="text-foreground mx-auto w-full max-w-xl text-center text-2xl"
         >
-          <span className="font-serif">"</span>
-          <span>
+          <span className="font-serif">{`"`}</span>
+          <span>{`
             You're one npx command away from a fully functional chatbot with
             tool call. Amazing work by @Ibelick
-          </span>
-          <span className="font-serif">"</span>
+          `}</span>
+          <span className="font-serif">{`"`}</span>
         </a>
         <div className="flex items-center gap-4">
           <Avatar className="size-10 rounded-full">

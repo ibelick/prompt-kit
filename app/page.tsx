@@ -1,11 +1,8 @@
 "use client"
 
 import { DemoPromptInput } from "@/components/app/demo-prompt-input"
-import {
-  CodeBlock,
-  CodeBlockCode,
-  CodeBlockGroup,
-} from "@/components/prompt-kit/code-block"
+import { DocCodeBlock } from "@/components/app/doc-code-block"
+import { CodeBlock, CodeBlockGroup } from "@/components/prompt-kit/code-block"
 import { TextMorph } from "@/components/ui/text-morph"
 import { Github } from "lucide-react"
 import Link from "next/link"
@@ -86,10 +83,10 @@ export default function Home() {
             <TextMorph>{hasCopyLabel ? "Copied" : "Copy"}</TextMorph>
           </button>
         </CodeBlockGroup>
-        <CodeBlockCode
+        <DocCodeBlock
           code={CODE_SAMPLE}
           language="tsx"
-          className="dark:[&_pre]:!bg-background"
+          className="dark:[&_pre]:!bg-background p-4 text-[13px]"
         />
       </CodeBlock>
     </>
