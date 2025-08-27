@@ -38,7 +38,7 @@ export function PromptInputMistralAI() {
       onValueChange={handleValueChange}
       isLoading={isLoading}
       onSubmit={handleSubmit}
-      className="bg-background relative w-full max-w-(--breakpoint-md) rounded border border-[#e4e4e7] p-1.5 shadow-lg"
+      className="bg-background border-border relative w-full max-w-(--breakpoint-md) rounded border p-1.5 shadow-lg"
     >
       <PromptInputTextarea
         disableAutosize
@@ -47,7 +47,11 @@ export function PromptInputMistralAI() {
       />
       <PromptInputActions className="flex h-10 items-center justify-between gap-2">
         <div className="flex items-center gap-x-1.5">
-          <PromptInputAction tooltip="Canvas" delayDuration={0} className="duration-0 data-[state=closed]:duration-0">
+          <PromptInputAction
+            tooltip="Canvas"
+            delayDuration={0}
+            className="duration-0 data-[state=closed]:duration-0"
+          >
             <Button
               variant="ghost"
               aria-label="Attach files"
@@ -58,7 +62,11 @@ export function PromptInputMistralAI() {
             </Button>
           </PromptInputAction>
 
-          <PromptInputAction tooltip="Web search" delayDuration={0} className="duration-0 data-[state=closed]:duration-0">
+          <PromptInputAction
+            tooltip="Web search"
+            delayDuration={0}
+            className="duration-0 data-[state=closed]:duration-0"
+          >
             <Button
               variant="ghost"
               aria-label="Web search"
@@ -69,7 +77,11 @@ export function PromptInputMistralAI() {
             </Button>
           </PromptInputAction>
 
-          <PromptInputAction tooltip="Image generation" delayDuration={0} className="duration-0 data-[state=closed]:duration-0">
+          <PromptInputAction
+            tooltip="Image generation"
+            delayDuration={0}
+            className="duration-0 data-[state=closed]:duration-0"
+          >
             <Button
               variant="ghost"
               aria-label="Image generation"

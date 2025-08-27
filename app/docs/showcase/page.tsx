@@ -48,10 +48,10 @@ export default function Showcase() {
         <h1 className="text-sm font-medium text-[#0D74CE] dark:text-[#70B8FF]">
           Showcase
         </h1>
-        <p className="mt-6 text-3xl font-[450] tracking-tight text-pretty text-black">
+        <p className="text-foreground mt-6 text-3xl font-[450] tracking-tight text-pretty">
           Building something great with prompt-kit?
         </p>
-        <p className="mb-4 text-3xl font-[450] tracking-tight text-zinc-500">
+        <p className="text-muted-foreground mb-4 text-3xl font-[450] tracking-tight">
           We'd love to feature your project here.
         </p>
         <Link href="https://forms.gle/SfNVyJJMyZ2RfnTb6" target="_blank">

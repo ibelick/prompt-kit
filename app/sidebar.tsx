@@ -2,9 +2,10 @@
 
 import { PromptKitLogo } from "@/components/app/icon/prompt-kit-logo"
 import { cn } from "@/lib/utils"
+import { useTheme } from "next-themes"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import {
   Sidebar,
   SidebarContent,
@@ -63,6 +64,41 @@ export const integrationsMenuItems = [
   },
 ]
 
+function ButtonThemeCycleToggle() {
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
+
+  const current = theme ?? "light"
+  const next =
+    current === "light" ? "dark" : current === "dark" ? "system" : "light"
+
+  const handleClick = () => {
+    setTheme(next)
+  }
+
+  const label =
+    current === "system" ? "System" : current === "dark" ? "Dark" : "Light"
+
+  return (
+    <SidebarMenuButton
+      type="button"
+      onClick={handleClick}
+      className={cn(
+        "hover:bg-sidebar-accent/50 active:bg-sidebar-accent/50 hover:text-primary w-auto text-lg transition-all duration-150 md:text-sm"
+      )}
+      aria-label={`Theme: ${label}. Click to switch to ${next}`}
+    >
+      {label}
+    </SidebarMenuButton>
+  )
+}
+
 const llms = [
   {
     title: "llms.txt",
@@ -86,7 +122,7 @@ export function AppSidebar() {
   return (
     <Sidebar className="h-full border-none shadow-none">
       <SidebarContent
-        className="bg-background border-border border-r border-dashed"
+        className="bg-background border-border relative border-r border-dashed"
         style={{ scrollbarWidth: "none" }}
       >
         <div className="flex h-full flex-col pb-20 pl-0">
@@ -95,7 +131,7 @@ export function AppSidebar() {
               href="/"
               className="flex items-center gap-2 pl-2 text-xl font-medium tracking-tighter"
             >
-              <PromptKitLogo className="h-6 w-6" />
+              <PromptKitLogo className="size-6 fill-black dark:fill-white" />
               <h1 className="leading-none">prompt-kit</h1>
             </Link>
           </SidebarHeader>
@@ -244,7 +280,7 @@ export function AppSidebar() {
             <SidebarGroupLabel className="mt-8 flex text-lg md:text-sm">
               Social
             </SidebarGroupLabel>
-            <SidebarGroupContent className="pb-12">
+            <SidebarGroupContent>
               <SidebarMenu>
                 {socialMenuItems.map((item) => {
                   return (
@@ -267,6 +303,12 @@ export function AppSidebar() {
                   )
                 })}
               </SidebarMenu>
+            </SidebarGroupContent>
+            <SidebarGroupLabel className="mt-8 flex text-lg md:text-sm">
+              Theme
+            </SidebarGroupLabel>
+            <SidebarGroupContent className="pb-12">
+              <ButtonThemeCycleToggle />
             </SidebarGroupContent>
           </SidebarGroup>
         </div>

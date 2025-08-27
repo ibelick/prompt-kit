@@ -49,7 +49,11 @@ export function CodeBlockNord() {
             )}
           </Button>
         </CodeBlockGroup>
-        <CodeBlockCode code={code} language="javascript" theme="nord" />
+        <CodeBlockCode
+          code={code}
+          language="javascript"
+          className="dark:[&_pre]:!bg-background"
+        />
       </CodeBlock>
     </div>
   )

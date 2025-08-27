@@ -11,7 +11,7 @@ const getHighlighter = async (): Promise<Highlighter> => {
   if (!highlighter) {
     // Create it only once
     highlighter = await createHighlighter({
-      themes: ["github-light"],
+      themes: ["github-light", "github-dark"],
       langs: [...Object.keys(bundledLanguages)],
     })
   }
@@ -21,9 +21,11 @@ const getHighlighter = async (): Promise<Highlighter> => {
 export const codeToHtml = async ({
   code,
   lang,
+  theme = "github-light",
 }: {
   code: string
   lang: string
+  theme?: string
 }): Promise<string> => {
   const highlighterInstance = await getHighlighter()
 
@@ -38,7 +40,7 @@ export const codeToHtml = async ({
 
   return highlighterInstance.codeToHtml(code, {
     lang: lang,
-    theme: "github-light",
+    theme: theme,
   })
 }
 

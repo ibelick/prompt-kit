@@ -79,7 +79,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       className,
       ...props
     }: React.HTMLAttributes<HTMLTableElement>) => (
-      <div className="not-prose relative w-full table-auto overflow-auto rounded-lg border border-zinc-200 text-sm dark:border-zinc-800">
+      <div className="not-prose border-border relative w-full table-auto overflow-auto rounded-lg border text-sm">
         <table className={cn("w-full", className)} {...props} />
       </div>
     ),

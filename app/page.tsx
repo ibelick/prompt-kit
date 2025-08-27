@@ -1,11 +1,8 @@
 "use client"
 
 import { DemoPromptInput } from "@/components/app/demo-prompt-input"
-import {
-  CodeBlock,
-  CodeBlockCode,
-  CodeBlockGroup,
-} from "@/components/prompt-kit/code-block"
+import { DocCodeBlock } from "@/components/app/doc-code-block"
+import { CodeBlock, CodeBlockGroup } from "@/components/prompt-kit/code-block"
 import { TextMorph } from "@/components/ui/text-morph"
 import { Github } from "lucide-react"
 import Link from "next/link"
@@ -49,10 +46,10 @@ export default function Home() {
     <>
       <div className="mb-12 flex flex-col items-start">
         <div className="mb-5 flex flex-col gap-1 text-pretty">
-          <p className="text-3xl font-[450] tracking-tight text-black">
+          <p className="text-foreground text-3xl font-[450] tracking-tight">
             Core building blocks for AI apps.
           </p>
-          <p className="text-3xl font-[450] tracking-tight text-zinc-500">
+          <p className="text-muted-foreground text-3xl font-[450] tracking-tight">
             High-quality, accessible, and customizable components for AI
             interfaces.
           </p>
@@ -60,7 +57,7 @@ export default function Home() {
         <div className="flex flex-row gap-4">
           <Link
             href="/docs/introduction"
-            className="inline-flex h-10 items-center justify-center rounded-full bg-black px-4 text-base text-white transition-colors hover:bg-zinc-800"
+            className="bg-foreground text-background hover:bg-foreground/90 inline-flex h-10 items-center justify-center rounded-full px-4 text-base transition-colors"
           >
             Get Started
           </Link>
@@ -68,7 +65,7 @@ export default function Home() {
             href="https://github.com/ibelick/prompt-kit"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-10 items-center justify-center rounded-full border border-zinc-200 bg-white px-4 text-base text-black transition-colors hover:bg-zinc-50"
+            className="border-border bg-background text-foreground hover:bg-background/90 inline-flex h-10 items-center justify-center rounded-full border px-4 text-base transition-colors"
           >
             <Github className="mr-2 size-4" /> Star on GitHub
           </Link>
@@ -86,7 +83,11 @@ export default function Home() {
             <TextMorph>{hasCopyLabel ? "Copied" : "Copy"}</TextMorph>
           </button>
         </CodeBlockGroup>
-        <CodeBlockCode code={CODE_SAMPLE} language="tsx" />
+        <DocCodeBlock
+          code={CODE_SAMPLE}
+          language="tsx"
+          className="dark:[&_pre]:!bg-background p-4 text-[13px]"
+        />
       </CodeBlock>
     </>
   )
