@@ -37,7 +37,7 @@ export function DemoPromptInput() {
 
   return (
     <div className="mx-auto flex w-full flex-col gap-10">
-      <div className="flex min-h-[350px] w-full items-end rounded border border-zinc-200 p-4 sm:p-8">
+      <div className="border-border flex min-h-[350px] w-full items-end rounded border p-4 sm:p-8">
         <AnimatePresence initial={false} mode="wait">
           <motion.div
             key={activeTab.label}
@@ -55,7 +55,7 @@ export function DemoPromptInput() {
         <AnimatedBackground
           defaultValue={activeTab.label}
           className={cn(
-            "rounded-lg bg-zinc-100 transition-colors group-hover:bg-zinc-200/60 group-active:bg-zinc-200"
+            "bg-muted group-hover:bg-muted/60 group-active:bg-muted rounded-lg transition-colors"
           )}
           transition={MOTION_TRANSITION}
           onValueChange={(newActiveId: string | null) => {
@@ -71,9 +71,9 @@ export function DemoPromptInput() {
               key={tab.label}
               data-id={tab.label}
               className={cn(
-                "rounded-md px-2 py-1 text-sm text-zinc-500 transition-all hover:text-black active:scale-[0.98]",
+                "text-muted-foreground hover:text-foreground rounded-md px-2 py-1 text-sm transition-all active:scale-[0.98]",
                 "group",
-                activeTab.label === tab.label && "text-black"
+                activeTab.label === tab.label && "text-foreground"
               )}
               type="button"
             >

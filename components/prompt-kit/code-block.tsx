@@ -1,6 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils"
+import { useTheme } from "next-themes"
 import React, { useEffect, useState } from "react"
 import { codeToHtml } from "shiki"
 
@@ -27,18 +28,23 @@ function CodeBlock({ children, className, ...props }: CodeBlockProps) {
 export type CodeBlockCodeProps = {
   code: string
   language?: string
-  theme?: string
   className?: string
 } & React.HTMLProps<HTMLDivElement>
 
 function CodeBlockCode({
   code,
   language = "tsx",
-  theme = "github-light",
   className,
   ...props
 }: CodeBlockCodeProps) {
   const [highlightedHtml, setHighlightedHtml] = useState<string | null>(null)
+  const { theme } = useTheme()
+
+  const themeName: Record<string, string> = {
+    light: "github-light",
+    dark: "github-dark",
+    system: "github-dark",
+  }
 
   useEffect(() => {
     async function highlight() {
@@ -47,7 +53,10 @@ function CodeBlockCode({
         return
       }
 
-      const html = await codeToHtml(code, { lang: language, theme })
+      const html = await codeToHtml(code, {
+        lang: language,
+        theme: themeName[theme as keyof typeof themeName],
+      })
       setHighlightedHtml(html)
     }
     highlight()

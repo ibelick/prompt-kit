@@ -21,7 +21,7 @@ export async function DocCodeBlock({
     <ClientCodeWrapper code={fileContent}>
       <div
         dangerouslySetInnerHTML={{ __html: html }}
-        className="not-prose bg-background overflow-auto rounded-md border border-zinc-200 p-2 text-[13px]"
+        className="not-prose bg-background border-border overflow-auto rounded-md border p-2 text-[13px]"
         {...props}
       />
     </ClientCodeWrapper>
