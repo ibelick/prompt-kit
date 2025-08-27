@@ -131,7 +131,7 @@ export function AppSidebar() {
               href="/"
               className="flex items-center gap-2 pl-2 text-xl font-medium tracking-tighter"
             >
-              <PromptKitLogo className="h-6 w-6" />
+              <PromptKitLogo className="size-6 fill-black dark:fill-white" />
               <h1 className="leading-none">prompt-kit</h1>
             </Link>
           </SidebarHeader>

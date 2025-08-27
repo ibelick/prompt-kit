@@ -16,7 +16,7 @@ export function Header({ triggerViewportWidth }: HeaderProps) {
 
   return (
     <nav className="absolute top-0 left-0 z-60 w-full px-4 py-4 text-white">
-      <div className="mx-auto flex max-w-2xl items-center justify-between text-zinc-900">
+      <div className="text-foreground mx-auto flex max-w-2xl items-center justify-between">
         <Link href="/" className="">
           <span className="font-[450] lowercase">prompt-kit</span>
         </Link>
@@ -25,7 +25,7 @@ export function Header({ triggerViewportWidth }: HeaderProps) {
             <SidebarTrigger />
           ) : (
             <a
-              className="inline-flex items-center gap-1 rounded-md border border-zinc-200 bg-transparent px-2 py-1 text-sm text-black transition-colors hover:bg-zinc-100"
+              className="border-border inline-flex items-center gap-1 rounded-md border bg-transparent px-2 py-1 text-sm text-black transition-colors hover:bg-zinc-100"
               href="https://github.com/ibelick/prompt-kit"
               target="_blank"
               rel="noopener noreferrer"

@@ -32,7 +32,7 @@ export function PromptInputDeepSeek() {
       onValueChange={handleValueChange}
       isLoading={isLoading}
       onSubmit={handleSubmit}
-      className="w-full max-w-(--breakpoint-md) rounded-3xl bg-[rgb(243,244,246)] p-2.5 shadow-[0_0_0_0.5px_#dce0e9]"
+      className="dark:bg-background dark:border-border w-full max-w-(--breakpoint-md) rounded-3xl bg-[rgb(243,244,246)] p-2.5 shadow-[0_0_0_0.5px_#dce0e9] dark:border dark:shadow-sm"
     >
       <PromptInputTextarea
         placeholder="Message DeepSeek"
@@ -45,9 +45,9 @@ export function PromptInputDeepSeek() {
             delayDuration={0}
             className="duration-0 data-[state=closed]:duration-0"
             tooltip={
-              <div className="bg-black">
-                <Arrow className="fill-black" />
-                <span className="text-xs leading-none font-normal text-white">
+              <div className="dark:bg-popover dark:border-border bg-black dark:border">
+                <Arrow className="dark:fill-popover fill-black" />
+                <span className="dark:text-popover-foreground text-xs leading-none font-normal text-white">
                   Use DeepThink (R1) to solve reasoning problems
                 </span>
               </div>
@@ -56,7 +56,7 @@ export function PromptInputDeepSeek() {
             <Button
               variant="ghost"
               aria-label="Use DeepThink (R1) to solve reasoning problems"
-              className="h-7 w-auto gap-1 rounded-[14px] border border-[#0000001f] bg-white p-1 px-1.5 py-0 text-xs font-normal text-[#4c4c4c] hover:bg-[#E0E4ED] focus-visible:outline-black dark:focus-visible:outline-white [&_svg]:size-5"
+              className="dark:border-border dark:bg-background dark:text-foreground dark:hover:bg-secondary h-7 w-auto gap-1 rounded-[14px] border border-[#0000001f] bg-white p-1 px-1.5 py-0 text-xs font-normal text-[#4c4c4c] hover:bg-[#E0E4ED] focus-visible:outline-black dark:focus-visible:outline-white [&_svg]:size-5"
             >
               <Atom />
               DeepThink (R1)
@@ -66,9 +66,9 @@ export function PromptInputDeepSeek() {
             delayDuration={0}
             className="duration-0 data-[state=closed]:duration-0"
             tooltip={
-              <div className="bg-black">
-                <Arrow className="fill-black" />
-                <span className="text-xs leading-none font-normal text-white">
+              <div className="dark:bg-popover dark:border-border bg-black dark:border">
+                <Arrow className="dark:fill-popover fill-black" />
+                <span className="dark:text-popover-foreground text-xs leading-none font-normal text-white">
                   Search the web when necessary
                 </span>
               </div>
@@ -77,7 +77,7 @@ export function PromptInputDeepSeek() {
             <Button
               variant="ghost"
               aria-label="Search the web when necessary"
-              className="h-7 w-auto gap-1 rounded-[14px] border border-[#0000001f] bg-white p-1 px-1.5 py-0 text-xs font-normal text-[#4c4c4c] hover:bg-[#E0E4ED] focus-visible:outline-black dark:focus-visible:outline-white [&_svg]:size-5"
+              className="dark:border-border dark:bg-background dark:text-foreground dark:hover:bg-secondary h-7 w-auto gap-1 rounded-[14px] border border-[#0000001f] bg-white p-1 px-1.5 py-0 text-xs font-normal text-[#4c4c4c] hover:bg-[#E0E4ED] focus-visible:outline-black dark:focus-visible:outline-white [&_svg]:size-5"
             >
               <Globe />
               Search
@@ -89,9 +89,9 @@ export function PromptInputDeepSeek() {
             delayDuration={0}
             className="duration-0 data-[state=closed]:duration-0"
             tooltip={
-              <div className="bg-black">
-                <Arrow className="fill-black" />
-                <span className="text-xs leading-none font-normal text-white">
+              <div className="dark:bg-popover dark:border-border bg-black dark:border">
+                <Arrow className="dark:fill-popover fill-black" />
+                <span className="dark:text-popover-foreground text-xs leading-none font-normal text-white">
                   Attach files
                 </span>
               </div>
@@ -101,7 +101,7 @@ export function PromptInputDeepSeek() {
               variant="ghost"
               size="icon"
               aria-label="Attach files"
-              className="h-8 w-8 rounded-lg p-1 text-xs font-semibold hover:bg-black/10 focus-visible:outline-black dark:focus-visible:outline-white [&_svg]:size-6"
+              className="text-foreground dark:text-secondary-foreground dark:hover:bg-secondary h-8 w-8 rounded-lg p-1 text-xs font-semibold hover:bg-black/10 focus-visible:outline-black dark:focus-visible:outline-white [&_svg]:size-6"
             >
               <Paperclip className="[transform:rotateZ(45deg)_rotateY(180deg)]" />
             </Button>
@@ -110,9 +110,9 @@ export function PromptInputDeepSeek() {
             delayDuration={0}
             className="duration-0 data-[state=closed]:duration-0"
             tooltip={
-              <div className="bg-black">
-                <Arrow className="fill-black duration-0" />
-                <span className="text-xs leading-none font-normal text-white">
+              <div className="dark:bg-popover dark:border-border bg-black dark:border">
+                <Arrow className="dark:fill-popover fill-black duration-0" />
+                <span className="dark:text-popover-foreground text-xs leading-none font-normal text-white">
                   {isLoading ? "Stop generation" : "Send message"}
                 </span>
               </div>
@@ -122,7 +122,7 @@ export function PromptInputDeepSeek() {
               variant="default"
               size="icon"
               aria-label={isLoading ? "Stop generation" : "Send message"}
-              className="h-8 w-8 rounded-full bg-[#4d6bfe] p-1 text-white hover:bg-[#2563eb] [&_svg]:size-6"
+              className="dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/90 h-8 w-8 rounded-full bg-[#4d6bfe] p-1 text-white hover:bg-[#2563eb] [&_svg]:size-6"
               onClick={handleSubmit}
               disabled={!input}
             >

@@ -37,7 +37,7 @@ export default function ComponentPreview({
         const newHeight = Math.max(scrollHeight, bodyHeight)
 
         iframe.style.height = `${Math.max(newHeight, 100)}px`
-      } catch (e) {
+      } catch {
         console.warn(
           "Could not access iframe content height due to CORS policy"
         )
@@ -73,7 +73,7 @@ export default function ComponentPreview({
   return (
     <div
       className={cn(
-        "flex min-h-[350px] w-full items-center justify-center rounded-md border border-zinc-200",
+        "border-border flex min-h-[350px] w-full items-center justify-center rounded-md border",
         className
       )}
     >
@@ -82,7 +82,7 @@ export default function ComponentPreview({
           className="absolute top-3 right-4 cursor-pointer"
           onClick={reTrigger}
         >
-          <RotateCw className="h-4 w-4 text-zinc-500" />
+          <RotateCw className="text-muted-foreground h-4 w-4" />
         </div>
       )}
       {url && isLoading && <div className="absolute inset-0 w-full" />}

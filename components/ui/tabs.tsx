@@ -20,6 +20,7 @@ const TabsRoot = React.forwardRef<
     </TabsContext.Provider>
   )
 })
+TabsRoot.displayName = "TabsRoot"
 
 const TabsList = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.List>,
@@ -28,7 +29,7 @@ const TabsList = React.forwardRef<
   <TabsPrimitive.List
     ref={ref}
     className={cn(
-      "inline-flex h-10 w-full items-center justify-start border-b border-zinc-200 bg-transparent text-zinc-900 dark:border-zinc-800 dark:text-zinc-50",
+      "inline-flex h-10 w-full items-center justify-start border-b bg-transparent text-zinc-900 dark:border-zinc-800 dark:text-zinc-50",
       className
     )}
     {...props}
@@ -39,7 +40,7 @@ TabsList.displayName = TabsPrimitive.List.displayName
 const TabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
->(({ className, children, ...props }, ref) => {
+>(({ className, children, ...props }) => {
   const triggerRef = React.useRef<HTMLButtonElement>(null)
   const [isActive, setIsActive] = React.useState(false)
   const tabsId = React.useContext(TabsContext)
@@ -63,7 +64,7 @@ const TabsTrigger = React.forwardRef<
     <TabsPrimitive.Trigger
       ref={triggerRef}
       className={cn(
-        "ring-offset-background focus-visible:ring-ring group relative inline-flex h-10 items-center justify-center rounded-none bg-transparent px-4 py-1 pt-2 pb-3 text-sm font-medium whitespace-nowrap text-zinc-500 transition-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50 data-[state=active]:text-zinc-950 dark:text-zinc-500 dark:data-[state=active]:text-white",
+        "ring-offset-background focus-visible:ring-ring group text-muted-foreground relative inline-flex h-10 items-center justify-center rounded-none bg-transparent px-4 py-1 pt-2 pb-3 text-sm font-medium whitespace-nowrap transition-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50 data-[state=active]:text-zinc-950 dark:text-zinc-500 dark:data-[state=active]:text-white",
         className
       )}
       {...props}
@@ -80,7 +81,7 @@ const TabsTrigger = React.forwardRef<
           }}
           layoutId={`underline-${tabsId}`}
         >
-          <div className="h-0.5 w-4/5 bg-zinc-950 dark:bg-white" />
+          <div className="bg-foreground h-0.5 w-4/5" />
         </motion.div>
       )}
       {children}

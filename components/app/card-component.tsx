@@ -18,7 +18,7 @@ export default function CardComponent({
   }
 
   return (
-    <div className="relative -mx-6 flex items-start justify-center border-y border-zinc-200 bg-white px-6 py-12 sm:mx-0 sm:rounded-lg sm:border sm:px-8 dark:border-white/10 dark:bg-zinc-900">
+    <div className="border-border bg-background relative -mx-6 flex items-start justify-center border border-y px-6 py-12 sm:mx-0 sm:rounded-lg sm:border sm:px-8">
       {hasReTrigger && (
         <button
           className={`absolute top-3 right-4 cursor-pointer`}
