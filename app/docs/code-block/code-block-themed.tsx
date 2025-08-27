@@ -51,7 +51,12 @@ export function CodeBlockThemed() {
             )}
           </Button>
         </CodeBlockGroup>
-        <CodeBlockCode code={code} language="javascript" theme="github-dark" />
+        <CodeBlockCode
+          code={code}
+          language="javascript"
+          theme="github-dark"
+          className="dark:[&_pre]:!bg-background"
+        />
       </CodeBlock>
     </div>
   )
