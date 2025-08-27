@@ -86,7 +86,11 @@ export default function Home() {
             <TextMorph>{hasCopyLabel ? "Copied" : "Copy"}</TextMorph>
           </button>
         </CodeBlockGroup>
-        <CodeBlockCode code={CODE_SAMPLE} language="tsx" />
+        <CodeBlockCode
+          code={CODE_SAMPLE}
+          language="tsx"
+          className="dark:[&_pre]:!bg-background"
+        />
       </CodeBlock>
     </>
   )

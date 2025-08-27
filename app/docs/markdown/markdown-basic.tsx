@@ -38,7 +38,7 @@ function greet(name) {
 
   return (
     <div className="w-full max-w-3xl">
-      <Markdown className="prose prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-h4:text-base prose-h5:text-sm prose-h6:text-xs">
+      <Markdown className="prose prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-h4:text-base prose-h5:text-sm prose-h6:text-xs dark:prose-invert">
         {markdownContent}
       </Markdown>
     </div>
