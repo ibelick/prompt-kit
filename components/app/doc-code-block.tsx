@@ -1,4 +1,3 @@
-import { extractCodeFromFilePath } from "@/lib/code"
 import { codeToHtml } from "@/lib/shiki"
 import { ClientCodeWrapper } from "./client-code-wrapper"
 
@@ -11,14 +10,12 @@ type DocCodeBlockProps = {
 export async function DocCodeBlock({
   language,
   code,
-  filePath,
   ...props
 }: DocCodeBlockProps) {
-  const fileContent = filePath ? extractCodeFromFilePath(filePath) : code || ""
-  const html = await codeToHtml({ code: fileContent, lang: language })
+  const html = await codeToHtml({ code, lang: language })
 
   return (
-    <ClientCodeWrapper code={fileContent}>
+    <ClientCodeWrapper code={code}>
       <div
         dangerouslySetInnerHTML={{ __html: html }}
         className="not-prose bg-background overflow-auto rounded-md border border-zinc-200 p-2 text-[13px]"
