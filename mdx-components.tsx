@@ -12,9 +12,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </code>
     ),
-    // @ts-ignore
-    a: (props: React.ComponentProps<typeof Link>) => (
-      <Link {...props} href={props.href || ""}>
+    a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+      <Link {...props} href={props.href || "#"}>
         {props.children}
       </Link>
     ),
@@ -23,8 +22,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </Link>
     ),
-    // @ts-ignore
-    CodeBlock: async ({
+    CodeBlock: ({
       language,
       code,
       filePath,
@@ -33,16 +31,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       language: string
       code: string
       filePath?: string
-    } & React.HTMLAttributes<HTMLDivElement>) => {
-      return (
-        <DocCodeBlock
-          language={language}
-          code={code}
-          filePath={filePath}
-          {...props}
-        />
-      )
-    },
+    } & React.HTMLAttributes<HTMLDivElement>) => (
+      <DocCodeBlock
+        language={language}
+        code={code}
+        filePath={filePath}
+        {...props}
+      />
+    ),
     Step: ({ className, children, ...props }: React.ComponentProps<"h3">) => (
       <h3 className={cn("step", className)} data-heading="3" {...props}>
         {children}
