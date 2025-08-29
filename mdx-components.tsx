@@ -3,6 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
 import type { MDXComponents } from "mdx/types"
 import Link from "next/link"
+import { extractCodeFromFilePath } from "./lib/code"
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -12,9 +13,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </code>
     ),
-    // @ts-ignore
-    a: (props: React.ComponentProps<typeof Link>) => (
-      <Link {...props} href={props.href || ""}>
+    a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+      <Link {...props} href={props.href || "#"}>
         {props.children}
       </Link>
     ),
@@ -23,8 +23,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </Link>
     ),
-    // @ts-ignore
-    CodeBlock: async ({
+    CodeBlock: ({
       language,
       code,
       filePath,
@@ -34,14 +33,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       code: string
       filePath?: string
     } & React.HTMLAttributes<HTMLDivElement>) => {
-      return (
-        <DocCodeBlock
-          language={language}
-          code={code}
-          filePath={filePath}
-          {...props}
-        />
-      )
+      const fileContent = filePath
+        ? extractCodeFromFilePath(filePath)
+        : code || ""
+
+      return <DocCodeBlock language={language} code={fileContent} {...props} />
     },
     Step: ({ className, children, ...props }: React.ComponentProps<"h3">) => (
       <h3 className={cn("step", className)} data-heading="3" {...props}>
