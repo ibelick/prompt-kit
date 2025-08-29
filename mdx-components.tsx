@@ -12,9 +12,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </code>
     ),
-    // @ts-ignore
-    a: (props: React.ComponentProps<typeof Link>) => (
-      <Link {...props} href={props.href || ""}>
+    a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+      <Link {...props} href={props.href || "#"}>
         {props.children}
       </Link>
     ),
@@ -23,8 +22,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </Link>
     ),
-    // @ts-ignore
-    CodeBlock: async ({
+    CodeBlock: ({
       language,
       code,
       filePath,
