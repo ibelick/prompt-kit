@@ -121,15 +121,21 @@ export const routes: Route[] = [
     type: "component",
   },
   {
+    path: "/docs/execution",
+    label: "Execution",
+    order: 19,
+    type: "component",
+  },
+  {
     path: "/blocks",
     label: "Blocks",
-    order: 19,
+    order: 20,
     type: "block",
   },
   {
     path: "/primitives",
     label: "Primitives",
-    order: 20,
+    order: 21,
     type: "primitive",
   },
 ]

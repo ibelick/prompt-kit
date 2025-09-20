@@ -1,0 +1,104 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
+import { ExecutionBasic } from "./execution-basic"
+import { ExecutionWithSource } from "./execution-with-source"
+
+export const metadata = generateMetadata(
+  "Execution",
+  "Composable execution blocks with collapsible sections and items."
+)
+
+# Execution
+
+Composable execution blocks to display steps with collapsible sections and items. Useful for showing agent workflows, tool calls, or reasoning traces.
+
+## Examples
+
+### Basic Execution
+
+<ComponentCodePreview
+  component={<ExecutionBasic />}
+  filePath="app/docs/execution/execution-basic.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[300px]"
+/>
+
+### Execution with Source
+
+<ComponentCodePreview
+  component={<ExecutionWithSource />}
+  filePath="app/docs/execution/execution-with-source.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[300px]"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/execution.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/execution.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+<TabsContent value="examples">
+
+<CodeBlock filePath="app/docs/execution/execution-basic.tsx" language="tsx" />
+<CodeBlock
+  filePath="app/docs/execution/execution-with-source.tsx"
+  language="tsx"
+/>
+
+</TabsContent>
+
+</Tabs>
+
+### Execution
+
+| Prop        | Type                                | Default | Description                           |
+| :---------- | :---------------------------------- | :------ | :------------------------------------ |
+| defaultOpen | boolean                             | true    | Whether the execution starts expanded |
+| className   | string                              |         | Additional CSS classes                |
+| ...props    | `React.ComponentProps<Collapsible>` |         | Root collapsible component props      |
+
+### ExecutionTrigger
+
+| Prop      | Type            | Default | Description             |
+| :-------- | :-------------- | :------ | :---------------------- |
+| children  | React.ReactNode |         | Trigger content (label) |
+| className | string          |         | Additional CSS classes  |
+
+### ExecutionContent
+
+| Prop      | Type                                       | Default | Description               |
+| :-------- | :----------------------------------------- | :------ | :------------------------ |
+| className | string                                     |         | Additional CSS classes    |
+| ...props  | `React.ComponentProps<CollapsibleContent>` |         | Collapsible content props |
+
+### ExecutionItem
+
+| Prop      | Type            | Default | Description            |
+| :-------- | :-------------- | :------ | :--------------------- |
+| children  | React.ReactNode |         | Row item content       |
+| className | string          |         | Additional CSS classes |
