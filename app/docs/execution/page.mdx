@@ -1,7 +1,8 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
 import { generateMetadata } from "../utils/metadata"
-import { ExecutionBasic } from "./execution-basic"
 import { ExecutionWithSource } from "./execution-with-source"
+import { ExecutionBasic } from "./execution-basic"
+import { ExecutionIconSwap } from "./execution-icon-swap"
 
 export const metadata = generateMetadata(
   "Execution",
@@ -14,7 +15,7 @@ Composable execution blocks to display steps with collapsible sections and items
 
 ## Examples
 
-### Basic Execution
+### Execution with Icon Swap and Custom Bar
 
 <ComponentCodePreview
   component={<ExecutionBasic />}
@@ -22,11 +23,21 @@ Composable execution blocks to display steps with collapsible sections and items
   classNameComponentContainer="p-8 justify-start items-start min-h-[300px]"
 />
 
-### Execution with Source
+### Execution with sources
+
+You can use the [Source](/docs/source) component to display sources in the execution block.
 
 <ComponentCodePreview
   component={<ExecutionWithSource />}
   filePath="app/docs/execution/execution-with-source.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[300px]"
+/>
+
+### Execution with custom icons swap and bar
+
+<ComponentCodePreview
+  component={<ExecutionIconSwap />}
+  filePath="app/docs/execution/execution-icon-swap.tsx"
   classNameComponentContainer="p-8 justify-start items-start min-h-[300px]"
 />
 
@@ -64,11 +75,7 @@ Composable execution blocks to display steps with collapsible sections and items
 
 <TabsContent value="examples">
 
-<CodeBlock filePath="app/docs/execution/execution-basic.tsx" language="tsx" />
-<CodeBlock
-  filePath="app/docs/execution/execution-with-source.tsx"
-  language="tsx"
-/>
+<CodeBlock filePath="app/docs/execution/execution-icon-swap.tsx" language="tsx" />
 
 </TabsContent>
 
@@ -84,10 +91,12 @@ Composable execution blocks to display steps with collapsible sections and items
 
 ### ExecutionTrigger
 
-| Prop      | Type            | Default | Description             |
-| :-------- | :-------------- | :------ | :---------------------- |
-| children  | React.ReactNode |         | Trigger content (label) |
-| className | string          |         | Additional CSS classes  |
+| Prop            | Type            | Default | Description                                               |
+| :-------------- | :-------------- | :------ | :-------------------------------------------------------- |
+| children        | React.ReactNode |         | Trigger content (label)                                  |
+| leftIcon        | React.ReactNode |         | Optional left icon area; keeps width to avoid layout jump |
+| swapIconOnHover | boolean         | true    | Swap leftIcon with chevron on hover                      |
+| className       | string          |         | Additional CSS classes                                   |
 
 ### ExecutionContent
 
@@ -95,6 +104,13 @@ Composable execution blocks to display steps with collapsible sections and items
 | :-------- | :----------------------------------------- | :------ | :------------------------ |
 | className | string                                     |         | Additional CSS classes    |
 | ...props  | `React.ComponentProps<CollapsibleContent>` |         | Collapsible content props |
+
+### ExecutionBar
+
+| Prop      | Type                                  | Default                          | Description                         |
+| :-------- | :------------------------------------ | :------------------------------- | :---------------------------------- |
+| className | string                                | `absolute left-4 inset-y-0 w-[2px] bg-muted` | Classes for positioning and style   |
+| ...props  | `React.HTMLAttributes<HTMLDivElement>` |                                 | Pass-through div attributes/styles  |
 
 ### ExecutionItem
 

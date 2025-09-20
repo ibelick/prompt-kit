@@ -10,7 +10,7 @@ import {
 export function ExecutionBasic() {
   return (
     <div className="space-y-4">
-      <Execution defaultOpen className="w-[300px]">
+      <Execution defaultOpen>
         <ExecutionTrigger>Agent run: Summarize repository</ExecutionTrigger>
         <ExecutionContent>
           <div className="space-y-1">
