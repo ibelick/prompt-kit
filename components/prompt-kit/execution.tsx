@@ -20,16 +20,6 @@ export const ExecutionItem = ({
   </div>
 )
 
-export type ExecutionRootProps = React.ComponentProps<typeof Collapsible>
-
-export const ExecutionRoot = ({
-  defaultOpen = true,
-  className,
-  ...props
-}: ExecutionRootProps) => (
-  <Collapsible className={cn(className)} defaultOpen={defaultOpen} {...props} />
-)
-
 export type ExecutionTriggerProps = React.ComponentProps<
   typeof CollapsibleTrigger
 > & {
@@ -95,7 +85,7 @@ export const ExecutionContent = ({
       )}
       {...props}
     >
-      <div className="mt-3 grid max-w-full min-w-0 grid-cols-[min-content_minmax(0,1fr)] items-start gap-x-2">
+      <div className="mt-3 grid max-w-full min-w-0 grid-cols-[min-content_minmax(0,1fr)] items-start gap-x-3">
         <div className="min-w-0 self-stretch">{bar ?? <ExecutionBar />}</div>
         <div className="min-w-0 space-y-2">{children}</div>
       </div>
@@ -128,5 +118,3 @@ export function Execution({
     />
   )
 }
-
-export { Collapsible as ExecutionGroup }

@@ -1,8 +1,9 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
 import { generateMetadata } from "../utils/metadata"
-import { ExecutionWithSource } from "./execution-with-source"
 import { ExecutionBasic } from "./execution-basic"
 import { ExecutionIconSwap } from "./execution-icon-swap"
+import { ExecutionWithLoader } from "./execution-with-loader"
+import { ExecutionWithSource } from "./execution-with-source"
 
 export const metadata = generateMetadata(
   "Execution",
@@ -11,11 +12,11 @@ export const metadata = generateMetadata(
 
 # Execution
 
-Composable execution blocks to display steps with collapsible sections and items. Useful for showing agent workflows, tool calls, or reasoning traces.
+Displays a sequence of steps in a collapsible layout. Each step can include details and a customizable vertical bar. Useful for showing workflows, reasoning traces, or process logs in AI applications.
 
 ## Examples
 
-### Execution with Icon Swap and Custom Bar
+### Execution basic
 
 <ComponentCodePreview
   component={<ExecutionBasic />}
@@ -38,6 +39,16 @@ You can use the [Source](/docs/source) component to display sources in the execu
 <ComponentCodePreview
   component={<ExecutionIconSwap />}
   filePath="app/docs/execution/execution-icon-swap.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[300px]"
+/>
+
+### Execution with Text Shimmer Loader
+
+You can use the [Loader](/docs/loader) component to display a text shimmer loader in the execution block.
+
+<ComponentCodePreview
+  component={<ExecutionWithLoader />}
+  filePath="app/docs/execution/execution-with-loader.tsx"
   classNameComponentContainer="p-8 justify-start items-start min-h-[300px]"
 />
 
@@ -75,11 +86,20 @@ You can use the [Source](/docs/source) component to display sources in the execu
 
 <TabsContent value="examples">
 
-<CodeBlock filePath="app/docs/execution/execution-icon-swap.tsx" language="tsx" />
+<CodeBlock
+  filePath="app/docs/execution/execution-icon-swap.tsx"
+  language="tsx"
+/>
+<CodeBlock
+  filePath="app/docs/execution/execution-with-loader.tsx"
+  language="tsx"
+/>
 
 </TabsContent>
 
 </Tabs>
+
+## Component API
 
 ### Execution
 
@@ -93,24 +113,26 @@ You can use the [Source](/docs/source) component to display sources in the execu
 
 | Prop            | Type            | Default | Description                                               |
 | :-------------- | :-------------- | :------ | :-------------------------------------------------------- |
-| children        | React.ReactNode |         | Trigger content (label)                                  |
+| children        | React.ReactNode |         | Trigger content (label)                                   |
 | leftIcon        | React.ReactNode |         | Optional left icon area; keeps width to avoid layout jump |
-| swapIconOnHover | boolean         | true    | Swap leftIcon with chevron on hover                      |
-| className       | string          |         | Additional CSS classes                                   |
+| swapIconOnHover | boolean         | true    | Swap leftIcon with chevron on hover                       |
+| className       | string          |         | Additional CSS classes                                    |
+| ...props        | `React.ComponentProps<CollapsibleTrigger>` |         | Trigger props forwarded to `CollapsibleTrigger`           |
 
 ### ExecutionContent
 
-| Prop      | Type                                       | Default | Description               |
-| :-------- | :----------------------------------------- | :------ | :------------------------ |
-| className | string                                     |         | Additional CSS classes    |
-| ...props  | `React.ComponentProps<CollapsibleContent>` |         | Collapsible content props |
+| Prop      | Type                                       | Default          | Description                                |
+| :-------- | :----------------------------------------- | :--------------- | :----------------------------------------- |
+| className | string                                     |                  | Additional CSS classes                     |
+| bar       | React.ReactNode                            | `<ExecutionBar />` | Optional bar element rendered at the left |
+| ...props  | `React.ComponentProps<CollapsibleContent>` |                  | Collapsible content props                  |
 
 ### ExecutionBar
 
-| Prop      | Type                                  | Default                          | Description                         |
-| :-------- | :------------------------------------ | :------------------------------- | :---------------------------------- |
-| className | string                                | `absolute left-4 inset-y-0 w-[2px] bg-muted` | Classes for positioning and style   |
-| ...props  | `React.HTMLAttributes<HTMLDivElement>` |                                 | Pass-through div attributes/styles  |
+| Prop      | Type                                   | Default                     | Description                        |
+| :-------- | :------------------------------------- | :-------------------------- | :--------------------------------- |
+| className | string                                 | `bg-muted h-full w-[2px]`   | Classes for positioning and style  |
+| ...props  | `React.HTMLAttributes<HTMLDivElement>` |                            | Pass-through div attributes/styles |
 
 ### ExecutionItem
 
@@ -118,3 +140,12 @@ You can use the [Source](/docs/source) component to display sources in the execu
 | :-------- | :-------------- | :------ | :--------------------- |
 | children  | React.ReactNode |         | Row item content       |
 | className | string          |         | Additional CSS classes |
+| ...props  | `React.ComponentProps<'div'>` |   | Pass-through div attributes/styles |
+
+### ExecutionRoot
+
+| Prop        | Type                                | Default | Description                           |
+| :---------- | :---------------------------------- | :------ | :------------------------------------ |
+| defaultOpen | boolean                             | true    | Whether the execution starts expanded |
+| className   | string                              |         | Additional CSS classes                |
+| ...props    | `React.ComponentProps<Collapsible>` |         | Root collapsible component props      |
