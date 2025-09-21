@@ -1,54 +1,54 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
 import { generateMetadata } from "../utils/metadata"
-import { ExecutionBasic } from "./execution-basic"
-import { ExecutionIconSwap } from "./execution-icon-swap"
-import { ExecutionWithLoader } from "./execution-with-loader"
-import { ExecutionWithSource } from "./execution-with-source"
+import { StepsBasic } from "./Steps-basic"
+import { StepsIconSwap } from "./Steps-icon-swap"
+import { StepsWithLoader } from "./Steps-with-loader"
+import { StepsWithSource } from "./Steps-with-source"
 
 export const metadata = generateMetadata(
-  "Execution",
-  "Composable execution blocks with collapsible sections and items."
+  "Steps",
+  "Displays a sequence of operations in a collapsible layout. Each step can include details and an optional vertical bar. Useful for showing AI steps like reasoning traces, tool calls, or process logs."
 )
 
-# Execution
+# Steps
 
-Displays a sequence of steps in a collapsible layout. Each step can include details and a customizable vertical bar. Useful for showing workflows, reasoning traces, or process logs in AI applications.
+Displays a sequence of operations in a collapsible layout. Each step can include details and an optional vertical bar. Useful for showing AI steps like reasoning traces, tool calls, or process logs.
 
 ## Examples
 
-### Execution basic
+### Steps basic
 
 <ComponentCodePreview
-  component={<ExecutionBasic />}
-  filePath="app/docs/execution/execution-basic.tsx"
+  component={<StepsBasic />}
+  filePath="app/docs/Steps/Steps-basic.tsx"
   classNameComponentContainer="p-8 justify-start items-start min-h-[300px]"
 />
 
-### Execution with sources
+### Steps with sources
 
-You can use the [Source](/docs/source) component to display sources in the execution block.
+You can use the [Source](/docs/source) component to display sources in the Steps block.
 
 <ComponentCodePreview
-  component={<ExecutionWithSource />}
-  filePath="app/docs/execution/execution-with-source.tsx"
+  component={<StepsWithSource />}
+  filePath="app/docs/Steps/Steps-with-source.tsx"
   classNameComponentContainer="p-8 justify-start items-start min-h-[300px]"
 />
 
-### Execution with custom icons swap and bar
+### Steps with custom icons swap and bar
 
 <ComponentCodePreview
-  component={<ExecutionIconSwap />}
-  filePath="app/docs/execution/execution-icon-swap.tsx"
+  component={<StepsIconSwap />}
+  filePath="app/docs/Steps/Steps-icon-swap.tsx"
   classNameComponentContainer="p-8 justify-start items-start min-h-[300px]"
 />
 
-### Execution with Text Shimmer Loader
+### Steps with Text Shimmer Loader
 
-You can use the [Loader](/docs/loader) component to display a text shimmer loader in the execution block.
+You can use the [Loader](/docs/loader) component to display a text shimmer loader in the Steps block.
 
 <ComponentCodePreview
-  component={<ExecutionWithLoader />}
-  filePath="app/docs/execution/execution-with-loader.tsx"
+  component={<StepsWithLoader />}
+  filePath="app/docs/Steps/Steps-with-loader.tsx"
   classNameComponentContainer="p-8 justify-start items-start min-h-[300px]"
 />
 
@@ -64,7 +64,7 @@ You can use the [Loader](/docs/loader) component to display a text shimmer loade
 <TabsContent value="cli">
 
 <CodeBlock
-  code={`npx shadcn add "https://prompt-kit.com/c/execution.json"`}
+  code={`npx shadcn add "https://prompt-kit.com/c/Steps.json"`}
   language="bash"
 />
 
@@ -76,7 +76,7 @@ You can use the [Loader](/docs/loader) component to display a text shimmer loade
 
 <Step>Copy and paste the following code into your project.</Step>
 
-<CodeBlock filePath="components/prompt-kit/execution.tsx" language="tsx" />
+<CodeBlock filePath="components/prompt-kit/Steps.tsx" language="tsx" />
 
 <Step>Update the import paths to match your project setup.</Step>
 
@@ -87,11 +87,11 @@ You can use the [Loader](/docs/loader) component to display a text shimmer loade
 <TabsContent value="examples">
 
 <CodeBlock
-  filePath="app/docs/execution/execution-icon-swap.tsx"
+  filePath="app/docs/Steps/Steps-icon-swap.tsx"
   language="tsx"
 />
 <CodeBlock
-  filePath="app/docs/execution/execution-with-loader.tsx"
+  filePath="app/docs/Steps/Steps-with-loader.tsx"
   language="tsx"
 />
 
@@ -101,15 +101,15 @@ You can use the [Loader](/docs/loader) component to display a text shimmer loade
 
 ## Component API
 
-### Execution
+### Steps
 
 | Prop        | Type                                | Default | Description                           |
 | :---------- | :---------------------------------- | :------ | :------------------------------------ |
-| defaultOpen | boolean                             | true    | Whether the execution starts expanded |
+| defaultOpen | boolean                             | true    | Whether the Steps starts expanded |
 | className   | string                              |         | Additional CSS classes                |
 | ...props    | `React.ComponentProps<Collapsible>` |         | Root collapsible component props      |
 
-### ExecutionTrigger
+### StepsTrigger
 
 | Prop            | Type            | Default | Description                                               |
 | :-------------- | :-------------- | :------ | :-------------------------------------------------------- |
@@ -119,22 +119,22 @@ You can use the [Loader](/docs/loader) component to display a text shimmer loade
 | className       | string          |         | Additional CSS classes                                    |
 | ...props        | `React.ComponentProps<CollapsibleTrigger>` |         | Trigger props forwarded to `CollapsibleTrigger`           |
 
-### ExecutionContent
+### StepsContent
 
 | Prop      | Type                                       | Default          | Description                                |
 | :-------- | :----------------------------------------- | :--------------- | :----------------------------------------- |
 | className | string                                     |                  | Additional CSS classes                     |
-| bar       | React.ReactNode                            | `<ExecutionBar />` | Optional bar element rendered at the left |
+| bar       | React.ReactNode                            | `<StepsBar />` | Optional bar element rendered at the left |
 | ...props  | `React.ComponentProps<CollapsibleContent>` |                  | Collapsible content props                  |
 
-### ExecutionBar
+### StepsBar
 
 | Prop      | Type                                   | Default                     | Description                        |
 | :-------- | :------------------------------------- | :-------------------------- | :--------------------------------- |
 | className | string                                 | `bg-muted h-full w-[2px]`   | Classes for positioning and style  |
 | ...props  | `React.HTMLAttributes<HTMLDivElement>` |                            | Pass-through div attributes/styles |
 
-### ExecutionItem
+### StepsItem
 
 | Prop      | Type            | Default | Description            |
 | :-------- | :-------------- | :------ | :--------------------- |
@@ -142,10 +142,10 @@ You can use the [Loader](/docs/loader) component to display a text shimmer loade
 | className | string          |         | Additional CSS classes |
 | ...props  | `React.ComponentProps<'div'>` |   | Pass-through div attributes/styles |
 
-### ExecutionRoot
+### StepsRoot
 
 | Prop        | Type                                | Default | Description                           |
 | :---------- | :---------------------------------- | :------ | :------------------------------------ |
-| defaultOpen | boolean                             | true    | Whether the execution starts expanded |
+| defaultOpen | boolean                             | true    | Whether the Steps starts expanded |
 | className   | string                              |         | Additional CSS classes                |
 | ...props    | `React.ComponentProps<Collapsible>` |         | Root collapsible component props      |

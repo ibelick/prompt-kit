@@ -1,26 +1,26 @@
 "use client"
 
 import {
-  Execution,
-  ExecutionContent,
-  ExecutionItem,
-  ExecutionTrigger,
-} from "@/components/prompt-kit/execution"
-import {
   Source,
   SourceContent,
   SourceTrigger,
 } from "@/components/prompt-kit/source"
+import {
+  Steps,
+  StepsContent,
+  StepsItem,
+  StepsTrigger,
+} from "@/components/prompt-kit/steps"
 
-export function ExecutionWithSource() {
+export function StepsWithSource() {
   return (
     <div className="space-y-4">
-      <Execution defaultOpen>
-        <ExecutionTrigger>Web search: modern LLM UI patterns</ExecutionTrigger>
-        <ExecutionContent>
+      <Steps defaultOpen>
+        <StepsTrigger>Web search: modern LLM UI patterns</StepsTrigger>
+        <StepsContent>
           <div className="space-y-2">
-            <ExecutionItem>Searching across curated sources...</ExecutionItem>
-            <ExecutionItem>Top matches</ExecutionItem>
+            <StepsItem>Searching across curated sources...</StepsItem>
+            <StepsItem>Top matches</StepsItem>
             <div className="flex flex-wrap gap-1.5">
               <Source href="https://prompt-kit.com/docs">
                 <SourceTrigger label="prompt-kit.com/docs" showFavicon />
@@ -40,12 +40,10 @@ export function ExecutionWithSource() {
                 />
               </Source>
             </div>
-            <ExecutionItem>
-              Extracting key sections and summarizing…
-            </ExecutionItem>
+            <StepsItem>Extracting key sections and summarizing…</StepsItem>
           </div>
-        </ExecutionContent>
-      </Execution>
+        </StepsContent>
+      </Steps>
     </div>
   )
 }

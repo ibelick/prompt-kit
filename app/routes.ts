@@ -121,8 +121,8 @@ export const routes: Route[] = [
     type: "component",
   },
   {
-    path: "/docs/execution",
-    label: "Execution",
+    path: "/docs/steps",
+    label: "Steps",
     order: 19,
     type: "component",
   },

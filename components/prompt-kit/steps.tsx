@@ -8,32 +8,32 @@ import {
 import { cn } from "@/lib/utils"
 import { ChevronDown } from "lucide-react"
 
-export type ExecutionItemProps = React.ComponentProps<"div">
+export type StepsItemProps = React.ComponentProps<"div">
 
-export const ExecutionItem = ({
+export const StepsItem = ({
   children,
   className,
   ...props
-}: ExecutionItemProps) => (
+}: StepsItemProps) => (
   <div className={cn("text-muted-foreground text-sm", className)} {...props}>
     {children}
   </div>
 )
 
-export type ExecutionTriggerProps = React.ComponentProps<
+export type StepsTriggerProps = React.ComponentProps<
   typeof CollapsibleTrigger
 > & {
   leftIcon?: React.ReactNode
   swapIconOnHover?: boolean
 }
 
-export const ExecutionTrigger = ({
+export const StepsTrigger = ({
   children,
   className,
   leftIcon,
   swapIconOnHover = true,
   ...props
-}: ExecutionTriggerProps) => (
+}: StepsTriggerProps) => (
   <CollapsibleTrigger
     className={cn(
       "group text-muted-foreground hover:text-foreground flex w-full cursor-pointer items-center justify-start gap-1 text-sm transition-colors",
@@ -65,18 +65,18 @@ export const ExecutionTrigger = ({
   </CollapsibleTrigger>
 )
 
-export type ExecutionContentProps = React.ComponentProps<
+export type StepsContentProps = React.ComponentProps<
   typeof CollapsibleContent
 > & {
   bar?: React.ReactNode
 }
 
-export const ExecutionContent = ({
+export const StepsContent = ({
   children,
   className,
   bar,
   ...props
-}: ExecutionContentProps) => {
+}: StepsContentProps) => {
   return (
     <CollapsibleContent
       className={cn(
@@ -86,16 +86,16 @@ export const ExecutionContent = ({
       {...props}
     >
       <div className="mt-3 grid max-w-full min-w-0 grid-cols-[min-content_minmax(0,1fr)] items-start gap-x-3">
-        <div className="min-w-0 self-stretch">{bar ?? <ExecutionBar />}</div>
+        <div className="min-w-0 self-stretch">{bar ?? <StepsBar />}</div>
         <div className="min-w-0 space-y-2">{children}</div>
       </div>
     </CollapsibleContent>
   )
 }
 
-export type ExecutionBarProps = React.HTMLAttributes<HTMLDivElement>
+export type StepsBarProps = React.HTMLAttributes<HTMLDivElement>
 
-export const ExecutionBar = ({ className, ...props }: ExecutionBarProps) => (
+export const StepsBar = ({ className, ...props }: StepsBarProps) => (
   <div
     className={cn("bg-muted h-full w-[2px]", className)}
     aria-hidden
@@ -103,13 +103,9 @@ export const ExecutionBar = ({ className, ...props }: ExecutionBarProps) => (
   />
 )
 
-export type ExecutionProps = React.ComponentProps<typeof Collapsible>
+export type StepsProps = React.ComponentProps<typeof Collapsible>
 
-export function Execution({
-  defaultOpen = true,
-  className,
-  ...props
-}: ExecutionProps) {
+export function Steps({ defaultOpen = true, className, ...props }: StepsProps) {
   return (
     <Collapsible
       className={cn(className)}
