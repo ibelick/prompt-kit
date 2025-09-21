@@ -1,9 +1,9 @@
 import ComponentCodePreview from "@/components/app/component-code-preview"
 import { generateMetadata } from "../utils/metadata"
-import { StepsBasic } from "./Steps-basic"
-import { StepsIconSwap } from "./Steps-icon-swap"
-import { StepsWithLoader } from "./Steps-with-loader"
-import { StepsWithSource } from "./Steps-with-source"
+import { StepsBasic } from "./steps-basic"
+import { StepsIconSwap } from "./steps-icon-swap"
+import { StepsWithLoader } from "./steps-with-loader"
+import { StepsWithSource } from "./steps-with-source"
 
 export const metadata = generateMetadata(
   "Steps",
@@ -20,7 +20,7 @@ Displays a sequence of operations in a collapsible layout. Each step can include
 
 <ComponentCodePreview
   component={<StepsBasic />}
-  filePath="app/docs/Steps/Steps-basic.tsx"
+  filePath="app/docs/steps/steps-basic.tsx"
   classNameComponentContainer="p-8 justify-start items-start min-h-[300px]"
 />
 
@@ -30,7 +30,7 @@ You can use the [Source](/docs/source) component to display sources in the Steps
 
 <ComponentCodePreview
   component={<StepsWithSource />}
-  filePath="app/docs/Steps/Steps-with-source.tsx"
+  filePath="app/docs/steps/steps-with-source.tsx"
   classNameComponentContainer="p-8 justify-start items-start min-h-[300px]"
 />
 
@@ -38,7 +38,7 @@ You can use the [Source](/docs/source) component to display sources in the Steps
 
 <ComponentCodePreview
   component={<StepsIconSwap />}
-  filePath="app/docs/Steps/Steps-icon-swap.tsx"
+  filePath="app/docs/steps/steps-icon-swap.tsx"
   classNameComponentContainer="p-8 justify-start items-start min-h-[300px]"
 />
 
@@ -48,7 +48,7 @@ You can use the [Loader](/docs/loader) component to display a text shimmer loade
 
 <ComponentCodePreview
   component={<StepsWithLoader />}
-  filePath="app/docs/Steps/Steps-with-loader.tsx"
+  filePath="app/docs/steps/steps-with-loader.tsx"
   classNameComponentContainer="p-8 justify-start items-start min-h-[300px]"
 />
 
@@ -64,7 +64,7 @@ You can use the [Loader](/docs/loader) component to display a text shimmer loade
 <TabsContent value="cli">
 
 <CodeBlock
-  code={`npx shadcn add "https://prompt-kit.com/c/Steps.json"`}
+  code={`npx shadcn add "https://prompt-kit.com/c/steps.json"`}
   language="bash"
 />
 
@@ -76,24 +76,11 @@ You can use the [Loader](/docs/loader) component to display a text shimmer loade
 
 <Step>Copy and paste the following code into your project.</Step>
 
-<CodeBlock filePath="components/prompt-kit/Steps.tsx" language="tsx" />
+<CodeBlock filePath="components/prompt-kit/steps.tsx" language="tsx" />
 
 <Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
-
-</TabsContent>
-
-<TabsContent value="examples">
-
-<CodeBlock
-  filePath="app/docs/Steps/Steps-icon-swap.tsx"
-  language="tsx"
-/>
-<CodeBlock
-  filePath="app/docs/Steps/Steps-with-loader.tsx"
-  language="tsx"
-/>
 
 </TabsContent>
 
