@@ -2,7 +2,7 @@ import fs from "fs"
 import path from "path"
 import { components } from "./registry-components"
 import { primitives } from "./registry-primitives"
-import { Schema } from "./registry-schema"
+import { PrimitiveDefinition, RegistryFile, Schema } from "./registry-schema"
 
 const registryComponents = path.join(__dirname, "../public/c")
 const registryHooks = path.join(__dirname, "../public/h")
@@ -77,7 +77,7 @@ for (const primitive of primitives) {
     const content = fs.readFileSync(filePath, "utf8")
 
     // Create the file object according to shadcn spec
-    const fileObj: any = {
+    const fileObj: RegistryFile = {
       path: file.path,
       content,
       type: file.type as "registry:component" | "registry:file",
@@ -97,8 +97,9 @@ for (const primitive of primitives) {
     title: primitive.title,
     description: primitive.description,
     dependencies: primitive.dependencies || [],
-    devDependencies: (primitive as any).devDependencies || [],
-    registryDependencies: (primitive as any).registryDependencies || [],
+    devDependencies: (primitive as PrimitiveDefinition).devDependencies || [],
+    registryDependencies:
+      (primitive as PrimitiveDefinition).registryDependencies || [],
     files,
     envVars: primitive.envVars || {},
   } satisfies Schema
@@ -162,7 +163,7 @@ const primitiveItems = primitives.map((primitive) => {
       const content = fs.readFileSync(filePath, "utf8")
 
       // Create the file object according to shadcn spec
-      const fileObj: any = {
+      const fileObj: RegistryFile = {
         path: file.path,
         type: file.type as "registry:component" | "registry:file",
         content,
@@ -183,8 +184,9 @@ const primitiveItems = primitives.map((primitive) => {
     title: primitive.title,
     description: primitive.description,
     dependencies: primitive.dependencies || [],
-    devDependencies: (primitive as any).devDependencies || [],
-    registryDependencies: (primitive as any).registryDependencies || [],
+    devDependencies: (primitive as PrimitiveDefinition).devDependencies || [],
+    registryDependencies:
+      (primitive as PrimitiveDefinition).registryDependencies || [],
     files: primitiveFiles,
     envVars: primitive.envVars || {},
     categories: ["ai", "prompt-kit"],

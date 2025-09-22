@@ -1,0 +1,138 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
+import { StepsBasic } from "./steps-basic"
+import { StepsIconSwap } from "./steps-icon-swap"
+import { StepsWithLoader } from "./steps-with-loader"
+import { StepsWithSource } from "./steps-with-source"
+
+export const metadata = generateMetadata(
+  "Steps",
+  "Displays a sequence of operations in a collapsible layout. Each step can include details and an optional vertical bar. Useful for showing AI steps like reasoning traces, tool calls, or process logs."
+)
+
+# Steps
+
+Displays a sequence of operations in a collapsible layout. Each step can include details and an optional vertical bar. Useful for showing AI steps like reasoning traces, tool calls, or process logs.
+
+## Examples
+
+### Steps basic
+
+<ComponentCodePreview
+  component={<StepsBasic />}
+  filePath="app/docs/steps/steps-basic.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[300px]"
+/>
+
+### Steps with sources
+
+You can use the [Source](/docs/source) component to display sources in the Steps block.
+
+<ComponentCodePreview
+  component={<StepsWithSource />}
+  filePath="app/docs/steps/steps-with-source.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[300px]"
+/>
+
+### Steps with custom icons swap and bar
+
+<ComponentCodePreview
+  component={<StepsIconSwap />}
+  filePath="app/docs/steps/steps-icon-swap.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[300px]"
+/>
+
+### Steps with Text Shimmer Loader
+
+You can use the [Loader](/docs/loader) component to display a text shimmer loader in the Steps block.
+
+<ComponentCodePreview
+  component={<StepsWithLoader />}
+  filePath="app/docs/steps/steps-with-loader.tsx"
+  classNameComponentContainer="p-8 justify-start items-start min-h-[300px]"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/steps.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/steps.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### Steps
+
+| Prop        | Type                                | Default | Description                           |
+| :---------- | :---------------------------------- | :------ | :------------------------------------ |
+| defaultOpen | boolean                             | true    | Whether the Steps starts expanded |
+| className   | string                              |         | Additional CSS classes                |
+| ...props    | `React.ComponentProps<Collapsible>` |         | Root collapsible component props      |
+
+### StepsTrigger
+
+| Prop            | Type            | Default | Description                                               |
+| :-------------- | :-------------- | :------ | :-------------------------------------------------------- |
+| children        | React.ReactNode |         | Trigger content (label)                                   |
+| leftIcon        | React.ReactNode |         | Optional left icon area; keeps width to avoid layout jump |
+| swapIconOnHover | boolean         | true    | Swap leftIcon with chevron on hover                       |
+| className       | string          |         | Additional CSS classes                                    |
+| ...props        | `React.ComponentProps<CollapsibleTrigger>` |         | Trigger props forwarded to `CollapsibleTrigger`           |
+
+### StepsContent
+
+| Prop      | Type                                       | Default          | Description                                |
+| :-------- | :----------------------------------------- | :--------------- | :----------------------------------------- |
+| className | string                                     |                  | Additional CSS classes                     |
+| bar       | React.ReactNode                            | `<StepsBar />` | Optional bar element rendered at the left |
+| ...props  | `React.ComponentProps<CollapsibleContent>` |                  | Collapsible content props                  |
+
+### StepsBar
+
+| Prop      | Type                                   | Default                     | Description                        |
+| :-------- | :------------------------------------- | :-------------------------- | :--------------------------------- |
+| className | string                                 | `bg-muted h-full w-[2px]`   | Classes for positioning and style  |
+| ...props  | `React.HTMLAttributes<HTMLDivElement>` |                            | Pass-through div attributes/styles |
+
+### StepsItem
+
+| Prop      | Type            | Default | Description            |
+| :-------- | :-------------- | :------ | :--------------------- |
+| children  | React.ReactNode |         | Row item content       |
+| className | string          |         | Additional CSS classes |
+| ...props  | `React.ComponentProps<'div'>` |   | Pass-through div attributes/styles |
+
+### StepsRoot
+
+| Prop        | Type                                | Default | Description                           |
+| :---------- | :---------------------------------- | :------ | :------------------------------------ |
+| defaultOpen | boolean                             | true    | Whether the Steps starts expanded |
+| className   | string                              |         | Additional CSS classes                |
+| ...props    | `React.ComponentProps<Collapsible>` |         | Root collapsible component props      |

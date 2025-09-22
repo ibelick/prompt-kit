@@ -35,3 +35,24 @@ export interface Schema {
   files: RegistryFile[]
   envVars?: Record<string, string>
 }
+
+export interface PrimitiveDefinition {
+  name: string
+  type: "registry:item"
+  title: string
+  description: string
+  dependencies: string[]
+  registryDependencies: string[]
+  devDependencies?: string[]
+  files: Array<{
+    path: string
+    type: "registry:component" | "registry:file"
+  }>
+  envVars: Record<string, string>
+}
+
+export interface PrimitiveSchema extends Schema {
+  type: "registry:item"
+  title: string
+  envVars?: Record<string, string>
+}

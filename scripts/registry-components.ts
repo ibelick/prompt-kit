@@ -284,4 +284,11 @@ export const components: ComponentDefinition[] = [
       "A component for displaying images from base64 or Uint8Array data, with full accessibility and responsive styling. Perfect for AI-generated or user-uploaded images.",
     path: path.join(__dirname, "../components/prompt-kit/image.tsx"),
   },
+  {
+    name: "steps",
+    description:
+      "A component for displaying a sequence of operations in a collapsible layout. Each step can include details and an optional vertical bar. Useful for showing AI steps like reasoning traces, tool calls, or process logs.",
+    path: path.join(__dirname, "../components/prompt-kit/steps.tsx"),
+    registryDependencies: ["collapsible"],
+  },
 ]

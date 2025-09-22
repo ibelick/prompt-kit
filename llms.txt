@@ -23,6 +23,8 @@ prompt-kit is built on top of shadcn/ui and extends it with specialized componen
 - [components/prompt-kit/jsx-preview.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/jsx-preview.tsx): A component for rendering JSX strings as React components, with support for streaming content and automatic tag completion.
 - [components/prompt-kit/tool.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/tool.tsx): Displays tool call details including input, output, status, and errors. Ideal for visualizing AI tool usage in chat UIs.
 - [components/prompt-kit/source.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/source.tsx): Displays website sources used by AI-generated content, showing URL details, titles, and descriptions on hover.
+- [components/prompt-kit/image.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/image.tsx): A component for displaying images from base64 or Uint8Array data, with full accessibility and responsive styling. Perfect for AI-generated or user-uploaded images.
+- [components/prompt-kit/steps.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/steps.tsx): A component for displaying a sequence of operations in a collapsible layout. Each step can include details and an optional vertical bar. Useful for showing AI steps like reasoning traces, tool calls, or process logs.
 
 ## Primitives
 
