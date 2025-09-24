@@ -114,7 +114,11 @@ function PromptInputTextarea({
     if (disableAutosize) return
 
     if (!textareaRef.current) return
-    textareaRef.current.style.height = "auto"
+
+    if (textareaRef.current.scrollTop === 0) {
+      textareaRef.current.style.height = "auto"
+    }
+
     textareaRef.current.style.height =
       typeof maxHeight === "number"
         ? `${Math.min(textareaRef.current.scrollHeight, maxHeight)}px`
