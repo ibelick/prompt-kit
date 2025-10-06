@@ -85,11 +85,11 @@ export function SystemMessage({
 
     switch (variant) {
       case "error":
-        return <AlertCircle className="size-4 h-[1lh]" />
+        return <AlertCircle className="size-4" />
       case "warning":
-        return <AlertTriangle className="size-4 h-[1lh]" />
+        return <AlertTriangle className="size-4" />
       default:
-        return <Info className="size-4 h-[1lh]" />
+        return <Info className="size-4" />
     }
   }
 
@@ -106,10 +106,10 @@ export function SystemMessage({
       className={cn(systemMessageVariants({ variant, fill }), className)}
       {...props}
     >
-      <div className="flex flex-1 flex-row items-start gap-3">
+      <div className="flex flex-1 flex-row items-center gap-3 leading-normal">
         {shouldShowIcon && (
-          <div className="flex w-4 items-start justify-center">
-            <div>{getIconToShow()}</div>
+          <div className="flex h-[1lh] shrink-0 items-center justify-center self-start">
+            {getIconToShow()}
           </div>
         )}
 
@@ -119,7 +119,7 @@ export function SystemMessage({
             shouldShowIcon ? "gap-3" : "gap-0"
           )}
         >
-          <div className="text-sm leading-relaxed">{children}</div>
+          <div className="text-sm">{children}</div>
         </div>
       </div>
 
