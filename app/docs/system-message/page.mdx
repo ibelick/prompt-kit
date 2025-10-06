@@ -6,18 +6,16 @@ import { SystemMessageWithCta } from "./system-message-with-cta"
 
 export const metadata = generateMetadata(
   "System Message",
-  "A banner-style component for surfacing contextual information, warnings, or instructions within AI interfaces."
+  "Display contextual information, warnings, or instructions in AI interfaces."
 )
 
 # System Message
 
-A banner-style component for surfacing contextual information, warnings, or instructions within AI interfaces.
+Display contextual information, warnings, or instructions in AI interfaces
 
 ## Examples
 
-### Basic System Message
-
-Display a lightweight banner to share system-wide context or reminders without a background fill.
+### Basic system message
 
 <ComponentCodePreview
   component={<SystemMessageBasic />}
@@ -25,9 +23,8 @@ Display a lightweight banner to share system-wide context or reminders without a
   classNameComponentContainer="p-8"
 />
 
-### Filled Variants
+### Filled variants
 
-Use the `variant` and `fill` props to communicate different severities. Filled variants remove the border and apply semantic background colors.
 
 <ComponentCodePreview
   component={<SystemMessageVariants />}
@@ -36,8 +33,6 @@ Use the `variant` and `fill` props to communicate different severities. Filled v
 />
 
 ### With CTA
-
-Attach an optional call-to-action button and replace the default icon to guide the user toward a follow-up task.
 
 <ComponentCodePreview
   component={<SystemMessageWithCta />}
