@@ -291,4 +291,11 @@ export const components: ComponentDefinition[] = [
     path: path.join(__dirname, "../components/prompt-kit/steps.tsx"),
     registryDependencies: ["collapsible"],
   },
+  {
+    name: "system-message",
+    description:
+      "A banner-style component for surfacing contextual information, warnings, or instructions within AI interfaces.",
+    path: path.join(__dirname, "../components/prompt-kit/system-message.tsx"),
+    registryDependencies: ["button"],
+  },
 ]

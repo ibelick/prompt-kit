@@ -1,0 +1,22 @@
+{
+  "name": "system-message",
+  "type": "registry:ui",
+  "registryDependencies": [
+    "button"
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "tailwind": {},
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "description": "A banner-style component for surfacing contextual information, warnings, or instructions within AI interfaces.",
+  "files": [
+    {
+      "path": "system-message.tsx",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\"\nimport { AlertCircle, AlertTriangle, Info } from \"lucide-react\"\nimport React from \"react\"\n\nimport { Button } from \"@/components/ui/button\"\nimport { cn } from \"@/lib/utils\"\n\nconst systemMessageVariants = cva(\n  \"flex flex-row items-center gap-3 rounded-[12px] border py-2 pr-2 pl-3\",\n  {\n    variants: {\n      variant: {\n        action: \"text-zinc-700 dark:text-zinc-300\",\n        error: \"text-red-700 dark:text-red-800\",\n        warning: \"text-amber-700 dark:text-amber-700\",\n      },\n      fill: {\n        true: \"bg-background\",\n        false: \"\",\n      },\n    },\n    compoundVariants: [\n      {\n        variant: \"action\",\n        fill: true,\n        class: \"bg-zinc-100 dark:bg-zinc-900 border-transparent\",\n      },\n      {\n        variant: \"error\",\n        fill: true,\n        class: \"bg-red-100 dark:bg-red-900/20 border-transparent\",\n      },\n      {\n        variant: \"warning\",\n        fill: true,\n        class: \"bg-amber-100 dark:bg-amber-900/20 border-transparent\",\n      },\n      {\n        variant: \"action\",\n        fill: false,\n        class: \"border-zinc-200 dark:border-zinc-800\",\n      },\n      {\n        variant: \"error\",\n        fill: false,\n        class: \"border-red-600 dark:border-red-900\",\n      },\n      {\n        variant: \"warning\",\n        fill: false,\n        class: \"border-amber-600 dark:border-amber-900\",\n      },\n    ],\n    defaultVariants: {\n      variant: \"action\",\n      fill: false,\n    },\n  }\n)\n\ntype CTAButtonVariant =\n  | \"solid\"\n  | \"outline\"\n  | \"ghost\"\n  | React.ComponentProps<typeof Button>[\"variant\"]\n\ntype CTAConfig = {\n  label: string\n  onClick?: () => void\n  variant?: CTAButtonVariant\n}\n\nexport type SystemMessageProps = React.HTMLAttributes<HTMLDivElement> &\n  VariantProps<typeof systemMessageVariants> & {\n    icon?: React.ReactNode\n    isIconHidden?: boolean\n    cta?: CTAConfig\n  }\n\nconst CTA_VARIANT_MAP: Record<\"solid\" | \"outline\" | \"ghost\", CTAConfig[\"variant\"]> =\n  {\n    solid: \"default\",\n    outline: \"outline\",\n    ghost: \"ghost\",\n  }\n\nexport function SystemMessage({\n  children,\n  variant = \"action\",\n  fill = false,\n  icon,\n  isIconHidden = false,\n  cta,\n  className,\n  ...props\n}: SystemMessageProps) {\n  const defaultIcon = (() => {\n    if (isIconHidden) return null\n\n    switch (variant) {\n      case \"error\":\n        return <AlertCircle className=\"size-4 h-[1lh]\" />\n      case \"warning\":\n        return <AlertTriangle className=\"size-4 h-[1lh]\" />\n      default:\n        return <Info className=\"size-4 h-[1lh]\" />\n    }\n  })()\n\n  const iconToShow = isIconHidden ? null : icon ?? defaultIcon\n  const shouldShowIcon = iconToShow !== null && iconToShow !== undefined\n\n  return (\n    <div\n      className={cn(systemMessageVariants({ variant, fill }), className)}\n      {...props}\n    >\n      <div className=\"flex flex-1 flex-row items-start gap-3\">\n        {shouldShowIcon && (\n          <div className=\"flex w-4 items-start justify-center\">\n            <div>{iconToShow}</div>\n          </div>\n        )}\n\n        <div\n          className={cn(\n            \"flex min-w-0 flex-1 items-center\",\n            shouldShowIcon ? \"gap-3\" : \"gap-0\"\n          )}\n        >\n          <div className=\"text-sm leading-relaxed\">{children}</div>\n        </div>\n      </div>\n\n      {cta && (\n        <Button\n          variant={\n            cta.variant\n              ? CTA_VARIANT_MAP[cta.variant as keyof typeof CTA_VARIANT_MAP] ??\n                cta.variant\n              : \"default\"\n          }\n          size=\"sm\"\n          onClick={cta.onClick}\n        >\n          {cta.label}\n        </Button>\n      )}\n    </div>\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -1,7 +1,13 @@
 {
   "name": "prompt-kit",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "description": "UI components for AI apps (prompt-kit).",
+  "license": "MIT",
+  "homepage": "https://www.prompt-kit.com/",
+  "repository": "github:ibelick/prompt-kit",
+  "bugs": "https://github.com/ibelick/prompt-kit/issues",
+  "keywords": ["ai", "ui", "components", "chat"],
   "scripts": {
     "dev": "next dev",
     "build": "next build",

@@ -1,0 +1,105 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
+import { SystemMessageBasic } from "./system-message-basic"
+import { SystemMessageVariants } from "./system-message-variants"
+import { SystemMessageWithCta } from "./system-message-with-cta"
+
+export const metadata = generateMetadata(
+  "System Message",
+  "A banner-style component for surfacing contextual information, warnings, or instructions within AI interfaces."
+)
+
+# System Message
+
+A banner-style component for surfacing contextual information, warnings, or instructions within AI interfaces.
+
+## Examples
+
+### Basic System Message
+
+Display a lightweight banner to share system-wide context or reminders without a background fill.
+
+<ComponentCodePreview
+  component={<SystemMessageBasic />}
+  filePath="app/docs/system-message/system-message-basic.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### Filled Variants
+
+Use the `variant` and `fill` props to communicate different severities. Filled variants remove the border and apply semantic background colors.
+
+<ComponentCodePreview
+  component={<SystemMessageVariants />}
+  filePath="app/docs/system-message/system-message-variants.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### With CTA
+
+Attach an optional call-to-action button and replace the default icon to guide the user toward a follow-up task.
+
+<ComponentCodePreview
+  component={<SystemMessageWithCta />}
+  filePath="app/docs/system-message/system-message-with-cta.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/system-message.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/system-message.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### SystemMessage
+
+| Prop         | Type                                 | Default  | Description                                                         |
+| :----------- | :----------------------------------- | :------- | :------------------------------------------------------------------ |
+| children     | React.ReactNode                      |          | Content displayed inside the system message                         |
+| variant      | "action" \| "warning" \| "error"     | "action" | Severity of the message, controlling text and icon styles           |
+| fill         | boolean                              | false    | When true, applies a semantic background color and hides the border |
+| icon         | React.ReactNode                      |          | Custom icon to display instead of the default severity icon         |
+| isIconHidden | boolean                              | false    | Hides the icon entirely when set to true                            |
+| cta          | CTAConfig                            |          | Configuration for the optional call-to-action button                |
+| className    | string                               |          | Additional CSS classes                                              |
+| ...props     | React.HTMLAttributes\<HTMLDivElement\> |          | Additional div props                                                |
+
+### CTA configuration
+
+| Property | Type                                                  | Default | Description                                                          |
+| :------- | :---------------------------------------------------- | :------ | :------------------------------------------------------------------- |
+| label    | string                                                |         | Text displayed inside the button                                     |
+| onClick  | () => void                                            |         | Optional click handler                                               |
+| variant  | "solid" \| "outline" \| "ghost" \| `React.ComponentProps<typeof Button>["variant"]` | "solid" | Maps to your button variants; `"solid"` uses the default button style |
+
+When `cta` is provided, `SystemMessage` renders a small `Button` next to the message content.

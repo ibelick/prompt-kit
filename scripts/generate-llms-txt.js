@@ -1,27 +1,25 @@
-const fs = require("fs")
-const path = require("path")
-const { promisify } = require("util")
+import {
+  readdir as _readdir,
+  readFile as _readFile,
+  stat as _stat,
+  writeFile as _writeFile,
+  existsSync,
+} from "fs"
+import { basename, join } from "path"
+import { promisify } from "util"
 
-const readFile = promisify(fs.readFile)
-const writeFile = promisify(fs.writeFile)
-const readdir = promisify(fs.readdir)
-const stat = promisify(fs.stat)
+const readFile = promisify(_readFile)
+const writeFile = promisify(_writeFile)
+const readdir = promisify(_readdir)
+const stat = promisify(_stat)
 
 // Configuration
-const DOCS_DIR = path.join(process.cwd(), "app", "docs")
-const BLOCKS_FILE = path.join(process.cwd(), "app", "blocks", "page.tsx")
-const PRIMITIVES_FILE = path.join(
-  process.cwd(),
-  "scripts",
-  "registry-primitives.ts"
-)
-const OUTPUT_FILE_FULL = path.join(process.cwd(), "llms-full.txt")
-const OUTPUT_FILE_SHORT = path.join(process.cwd(), "llms.txt")
-const COMPONENTS_FILE = path.join(
-  process.cwd(),
-  "scripts",
-  "registry-components.ts"
-)
+const DOCS_DIR = join(process.cwd(), "app", "docs")
+const BLOCKS_FILE = join(process.cwd(), "app", "blocks", "page.tsx")
+const PRIMITIVES_FILE = join(process.cwd(), "scripts", "registry-primitives.ts")
+const OUTPUT_FILE_FULL = join(process.cwd(), "llms-full.txt")
+const OUTPUT_FILE_SHORT = join(process.cwd(), "llms.txt")
+const COMPONENTS_FILE = join(process.cwd(), "scripts", "registry-components.ts")
 
 // Organized in the order they should appear in the documentation
 const COMPONENT_ORDER = [
@@ -49,12 +47,12 @@ const COMPONENT_ORDER = [
  */
 async function readComponentMdx(componentDir) {
   try {
-    const pageMdxPath = path.join(componentDir, "page.mdx")
-    const pageTsxPath = path.join(componentDir, "page.tsx")
+    const pageMdxPath = join(componentDir, "page.mdx")
+    const pageTsxPath = join(componentDir, "page.tsx")
 
-    if (fs.existsSync(pageMdxPath)) {
+    if (existsSync(pageMdxPath)) {
       return await readFile(pageMdxPath, "utf8")
-    } else if (fs.existsSync(pageTsxPath)) {
+    } else if (existsSync(pageTsxPath)) {
       return await readFile(pageTsxPath, "utf8")
     }
 
@@ -63,15 +61,12 @@ async function readComponentMdx(componentDir) {
     const mdxFiles = files.filter((file) => file.endsWith(".mdx"))
 
     if (mdxFiles.length > 0) {
-      return await readFile(path.join(componentDir, mdxFiles[0]), "utf8")
+      return await readFile(join(componentDir, mdxFiles[0]), "utf8")
     }
 
     return ""
   } catch (error) {
-    console.error(
-      `Error reading MDX for ${path.basename(componentDir)}:`,
-      error
-    )
+    console.error(`Error reading MDX for ${basename(componentDir)}:`, error)
     return ""
   }
 }
@@ -81,10 +76,10 @@ async function readComponentMdx(componentDir) {
  */
 async function processComponentDocs(componentName) {
   console.log(`Processing documentation for ${componentName}...`)
-  const componentDir = path.join(DOCS_DIR, componentName)
+  const componentDir = join(DOCS_DIR, componentName)
 
   try {
-    const dirExists = fs.existsSync(componentDir)
+    const dirExists = existsSync(componentDir)
     if (!dirExists) {
       console.warn(`Directory for ${componentName} does not exist.`)
       return ""
@@ -200,7 +195,7 @@ prompt-kit is built on top of shadcn/ui and extends it with specialized componen
 async function generateBlocksSection() {
   console.log("Generating blocks section...")
   try {
-    if (!fs.existsSync(BLOCKS_FILE)) {
+    if (!existsSync(BLOCKS_FILE)) {
       console.warn(`Blocks file not found at ${BLOCKS_FILE}`)
       return ""
     }
@@ -247,7 +242,7 @@ Available blocks:
 async function generatePrimitivesSection() {
   console.log("Generating primitives section...")
   try {
-    if (!fs.existsSync(PRIMITIVES_FILE)) {
+    if (!existsSync(PRIMITIVES_FILE)) {
       console.warn(`Primitives file not found at ${PRIMITIVES_FILE}`)
       return ""
     }
@@ -343,7 +338,7 @@ function generateResourcesSection() {
 async function generateShortComponentsList() {
   console.log("Generating short components list...")
   try {
-    if (!fs.existsSync(COMPONENTS_FILE)) {
+    if (!existsSync(COMPONENTS_FILE)) {
       console.warn(`Components file not found at ${COMPONENTS_FILE}`)
       return ""
     }
@@ -390,7 +385,7 @@ async function generateShortComponentsList() {
 async function generateShortPrimitivesList() {
   console.log("Generating short primitives list...")
   try {
-    if (!fs.existsSync(PRIMITIVES_FILE)) {
+    if (!existsSync(PRIMITIVES_FILE)) {
       console.warn(`Primitives file not found at ${PRIMITIVES_FILE}`)
       return ""
     }
