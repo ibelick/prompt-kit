@@ -32,6 +32,7 @@ const componentsMenuItems = routes
   .map((route) => ({
     title: route.label,
     url: route.path,
+    isNew: route.isNew ?? false,
   }))
 
 const socialMenuItems = [
@@ -168,6 +169,7 @@ export function AppSidebar() {
               <SidebarMenu>
                 {componentsMenuItems.map((item) => {
                   const isActive = currentPath === item.url
+                  const showNewBadge = item.isNew
 
                   return (
                     <SidebarMenuItem key={item.title} className="flex">
@@ -179,7 +181,20 @@ export function AppSidebar() {
                             "text-primary bg-sidebar-accent hover:bg-sidebar-accent font-medium"
                         )}
                       >
-                        <Link href={item.url}>{item.title}</Link>
+                        <Link
+                          href={item.url}
+                          className={cn(
+                            "flex items-center gap-2",
+                            showNewBadge && "text-inherit"
+                          )}
+                        >
+                          <span>{item.title}</span>
+                          {showNewBadge && (
+                            <span className="text-primary text-xs leading-none">
+                              new
+                            </span>
+                          )}
+                        </Link>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   )

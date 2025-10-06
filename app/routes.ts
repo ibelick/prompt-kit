@@ -3,6 +3,7 @@ export type Route = {
   label: string
   order: number
   type: "component" | "core" | "block" | "primitive"
+  isNew?: boolean
 }
 
 export const routes: Route[] = [
@@ -47,6 +48,7 @@ export const routes: Route[] = [
     label: "System Message",
     order: 6,
     type: "component",
+    isNew: true,
   },
   {
     path: "/docs/markdown",
