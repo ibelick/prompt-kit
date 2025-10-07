@@ -3,6 +3,7 @@ export type Route = {
   label: string
   order: number
   type: "component" | "core" | "block" | "primitive"
+  isNew?: boolean
 }
 
 export const routes: Route[] = [
@@ -43,99 +44,106 @@ export const routes: Route[] = [
     type: "component",
   },
   {
+    path: "/docs/system-message",
+    label: "System Message",
+    order: 6,
+    type: "component",
+    isNew: true,
+  },
+  {
     path: "/docs/markdown",
     label: "Markdown",
-    order: 6,
+    order: 7,
     type: "component",
   },
   {
     path: "/docs/code-block",
     label: "Code Block",
-    order: 7,
+    order: 8,
     type: "component",
   },
   {
     path: "/docs/chat-container",
     label: "Chat Container",
-    order: 8,
+    order: 9,
     type: "component",
   },
   {
     path: "/docs/scroll-button",
     label: "Scroll Button",
-    order: 9,
+    order: 10,
     type: "component",
   },
   {
     path: "/docs/loader",
     label: "Loader",
-    order: 10,
+    order: 11,
     type: "component",
   },
   {
     path: "/docs/prompt-suggestion",
     label: "Prompt Suggestion",
-    order: 11,
-    type: "component",
-  },
-  {
-    path: "/docs/response-stream",
-    label: "Response Stream",
     order: 12,
     type: "component",
   },
+  // {
+  //   path: "/docs/response-stream",
+  //   label: "Response Stream",
+  //   order: 13,
+  //   type: "component",
+  // },
   {
     path: "/docs/reasoning",
     label: "Reasoning",
-    order: 13,
+    order: 14,
     type: "component",
   },
   {
     path: "/docs/file-upload",
     label: "File Upload",
-    order: 14,
+    order: 15,
     type: "component",
   },
   {
     path: "/docs/image",
     label: "Image",
-    order: 15,
-    type: "component",
-  },
-  {
-    path: "/docs/jsx-preview",
-    label: "JSX Preview",
     order: 16,
     type: "component",
   },
+  // {
+  //   path: "/docs/jsx-preview",
+  //   label: "JSX Preview",
+  //   order: 17,
+  //   type: "component",
+  // },
   {
     path: "/docs/tool",
     label: "Tool",
-    order: 17,
+    order: 18,
     type: "component",
   },
   {
     path: "/docs/source",
     label: "Source",
-    order: 18,
+    order: 19,
     type: "component",
   },
   {
     path: "/docs/steps",
     label: "Steps",
-    order: 19,
+    order: 20,
     type: "component",
   },
   {
     path: "/blocks",
     label: "Blocks",
-    order: 20,
+    order: 21,
     type: "block",
   },
   {
     path: "/primitives",
     label: "Primitives",
-    order: 21,
+    order: 22,
     type: "primitive",
   },
 ]
