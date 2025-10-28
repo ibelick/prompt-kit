@@ -1,0 +1,109 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
+import { ChainOfThoughtBasic } from "./chain-of-thought-basic"
+import { ChainOfThoughtAdvanced } from "./chain-of-thought-advanced"
+
+export const metadata = generateMetadata(
+  "Chain of Thought",
+  "Display step-by-step reasoning and collapsible thought processes in AI interfaces."
+)
+
+# Chain of Thought
+
+Display step-by-step reasoning and collapsible thought processes in AI interfaces
+
+## Examples
+
+### Basic chain of thought
+
+<ComponentCodePreview
+  component={<ChainOfThoughtBasic />}
+  filePath="app/docs/chain-of-thought/chain-of-thought-basic.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### Advanced reasoning steps
+
+<ComponentCodePreview
+  component={<ChainOfThoughtAdvanced />}
+  filePath="app/docs/chain-of-thought/chain-of-thought-advanced.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/chain-of-thought.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/chain-of-thought.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### ChainOfThought
+
+| Prop      | Type            | Default | Description                                  |
+| :-------- | :-------------- | :------ | :------------------------------------------- |
+| children  | React.ReactNode |         | ChainOfThoughtStep components                |
+| className | string          |         | Additional CSS classes                       |
+
+### ChainOfThoughtStep
+
+| Prop      | Type                                    | Default | Description                                         |
+| :-------- | :-------------------------------------- | :------ | :--------------------------------------------------- |
+| children  | React.ReactNode                         |         | ChainOfThoughtTrigger and ChainOfThoughtContent     |
+| className | string                                  |         | Additional CSS classes                               |
+| isLast    | boolean                                 | false  | Whether this is the last step in the chain          |
+| ...props  | React.ComponentProps\<typeof Collapsible\> |         | Additional collapsible props                         |
+
+### ChainOfThoughtTrigger
+
+| Prop            | Type                    | Default | Description                                    |
+| :-------------- | :---------------------- | :------ | :---------------------------------------------- |
+| children        | React.ReactNode         |         | Trigger content                                 |
+| leftIcon        | React.ReactNode         |         | Icon displayed before the trigger text         |
+| swapIconOnHover | boolean                 | true   | Whether to swap icon on hover                   |
+| className       | string                  |         | Additional CSS classes                          |
+| ...props        | React.ComponentProps\<typeof CollapsibleTrigger\> |         | Additional collapsible trigger props            |
+
+### ChainOfThoughtContent
+
+| Prop      | Type                                      | Default | Description                              |
+| :-------- | :---------------------------------------- | :------ | :--------------------------------------- |
+| children  | React.ReactNode                           |         | Content displayed when expanded          |
+| className | string                                    |         | Additional CSS classes                   |
+| ...props  | React.ComponentProps\<typeof CollapsibleContent\> |         | Additional collapsible content props     |
+
+### ChainOfThoughtItem
+
+| Prop      | Type                              | Default | Description                              |
+| :-------- | :-------------------------------- | :------ | :--------------------------------------- |
+| children  | React.ReactNode                   |         | Item content                             |
+| className | string                            |         | Additional CSS classes                   |
+| ...props  | React.ComponentProps\<"div"\>     |         | Additional div props                     |
