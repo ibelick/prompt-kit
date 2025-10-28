@@ -6,7 +6,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import { cn } from "@/lib/utils"
-import { ChevronDown } from "lucide-react"
+import { ChevronDown, Circle } from "lucide-react"
 import React from "react"
 
 export type ChainOfThoughtItemProps = React.ComponentProps<"div">
@@ -57,7 +57,11 @@ export const ChainOfThoughtTrigger = ({
             <ChevronDown className="absolute size-4 opacity-0 transition-opacity group-hover:opacity-100 group-data-[state=open]:rotate-180" />
           )}
         </span>
-      ) : null}
+      ) : (
+        <span className="relative inline-flex size-4 items-center justify-center">
+          <Circle className="size-2 fill-current" />
+        </span>
+      )}
       <span>{children}</span>
     </div>
     {!leftIcon && (
