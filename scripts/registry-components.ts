@@ -298,4 +298,12 @@ export const components: ComponentDefinition[] = [
     path: path.join(__dirname, "../components/prompt-kit/system-message.tsx"),
     registryDependencies: ["button"],
   },
+  {
+    name: "chain-of-thought",
+    description:
+      "A component for displaying a chain of thought process with collapsible steps and triggers.",
+    path: path.join(__dirname, "../components/prompt-kit/chain-of-thought.tsx"),
+    registryDependencies: ["collapsible"],
+    dependencies: ["lucide-react"],
+  },
 ]
