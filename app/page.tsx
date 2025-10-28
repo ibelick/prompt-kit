@@ -74,7 +74,7 @@ export default function Home() {
       <div className="-mx-6 mb-40 sm:mx-0">
         <DemoPromptInput />
       </div>
-      <CodeBlock className="relative mb-20 rounded">
+      <CodeBlock className="relative mb-20 rounded-md border-transparent">
         <CodeBlockGroup className="absolute top-4 right-4">
           <button
             onClick={onCopy}
@@ -83,11 +83,7 @@ export default function Home() {
             <TextMorph>{hasCopyLabel ? "Copied" : "Copy"}</TextMorph>
           </button>
         </CodeBlockGroup>
-        <DocCodeBlock
-          code={CODE_SAMPLE}
-          language="tsx"
-          className="dark:[&_pre]:!bg-background p-4 text-[13px]"
-        />
+        <DocCodeBlock code={CODE_SAMPLE} language="tsx" />
       </CodeBlock>
     </>
   )

@@ -34,11 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       {!isDev ? (
-        <Script
-          async
-          src="https://analytics.umami.is/script.js"
-          data-website-id="d96e0c36-2259-4f49-86cf-0f8d296645bd"
-        />
+        <Script defer src="https://assets.onedollarstats.com/stonks.js" />
       ) : null}
       <body
         className={`${inter.className} ${geistMono.variable} font-sans antialiased`}
