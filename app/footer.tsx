@@ -12,7 +12,7 @@ export function Footer() {
       {navigation && navigation.prev ? (
         <Link
           href={navigation.prev.path}
-          className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-sm text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900"
+          className="hover:bg-primary-foreground inline-flex items-center gap-1 rounded-md border px-2 py-1 text-sm text-zinc-500 transition-colors duration-200"
         >
           <ChevronLeft className="h-4 w-4" />
           {navigation.prev.label}
@@ -24,7 +24,7 @@ export function Footer() {
       {navigation && navigation.next && (
         <Link
           href={navigation.next.path}
-          className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-sm text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900"
+          className="hover:bg-primary-foreground inline-flex items-center gap-1 rounded-md border px-2 py-1 text-sm text-zinc-500 transition-colors duration-200"
         >
           {navigation.next.label} <ChevronRight className="h-4 w-4" />
         </Link>
