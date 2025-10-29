@@ -9,6 +9,12 @@ import { cn } from "@/lib/utils"
 import { ChevronDown, Circle } from "lucide-react"
 import React from "react"
 
+const ChainOfThoughtContext = React.createContext<{
+  isLast: boolean
+}>({
+  isLast: false,
+})
+
 export type ChainOfThoughtItemProps = React.ComponentProps<"div">
 
 export const ChainOfThoughtItem = ({
@@ -79,6 +85,8 @@ export const ChainOfThoughtContent = ({
   className,
   ...props
 }: ChainOfThoughtContentProps) => {
+  const { isLast } = React.useContext(ChainOfThoughtContext)
+
   return (
     <CollapsibleContent
       className={cn(
@@ -88,7 +96,11 @@ export const ChainOfThoughtContent = ({
       {...props}
     >
       <div className="grid grid-cols-[min-content_minmax(0,1fr)] gap-x-4">
-        <div className="bg-primary/20 ml-1.75 h-full w-px" />
+        {!isLast ? (
+          <div className="bg-primary/20 ml-1.75 h-full w-px" />
+        ) : (
+          <div className="ml-1.75 h-full w-px bg-transparent" />
+        )}
         <div className="mt-2 space-y-2">{children}</div>
       </div>
     </CollapsibleContent>
@@ -133,13 +145,15 @@ export const ChainOfThoughtStep = ({
   ...props
 }: ChainOfThoughtStepProps & React.ComponentProps<typeof Collapsible>) => {
   return (
-    <Collapsible className={cn(className)} {...props}>
-      {children}
-      {!isLast && (
-        <div className="flex justify-start">
-          <div className="bg-primary/20 ml-1.75 h-4 w-px" />
-        </div>
-      )}
-    </Collapsible>
+    <ChainOfThoughtContext.Provider value={{ isLast }}>
+      <Collapsible className={cn(className)} {...props}>
+        {children}
+        {!isLast && (
+          <div className="flex justify-start">
+            <div className="bg-primary/20 ml-1.75 h-4 w-px" />
+          </div>
+        )}
+      </Collapsible>
+    </ChainOfThoughtContext.Provider>
   )
 }
