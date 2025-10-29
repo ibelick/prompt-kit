@@ -418,6 +418,30 @@
       ]
     },
     {
+      "name": "chain-of-thought",
+      "type": "registry:ui",
+      "title": "Chain Of Thought",
+      "description": "A component for displaying a chain of thought process with collapsible steps and triggers.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "devDependencies": [],
+      "registryDependencies": [
+        "collapsible"
+      ],
+      "files": [
+        {
+          "path": "components/prompt-kit/chain-of-thought.tsx",
+          "type": "registry:component",
+          "content": "\"use client\"\n\nimport {\n  Collapsible,\n  CollapsibleContent,\n  CollapsibleTrigger,\n} from \"@/components/ui/collapsible\"\nimport { cn } from \"@/lib/utils\"\nimport { ChevronDown, Circle } from \"lucide-react\"\nimport React from \"react\"\n\nexport type ChainOfThoughtItemProps = React.ComponentProps<\"div\">\n\nexport const ChainOfThoughtItem = ({\n  children,\n  className,\n  ...props\n}: ChainOfThoughtItemProps) => (\n  <div className={cn(\"text-muted-foreground text-sm\", className)} {...props}>\n    {children}\n  </div>\n)\n\nexport type ChainOfThoughtTriggerProps = React.ComponentProps<\n  typeof CollapsibleTrigger\n> & {\n  leftIcon?: React.ReactNode\n  swapIconOnHover?: boolean\n}\n\nexport const ChainOfThoughtTrigger = ({\n  children,\n  className,\n  leftIcon,\n  swapIconOnHover = true,\n  ...props\n}: ChainOfThoughtTriggerProps) => (\n  <CollapsibleTrigger\n    className={cn(\n      \"group text-muted-foreground hover:text-foreground flex cursor-pointer items-center justify-start gap-1 text-sm transition-colors\",\n      className\n    )}\n    {...props}\n  >\n    <div className=\"flex items-center gap-2\">\n      {leftIcon ? (\n        <span className=\"relative inline-flex size-4 items-center justify-center\">\n          <span\n            className={cn(\n              \"transition-opacity\",\n              swapIconOnHover && \"group-hover:opacity-0\"\n            )}\n          >\n            {leftIcon}\n          </span>\n          {swapIconOnHover && (\n            <ChevronDown className=\"absolute size-4 opacity-0 transition-opacity group-hover:opacity-100 group-data-[state=open]:rotate-180\" />\n          )}\n        </span>\n      ) : (\n        <span className=\"relative inline-flex size-4 items-center justify-center\">\n          <Circle className=\"size-2 fill-current\" />\n        </span>\n      )}\n      <span>{children}</span>\n    </div>\n    {!leftIcon && (\n      <ChevronDown className=\"size-4 transition-transform group-data-[state=open]:rotate-180\" />\n    )}\n  </CollapsibleTrigger>\n)\n\nexport type ChainOfThoughtContentProps = React.ComponentProps<\n  typeof CollapsibleContent\n>\n\nexport const ChainOfThoughtContent = ({\n  children,\n  className,\n  ...props\n}: ChainOfThoughtContentProps) => {\n  return (\n    <CollapsibleContent\n      className={cn(\n        \"text-popover-foreground data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down overflow-hidden\",\n        className\n      )}\n      {...props}\n    >\n      <div className=\"grid grid-cols-[min-content_minmax(0,1fr)] gap-x-4\">\n        <div className=\"bg-primary/20 ml-1.75 h-full w-px group-data-[last=true]:hidden\" />\n        <div className=\"ml-1.75 h-full w-px bg-transparent group-data-[last=false]:hidden\" />\n        <div className=\"mt-2 space-y-2\">{children}</div>\n      </div>\n    </CollapsibleContent>\n  )\n}\n\nexport type ChainOfThoughtProps = {\n  children: React.ReactNode\n  className?: string\n}\n\nexport function ChainOfThought({ children, className }: ChainOfThoughtProps) {\n  const childrenArray = React.Children.toArray(children)\n\n  return (\n    <div className={cn(\"space-y-0\", className)}>\n      {childrenArray.map((child, index) => (\n        <React.Fragment key={index}>\n          {React.isValidElement(child) &&\n            React.cloneElement(\n              child as React.ReactElement<ChainOfThoughtStepProps>,\n              {\n                isLast: index === childrenArray.length - 1,\n              }\n            )}\n        </React.Fragment>\n      ))}\n    </div>\n  )\n}\n\nexport type ChainOfThoughtStepProps = {\n  children: React.ReactNode\n  className?: string\n  isLast?: boolean\n}\n\nexport const ChainOfThoughtStep = ({\n  children,\n  className,\n  isLast = false,\n  ...props\n}: ChainOfThoughtStepProps & React.ComponentProps<typeof Collapsible>) => {\n  return (\n    <Collapsible\n      className={cn(\"group\", className)}\n      data-last={isLast}\n      {...props}\n    >\n      {children}\n      <div className=\"flex justify-start group-data-[last=true]:hidden\">\n        <div className=\"bg-primary/20 ml-1.75 h-4 w-px\" />\n      </div>\n    </Collapsible>\n  )\n}\n"
+        }
+      ],
+      "categories": [
+        "ai",
+        "prompt-kit"
+      ]
+    },
+    {
       "name": "chatbot",
       "type": "registry:item",
       "title": "Chatbot",

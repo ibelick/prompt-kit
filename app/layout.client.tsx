@@ -10,6 +10,7 @@ import { AppSidebar, integrationsMenuItems } from "./sidebar"
 export function LayoutClient({ children }: { children: React.ReactNode }) {
   const MOBILE_SIDEBAR_VIEWPORT_THRESHOLD = 768
   const MD_SIDEBAR_VIEWPORT_THRESHOLD = 1024
+  const pathname = usePathname()
 
   const isBlocksPage = usePathname() === "/blocks"
   const isPrimitivesPage = usePathname() === "/primitives"
@@ -18,7 +19,7 @@ export function LayoutClient({ children }: { children: React.ReactNode }) {
   const isDemoPage = usePathname().includes("/demo/")
   const isLanding = integrationsMenuItems
     ?.map((item) => item.url)
-    .includes(usePathname())
+    .includes(pathname ?? "")
 
   if (isComponentPage || isFullStackPreview || isDemoPage) {
     return <>{children}</>

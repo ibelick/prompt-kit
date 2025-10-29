@@ -84,10 +84,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       ...props
     }: React.HTMLAttributes<HTMLTableSectionElement>) => (
       <thead
-        className={cn(
-          "bg-zinc-100 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100",
-          className
-        )}
+        className={cn("bg-secondary text-foreground", className)}
         {...props}
       />
     ),

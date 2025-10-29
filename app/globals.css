@@ -197,7 +197,7 @@ code {
   --chart-4: hsl(43 74% 66%);
   --chart-5: hsl(27 87% 67%);
   --radius: 0.6rem;
-  --sidebar: hsl(0 0% 98%);
+  --sidebar: hsl(0 0% 100%);
   --sidebar-foreground: hsl(240 5.3% 26.1%);
   --sidebar-primary: hsl(240 5.9% 10%);
   --sidebar-primary-foreground: hsl(0 0% 98%);
@@ -210,7 +210,7 @@ code {
   ---break---
 */
 .dark {
-  --background: hsl(240 10% 3.9%);
+  --background: hsl(50, 2%, 9%);
   --foreground: hsl(0 0% 98%);
   --card: hsl(240 10% 3.9%);
   --card-foreground: hsl(0 0% 98%);
@@ -234,7 +234,7 @@ code {
   --chart-3: hsl(30 80% 55%);
   --chart-4: hsl(280 65% 60%);
   --chart-5: hsl(340 75% 55%);
-  --sidebar: hsl(240 5.9% 10%);
+  --sidebar: hsl(50, 2%, 7%);
   --sidebar-foreground: hsl(240 4.8% 95.9%);
   --sidebar-primary: hsl(224.3 76.3% 48%);
   --sidebar-primary-foreground: hsl(0 0% 100%);
