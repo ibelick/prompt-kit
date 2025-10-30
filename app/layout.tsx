@@ -44,7 +44,6 @@ export default function RootLayout({
           defaultTheme="light"
           enableSystem
           disableTransitionOnChange
-          forcedTheme="light"
         >
           <LayoutClient>{children}</LayoutClient>
         </ThemeProvider>
