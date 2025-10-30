@@ -1,5 +1,6 @@
 import { generateMetadata as generateSiteMetadata } from "@/app/docs/utils/metadata"
 import type { Metadata } from "next"
+import { notFound } from "next/navigation"
 import {
   codeSections,
   componentsSections,
@@ -96,6 +97,10 @@ export default async function Page({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
+
+  if (!heroSections[slug as keyof typeof heroSections]) {
+    return notFound()
+  }
 
   return (
     <Landing
