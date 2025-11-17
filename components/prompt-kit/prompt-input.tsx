@@ -8,13 +8,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { cn } from "@/lib/utils"
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react"
+import React, { createContext, useContext, useRef, useState } from "react"
 
 type PromptInputContextType = {
   isLoading: boolean
@@ -52,7 +46,7 @@ type PromptInputProps = {
   onSubmit?: () => void
   children: React.ReactNode
   className?: string
-}
+} & React.ComponentProps<"div">
 
 function PromptInput({
   className,
@@ -62,6 +56,7 @@ function PromptInput({
   onValueChange,
   onSubmit,
   children,
+  ...props
 }: PromptInputProps) {
   const [internalValue, setInternalValue] = useState(value || "")
   const textareaRef = useRef<HTMLTextAreaElement>(null)
@@ -89,6 +84,7 @@ function PromptInput({
             className
           )}
           onClick={() => textareaRef.current?.focus()}
+          {...props}
         >
           {children}
         </div>
@@ -110,20 +106,30 @@ function PromptInputTextarea({
   const { value, setValue, maxHeight, onSubmit, disabled, textareaRef } =
     usePromptInput()
 
-  useEffect(() => {
-    if (disableAutosize) return
+  const adjustHeight = (el: HTMLTextAreaElement | null) => {
+    if (!el || disableAutosize) return
 
-    if (!textareaRef.current) return
+    el.style.height = "auto"
 
-    if (textareaRef.current.scrollTop === 0) {
-      textareaRef.current.style.height = "auto"
+    if (typeof maxHeight === "number") {
+      el.style.height = `${Math.min(el.scrollHeight, maxHeight)}px`
+    } else {
+      el.style.height = `min(${el.scrollHeight}px, ${maxHeight})`
+    }
+  }
+
+  const handleRef = (el: HTMLTextAreaElement | null) => {
+    if (textareaRef) {
+      textareaRef.current = el
     }
 
-    textareaRef.current.style.height =
-      typeof maxHeight === "number"
-        ? `${Math.min(textareaRef.current.scrollHeight, maxHeight)}px`
-        : `min(${textareaRef.current.scrollHeight}px, ${maxHeight})`
-  }, [value, maxHeight, disableAutosize])
+    adjustHeight(el)
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    adjustHeight(e.target)
+    setValue(e.target.value)
+  }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -135,9 +141,9 @@ function PromptInputTextarea({
 
   return (
     <Textarea
-      ref={textareaRef}
+      ref={handleRef}
       value={value}
-      onChange={(e) => setValue(e.target.value)}
+      onChange={handleChange}
       onKeyDown={handleKeyDown}
       className={cn(
         "text-primary min-h-[44px] w-full resize-none border-none bg-transparent shadow-none outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
@@ -182,7 +188,11 @@ function PromptInputAction({
 
   return (
     <Tooltip {...props}>
-      <TooltipTrigger asChild disabled={disabled} onClick={event => event.stopPropagation()}>
+      <TooltipTrigger
+        asChild
+        disabled={disabled}
+        onClick={(event) => event.stopPropagation()}
+      >
         {children}
       </TooltipTrigger>
       <TooltipContent side={side} className={className}>
