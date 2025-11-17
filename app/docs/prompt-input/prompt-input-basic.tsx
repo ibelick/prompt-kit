@@ -19,6 +19,7 @@ export function PromptInputBasic() {
     // simulate request
     setTimeout(() => {
       setIsLoading(false)
+      setInput("")
     }, 2000)
   }
 
