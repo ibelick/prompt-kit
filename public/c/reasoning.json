@@ -20,7 +20,7 @@
     },
     {
       "path": "markdown.tsx",
-      "content": "import { ComponentPropsWithoutRef } from \"react\"\nimport { Streamdown } from \"streamdown\"\n\nexport type MarkdownProps = ComponentPropsWithoutRef<typeof Streamdown>;\n\nexport const Markdown = (props: MarkdownProps) => (\n  <Streamdown {...props} />\n);",
+      "content": "\"use client\"\n\nimport { cn } from \"@/lib/utils\";\nimport { ComponentPropsWithoutRef } from \"react\"\nimport { Streamdown } from \"streamdown\"\n\nexport type MarkdownProps = ComponentPropsWithoutRef<typeof Streamdown>;\n\nexport const Markdown = ({ className, ...props }: MarkdownProps) => (\n  <div className=\"not-prose [&_[data-streamdown=code-block]]:border-foreground/10 [&_pre]:bg-background!\">\n    <Streamdown className={cn(\"[&>*:first-child]:mt-0 [&>*:last-child]:mb-0\", className)} {...props} />\n  </div>\n);",
       "type": "registry:ui"
     },
     {
