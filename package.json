@@ -52,7 +52,7 @@
     "react-dom": "^19.0.0",
     "react-jsx-parser": "^2.4.0",
     "remark-gfm": "^4.0.1",
-    "streamdown": "^1.6.5",
+    "streamdown": "^1.6.6",
     "shiki": "^3.0.0",
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7",
