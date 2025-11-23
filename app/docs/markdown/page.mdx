@@ -58,10 +58,34 @@ You can customize how different Markdown elements are rendered by providing cust
 
 <TabsContent value="cli">
 
+First, install the component using the CLI:
+
 <CodeBlock
   code={`npx shadcn add "https://prompt-kit.com/c/markdown.json"`}
   language="bash"
 />
+
+Then, reference the necessary CSS file to load the default styles for Streamdown.
+
+### Tailwind v4
+
+Add the following CSS source directive to your globals.css or main CSS file:
+
+<CodeBlock language="css" code={`@source "../node_modules/streamdown/dist/*.js";`} />
+
+### Tailwind v3
+
+Add Streamdown to your content array in your tailwind.config.js:
+
+<CodeBlock language="js" code={`module.exports = {
+    content: [
+        './app/**/*.{js,ts,jsx,tsx,mdx}',
+        './node_modules/streamdown/dist/**/*.js',
+    ],
+    // ... rest of your config
+}`} />
+
+Make sure the path matches the location of your node_modules folder relative to your CSS file.
 
 </TabsContent>
 
@@ -81,6 +105,26 @@ You can customize how different Markdown elements are rendered by providing cust
 />
 
 <Step>Update the import paths to match your project setup.</Step>
+
+<Step>
+Reference the necessary CSS file to load the default styles for Streamdown.
+
+If you're using Tailwind v4, add the following CSS source directive to your globals.css or main CSS file:
+
+<CodeBlock language="css" code={`@source "../node_modules/streamdown/dist/*.js";`} />
+
+If you're using Tailwind v3, add Streamdown to your content array in your tailwind.config.js:
+
+<CodeBlock language="js" code={`module.exports = {
+    content: [
+        './app/**/*.{js,ts,jsx,tsx,mdx}',
+        './node_modules/streamdown/dist/**/*.js',
+    ],
+    // ... rest of your config
+}`} />
+
+Make sure the path matches the location of your node_modules folder relative to your CSS file.
+</Step>
 
 </Steps>
 
