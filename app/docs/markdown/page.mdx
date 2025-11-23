@@ -10,7 +10,17 @@ export const metadata = generateMetadata(
 
 # Markdown
 
-A component for rendering Markdown content with support for GitHub Flavored Markdown (GFM) and custom component styling.
+A component for rendering Markdown content with support for GitHub Flavored Markdown (GFM) and custom component styling. Uses [Streamdown](https://streamdown.ai/) under the hood.
+
+Also comes with:
+
+- Built-in typography styling
+- CJK language support
+- Interactive code blocks
+- Mermaid diagrams
+- Mathematics support
+- Built-in security hardening
+- Unterminated Markdown syntax support
 
 ## Examples
 
@@ -64,7 +74,7 @@ You can customize how different Markdown elements are rendered by providing cust
 <Step>Install the required dependencies.</Step>
 
 <CodeBlock
-  code={`npm install react-markdown remark-gfm remark-breaks`}
+  code={`npm install streamdown`}
   language="bash"
 />
 
@@ -85,7 +95,7 @@ You can customize how different Markdown elements are rendered by providing cust
 | children   | string                                       |                    | Markdown content to render                      |
 | className  | string                                       |                    | Additional CSS classes                          |
 | components | `Partial<Components>`                        | INITIAL_COMPONENTS | Custom components to override default rendering |
-| ...props   | `React.ComponentProps<typeof ReactMarkdown>` |                    | All other ReactMarkdown props                   |
+| ...props   | `React.ComponentProps<typeof Streamdown>`    |                    | All other Streamdown props                      |
 
 ## Performance Optimization
 
@@ -102,14 +112,10 @@ Our implementation:
 
 This pattern significantly improves performance in chat applications by preventing the entire message history from re-rendering with each new token, which becomes increasingly important as conversations grow longer.
 
-For AI chat interfaces using streaming responses, always provide a unique `id` prop (typically the message ID) to ensure proper block caching:
-
 <CodeBlock
-  code={`<Markdown id={message.id}>{message.content}</Markdown>`}
+  code={`<Markdown>{message.content}</Markdown>`}
   language="tsx"
 />
-
-This memoization implementation is based on the [Vercel AI SDK Cookbook](https://sdk.vercel.ai/cookbook/next/markdown-chatbot-with-memoization) with enhancements for better React integration.
 
 ## Customizing Components
 
@@ -122,44 +128,4 @@ You can customize how different Markdown elements are rendered by providing a `c
 }
 
 <Markdown components={customComponents}>{markdownContent}</Markdown>
-`} language="tsx" />
-
-## Supported Markdown Features
-
-The Markdown component uses [react-markdown](https://github.com/remarkjs/react-markdown) with [remark-gfm](https://github.com/remarkjs/remark-gfm) to support GitHub Flavored Markdown, which includes:
-
-- Tables
-- Strikethrough
-- Tasklists
-- Literal URLs
-- Footnotes
-
-Additionally, the component includes built-in code block highlighting through the `CodeBlock` component.
-
-## Styling with Tailwind Typography
-
-For the best typography styling experience, we recommend using the [@tailwindcss/typography](https://github.com/tailwindlabs/tailwindcss-typography) plugin. This plugin provides a set of `prose` classes that add beautiful typographic defaults to your markdown content.
-
-<CodeBlock code={`npm install -D @tailwindcss/typography`} language="bash" />
-
-When using the Markdown component with Tailwind Typography, you can apply the `prose` class:
-
-<CodeBlock
-  code={`<Markdown className="prose dark:prose-invert">{markdownContent}</Markdown>`}
-  language="tsx"
-/>
-
-### Handling Code Blocks
-
-As you've seen in our examples, code blocks within prose content can sometimes cause styling conflicts. The Tailwind Typography plugin provides a `not-prose` class to exclude elements from prose styling:
-
-<CodeBlock code={`<article className="prose">
-    <h1>My Content</h1>
-    <p>Regular content with prose styling...</p>
-
-    <div className="not-prose">
-      <!-- Code blocks or other elements that shouldn't inherit prose styles -->
-    </div>
-
-</article>
 `} language="tsx" />

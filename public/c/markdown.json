@@ -3,11 +3,7 @@
   "type": "registry:ui",
   "registryDependencies": [],
   "dependencies": [
-    "react-markdown",
-    "remark-gfm",
-    "shiki",
-    "marked",
-    "remark-breaks"
+    "streamdown"
   ],
   "devDependencies": [],
   "tailwind": {},
@@ -19,7 +15,7 @@
   "files": [
     {
       "path": "markdown.tsx",
-      "content": "import { cn } from \"@/lib/utils\"\nimport { marked } from \"marked\"\nimport { memo, useId, useMemo } from \"react\"\nimport ReactMarkdown, { Components } from \"react-markdown\"\nimport remarkBreaks from \"remark-breaks\"\nimport remarkGfm from \"remark-gfm\"\nimport { CodeBlock, CodeBlockCode } from \"./code-block\"\n\nexport type MarkdownProps = {\n  children: string\n  id?: string\n  className?: string\n  components?: Partial<Components>\n}\n\nfunction parseMarkdownIntoBlocks(markdown: string): string[] {\n  const tokens = marked.lexer(markdown)\n  return tokens.map((token) => token.raw)\n}\n\nfunction extractLanguage(className?: string): string {\n  if (!className) return \"plaintext\"\n  const match = className.match(/language-(\\w+)/)\n  return match ? match[1] : \"plaintext\"\n}\n\nconst INITIAL_COMPONENTS: Partial<Components> = {\n  code: function CodeComponent({ className, children, ...props }) {\n    const isInline =\n      !props.node?.position?.start.line ||\n      props.node?.position?.start.line === props.node?.position?.end.line\n\n    if (isInline) {\n      return (\n        <span\n          className={cn(\n            \"bg-primary-foreground rounded-sm px-1 font-mono text-sm\",\n            className\n          )}\n          {...props}\n        >\n          {children}\n        </span>\n      )\n    }\n\n    const language = extractLanguage(className)\n\n    return (\n      <CodeBlock className={className}>\n        <CodeBlockCode code={children as string} language={language} />\n      </CodeBlock>\n    )\n  },\n  pre: function PreComponent({ children }) {\n    return <>{children}</>\n  },\n}\n\nconst MemoizedMarkdownBlock = memo(\n  function MarkdownBlock({\n    content,\n    components = INITIAL_COMPONENTS,\n  }: {\n    content: string\n    components?: Partial<Components>\n  }) {\n    return (\n      <ReactMarkdown\n        remarkPlugins={[remarkGfm, remarkBreaks]}\n        components={components}\n      >\n        {content}\n      </ReactMarkdown>\n    )\n  },\n  function propsAreEqual(prevProps, nextProps) {\n    return prevProps.content === nextProps.content\n  }\n)\n\nMemoizedMarkdownBlock.displayName = \"MemoizedMarkdownBlock\"\n\nfunction MarkdownComponent({\n  children,\n  id,\n  className,\n  components = INITIAL_COMPONENTS,\n}: MarkdownProps) {\n  const generatedId = useId()\n  const blockId = id ?? generatedId\n  const blocks = useMemo(() => parseMarkdownIntoBlocks(children), [children])\n\n  return (\n    <div className={className}>\n      {blocks.map((block, index) => (\n        <MemoizedMarkdownBlock\n          key={`${blockId}-block-${index}`}\n          content={block}\n          components={components}\n        />\n      ))}\n    </div>\n  )\n}\n\nconst Markdown = memo(MarkdownComponent)\nMarkdown.displayName = \"Markdown\"\n\nexport { Markdown }\n",
+      "content": "import { ComponentPropsWithoutRef } from \"react\"\nimport { Streamdown } from \"streamdown\"\n\nexport type MarkdownProps = ComponentPropsWithoutRef<typeof Streamdown>;\n\nexport const Markdown = (props: MarkdownProps) => (\n  <Streamdown {...props} />\n);",
       "type": "registry:ui"
     },
     {

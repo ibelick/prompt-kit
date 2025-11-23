@@ -7,7 +7,12 @@
   "homepage": "https://www.prompt-kit.com/",
   "repository": "github:ibelick/prompt-kit",
   "bugs": "https://github.com/ibelick/prompt-kit/issues",
-  "keywords": ["ai", "ui", "components", "chat"],
+  "keywords": [
+    "ai",
+    "ui",
+    "components",
+    "chat"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -46,9 +51,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-jsx-parser": "^2.4.0",
-    "react-markdown": "^10.1.0",
-    "remark-breaks": "^4.0.0",
     "remark-gfm": "^4.0.1",
+    "streamdown": "^1.6.4",
     "shiki": "^3.0.0",
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7",

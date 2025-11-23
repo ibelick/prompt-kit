@@ -2,8 +2,10 @@
 
 import { Markdown } from "@/components/prompt-kit/markdown"
 import { cn } from "@/lib/utils"
-import { useState } from "react"
-import { Components } from "react-markdown"
+import { ComponentPropsWithoutRef, useState } from "react"
+import type { Streamdown } from "streamdown";
+
+type Components = ComponentPropsWithoutRef<typeof Streamdown>["components"]
 
 export function MarkdownCustomComponents() {
   const [theme, setTheme] = useState<"light" | "dark">("light")
