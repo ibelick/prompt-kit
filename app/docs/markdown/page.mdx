@@ -145,8 +145,8 @@ Streamdown includes built-in security sanitization via `rehype-harden` to protec
 
 <CodeBlock code={`// Restrict to specific domains
 const secureComponents = {
-  allowedDomains: ['trusted-domain.com', 'cdn.example.com'],
-  disableDataImages: true // Prevent base64 tracking pixels
+    allowedDomains: ['trusted-domain.com', 'cdn.example.com'],
+    disableDataImages: true # Prevent base64 tracking pixels
 }
 
 <Markdown rehypeHarden={secureComponents}>{content}</Markdown>
