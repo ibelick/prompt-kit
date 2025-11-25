@@ -328,4 +328,12 @@ export const components: ComponentDefinition[] = [
       },
     },
   },
+  {
+    name: "thinking-bar",
+    description:
+      "A component to display the thinking state of an AI model with optional actions.",
+    path: path.join(__dirname, "../components/prompt-kit/thinking-bar.tsx"),
+    dependencies: ["lucide-react"],
+    registryDependencies: ["text-shimmer"],
+  },
 ]

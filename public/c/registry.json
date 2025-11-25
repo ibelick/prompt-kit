@@ -592,6 +592,30 @@
       ]
     },
     {
+      "name": "thinking-bar",
+      "type": "registry:ui",
+      "title": "Thinking Bar",
+      "description": "A component to display the thinking state of an AI model with optional actions.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "devDependencies": [],
+      "registryDependencies": [
+        "text-shimmer"
+      ],
+      "files": [
+        {
+          "path": "components/prompt-kit/thinking-bar.tsx",
+          "type": "registry:component",
+          "content": "\"use client\"\n\nimport { TextShimmer } from \"@/components/prompt-kit/text-shimmer\"\nimport { cn } from \"@/lib/utils\"\nimport { ChevronRight } from \"lucide-react\"\n\ntype ThinkingBarProps = {\n  className?: string\n  text?: string\n  onStop?: () => void\n  stopLabel?: string\n  onClick?: () => void\n}\n\nexport function ThinkingBar({\n  className,\n  text = \"Thinking\",\n  onStop,\n  stopLabel = \"Answer now\",\n  onClick,\n}: ThinkingBarProps) {\n  return (\n    <div className={cn(\"flex w-full items-center justify-between\", className)}>\n      {onClick ? (\n        <button\n          type=\"button\"\n          onClick={onClick}\n          className=\"flex items-center gap-1 text-sm transition-opacity hover:opacity-80\"\n        >\n          <TextShimmer className=\"font-medium\">{text}</TextShimmer>\n          <ChevronRight className=\"text-muted-foreground size-4\" />\n        </button>\n      ) : (\n        <TextShimmer className=\"cursor-default font-medium\">{text}</TextShimmer>\n      )}\n      {onStop ? (\n        <button\n          onClick={onStop}\n          type=\"button\"\n          className=\"text-muted-foreground hover:text-foreground border-muted-foreground/50 hover:border-foreground border-b border-dotted text-sm transition-colors\"\n        >\n          {stopLabel}\n        </button>\n      ) : null}\n    </div>\n  )\n}\n"
+        }
+      ],
+      "categories": [
+        "ai",
+        "prompt-kit"
+      ]
+    },
+    {
       "name": "chatbot",
       "type": "registry:item",
       "title": "Chatbot",

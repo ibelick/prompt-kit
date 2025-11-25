@@ -37,7 +37,6 @@ export const routes: Route[] = [
     label: "Chain of Thought",
     order: 4,
     type: "component",
-    isNew: true,
   },
   {
     path: "/docs/chat-container",
@@ -124,9 +123,23 @@ export const routes: Route[] = [
     type: "component",
   },
   {
+    path: "/docs/text-shimmer",
+    label: "Text Shimmer",
+    order: 19,
+    type: "component",
+    isNew: true,
+  },
+  {
+    path: "/docs/thinking-bar",
+    label: "Thinking Bar",
+    order: 20,
+    type: "component",
+    isNew: true,
+  },
+  {
     path: "/docs/tool",
     label: "Tool",
-    order: 19,
+    order: 21,
     type: "component",
   },
   // Blocks
