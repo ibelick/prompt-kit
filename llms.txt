@@ -27,6 +27,9 @@ prompt-kit is built on top of shadcn/ui and extends it with specialized componen
 - [components/prompt-kit/steps.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/steps.tsx): A component for displaying a sequence of operations in a collapsible layout. Each step can include details and an optional vertical bar. Useful for showing AI steps like reasoning traces, tool calls, or process logs.
 - [components/prompt-kit/system-message.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/system-message.tsx): A banner-style component for surfacing contextual information, warnings, or instructions within AI interfaces.
 - [components/prompt-kit/chain-of-thought.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/chain-of-thought.tsx): A component for displaying a chain of thought process with collapsible steps and triggers.
+- [components/prompt-kit/text-shimmer.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/text-shimmer.tsx): A component for displaying a shimmer effect on text, perfect for loading states or highlighting text.
+- [components/prompt-kit/thinking-bar.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/thinking-bar.tsx): A component to display the thinking state of an AI model with optional actions.
+- [components/prompt-kit/feedback-bar.tsx](https://github.com/ibelick/prompt-kit/blob/main/components/prompt-kit/feedback-bar.tsx): A component to collect user feedback on AI responses.
 
 ## Primitives
 

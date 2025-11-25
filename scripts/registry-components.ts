@@ -336,4 +336,10 @@ export const components: ComponentDefinition[] = [
     dependencies: ["lucide-react"],
     registryDependencies: ["text-shimmer"],
   },
+  {
+    name: "feedback-bar",
+    description: "A component to collect user feedback on AI responses.",
+    path: path.join(__dirname, "../components/prompt-kit/feedback-bar.tsx"),
+    dependencies: ["lucide-react"],
+  },
 ]

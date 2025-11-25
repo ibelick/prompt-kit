@@ -51,6 +51,13 @@ export const routes: Route[] = [
     type: "component",
   },
   {
+    path: "/docs/feedback-bar",
+    label: "Feedback Bar",
+    order: 6,
+    type: "component",
+    isNew: true,
+  },
+  {
     path: "/docs/file-upload",
     label: "File Upload",
     order: 7,

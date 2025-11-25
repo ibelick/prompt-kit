@@ -616,6 +616,28 @@
       ]
     },
     {
+      "name": "feedback-bar",
+      "type": "registry:ui",
+      "title": "Feedback Bar",
+      "description": "A component to collect user feedback on AI responses.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/prompt-kit/feedback-bar.tsx",
+          "type": "registry:component",
+          "content": "import { cn } from \"@/lib/utils\"\nimport { ThumbsDown, ThumbsUp, X } from \"lucide-react\"\n\ntype FeedbackBarProps = {\n  className?: string\n  title?: string\n  icon?: React.ReactNode\n  onHelpful?: () => void\n  onNotHelpful?: () => void\n  onClose?: () => void\n}\n\nexport function FeedbackBar({\n  className,\n  title,\n  icon,\n  onHelpful,\n  onNotHelpful,\n  onClose,\n}: FeedbackBarProps) {\n  return (\n    <div\n      className={cn(\n        \"bg-background border-border inline-flex rounded-[12px] border text-sm\",\n        className\n      )}\n    >\n      <div className=\"flex w-full items-center justify-between\">\n        <div className=\"flex flex-1 items-center justify-start gap-4 py-3 pl-4\">\n          {icon}\n          <span className=\"text-muted-foreground font-medium\">{title}</span>\n        </div>\n        <div className=\"flex items-center justify-center gap-0.5 px-3 py-0\">\n          <button\n            type=\"button\"\n            className=\"text-muted-foreground hover:text-foreground flex size-8 items-center justify-center rounded-md transition-colors\"\n            aria-label=\"Helpful\"\n            onClick={onHelpful}\n          >\n            <ThumbsUp className=\"size-4\" />\n          </button>\n          <button\n            type=\"button\"\n            className=\"text-muted-foreground hover:text-foreground flex size-8 items-center justify-center rounded-md transition-colors\"\n            aria-label=\"Not helpful\"\n            onClick={onNotHelpful}\n          >\n            <ThumbsDown className=\"size-4\" />\n          </button>\n        </div>\n        <div className=\"border-border flex items-center justify-center border-l\">\n          <button\n            type=\"button\"\n            onClick={onClose}\n            className=\"text-muted-foreground hover:text-foreground flex items-center justify-center rounded-md p-3\"\n            aria-label=\"Close\"\n          >\n            <X className=\"size-5\" />\n          </button>\n        </div>\n      </div>\n    </div>\n  )\n}\n"
+        }
+      ],
+      "categories": [
+        "ai",
+        "prompt-kit"
+      ]
+    },
+    {
       "name": "chatbot",
       "type": "registry:item",
       "title": "Chatbot",
