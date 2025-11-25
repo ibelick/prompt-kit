@@ -1,0 +1,91 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
+import { TextShimmerBasic } from "./text-shimmer-basic"
+import { TextShimmerCustomDuration } from "./text-shimmer-custom-duration"
+import { TextShimmerCustomSpread } from "./text-shimmer-custom-spread"
+
+export const metadata = generateMetadata(
+  "Text Shimmer",
+  "An animated text shimmer effect for loading states or highlighting text."
+)
+
+# Text Shimmer
+
+An animated text shimmer effect for loading states or highlighting text.
+
+## Examples
+
+### Basic usage
+
+<ComponentCodePreview
+  component={<TextShimmerBasic />}
+  filePath="app/docs/text-shimmer/text-shimmer-basic.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### Custom duration
+
+You can customize the duration of the shimmer effect.
+
+<ComponentCodePreview
+  component={<TextShimmerCustomDuration />}
+  filePath="app/docs/text-shimmer/text-shimmer-custom-duration.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+### Custom spread
+
+And you can customize the spread of the shimmer effect.
+
+<ComponentCodePreview
+  component={<TextShimmerCustomSpread />}
+  filePath="app/docs/text-shimmer/text-shimmer-custom-spread.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/text-shimmer.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/text-shimmer.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### TextShimmer
+
+| Prop      | Type            | Default | Description                                  |
+| :-------- | :-------------- | :------ | :------------------------------------------- |
+| children  | React.ReactNode |         | The text content to shimmer                  |
+| as        | string          | "span"  | The HTML element to render                   |
+| duration  | number          | 4       | The duration of the animation in seconds     |
+| spread    | number          | 20      | The width of the shimmer effect (5-45)       |
+| className | string          |         | Additional CSS classes                       |
+
