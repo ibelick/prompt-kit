@@ -306,4 +306,26 @@ export const components: ComponentDefinition[] = [
     registryDependencies: ["collapsible"],
     dependencies: ["lucide-react"],
   },
+  {
+    name: "text-shimmer",
+    description:
+      "A component for displaying a shimmer effect on text, perfect for loading states or highlighting text.",
+    path: path.join(__dirname, "../components/prompt-kit/text-shimmer.tsx"),
+    tailwind: {
+      config: {
+        theme: {
+          keyframes: {
+            shimmer: {
+              "0%": {
+                backgroundPosition: "200% 50%",
+              },
+              "100%": {
+                backgroundPosition: "-200% 50%",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
 ]

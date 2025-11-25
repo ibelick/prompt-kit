@@ -146,6 +146,8 @@ const componentItems = components.map((component) => {
     dependencies: component.dependencies || [],
     devDependencies: component.devDependencies || [],
     registryDependencies: component.registryDependencies || [],
+    tailwind: component.tailwind,
+    cssVars: component.cssVars,
     files: componentFiles,
     categories: ["ai", "prompt-kit"],
   }
