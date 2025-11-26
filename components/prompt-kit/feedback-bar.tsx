@@ -28,7 +28,7 @@ export function FeedbackBar({
       <div className="flex w-full items-center justify-between">
         <div className="flex flex-1 items-center justify-start gap-4 py-3 pl-4">
           {icon}
-          <span className="text-muted-foreground font-medium">{title}</span>
+          <span className="text-foreground font-medium">{title}</span>
         </div>
         <div className="flex items-center justify-center gap-0.5 px-3 py-0">
           <button
