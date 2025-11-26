@@ -175,6 +175,120 @@
       "registryDependencies": [
         "button"
       ],
+      "tailwind": {
+        "config": {
+          "theme": {
+            "keyframes": {
+              "typing": {
+                "0%, 100%": {
+                  "transform": "translateY(0)",
+                  "opacity": "0.5"
+                },
+                "50%": {
+                  "transform": "translateY(-2px)",
+                  "opacity": "1"
+                }
+              },
+              "loading-dots": {
+                "0%, 100%": {
+                  "opacity": "0"
+                },
+                "50%": {
+                  "opacity": "1"
+                }
+              },
+              "wave": {
+                "0%, 100%": {
+                  "transform": "scaleY(1)"
+                },
+                "50%": {
+                  "transform": "scaleY(0.6)"
+                }
+              },
+              "blink": {
+                "0%, 100%": {
+                  "opacity": "1"
+                },
+                "50%": {
+                  "opacity": "0"
+                }
+              }
+            },
+            "text-blink": {
+              "0%, 100%": {
+                "color": "var(--primary)"
+              },
+              "50%": {
+                "color": "var(--muted-foreground)"
+              }
+            },
+            "bounce-dots": {
+              "0%, 100%": {
+                "transform": "scale(0.8)",
+                "opacity": "0.5"
+              },
+              "50%": {
+                "transform": "scale(1.2)",
+                "opacity": "1"
+              }
+            },
+            "thin-pulse": {
+              "0%, 100%": {
+                "transform": "scale(0.95)",
+                "opacity": "0.8"
+              },
+              "50%": {
+                "transform": "scale(1.05)",
+                "opacity": "0.4"
+              }
+            },
+            "pulse-dot": {
+              "0%, 100%": {
+                "transform": "scale(1)",
+                "opacity": "0.8"
+              },
+              "50%": {
+                "transform": "scale(1.5)",
+                "opacity": "1"
+              }
+            },
+            "shimmer-text": {
+              "0%": {
+                "backgroundPosition": "150% center"
+              },
+              "100%": {
+                "backgroundPosition": "-150% center"
+              }
+            },
+            "wave-bars": {
+              "0%, 100%": {
+                "transform": "scaleY(1)",
+                "opacity": "0.5"
+              },
+              "50%": {
+                "transform": "scaleY(0.6)",
+                "opacity": "1"
+              }
+            },
+            "shimmer": {
+              "0%": {
+                "backgroundPosition": "200% 50%"
+              },
+              "100%": {
+                "backgroundPosition": "-200% 50%"
+              }
+            },
+            "spinner-fade": {
+              "0%": {
+                "opacity": "0"
+              },
+              "100%": {
+                "opacity": "1"
+              }
+            }
+          }
+        }
+      },
       "files": [
         {
           "path": "components/prompt-kit/loader.tsx",
@@ -345,7 +459,7 @@
         {
           "path": "components/prompt-kit/source.tsx",
           "type": "registry:component",
-          "content": "\"use client\"\n\nimport {\n  HoverCard,\n  HoverCardContent,\n  HoverCardTrigger,\n} from \"@/components/ui/hover-card\"\nimport { cn } from \"@/lib/utils\"\nimport { createContext, useContext } from \"react\"\n\nconst SourceContext = createContext<{\n  href: string\n  domain: string\n} | null>(null)\n\nfunction useSourceContext() {\n  const ctx = useContext(SourceContext)\n  if (!ctx) throw new Error(\"Source.* must be used inside <Source>\")\n  return ctx\n}\n\nexport type SourceProps = {\n  href: string\n  children: React.ReactNode\n}\n\nexport function Source({ href, children }: SourceProps) {\n  let domain = \"\"\n  try {\n    domain = new URL(href).hostname\n  } catch {\n    domain = href.split(\"/\").pop() || href\n  }\n\n  return (\n    <SourceContext.Provider value={{ href, domain }}>\n      <HoverCard openDelay={150} closeDelay={0}>\n        {children}\n      </HoverCard>\n    </SourceContext.Provider>\n  )\n}\n\nexport type SourceTriggerProps = {\n  label?: string | number\n  showFavicon?: boolean\n  className?: string\n}\n\nexport function SourceTrigger({\n  label,\n  showFavicon = false,\n  className,\n}: SourceTriggerProps) {\n  const { href, domain } = useSourceContext()\n  const labelToShow = label ?? domain.replace(\"www.\", \"\")\n\n  return (\n    <HoverCardTrigger asChild>\n      <a\n        href={href}\n        target=\"_blank\"\n        rel=\"noopener noreferrer\"\n        className={cn(\n          \"bg-muted text-muted-foreground hover:bg-muted-foreground/30 hover:text-primary inline-flex h-5 max-w-32 items-center gap-1 overflow-hidden rounded-full py-0 text-xs leading-none no-underline transition-colors duration-150\",\n          showFavicon ? \"pr-2 pl-1\" : \"px-1\",\n          className\n        )}\n      >\n        {showFavicon && (\n          <img\n            src={`https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(\n              href\n            )}`}\n            alt=\"favicon\"\n            width={14}\n            height={14}\n            className=\"size-3.5 rounded-full\"\n          />\n        )}\n        <span className=\"truncate text-center font-normal\">{labelToShow}</span>\n      </a>\n    </HoverCardTrigger>\n  )\n}\n\nexport type SourceContentProps = {\n  title: string\n  description: string\n  className?: string\n}\n\nexport function SourceContent({\n  title,\n  description,\n  className,\n}: SourceContentProps) {\n  const { href, domain } = useSourceContext()\n\n  return (\n    <HoverCardContent className={cn(\"w-80 p-0 shadow-xs\", className)}>\n      <a\n        href={href}\n        target=\"_blank\"\n        rel=\"noopener noreferrer\"\n        className=\"flex flex-col gap-2 p-3\"\n      >\n        <div className=\"flex items-center gap-1.5\">\n          <img\n            src={`https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(\n              href\n            )}`}\n            alt=\"favicon\"\n            className=\"size-4 rounded-full\"\n            width={16}\n            height={16}\n          />\n          <div className=\"text-primary truncate text-sm\">\n            {domain.replace(\"www.\", \"\")}\n          </div>\n        </div>\n        <div className=\"line-clamp-2 text-sm font-medium\">{title}</div>\n        <div className=\"text-muted-foreground line-clamp-2 text-sm\">\n          {description}\n        </div>\n      </a>\n    </HoverCardContent>\n  )\n}\n"
+          "content": "\"use client\"\n\nimport {\n  HoverCard,\n  HoverCardContent,\n  HoverCardTrigger,\n} from \"@/components/ui/hover-card\"\nimport { cn } from \"@/lib/utils\"\nimport { createContext, useContext } from \"react\"\n\nconst SourceContext = createContext<{\n  href: string\n  domain: string\n} | null>(null)\n\nfunction useSourceContext() {\n  const ctx = useContext(SourceContext)\n  if (!ctx) throw new Error(\"Source.* must be used inside <Source>\")\n  return ctx\n}\n\nexport type SourceProps = {\n  href: string\n  children: React.ReactNode\n}\n\nexport function Source({ href, children }: SourceProps) {\n  let domain = \"\"\n  try {\n    domain = new URL(href).hostname\n  } catch {\n    domain = href.split(\"/\").pop() || href\n  }\n\n  return (\n    <SourceContext.Provider value={{ href, domain }}>\n      <HoverCard openDelay={150} closeDelay={0}>\n        {children}\n      </HoverCard>\n    </SourceContext.Provider>\n  )\n}\n\nexport type SourceTriggerProps = {\n  label?: string | number\n  showFavicon?: boolean\n  className?: string\n}\n\nexport function SourceTrigger({\n  label,\n  showFavicon = false,\n  className,\n}: SourceTriggerProps) {\n  const { href, domain } = useSourceContext()\n  const labelToShow = label ?? domain.replace(\"www.\", \"\")\n\n  return (\n    <HoverCardTrigger asChild>\n      <a\n        href={href}\n        target=\"_blank\"\n        rel=\"noopener noreferrer\"\n        className={cn(\n          \"bg-muted text-muted-foreground hover:bg-muted-foreground/30 hover:text-primary inline-flex h-5 max-w-32 items-center gap-1 overflow-hidden rounded-full py-0 text-xs no-underline transition-colors duration-150\",\n          showFavicon ? \"pr-2 pl-1\" : \"px-1\",\n          className\n        )}\n      >\n        {showFavicon && (\n          <img\n            src={`https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(\n              href\n            )}`}\n            alt=\"favicon\"\n            width={14}\n            height={14}\n            className=\"size-3.5 rounded-full\"\n          />\n        )}\n        <span className=\"truncate tabular-nums text-center font-normal\">{labelToShow}</span>\n      </a>\n    </HoverCardTrigger>\n  )\n}\n\nexport type SourceContentProps = {\n  title: string\n  description: string\n  className?: string\n}\n\nexport function SourceContent({\n  title,\n  description,\n  className,\n}: SourceContentProps) {\n  const { href, domain } = useSourceContext()\n\n  return (\n    <HoverCardContent className={cn(\"w-80 p-0 shadow-xs\", className)}>\n      <a\n        href={href}\n        target=\"_blank\"\n        rel=\"noopener noreferrer\"\n        className=\"flex flex-col gap-2 p-3\"\n      >\n        <div className=\"flex items-center gap-1.5\">\n          <img\n            src={`https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(\n              href\n            )}`}\n            alt=\"favicon\"\n            className=\"size-4 rounded-full\"\n            width={16}\n            height={16}\n          />\n          <div className=\"text-primary truncate text-sm\">\n            {domain.replace(\"www.\", \"\")}\n          </div>\n        </div>\n        <div className=\"line-clamp-2 text-sm font-medium\">{title}</div>\n        <div className=\"text-muted-foreground line-clamp-2 text-sm\">\n          {description}\n        </div>\n      </a>\n    </HoverCardContent>\n  )\n}\n"
         }
       ],
       "categories": [
@@ -434,6 +548,88 @@
           "path": "components/prompt-kit/chain-of-thought.tsx",
           "type": "registry:component",
           "content": "\"use client\"\n\nimport {\n  Collapsible,\n  CollapsibleContent,\n  CollapsibleTrigger,\n} from \"@/components/ui/collapsible\"\nimport { cn } from \"@/lib/utils\"\nimport { ChevronDown, Circle } from \"lucide-react\"\nimport React from \"react\"\n\nexport type ChainOfThoughtItemProps = React.ComponentProps<\"div\">\n\nexport const ChainOfThoughtItem = ({\n  children,\n  className,\n  ...props\n}: ChainOfThoughtItemProps) => (\n  <div className={cn(\"text-muted-foreground text-sm\", className)} {...props}>\n    {children}\n  </div>\n)\n\nexport type ChainOfThoughtTriggerProps = React.ComponentProps<\n  typeof CollapsibleTrigger\n> & {\n  leftIcon?: React.ReactNode\n  swapIconOnHover?: boolean\n}\n\nexport const ChainOfThoughtTrigger = ({\n  children,\n  className,\n  leftIcon,\n  swapIconOnHover = true,\n  ...props\n}: ChainOfThoughtTriggerProps) => (\n  <CollapsibleTrigger\n    className={cn(\n      \"group text-muted-foreground hover:text-foreground flex cursor-pointer items-center justify-start gap-1 text-left text-sm transition-colors\",\n      className\n    )}\n    {...props}\n  >\n    <div className=\"flex items-center gap-2\">\n      {leftIcon ? (\n        <span className=\"relative inline-flex size-4 items-center justify-center\">\n          <span\n            className={cn(\n              \"transition-opacity\",\n              swapIconOnHover && \"group-hover:opacity-0\"\n            )}\n          >\n            {leftIcon}\n          </span>\n          {swapIconOnHover && (\n            <ChevronDown className=\"absolute size-4 opacity-0 transition-opacity group-hover:opacity-100 group-data-[state=open]:rotate-180\" />\n          )}\n        </span>\n      ) : (\n        <span className=\"relative inline-flex size-4 items-center justify-center\">\n          <Circle className=\"size-2 fill-current\" />\n        </span>\n      )}\n      <span>{children}</span>\n    </div>\n    {!leftIcon && (\n      <ChevronDown className=\"size-4 transition-transform group-data-[state=open]:rotate-180\" />\n    )}\n  </CollapsibleTrigger>\n)\n\nexport type ChainOfThoughtContentProps = React.ComponentProps<\n  typeof CollapsibleContent\n>\n\nexport const ChainOfThoughtContent = ({\n  children,\n  className,\n  ...props\n}: ChainOfThoughtContentProps) => {\n  return (\n    <CollapsibleContent\n      className={cn(\n        \"text-popover-foreground data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down overflow-hidden\",\n        className\n      )}\n      {...props}\n    >\n      <div className=\"grid grid-cols-[min-content_minmax(0,1fr)] gap-x-4\">\n        <div className=\"bg-primary/20 ml-1.75 h-full w-px group-data-[last=true]:hidden\" />\n        <div className=\"ml-1.75 h-full w-px bg-transparent group-data-[last=false]:hidden\" />\n        <div className=\"mt-2 space-y-2\">{children}</div>\n      </div>\n    </CollapsibleContent>\n  )\n}\n\nexport type ChainOfThoughtProps = {\n  children: React.ReactNode\n  className?: string\n}\n\nexport function ChainOfThought({ children, className }: ChainOfThoughtProps) {\n  const childrenArray = React.Children.toArray(children)\n\n  return (\n    <div className={cn(\"space-y-0\", className)}>\n      {childrenArray.map((child, index) => (\n        <React.Fragment key={index}>\n          {React.isValidElement(child) &&\n            React.cloneElement(\n              child as React.ReactElement<ChainOfThoughtStepProps>,\n              {\n                isLast: index === childrenArray.length - 1,\n              }\n            )}\n        </React.Fragment>\n      ))}\n    </div>\n  )\n}\n\nexport type ChainOfThoughtStepProps = {\n  children: React.ReactNode\n  className?: string\n  isLast?: boolean\n}\n\nexport const ChainOfThoughtStep = ({\n  children,\n  className,\n  isLast = false,\n  ...props\n}: ChainOfThoughtStepProps & React.ComponentProps<typeof Collapsible>) => {\n  return (\n    <Collapsible\n      className={cn(\"group\", className)}\n      data-last={isLast}\n      {...props}\n    >\n      {children}\n      <div className=\"flex justify-start group-data-[last=true]:hidden\">\n        <div className=\"bg-primary/20 ml-1.75 h-4 w-px\" />\n      </div>\n    </Collapsible>\n  )\n}\n"
+        }
+      ],
+      "categories": [
+        "ai",
+        "prompt-kit"
+      ]
+    },
+    {
+      "name": "text-shimmer",
+      "type": "registry:ui",
+      "title": "Text Shimmer",
+      "description": "A component for displaying a shimmer effect on text, perfect for loading states or highlighting text.",
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "tailwind": {
+        "config": {
+          "theme": {
+            "keyframes": {
+              "shimmer": {
+                "0%": {
+                  "backgroundPosition": "200% 50%"
+                },
+                "100%": {
+                  "backgroundPosition": "-200% 50%"
+                }
+              }
+            }
+          }
+        }
+      },
+      "files": [
+        {
+          "path": "components/prompt-kit/text-shimmer.tsx",
+          "type": "registry:component",
+          "content": "\"use client\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport type TextShimmerProps = {\n  as?: string\n  duration?: number\n  spread?: number\n  children: React.ReactNode\n} & React.HTMLAttributes<HTMLElement>\n\nexport function TextShimmer({\n  as = \"span\",\n  className,\n  duration = 4,\n  spread = 20,\n  children,\n  ...props\n}: TextShimmerProps) {\n  const dynamicSpread = Math.min(Math.max(spread, 5), 45)\n  const Component = as as React.ElementType\n\n  return (\n    <Component\n      className={cn(\n        \"bg-size-[200%_auto] bg-clip-text font-medium text-transparent\",\n        \"animate-[shimmer_4s_infinite_linear]\",\n        className\n      )}\n      style={{\n        backgroundImage: `linear-gradient(to right, var(--muted-foreground) ${50 - dynamicSpread}%, var(--foreground) 50%, var(--muted-foreground) ${50 + dynamicSpread}%)`,\n        animationDuration: `${duration}s`,\n      }}\n      {...props}\n    >\n      {children}\n    </Component>\n  )\n}\n"
+        }
+      ],
+      "categories": [
+        "ai",
+        "prompt-kit"
+      ]
+    },
+    {
+      "name": "thinking-bar",
+      "type": "registry:ui",
+      "title": "Thinking Bar",
+      "description": "A component to display the thinking state of an AI model with optional actions.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "devDependencies": [],
+      "registryDependencies": [
+        "text-shimmer"
+      ],
+      "files": [
+        {
+          "path": "components/prompt-kit/thinking-bar.tsx",
+          "type": "registry:component",
+          "content": "\"use client\"\n\nimport { TextShimmer } from \"@/components/prompt-kit/text-shimmer\"\nimport { cn } from \"@/lib/utils\"\nimport { ChevronRight } from \"lucide-react\"\n\ntype ThinkingBarProps = {\n  className?: string\n  text?: string\n  onStop?: () => void\n  stopLabel?: string\n  onClick?: () => void\n}\n\nexport function ThinkingBar({\n  className,\n  text = \"Thinking\",\n  onStop,\n  stopLabel = \"Answer now\",\n  onClick,\n}: ThinkingBarProps) {\n  return (\n    <div className={cn(\"flex w-full items-center justify-between\", className)}>\n      {onClick ? (\n        <button\n          type=\"button\"\n          onClick={onClick}\n          className=\"flex items-center gap-1 text-sm transition-opacity hover:opacity-80\"\n        >\n          <TextShimmer className=\"font-medium\">{text}</TextShimmer>\n          <ChevronRight className=\"text-muted-foreground size-4\" />\n        </button>\n      ) : (\n        <TextShimmer className=\"cursor-default font-medium\">{text}</TextShimmer>\n      )}\n      {onStop ? (\n        <button\n          onClick={onStop}\n          type=\"button\"\n          className=\"text-muted-foreground hover:text-foreground border-muted-foreground/50 hover:border-foreground border-b border-dotted text-sm transition-colors\"\n        >\n          {stopLabel}\n        </button>\n      ) : null}\n    </div>\n  )\n}\n"
+        }
+      ],
+      "categories": [
+        "ai",
+        "prompt-kit"
+      ]
+    },
+    {
+      "name": "feedback-bar",
+      "type": "registry:ui",
+      "title": "Feedback Bar",
+      "description": "A component to collect user feedback on AI responses.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "devDependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/prompt-kit/feedback-bar.tsx",
+          "type": "registry:component",
+          "content": "import { cn } from \"@/lib/utils\"\nimport { ThumbsDown, ThumbsUp, X } from \"lucide-react\"\n\ntype FeedbackBarProps = {\n  className?: string\n  title?: string\n  icon?: React.ReactNode\n  onHelpful?: () => void\n  onNotHelpful?: () => void\n  onClose?: () => void\n}\n\nexport function FeedbackBar({\n  className,\n  title,\n  icon,\n  onHelpful,\n  onNotHelpful,\n  onClose,\n}: FeedbackBarProps) {\n  return (\n    <div\n      className={cn(\n        \"bg-background border-border inline-flex rounded-[12px] border text-sm\",\n        className\n      )}\n    >\n      <div className=\"flex w-full items-center justify-between\">\n        <div className=\"flex flex-1 items-center justify-start gap-4 py-3 pl-4\">\n          {icon}\n          <span className=\"text-foreground font-medium\">{title}</span>\n        </div>\n        <div className=\"flex items-center justify-center gap-0.5 px-3 py-0\">\n          <button\n            type=\"button\"\n            className=\"text-muted-foreground hover:text-foreground flex size-8 items-center justify-center rounded-md transition-colors\"\n            aria-label=\"Helpful\"\n            onClick={onHelpful}\n          >\n            <ThumbsUp className=\"size-4\" />\n          </button>\n          <button\n            type=\"button\"\n            className=\"text-muted-foreground hover:text-foreground flex size-8 items-center justify-center rounded-md transition-colors\"\n            aria-label=\"Not helpful\"\n            onClick={onNotHelpful}\n          >\n            <ThumbsDown className=\"size-4\" />\n          </button>\n        </div>\n        <div className=\"border-border flex items-center justify-center border-l\">\n          <button\n            type=\"button\"\n            onClick={onClose}\n            className=\"text-muted-foreground hover:text-foreground flex items-center justify-center rounded-md p-3\"\n            aria-label=\"Close\"\n          >\n            <X className=\"size-5\" />\n          </button>\n        </div>\n      </div>\n    </div>\n  )\n}\n"
         }
       ],
       "categories": [

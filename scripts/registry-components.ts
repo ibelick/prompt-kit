@@ -306,4 +306,40 @@ export const components: ComponentDefinition[] = [
     registryDependencies: ["collapsible"],
     dependencies: ["lucide-react"],
   },
+  {
+    name: "text-shimmer",
+    description:
+      "A component for displaying a shimmer effect on text, perfect for loading states or highlighting text.",
+    path: path.join(__dirname, "../components/prompt-kit/text-shimmer.tsx"),
+    tailwind: {
+      config: {
+        theme: {
+          keyframes: {
+            shimmer: {
+              "0%": {
+                backgroundPosition: "200% 50%",
+              },
+              "100%": {
+                backgroundPosition: "-200% 50%",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+  {
+    name: "thinking-bar",
+    description:
+      "A component to display the thinking state of an AI model with optional actions.",
+    path: path.join(__dirname, "../components/prompt-kit/thinking-bar.tsx"),
+    dependencies: ["lucide-react"],
+    registryDependencies: ["text-shimmer"],
+  },
+  {
+    name: "feedback-bar",
+    description: "A component to collect user feedback on AI responses.",
+    path: path.join(__dirname, "../components/prompt-kit/feedback-bar.tsx"),
+    dependencies: ["lucide-react"],
+  },
 ]

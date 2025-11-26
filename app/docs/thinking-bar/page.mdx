@@ -1,0 +1,80 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
+import { ThinkingBarInteractive } from "./thinking-bar-interactive"
+
+export const metadata = generateMetadata(
+  "Thinking Bar",
+  "A component to display the thinking state of an AI model with optional actions."
+)
+
+# Thinking Bar
+
+A component to display the thinking state of an AI model with optional actions.
+
+## Examples
+
+### Interactive thinking bar
+
+<ComponentCodePreview
+  component={<ThinkingBarInteractive />}
+  filePath="app/docs/thinking-bar/thinking-bar-interactive.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/thinking-bar.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+<CodeBlock code="npm install lucide-react" language="bash" />
+
+<Step>Make sure you have the Text Shimmer component installed.</Step>
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/text-shimmer.json"`}
+  language="bash"
+/>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/thinking-bar.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### ThinkingBar
+
+| Prop      | Type            | Default        | Description                                  |
+| :-------- | :-------------- | :------------- | :------------------------------------------- |
+| text      | string          | "Thinking"     | The text to display                          |
+| stopLabel | string          | "Answer now"   | The text for the stop button                 |
+| onStop    | () => void      |                | Callback when the stop button is clicked     |
+| onClick   | () => void      |                | Callback when the bar is clicked             |
+| className | string          |                | Additional CSS classes                       |
+

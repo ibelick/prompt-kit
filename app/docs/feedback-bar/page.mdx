@@ -1,0 +1,74 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
+import { FeedbackBarBasic } from "./feedback-bar-basic"
+
+export const metadata = generateMetadata(
+  "Feedback Bar",
+  "A component to collect user feedback on AI responses."
+)
+
+# Feedback Bar
+
+A component to collect user feedback on AI responses.
+
+## Examples
+
+### Basic usage
+
+<ComponentCodePreview
+  component={<FeedbackBarBasic />}
+  filePath="app/docs/feedback-bar/feedback-bar-basic.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeBlock
+  code={`npx shadcn add "https://prompt-kit.com/c/feedback-bar.json"`}
+  language="bash"
+/>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+<CodeBlock code="npm install lucide-react" language="bash" />
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/feedback-bar.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### FeedbackBar
+
+| Prop         | Type            | Default | Description                                  |
+| :----------- | :-------------- | :------ | :------------------------------------------- |
+| title        | string          |         | The question or title to display             |
+| icon         | React.ReactNode |         | An icon to display next to the title         |
+| onHelpful    | () => void      |         | Callback when "helpful" is clicked           |
+| onNotHelpful | () => void      |         | Callback when "not helpful" is clicked       |
+| onClose      | () => void      |         | Callback when the close button is clicked    |
+| className    | string          |         | Additional CSS classes                       |
+

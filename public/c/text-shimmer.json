@@ -1,0 +1,35 @@
+{
+  "name": "text-shimmer",
+  "type": "registry:ui",
+  "registryDependencies": [],
+  "dependencies": [],
+  "devDependencies": [],
+  "tailwind": {
+    "config": {
+      "theme": {
+        "keyframes": {
+          "shimmer": {
+            "0%": {
+              "backgroundPosition": "200% 50%"
+            },
+            "100%": {
+              "backgroundPosition": "-200% 50%"
+            }
+          }
+        }
+      }
+    }
+  },
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "description": "A component for displaying a shimmer effect on text, perfect for loading states or highlighting text.",
+  "files": [
+    {
+      "path": "text-shimmer.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"@/lib/utils\"\n\nexport type TextShimmerProps = {\n  as?: string\n  duration?: number\n  spread?: number\n  children: React.ReactNode\n} & React.HTMLAttributes<HTMLElement>\n\nexport function TextShimmer({\n  as = \"span\",\n  className,\n  duration = 4,\n  spread = 20,\n  children,\n  ...props\n}: TextShimmerProps) {\n  const dynamicSpread = Math.min(Math.max(spread, 5), 45)\n  const Component = as as React.ElementType\n\n  return (\n    <Component\n      className={cn(\n        \"bg-size-[200%_auto] bg-clip-text font-medium text-transparent\",\n        \"animate-[shimmer_4s_infinite_linear]\",\n        className\n      )}\n      style={{\n        backgroundImage: `linear-gradient(to right, var(--muted-foreground) ${50 - dynamicSpread}%, var(--foreground) 50%, var(--muted-foreground) ${50 + dynamicSpread}%)`,\n        animationDuration: `${duration}s`,\n      }}\n      {...props}\n    >\n      {children}\n    </Component>\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ]
+}
