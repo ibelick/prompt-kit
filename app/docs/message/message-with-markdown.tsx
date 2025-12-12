@@ -11,7 +11,6 @@ export function MessageWithMarkdown() {
         <MessageAvatar src="https://github.com/ibelick.png" alt="Ibelick" />
         <MessageContent
           markdown
-          className="prose-h2:mt-0! prose-h2:scroll-m-0! dark:prose-invert"
         >
           {`## Hello World!
           
