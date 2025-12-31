@@ -31,15 +31,15 @@ The setup process depends on your AI tool.
   language="json"
   code={`{
     "mcpServers": {
-        "prompt-kit": {
+      "prompt-kit": {
         "description": "prompt-kit registry",
         "type": "stdio",
         "command": "npx",
-        "args": ["-y", "shadcn@canary", "registry:mcp"],
+        "args": ["-y", "shadcn@canary", "mcp"],
         "env": {
-            "REGISTRY_URL": "https://www.prompt-kit.com/c/registry.json"
-            }
+          "REGISTRY_URL": "https://www.prompt-kit.com/c/registry.json"
         }
+      },
     }
 }`}
 />
