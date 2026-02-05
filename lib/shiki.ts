@@ -21,11 +21,9 @@ const getHighlighter = async (): Promise<Highlighter> => {
 export const codeToHtml = async ({
   code,
   lang,
-  theme = "github-light",
 }: {
   code: string
   lang: string
-  theme?: string
 }): Promise<string> => {
   const highlighterInstance = await getHighlighter()
 
@@ -38,10 +36,19 @@ export const codeToHtml = async ({
     return "<pre><code></code></pre>"
   }
 
-  return highlighterInstance.codeToHtml(code, {
+  const html = highlighterInstance.codeToHtml(code, {
     lang: lang,
-    theme: theme,
+    themes: {
+      light: "github-light",
+      dark: "github-dark",
+    },
   })
+
+  return html
+    .replace(/tabindex="0"/g, "")
+    .replace(/style="[^"]*background-color:[^;"]*;?[^"]*"/g, (match) =>
+      match.replace(/background-color:[^;"]*;?/g, "")
+    )
 }
 
 // Function to dispose of the highlighter when done (e.g., server-side cleanup)
