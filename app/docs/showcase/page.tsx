@@ -8,6 +8,12 @@ export const metadata = generateMetadata("Showcase", "Showcase for prompt-kit.")
 
 const projects = [
   {
+    title: "webclaw.dev",
+    href: "https://webclaw.dev",
+    thumbnail:
+      "https://raw.githubusercontent.com/ibelick/webclaw/main/apps/webclaw/public/cover.jpg",
+  },
+  {
     title: "zola.chat",
     href: "https://zola.chat",
     thumbnail: "https://www.zola.chat/cover_zola.jpg",
@@ -25,8 +31,7 @@ const projects = [
   {
     title: "aiagent.app",
     href: "https://aiagent.app",
-    thumbnail:
-      "https://aiagent.app/opengraph-image.png?opengraph-image.e8b1925a.png",
+    thumbnail: "https://aiagent.app/web-app-manifest-512x512.png",
   },
   {
     title: "www.findappgaps.com",
