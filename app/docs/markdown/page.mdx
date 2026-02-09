@@ -10,7 +10,19 @@ export const metadata = generateMetadata(
 
 # Markdown
 
-A component for rendering Markdown content with support for GitHub Flavored Markdown (GFM) and custom component styling.
+A component for rendering Markdown content with support for GitHub Flavored Markdown (GFM) and custom component styling. Uses [Streamdown](https://streamdown.ai/) under the hood, a high-performance Markdown renderer built specifically for streaming AI responses.
+
+## Key features
+
+- **Unterminated Markdown parsing** - Handles incomplete syntax during streaming
+- **Advanced memoization** - Only re-renders changed blocks for optimal performance
+- **Interactive controls** - Copy, download, and fullscreen actions for code, tables, and diagrams
+- **CJK language support** - Proper emphasis handling for Chinese, Japanese, and Korean
+- **Security hardening** - Built-in sanitization to protect against malicious content
+- **GFM support** - Tables, task lists, strikethrough, and autolinks
+- **Mathematics** - LaTeX rendering via KaTeX
+- **Mermaid diagrams** - Interactive diagram rendering with controls
+- **200+ languages** - Syntax highlighting powered by Shiki
 
 ## Examples
 
@@ -46,10 +58,33 @@ You can customize how different Markdown elements are rendered by providing cust
 
 <TabsContent value="cli">
 
+First, install the component using the CLI:
+
 <CodeBlock
   code={`npx shadcn add "https://prompt-kit.com/c/markdown.json"`}
   language="bash"
 />
+
+Then, reference the necessary CSS file to load the default styles for Streamdown.
+
+### Tailwind v4
+
+Add the following CSS source directive to your globals.css or main CSS file:
+
+<CodeBlock language="css" code={`@source "../node_modules/streamdown/dist/*.js";`} />
+
+### Tailwind v3
+
+Add Streamdown to your content array in your tailwind.config.js:
+
+<CodeBlock language="js" code={`module.exports = {
+    content: [
+        './node_modules/streamdown/dist/**/*.js',
+    ],
+    // ... rest of your config
+}`} />
+
+Make sure the path matches the location of your node_modules folder relative to your CSS file.
 
 </TabsContent>
 
@@ -64,11 +99,30 @@ You can customize how different Markdown elements are rendered by providing cust
 <Step>Install the required dependencies.</Step>
 
 <CodeBlock
-  code={`npm install react-markdown remark-gfm remark-breaks`}
+  code={`npm install streamdown`}
   language="bash"
 />
 
 <Step>Update the import paths to match your project setup.</Step>
+
+<Step>
+Reference the necessary CSS file to load the default styles for Streamdown.
+
+If you're using Tailwind v4, add the following CSS source directive to your globals.css or main CSS file:
+
+<CodeBlock language="css" code={`@source "../node_modules/streamdown/dist/*.js";`} />
+
+If you're using Tailwind v3, add Streamdown to your content array in your tailwind.config.js:
+
+<CodeBlock language="js" code={`module.exports = {
+    content: [
+        './node_modules/streamdown/dist/**/*.js',
+    ],
+    // ... rest of your config
+}`} />
+
+Make sure the path matches the location of your node_modules folder relative to your CSS file.
+</Step>
 
 </Steps>
 
@@ -84,8 +138,24 @@ You can customize how different Markdown elements are rendered by providing cust
 | :--------- | :------------------------------------------- | :----------------- | :---------------------------------------------- |
 | children   | string                                       |                    | Markdown content to render                      |
 | className  | string                                       |                    | Additional CSS classes                          |
-| components | `Partial<Components>`                        | INITIAL_COMPONENTS | Custom components to override default rendering |
-| ...props   | `React.ComponentProps<typeof ReactMarkdown>` |                    | All other ReactMarkdown props                   |
+| ...props   | `React.ComponentProps<typeof Streamdown>`    |                    | All other Streamdown props                      |
+
+## Unterminated Markdown Parsing
+
+One of the Markdown component's most powerful features is its ability to handle incomplete Markdown syntax during streaming. Traditional Markdown parsers fail when encountering partial syntax like `**unclosed bold` or `` `incomplete code``, but Streamdown intelligently detects these patterns and auto-completes them for proper rendering.
+
+When the actual closing syntax arrives in the stream, Streamdown seamlessly transitions to the complete version without visual disruption. This solves a critical UX problem in AI chat interfaces where responses are streamed token-by-token.
+
+<CodeBlock
+  code={`// These incomplete patterns render correctly during streaming:
+**bold text...          → auto-closed and rendered
+\`inline code...        → auto-closed and rendered
+> blockquote...         → continues properly
+- list item...          → formatted correctly`}
+  language="sh"
+/>
+
+The parser also preserves word-internal characters like underscores in variable names (e.g., `my_variable_name`) by distinguishing between inline and block-level patterns.
 
 ## Performance Optimization
 
@@ -102,14 +172,29 @@ Our implementation:
 
 This pattern significantly improves performance in chat applications by preventing the entire message history from re-rendering with each new token, which becomes increasingly important as conversations grow longer.
 
-For AI chat interfaces using streaming responses, always provide a unique `id` prop (typically the message ID) to ensure proper block caching:
-
 <CodeBlock
-  code={`<Markdown id={message.id}>{message.content}</Markdown>`}
+  code={`<Markdown>{message.content}</Markdown>`}
   language="tsx"
 />
 
-This memoization implementation is based on the [Vercel AI SDK Cookbook](https://sdk.vercel.ai/cookbook/next/markdown-chatbot-with-memoization) with enhancements for better React integration.
+### Interactive Controls During Streaming
+
+The component automatically disables interactive controls (copy buttons, downloads) during active streaming via the `isAnimating` prop. This prevents users from accidentally copying incomplete code or content mid-generation.
+
+## Security Hardening
+
+Streamdown includes built-in security sanitization via `rehype-harden` to protect against malicious content in AI-generated responses. The default configuration allows all links and images, but you can restrict this for untrusted sources:
+
+<CodeBlock code={`// Restrict to specific domains
+const secureComponents = {
+    allowedDomains: ['trusted-domain.com', 'cdn.example.com'],
+    disableDataImages: true # Prevent base64 tracking pixels
+}
+
+<Markdown rehypeHarden={secureComponents}>{content}</Markdown>
+`} language="tsx" />
+
+This is especially important for protecting against prompt injection attacks and tracking pixels in user-generated or AI-generated content.
 
 ## Customizing Components
 
@@ -124,42 +209,4 @@ You can customize how different Markdown elements are rendered by providing a `c
 <Markdown components={customComponents}>{markdownContent}</Markdown>
 `} language="tsx" />
 
-## Supported Markdown Features
-
-The Markdown component uses [react-markdown](https://github.com/remarkjs/react-markdown) with [remark-gfm](https://github.com/remarkjs/remark-gfm) to support GitHub Flavored Markdown, which includes:
-
-- Tables
-- Strikethrough
-- Tasklists
-- Literal URLs
-- Footnotes
-
-Additionally, the component includes built-in code block highlighting through the `CodeBlock` component.
-
-## Styling with Tailwind Typography
-
-For the best typography styling experience, we recommend using the [@tailwindcss/typography](https://github.com/tailwindlabs/tailwindcss-typography) plugin. This plugin provides a set of `prose` classes that add beautiful typographic defaults to your markdown content.
-
-<CodeBlock code={`npm install -D @tailwindcss/typography`} language="bash" />
-
-When using the Markdown component with Tailwind Typography, you can apply the `prose` class:
-
-<CodeBlock
-  code={`<Markdown className="prose dark:prose-invert">{markdownContent}</Markdown>`}
-  language="tsx"
-/>
-
-### Handling Code Blocks
-
-As you've seen in our examples, code blocks within prose content can sometimes cause styling conflicts. The Tailwind Typography plugin provides a `not-prose` class to exclude elements from prose styling:
-
-<CodeBlock code={`<article className="prose">
-    <h1>My Content</h1>
-    <p>Regular content with prose styling...</p>
-
-    <div className="not-prose">
-      <!-- Code blocks or other elements that shouldn't inherit prose styles -->
-    </div>
-
-</article>
-`} language="tsx" />
+You can also use CSS variables and `data-streamdown` attribute selectors for theming without component overrides.

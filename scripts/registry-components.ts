@@ -40,13 +40,7 @@ export const components: ComponentDefinition[] = [
     description:
       "A component for rendering Markdown content with support for code blocks, GFM, and custom styling",
     path: path.join(__dirname, "../components/prompt-kit/markdown.tsx"),
-    dependencies: [
-      "react-markdown",
-      "remark-gfm",
-      "shiki",
-      "marked",
-      "remark-breaks",
-    ],
+    dependencies: ["streamdown"],
     files: [
       {
         name: "code-block.tsx",
@@ -59,13 +53,7 @@ export const components: ComponentDefinition[] = [
     description:
       "A component for displaying chat messages with support for avatars, markdown content, and interactive actions",
     path: path.join(__dirname, "../components/prompt-kit/message.tsx"),
-    dependencies: [
-      "react-markdown",
-      "remark-gfm",
-      "shiki",
-      "marked",
-      "remark-breaks",
-    ],
+    dependencies: ["streamdown"],
     registryDependencies: ["avatar", "tooltip"],
     files: [
       {
