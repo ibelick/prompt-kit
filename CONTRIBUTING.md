@@ -16,7 +16,7 @@ We accept contributions in the following areas:
 
 - What: Pre-built UI blocks using `shadcn/ui` and `prompt-kit`.
 - Details: Full UI, like a chatbot interface.
-- Examples: See `/components/blocks for` reference.
+- Examples: See `/components/blocks` for reference.
 
 ### Primitives
 
