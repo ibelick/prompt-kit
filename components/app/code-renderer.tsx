@@ -1,7 +1,6 @@
 "use client"
 
 import { codeToHtml } from "@/lib/shiki"
-import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 
 type CodeRendererProps = {
@@ -11,13 +10,6 @@ type CodeRendererProps = {
 
 export function CodeRenderer({ code, lang }: CodeRendererProps) {
   const [highlightedHtml, setHighlightedHtml] = useState<string | null>(null)
-  const { theme } = useTheme()
-
-  const themeName: Record<string, string> = {
-    light: "github-light",
-    dark: "github-dark",
-    system: "github-dark",
-  }
 
   useEffect(() => {
     async function highlight() {
@@ -29,12 +21,11 @@ export function CodeRenderer({ code, lang }: CodeRendererProps) {
       const html = await codeToHtml({
         code,
         lang,
-        theme: themeName[theme as keyof typeof themeName],
       })
       setHighlightedHtml(html)
     }
     highlight()
-  }, [code, lang, theme])
+  }, [code, lang])
 
   // SSR fallback: render plain code if not hydrated yet
   return (

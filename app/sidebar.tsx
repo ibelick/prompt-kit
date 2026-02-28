@@ -122,11 +122,8 @@ export function AppSidebar() {
 
   return (
     <Sidebar className="h-full border-none shadow-none">
-      <SidebarContent
-        className="bg-sidebar border-border relative border-r border-dashed"
-        style={{ scrollbarWidth: "none" }}
-      >
-        <div className="flex h-full flex-col pb-20 pl-0">
+      <SidebarContent className="bg-sidebar border-border relative border-r border-dashed">
+        <div className="flex h-full flex-col pl-0">
           <SidebarHeader className="hidden items-start px-5 pt-8 md:flex">
             <Link
               href="/"
