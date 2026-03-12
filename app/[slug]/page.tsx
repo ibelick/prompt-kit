@@ -2,9 +2,10 @@ import { generateMetadata as generateSiteMetadata } from "@/app/docs/utils/metad
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import {
+  chatUiContentBySlug,
   codeSections,
   componentsSections,
-  faq,
+  faqBySlug,
   featuresComponents,
   featuresSections,
   heroSections,
@@ -106,11 +107,12 @@ export default async function Page({
     <Landing
       content={{
         hero: heroSections[slug as keyof typeof heroSections],
+        chat_ui: chatUiContentBySlug[slug as keyof typeof chatUiContentBySlug],
         code: codeSections,
         features_core: featuresSections,
         components: componentsSections,
         features_components: featuresComponents,
-        faq: faq,
+        faq: faqBySlug[slug as keyof typeof faqBySlug],
       }}
     />
   )
