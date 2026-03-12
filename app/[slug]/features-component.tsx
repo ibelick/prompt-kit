@@ -27,14 +27,14 @@ export function FeaturesComponent({ title, features }: FeaturesComponentProps) {
 
   return (
     <div className="mx-auto w-full max-w-7xl">
-      <h2 className="text-foreground mb-8 text-center text-3xl font-medium">
+      <h2 className="text-foreground mb-8 text-center text-2xl font-medium">
         {title}
       </h2>
-      <div className="flex flex-col lg:grid lg:grid-cols-2">
-        <div className="border-border relative hidden h-auto rounded-lg border bg-transparent p-4 lg:flex lg:items-center lg:justify-center">
+      <div className="flex flex-col lg:grid lg:grid-cols-[2fr_1fr]">
+        <div className="border-border relative hidden h-auto min-h-[520px] rounded-lg border bg-transparent p-4 lg:flex lg:items-center lg:justify-center">
           {features.find((item) => item.id === activeAccordionId)?.component}
         </div>
-        <div className="p-0 sm:p-8 lg:p-16">
+        <div className="p-0 sm:p-8 lg:p-12">
           <Accordion
             onValueChange={(value) => {
               if (!value) return
@@ -51,13 +51,13 @@ export function FeaturesComponent({ title, features }: FeaturesComponentProps) {
                     item.id === activeAccordionId && "cursor-default"
                   )}
                 >
-                  <h3 className="text-left text-lg text-zinc-950 dark:text-zinc-50">
+                  <h3 className="text-left text-base text-zinc-950 dark:text-zinc-50">
                     {item.title}
                   </h3>
                   <ChevronUp className="h-4 w-4 text-zinc-950 transition-transform duration-200 group-data-[expanded]:-rotate-180 dark:text-zinc-50" />
                 </AccordionTrigger>
                 <AccordionContent>
-                  <p className="pb-6 text-left text-zinc-500 lg:pb-8 dark:text-zinc-400">
+                  <p className="pb-5 text-left text-sm text-zinc-500 lg:pb-6 dark:text-zinc-400">
                     {item.content}
                   </p>
                   <div className="border-border mb-6 flex items-center justify-center rounded-lg border bg-transparent px-2 py-8 lg:mb-0 lg:hidden">
