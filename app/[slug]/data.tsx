@@ -14,15 +14,15 @@ export const titles = [
 export const heroSections = {
   "openai-sdk": {
     badge: "openai sdk",
-    title: "The UI for your OpenAI SDK apps",
+    title: "OpenAI SDK UI components for chat apps",
     description:
-      "Build better interfaces for OpenAI-powered apps. Drop-in components for chats, prompts, tool use, and more.",
+      "OpenAI SDK UI for chat apps with React components for prompt input, message rendering, tool calls, and streaming responses.",
   },
   "vercel-ai-sdk": {
     badge: "vercel ai sdk",
-    title: "The UI layer for the Vercel AI SDK",
+    title: "Vercel AI SDK UI components for chat apps",
     description:
-      "Build chat UIs, tool calling, and more using ready-made components for the Vercel AI SDK.",
+      "Vercel AI SDK UI for chat apps with React components for prompt input, message rendering, streaming, and tool calls.",
   },
   "chat-ui": {
     badge: "chat ui",
@@ -32,9 +32,9 @@ export const heroSections = {
   },
   "ai-sdk": {
     badge: "ai sdk",
-    title: "Build interfaces on top of any AI SDK",
+    title: "AI SDK UI components for LLM apps",
     description:
-      "Drop-in UI and fullstack components built to work with the AI SDK ecosystem — OpenAI, Mistral, DeepSeek, and more.",
+      "AI SDK UI components for LLM apps with React chat UI primitives, streaming-ready layouts, and tool call UX.",
   },
 }
 
@@ -47,13 +47,14 @@ export const metadataBySlug: Record<
   }
 > = {
   "openai-sdk": {
-    title: "OpenAI SDK UI components & chat templates",
+    title: "OpenAI SDK UI components for React chat apps",
     description:
-      "Build OpenAI SDK apps faster with ready‑made UI components, chat interfaces, tool calling patterns, and primitives. Built with React, Tailwind CSS, and shadcn/ui.",
+      "OpenAI SDK UI components for React chat apps, including prompt input, chat UI rendering, tool calls, and streaming responses. Built with Tailwind CSS and shadcn/ui.",
     keywords: [
-      "OpenAI SDK UI",
-      "OpenAI components",
-      "OpenAI chat UI",
+      "openai sdk ui",
+      "openai chat ui",
+      "openai components",
+      "ai sdk chat ui",
       "tool calling UI",
       "LLM UI",
       "React",
@@ -63,14 +64,14 @@ export const metadataBySlug: Record<
     ],
   },
   "vercel-ai-sdk": {
-    title: "Vercel AI SDK UI components & examples",
+    title: "Vercel AI SDK UI components for React chat apps",
     description:
-      "Production‑ready UI for the Vercel AI SDK: chat UIs, prompt inputs, streaming responses, tool calling, and fullstack primitives to ship faster.",
+      "Vercel AI SDK UI components for React chat apps, including chat UI layout, prompt input, streaming responses, and tool call UX.",
     keywords: [
-      "Vercel AI SDK UI",
-      "Vercel AI components",
-      "AI SDK UI",
-      "chat components",
+      "vercel ai sdk ui",
+      "vercel ai components",
+      "ai sdk chat ui",
+      "chat ui components",
       "tool calling",
       "React",
       "Tailwind CSS",
@@ -99,15 +100,17 @@ export const metadataBySlug: Record<
     ],
   },
   "ai-sdk": {
-    title: "AI SDK compatible UI components",
+    title: "AI SDK UI components for LLM apps",
     description:
-      "Composable UI and API primitives that work with OpenAI, Mistral, DeepSeek, and the broader AI SDK ecosystem. Build faster with ready‑to‑use blocks.",
+      "AI SDK UI components for LLM apps with React chat UI primitives, streaming layouts, and tool call examples. Compatible with OpenAI, Mistral, and more.",
     keywords: [
-      "AI SDK UI",
-      "LLM UI components",
-      "OpenAI UI",
-      "Mistral UI",
-      "DeepSeek UI",
+      "ai sdk ui",
+      "ai sdk components",
+      "llm ui components",
+      "ai chat ui",
+      "openai ui",
+      "mistral ui",
+      "deepseek ui",
       "tool calling",
       "React",
       "Tailwind CSS",
@@ -208,7 +211,7 @@ export const featuresComponents = {
   ],
 }
 
-export const chatUiContentBySlug = {
+export const pageContentBySlug = {
   "chat-ui": {
     overview: {
       title: "What is a chat UI?",
@@ -300,6 +303,300 @@ A complete chat UI also exposes controls like stop, regenerate, and prompt templ
       title: "Related SDK pages",
       content: [
         {
+          href: "/chat-ui",
+          label: "Chat UI",
+        },
+        {
+          href: "/vercel-ai-sdk",
+          label: "Vercel AI SDK UI",
+        },
+        {
+          href: "/openai-sdk",
+          label: "OpenAI SDK UI",
+        },
+        {
+          href: "/ai-sdk",
+          label: "AI SDK UI",
+        },
+      ],
+    },
+  },
+  "openai-sdk": {
+    overview: {
+      title: "OpenAI SDK UI overview",
+      content: `OpenAI SDK UI components provide the chat UI layer for apps built on the OpenAI SDK. You typically need a prompt input, a message list with roles, and rendering for markdown, code blocks, links, and citations. A production OpenAI chat UI also needs streaming response handling, tool call previews, retries, and error states so the conversation stays consistent while the model is generating.
+
+Prompt-kit focuses on composable React UI primitives that match these needs without hard-coding a transport layer. That means you can plug the components into your OpenAI SDK request flow, wire them to streaming tokens, and keep layout and interaction predictable. Use the blocks below as starting points, then customize the prompt input, message rendering, and tool call UI to fit your product.
+
+This page links to OpenAI SDK UI examples that cover common requirements like prompt input UX, conversation history, and full chat app layout. Each example is a working React component you can adapt to your OpenAI SDK integration.`,
+    },
+    components: {
+      title: "OpenAI SDK UI components",
+      content: [
+        {
+          title: "Prompt input with actions",
+          href: "/c/prompt-input-actions",
+        },
+        {
+          title: "Prompt input with suggestions",
+          href: "/c/prompt-input-suggestions",
+        },
+        {
+          title: "Conversation with prompt input",
+          href: "/c/conversation-prompt-input",
+        },
+        {
+          title: "Conversation with actions",
+          href: "/c/conversation-actions",
+        },
+        {
+          title: "Conversation with avatars",
+          href: "/c/conversation-avatars",
+        },
+        {
+          title: "Full chat app",
+          href: "/c/full-chat-app",
+        },
+        {
+          title: "Full chatbot (primitive)",
+          href: "/demo/chatbot",
+        },
+        {
+          title: "Tool calling (primitive)",
+          href: "/demo/tool-calling",
+        },
+      ],
+    },
+    examples: {
+      title: "OpenAI chat UI examples",
+      content: [
+        {
+          title: "Full chatbot (primitive)",
+          description:
+            "OpenAI SDK chat UI with streaming, markdown rendering, and code blocks.",
+          href: "/demo/chatbot",
+        },
+        {
+          title: "Tool calling (primitive)",
+          description:
+            "Tool call UI patterns with structured outputs and model responses.",
+          href: "/demo/tool-calling",
+        },
+        {
+          title: "Conversation with prompt input",
+          description:
+            "Prompt input UX wired to a message list and response rendering.",
+          href: "/c/conversation-prompt-input",
+        },
+        {
+          title: "Full chat app",
+          description:
+            "End-to-end OpenAI chat UI layout with history and streaming states.",
+          href: "/c/full-chat-app",
+        },
+      ],
+    },
+    links: {
+      title: "Related SDK pages",
+      content: [
+        {
+          href: "/chat-ui",
+          label: "Chat UI",
+        },
+        {
+          href: "/vercel-ai-sdk",
+          label: "Vercel AI SDK UI",
+        },
+        {
+          href: "/openai-sdk",
+          label: "OpenAI SDK UI",
+        },
+        {
+          href: "/ai-sdk",
+          label: "AI SDK UI",
+        },
+      ],
+    },
+  },
+  "vercel-ai-sdk": {
+    overview: {
+      title: "Vercel AI SDK UI overview",
+      content: `Vercel AI SDK UI components cover the chat UI layer you need when building on AI SDK v5. That includes a prompt input, message list, and message rendering for markdown, code blocks, and links. For production usage, you also need streaming-friendly UI, tool call previews, retries, and source citations while the model is generating.
+
+Prompt-kit provides React chat UI components that are compatible with the AI SDK response patterns. You can connect the input and message list to the AI SDK stream, render partial tokens safely, and keep layout stable. The blocks below are tuned for the AI SDK request flow while staying composable for custom UX.
+
+Use these Vercel AI SDK UI examples to bootstrap your chat UI, then extend prompt input actions, message grouping, and tool call rendering to match your product requirements.`,
+    },
+    components: {
+      title: "Vercel AI SDK UI components",
+      content: [
+        {
+          title: "Prompt input with actions",
+          href: "/c/prompt-input-actions",
+        },
+        {
+          title: "Prompt input with autocomplete",
+          href: "/c/prompt-autocomplete-highlight",
+        },
+        {
+          title: "Conversation with actions",
+          href: "/c/conversation-actions",
+        },
+        {
+          title: "Conversation with scroll to bottom",
+          href: "/c/conversation-scroll-bottom",
+        },
+        {
+          title: "Sidebar with chat history",
+          href: "/c/sidebar-chat-history",
+        },
+        {
+          title: "Full chat app",
+          href: "/c/full-chat-app",
+        },
+        {
+          title: "Full chatbot (primitive)",
+          href: "/demo/chatbot",
+        },
+        {
+          title: "Tool calling (primitive)",
+          href: "/demo/tool-calling",
+        },
+      ],
+    },
+    examples: {
+      title: "Vercel AI SDK chat UI examples",
+      content: [
+        {
+          title: "Full chatbot (primitive)",
+          description:
+            "AI SDK streaming chat UI with markdown and code blocks.",
+          href: "/demo/chatbot",
+        },
+        {
+          title: "Tool calling (primitive)",
+          description:
+            "Tool call UI patterns aligned with AI SDK response shapes.",
+          href: "/demo/tool-calling",
+        },
+        {
+          title: "Conversation with actions",
+          description:
+            "Chat UI actions for regenerate, stop, and tool call flows.",
+          href: "/c/conversation-actions",
+        },
+        {
+          title: "Sidebar with chat history",
+          description:
+            "Chat history layout suitable for AI SDK apps with long threads.",
+          href: "/c/sidebar-chat-history",
+        },
+      ],
+    },
+    links: {
+      title: "Related SDK pages",
+      content: [
+        {
+          href: "/chat-ui",
+          label: "Chat UI",
+        },
+        {
+          href: "/vercel-ai-sdk",
+          label: "Vercel AI SDK UI",
+        },
+        {
+          href: "/openai-sdk",
+          label: "OpenAI SDK UI",
+        },
+        {
+          href: "/ai-sdk",
+          label: "AI SDK UI",
+        },
+      ],
+    },
+  },
+  "ai-sdk": {
+    overview: {
+      title: "AI SDK UI overview",
+      content: `AI SDK UI components provide a consistent chat UI layer across LLM providers. You need a prompt input, message list, and safe rendering for markdown, code blocks, and links. For LLM apps, the UI must also handle streaming responses, tool call previews, retries, and source citations while keeping layout stable.
+
+Prompt-kit offers composable React chat UI components that work with AI SDK response patterns across providers like OpenAI, Mistral, and DeepSeek. You can wire the input and message list to streaming tokens, display partial outputs, and keep interaction predictable. The blocks below are designed to be SDK-agnostic while still mapping cleanly to AI SDK primitives.
+
+Use the examples to bootstrap an AI SDK chat UI, then extend components for advanced flows like tool calls, long prompts, and multi-step conversations.`,
+    },
+    components: {
+      title: "AI SDK UI components",
+      content: [
+        {
+          title: "Prompt input with actions",
+          href: "/c/prompt-input-actions",
+        },
+        {
+          title: "Prompt input with suggestions",
+          href: "/c/prompt-input-suggestions",
+        },
+        {
+          title: "Conversation with prompt input",
+          href: "/c/conversation-prompt-input",
+        },
+        {
+          title: "Conversation with scroll to bottom",
+          href: "/c/conversation-scroll-bottom",
+        },
+        {
+          title: "Sidebar with chat history",
+          href: "/c/sidebar-chat-history",
+        },
+        {
+          title: "Full chat app",
+          href: "/c/full-chat-app",
+        },
+        {
+          title: "Full chatbot (primitive)",
+          href: "/demo/chatbot",
+        },
+        {
+          title: "Tool calling (primitive)",
+          href: "/demo/tool-calling",
+        },
+      ],
+    },
+    examples: {
+      title: "AI SDK chat UI examples",
+      content: [
+        {
+          title: "Full chatbot (primitive)",
+          description: "LLM chat UI with streaming, markdown, and code blocks.",
+          href: "/demo/chatbot",
+        },
+        {
+          title: "Tool calling (primitive)",
+          description:
+            "AI SDK tool call UI patterns with structured responses.",
+          href: "/demo/tool-calling",
+        },
+        {
+          title: "Conversation with prompt input",
+          description:
+            "Prompt input UX with message rendering and response streaming.",
+          href: "/c/conversation-prompt-input",
+        },
+        {
+          title: "Full chat app",
+          description:
+            "AI SDK chat UI layout with history, states, and actions.",
+          href: "/c/full-chat-app",
+        },
+      ],
+    },
+    links: {
+      title: "Related SDK pages",
+      content: [
+        {
+          href: "/chat-ui",
+          label: "Chat UI",
+        },
+        {
           href: "/vercel-ai-sdk",
           label: "Vercel AI SDK UI",
         },
@@ -331,40 +628,40 @@ export const faqBySlug: Record<
     title: "Frequently asked questions",
     content: [
       {
-        id: "what-is-prompt-kit",
-        title: "What is prompt-kit?",
+        id: "openai-sdk-ui",
+        title: "What is OpenAI SDK UI?",
         content:
-          "A library of UI components and fullstack building blocks for modern AI applications. Built with shadcn/ui.",
+          "OpenAI SDK UI is the chat UI layer for OpenAI apps: prompt input, message list, markdown rendering, and streaming responses.",
       },
       {
-        id: "whats-included",
-        title: "What's included?",
+        id: "openai-chat-ui-components",
+        title: "Which OpenAI chat UI components are included?",
         content:
-          "Prompt inputs, chat UIs, message containers, tool calling examples, and more. UI-only components, fullstack primitives, and ready-to-use blocks.",
+          "Prompt input, message rendering, conversation layouts, tool call UI patterns, and full chat UI examples.",
       },
       {
-        id: "how-to-install",
-        title: "How do I install components?",
+        id: "openai-streaming-ui",
+        title: "Does it support streaming responses?",
         content:
-          "Use the shadcn CLI to install any block or primitive with one command.",
+          "Yes. The components handle incremental tokens and keep layout stable during streaming.",
       },
       {
-        id: "which-sdks-are-supported",
-        title: "Which SDKs are supported?",
+        id: "openai-markdown-code",
+        title: "Can I render markdown and code blocks?",
         content:
-          "OpenAI, Vercel AI SDK v5, and anything compatible with the AI SDK ecosystem. More to come.",
+          "Yes. Markdown rendering and code block UI are included for model responses.",
       },
       {
-        id: "react-framework",
-        title: "Can I use it with my React framework?",
+        id: "openai-react",
+        title: "Can I use it with React and Next.js?",
         content:
-          "Yes. Works with Next.js, Vite, Remix, and more. Built with Tailwind + shadcn/ui.",
+          "Yes. Works with Next.js, Vite, Remix, and other React frameworks.",
       },
       {
-        id: "is-it-open-source",
-        title: "Is it open source?",
+        id: "openai-tool-calls",
+        title: "How do I handle tool calls in the UI?",
         content:
-          "Yes, under the MIT license. You can use it freely in personal or commercial projects.",
+          "Use the tool calling examples and primitives to render structured tool outputs alongside messages.",
       },
     ],
   },
@@ -372,40 +669,40 @@ export const faqBySlug: Record<
     title: "Frequently asked questions",
     content: [
       {
-        id: "what-is-prompt-kit",
-        title: "What is prompt-kit?",
+        id: "vercel-ai-sdk-ui",
+        title: "What is Vercel AI SDK UI?",
         content:
-          "A library of UI components and fullstack building blocks for modern AI applications. Built with shadcn/ui.",
+          "Vercel AI SDK UI is a set of React chat UI components built to match AI SDK v5 response patterns.",
       },
       {
-        id: "whats-included",
-        title: "What's included?",
+        id: "vercel-ai-components",
+        title: "Which Vercel AI components are included?",
         content:
-          "Prompt inputs, chat UIs, message containers, tool calling examples, and more. UI-only components, fullstack primitives, and ready-to-use blocks.",
+          "Prompt input, conversation layouts, message rendering, streaming UI, and tool call examples.",
       },
       {
-        id: "how-to-install",
-        title: "How do I install components?",
+        id: "ai-sdk-streaming",
+        title: "Does it support AI SDK streaming?",
         content:
-          "Use the shadcn CLI to install any block or primitive with one command.",
+          "Yes. Components are built for incremental updates and stable layout during streaming.",
       },
       {
-        id: "which-sdks-are-supported",
-        title: "Which SDKs are supported?",
+        id: "ai-sdk-chat-ui",
+        title: "Can I use it for AI SDK chat UI?",
         content:
-          "OpenAI, Vercel AI SDK v5, and anything compatible with the AI SDK ecosystem. More to come.",
+          "Yes. The blocks and primitives are aligned with Vercel AI SDK v5 usage.",
       },
       {
-        id: "react-framework",
-        title: "Can I use it with my React framework?",
+        id: "vercel-ai-react",
+        title: "Does it work with React and Next.js?",
         content:
-          "Yes. Works with Next.js, Vite, Remix, and more. Built with Tailwind + shadcn/ui.",
+          "Yes. Works with Next.js, Vite, Remix, and other React frameworks.",
       },
       {
-        id: "is-it-open-source",
-        title: "Is it open source?",
+        id: "ai-sdk-tool-calls",
+        title: "How do tool calls show up in the UI?",
         content:
-          "Yes, under the MIT license. You can use it freely in personal or commercial projects.",
+          "Use the tool calling primitive to render structured tool outputs and responses.",
       },
     ],
   },
@@ -454,40 +751,40 @@ export const faqBySlug: Record<
     title: "Frequently asked questions",
     content: [
       {
-        id: "what-is-prompt-kit",
-        title: "What is prompt-kit?",
+        id: "ai-sdk-ui",
+        title: "What is AI SDK UI?",
         content:
-          "A library of UI components and fullstack building blocks for modern AI applications. Built with shadcn/ui.",
+          "AI SDK UI is a set of React chat UI components that work across LLM providers and SDKs.",
       },
       {
-        id: "whats-included",
-        title: "What's included?",
+        id: "ai-sdk-components",
+        title: "Which AI SDK components are included?",
         content:
-          "Prompt inputs, chat UIs, message containers, tool calling examples, and more. UI-only components, fullstack primitives, and ready-to-use blocks.",
+          "Prompt input, message rendering, conversation layouts, streaming UI, and tool call examples.",
       },
       {
-        id: "how-to-install",
-        title: "How do I install components?",
+        id: "ai-sdk-llm-ui",
+        title: "Is this suitable for LLM UI components?",
         content:
-          "Use the shadcn CLI to install any block or primitive with one command.",
+          "Yes. Components are designed for LLM chat UIs with streaming and tool calls.",
       },
       {
-        id: "which-sdks-are-supported",
-        title: "Which SDKs are supported?",
+        id: "ai-sdk-compatibility",
+        title: "Which providers are compatible?",
         content:
-          "OpenAI, Vercel AI SDK v5, and anything compatible with the AI SDK ecosystem. More to come.",
+          "OpenAI, Mistral, DeepSeek, and any SDK that returns chat messages or streaming tokens.",
       },
       {
-        id: "react-framework",
-        title: "Can I use it with my React framework?",
+        id: "ai-sdk-react",
+        title: "Can I use it with React and Next.js?",
         content:
-          "Yes. Works with Next.js, Vite, Remix, and more. Built with Tailwind + shadcn/ui.",
+          "Yes. Works with Next.js, Vite, Remix, and other React frameworks.",
       },
       {
-        id: "is-it-open-source",
-        title: "Is it open source?",
+        id: "ai-sdk-tool-calls",
+        title: "How do tool calls work in the UI?",
         content:
-          "Yes, under the MIT license. You can use it freely in personal or commercial projects.",
+          "Use the tool calling primitive to render tool outputs and structured responses.",
       },
     ],
   },
@@ -499,7 +796,7 @@ export type LandingContent = {
     title: string
     description: string
   }
-  chat_ui?: {
+  page_content?: {
     overview: {
       title: string
       content: string

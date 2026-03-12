@@ -38,15 +38,15 @@ export default function Landing({ content }: { content: LandingContent }) {
         <DemoPromptInput />
       </div>
 
-      {content.chat_ui ? (
+      {content.page_content ? (
         <div className="mx-auto w-full max-w-4xl">
           <div className="grid gap-48">
             <div>
               <h2 className="text-foreground mb-4 text-3xl font-medium">
-                {content.chat_ui.overview.title}
+                {content.page_content.overview.title}
               </h2>
               <div className="flex flex-col gap-4">
-                {content.chat_ui.overview.content
+                {content.page_content.overview.content
                   .split("\n\n")
                   .map((paragraph) => (
                     <p
@@ -61,10 +61,10 @@ export default function Landing({ content }: { content: LandingContent }) {
 
             <div>
               <h2 className="text-foreground mb-6 text-3xl font-medium">
-                {content.chat_ui.components.title}
+                {content.page_content.components.title}
               </h2>
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                {content.chat_ui.components.content.map((item) => (
+                {content.page_content.components.content.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
@@ -79,10 +79,10 @@ export default function Landing({ content }: { content: LandingContent }) {
 
             <div>
               <h2 className="text-foreground mb-6 text-3xl font-medium">
-                {content.chat_ui.examples.title}
+                {content.page_content.examples.title}
               </h2>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                {content.chat_ui.examples.content.map((example) => (
+                {content.page_content.examples.content.map((example) => (
                   <Link
                     key={example.href}
                     href={example.href}
@@ -221,12 +221,12 @@ export default function Landing({ content }: { content: LandingContent }) {
         </Accordion>
       </div>
 
-      {content.chat_ui ? (
+      {content.page_content ? (
         <div className="mx-auto w-full max-w-4xl">
           <div className="border-border flex flex-wrap items-center justify-between gap-4 border-t pt-6 text-sm">
             <p className="text-muted-foreground">Explore related SDK pages</p>
             <div className="flex flex-wrap gap-3">
-              {content.chat_ui.links.content.map((item) => (
+              {content.page_content.links.content.map((item) => (
                 <Link
                   key={`cluster-${item.href}`}
                   href={item.href}
