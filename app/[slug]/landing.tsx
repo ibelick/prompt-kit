@@ -68,7 +68,7 @@ export default function Landing({ content }: { content: LandingContent }) {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="border-border bg-card text-card-foreground hover:bg-muted/40 flex items-center gap-2 rounded-lg border px-4 py-3 transition-colors"
+                    className="border-border text-card-foreground hover:bg-muted/40 flex items-center gap-2 rounded-lg border px-4 py-3 transition-colors"
                   >
                     <CheckIcon className="h-4 w-4" />
                     <span>{item.title}</span>
@@ -86,7 +86,7 @@ export default function Landing({ content }: { content: LandingContent }) {
                   <Link
                     key={example.href}
                     href={example.href}
-                    className="border-border bg-card hover:bg-muted/40 flex flex-col gap-2 rounded-lg border p-5 transition-colors"
+                    className="border-border hover:bg-muted/40 flex flex-col gap-2 rounded-lg border p-5 transition-colors"
                   >
                     <h3 className="text-card-foreground text-lg font-medium">
                       {example.title}
@@ -111,7 +111,7 @@ export default function Landing({ content }: { content: LandingContent }) {
           {content.features_core.content.map((feature) => {
             return (
               <div
-                className="border-border bg-card flex flex-col rounded-lg border p-6"
+                className="border-border flex flex-col rounded-lg border p-6"
                 key={feature.title}
               >
                 <h3 className="text-card-foreground mb-6 text-xl font-medium">
@@ -223,24 +223,29 @@ export default function Landing({ content }: { content: LandingContent }) {
 
       {content.page_content ? (
         <div className="mx-auto w-full max-w-4xl">
-          <div className="border-border flex flex-wrap items-center justify-between gap-4 border-t pt-6 text-sm">
-            <p className="text-muted-foreground">Explore related SDK pages</p>
-            <div className="flex flex-wrap gap-3">
-              {content.page_content.links.content.map((item) => (
-                <Link
-                  key={`cluster-${item.href}`}
-                  href={item.href}
-                  className="text-primary border-border bg-card rounded-full border px-4 py-2 text-sm hover:underline"
-                >
-                  {item.label}
-                </Link>
+          <div className="border-border border-t pt-6">
+            <div className="text-foreground mb-3 text-sm font-medium">
+              {content.page_content.links.title}
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+              {content.page_content.links.clusters.map((cluster) => (
+                <div key={cluster.title} className="flex flex-col gap-2">
+                  <div className="text-muted-foreground text-xs tracking-wide uppercase">
+                    {cluster.title}
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    {cluster.links.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="text-primary text-sm hover:underline"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               ))}
-              <Link
-                href="/docs"
-                className="text-primary border-border bg-card rounded-full border px-4 py-2 text-sm hover:underline"
-              >
-                Chat UI docs
-              </Link>
             </div>
           </div>
         </div>
