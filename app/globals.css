@@ -289,7 +289,7 @@ code {
 */
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
@@ -304,11 +304,38 @@ code {
   }
 }
 
+.shiki,
+.shiki *,
+pre[class*="shiki"],
+pre[class*="shiki"] * {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  user-select: text !important;
+}
+
+.shiki:focus,
+.shiki:active,
+.shiki:focus-visible,
+pre[class*="shiki"]:focus,
+pre[class*="shiki"]:active,
+pre[class*="shiki"]:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+
+.dark .shiki,
+.dark .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: transparent !important;
+}
+
 @utility step {
   counter-increment: step;
 
   &:before {
-    @apply absolute inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background text-center -indent-px font-mono text-base font-medium dark:border-zinc-800 dark:bg-zinc-950;
+    @apply border-border bg-background absolute inline-flex h-9 w-9 items-center justify-center rounded-full border text-center -indent-px font-mono text-base font-medium dark:border-zinc-800 dark:bg-zinc-950;
     @apply mt-[-4px] ml-[-50px];
     content: counter(step);
   }
