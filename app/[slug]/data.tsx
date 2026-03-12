@@ -47,21 +47,21 @@ export const heroSections = {
   },
   "chat-ui": {
     badge: "chat ui",
-    title: "Chat UI components for React AI apps",
+    title: "Chat UI components for modern interfaces",
     description:
-      "Build a modern AI chat UI with drop-in React components, streaming-ready layouts, and composable chat UI primitives that work with any model.",
+      "Model-agnostic chat UI components for layouts, message lists, avatars, history, and core conversation patterns.",
   },
   "ai-sdk": {
     badge: "ai sdk",
-    title: "AI SDK UI components for LLM apps",
+    title: "AI SDK UI components for any provider",
     description:
-      "AI SDK UI components for LLM apps with React chat UI primitives, streaming-ready layouts, and tool call UX.",
+      "SDK-compatible UI for OpenAI, Vercel, Mistral, and more with provider-agnostic chat components.",
   },
   "ai-chat-ui": {
     badge: "ai chat ui",
-    title: "AI chat UI components for React apps",
+    title: "AI chat UI components for model output",
     description:
-      "AI chat UI components for React apps with prompt input, message rendering, streaming responses, and code blocks.",
+      "AI-specific chat UI for streaming tokens, markdown rendering, tool calls, and rich model outputs.",
   },
   "chat-ui-kit": {
     badge: "chat ui kit",
@@ -77,21 +77,21 @@ export const heroSections = {
   },
   "ai-sdk-components": {
     badge: "ai sdk components",
-    title: "AI SDK components for React chat apps",
+    title: "AI SDK components inventory for chat UIs",
     description:
-      "AI SDK components for React chat apps with prompt input, message rendering, and tool call UX.",
+      "Concrete AI SDK UI components: prompt input, message renderer, tool call UI, and chat layouts.",
   },
   "agent-ui": {
     badge: "agent ui",
-    title: "Agent UI components for AI apps",
+    title: "Agent UI components for workflows",
     description:
-      "Agent UI components for AI apps with prompt input, message rendering, tool call UI, and streaming responses.",
+      "Agent interfaces for multi-step runs, tool execution, state changes, and reasoning UX.",
   },
   "ai-agent-ui": {
     badge: "ai agent ui",
-    title: "AI agent UI components for React",
+    title: "AI agent chat UI components",
     description:
-      "AI agent UI components for React with chat layouts, tool calls, and streaming-friendly interfaces.",
+      "Chat-first agent UI for prompt → response loops, streamed outputs, and tool results.",
   },
   "agent-chat-ui": {
     badge: "agent chat ui",
@@ -487,11 +487,11 @@ export const pageContentBySlug = {
   "chat-ui": {
     overview: {
       title: "What is a chat UI?",
-      content: `A chat UI is the interface layer that lets people exchange messages with an AI system in a clear, conversational flow. It typically includes a message list with roles, an input for prompts, and response rendering for markdown, code blocks, links, and citations.
+      content: `A chat UI is the interface layer for conversations, regardless of model or provider. It includes a conversation layout, a message list with roles, and a message renderer that keeps long threads readable. Common building blocks are avatars, timestamps, message grouping, and a history panel for navigation.
 
-For AI apps, a strong chat UI handles streaming responses, tool call previews, sources, retries, and error states without breaking the conversation. It should support keyboard-first input, accessible focus states, and message grouping so long threads stay readable.
+The goal is clarity and continuity. A solid chat UI defines spacing, alignment, and affordances so users can scan messages quickly and understand context. It also includes input patterns that support multi-line prompts and consistent keyboard behavior.
 
-A complete chat UI also exposes controls like stop, regenerate, and prompt templates, plus affordances for long messages, file uploads, and code copying. In practice, a good chat UI makes model output feel reliable, interactive, and structured so developers can build assistants, copilots, and support agents quickly. Prompt-kit focuses on composable React chat UI components that plug into any SDK, while keeping layout, typography, and behavior predictable for production apps.`,
+This page focuses on chat UI layout patterns and components that are model-agnostic: message lists, avatars, chat history, and conversation shells. Use these building blocks to assemble a chat interface that can plug into any backend or SDK.`,
     },
     components: {
       title: "Chat UI components included",
@@ -730,11 +730,11 @@ Use these Vercel AI SDK UI examples to bootstrap your chat UI, then extend promp
   "ai-sdk": {
     overview: {
       title: "AI SDK UI overview",
-      content: `AI SDK UI components provide a consistent chat UI layer across LLM providers. You need a prompt input, message list, and safe rendering for markdown, code blocks, and links. For LLM apps, the UI must also handle streaming responses, tool call previews, retries, and source citations while keeping layout stable.
+      content: `The AI SDK page is the ecosystem hub for SDK-compatible UI. It covers components that remain provider-agnostic while still mapping to SDK response shapes. That includes prompt input, message rendering, and chat layouts that work across OpenAI, Vercel AI SDK, Mistral, and other providers.
 
-Prompt-kit offers composable React chat UI components that work with AI SDK response patterns across providers like OpenAI, Mistral, and DeepSeek. You can wire the input and message list to streaming tokens, display partial outputs, and keep interaction predictable. The blocks below are designed to be SDK-agnostic while still mapping cleanly to AI SDK primitives.
+The goal is portability: use the same UI surface while swapping providers or SDKs. You wire the input and message list to the SDK stream, render partial tokens safely, and keep layout consistent across environments.
 
-Use the examples to bootstrap an AI SDK chat UI, then extend components for advanced flows like tool calls, long prompts, and multi-step conversations.`,
+Use this page to understand how prompt-kit components align with AI SDK conventions and where they fit in a provider-agnostic UI stack.`,
     },
     components: {
       title: "AI SDK UI components",
@@ -806,12 +806,11 @@ Use the examples to bootstrap an AI SDK chat UI, then extend components for adva
   "ai-chat-ui": {
     overview: {
       title: "AI chat UI overview",
-      content: `AI chat UI components form the interface layer for conversational AI apps. At minimum, you need a prompt input, a message list with roles, and reliable rendering for markdown, code blocks, and links. A production AI chat UI also needs streaming-friendly layouts, message grouping, and visible states for retries, errors, and partial responses.
+      content: `AI chat UI is optimized for model output. It focuses on streaming tokens, markdown rendering, code blocks, and tool call output within the conversation. The UI must handle partial responses without layout shifts and preserve readability as the model streams.
 
-Prompt-kit provides composable React chat UI components that work with any model or SDK. You can connect the input to your request flow, render incremental tokens, and keep the conversation stable as responses stream in. The goal is a UI that stays readable while supporting long prompts, multi-step responses, and tool call output.
+Beyond the basics, AI chat UI includes status states for “generating,” error handling, and UI affordances for retries or stop actions. It also needs a safe renderer for rich content produced by the model.
 
-Use the examples below to assemble an AI chat UI quickly. The blocks and primitives are production-ready starting points that you can adapt to your own message schema, tool calls, and design system.
-`,
+Use this page for AI-specific chat UI patterns that improve model output UX, including streaming response handling, markdown rendering, and tool call display.`,
     },
     components: {
       title: "AI chat UI components",
@@ -1046,12 +1045,11 @@ Use the prompt UI examples below to implement prompt input patterns in minutes. 
   "ai-sdk-components": {
     overview: {
       title: "AI SDK components overview",
-      content: `AI SDK components are the building blocks you use to wire UI to an AI SDK response flow. They include prompt input, message rendering, and chat layouts that can handle streaming tokens and tool calls. If you are building across multiple providers, you need consistent UI primitives that map to common response shapes.
+      content: `This page is a component inventory for AI SDK integrations. It lists the concrete UI pieces you need to wire a chat interface to an SDK response flow: prompt input, message renderer, tool call UI, and chat layouts.
 
-Prompt-kit ships React components that align with AI SDK patterns. You can connect the input to your SDK handler, render partial responses while streaming, and surface tool call output without custom UI. The blocks below are designed to be composable so you can swap layouts or input variants without rewriting the data flow.
+Each component maps to a specific part of the response lifecycle. Prompt input captures user intent, the message renderer handles markdown and code blocks, and tool call UI displays structured outputs alongside the conversation. Layout components wrap the flow into a stable chat surface.
 
-Use these AI SDK components and examples to build a stable chat UI that works with OpenAI, Mistral, DeepSeek, or any compatible provider.
-`,
+Use this inventory to pick the exact components you need and assemble a UI that stays compatible with your SDK integration.`,
     },
     components: {
       title: "AI SDK components",
@@ -1123,12 +1121,11 @@ Use these AI SDK components and examples to build a stable chat UI that works wi
   "agent-ui": {
     overview: {
       title: "Agent UI overview",
-      content: `Agent UI components are the interface layer for AI agents that plan, call tools, and iterate over multiple steps. In addition to prompt input and message rendering, agent UIs typically include tool call previews, intermediate reasoning summaries, and stable layouts for streaming responses. The UI should expose clear states for running, waiting, and retrying so users can understand what the agent is doing.
+      content: `Agent UI focuses on workflows rather than single-turn chats. It needs to show agent states, multi-step execution, and tool activity as the agent progresses through a task. That includes clear indicators for running, waiting, and retrying, plus UI for tool execution and intermediate outputs.
 
-Prompt-kit provides React components that map cleanly to agent workflows. You can wire the prompt input to your agent runtime, stream partial outputs, and render tool call results alongside messages without rebuilding the conversation layout. This keeps the agent experience fast while staying readable during long runs.
+In addition to the message surface, agent UIs often expose reasoning summaries, step status, and action controls. The interface should make it easy to inspect what the agent is doing across a long run.
 
-Use the examples below to assemble an agent UI for chat-based agents, tool call flows, and multi-step responses. Each block is designed to be composable so you can adjust controls, message layout, and tool output UI to fit your product.
-`,
+Use this page for agent workflow patterns: stateful runs, tool execution UI, and multi-step conversation surfaces that keep agent progress understandable.`,
     },
     components: {
       title: "Agent UI components",
@@ -1199,12 +1196,11 @@ Use the examples below to assemble an agent UI for chat-based agents, tool call 
   "ai-agent-ui": {
     overview: {
       title: "AI agent UI overview",
-      content: `AI agent UI components help developers build interfaces for agents that plan, call tools, and respond over multiple steps. A strong AI agent UI includes prompt input, message rendering, and tool call output, plus streaming-friendly layouts for long responses. It should communicate state clearly so users know when the agent is running, waiting, or retrying.
+      content: `AI agent chat UI is the conversation layer for agents. It centers on the prompt → response loop while embedding tool results and streamed outputs directly in the chat. This keeps the agent interaction readable even when a run spans multiple steps.
 
-Prompt-kit provides React components that map to these needs without locking you into a specific runtime. You can connect the prompt input to your agent loop, render streamed tokens, and present tool outputs alongside the conversation. The blocks below are designed to be composable so you can evolve the agent UI without rewriting the layout.
+The UI should handle partial responses, tool call output, and state changes without breaking the flow. Users need to see when the agent is thinking, executing tools, or returning a final response.
 
-Use the examples to bootstrap AI agent UI flows like tool calling, long-running responses, and conversation history navigation.
-`,
+Use this page for agent chat patterns: prompt loops, streamed outputs, and tool results rendered inline with the conversation.`,
     },
     components: {
       title: "AI agent UI components",
