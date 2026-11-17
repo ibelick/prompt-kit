@@ -1,3 +1,4 @@
+import { createWebSearchTool } from "@/lib/web-search"
 import { openai } from "@ai-sdk/openai"
 import {
   convertToModelMessages,
@@ -11,15 +12,26 @@ import { z } from "zod"
 export const maxDuration = 30
 
 export async function POST(req: Request) {
-  const { messages }: { messages: UIMessage[] } = await req.json()
+  const {
+    messages,
+    webSearch,
+  }: {
+    messages: UIMessage[]
+    webSearch?: boolean
+  } = await req.json()
 
   const result = streamText({
     model: openai("gpt-4.1-nano"),
     system:
-      "You are a helpful assistant with access to tools. Use the getCurrentDate tool when users ask about dates, time, or current information. You are also able to use the getTime tool to get the current time in a specific timezone.",
+      "You are a helpful assistant with access to tools. Use the getCurrentDate tool when users ask about dates, time, or current information. You are also able to use the getTime tool to get the current time in a specific timezone." +
+      (webSearch === true
+        ? " Use web_search for public documentation questions. Base your answer on its excerpts and cite the original source URLs. If search fails or returns no sources, say that you could not verify the answer."
+        : ""),
     messages: convertToModelMessages(messages),
+    abortSignal: req.signal,
     stopWhen: stepCountIs(5),
     tools: {
+      ...(webSearch === true ? { web_search: createWebSearchTool() } : {}),
       getTime: tool({
         description: "Get the current time in a specific timezone",
         inputSchema: z.object({

@@ -1,6 +1,7 @@
 "use client"
 
 import { getOpenAIApiKey } from "@/app/primitives/demo/input-byok"
+import { SearchResults } from "@/components/primitives/tool-calling/search-results"
 import {
   ChatContainerContent,
   ChatContainerRoot,
@@ -21,6 +22,7 @@ import { Tool } from "@/components/prompt-kit/tool"
 import type { ToolPart } from "@/components/prompt-kit/tool"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import type { WebSearchOutput } from "@/lib/web-search"
 import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
 import type { UIMessage, UIMessagePart } from "ai"
@@ -43,6 +45,11 @@ const renderToolPart = (
   index: number
 ): React.ReactNode => {
   if (!part.type?.startsWith("tool-")) return null
+
+  if (part.type === "tool-web_search") {
+    const searchPart = part as { state: string; output?: WebSearchOutput }
+    return <SearchResults key={index} {...searchPart} />
+  }
 
   return <Tool key={`${part.type}-${index}`} toolPart={part as ToolPart} />
 }
@@ -154,6 +161,7 @@ ErrorMessage.displayName = "ErrorMessage"
 
 function ToolCallingChatbot() {
   const [input, setInput] = useState("")
+  const [webSearch, setWebSearch] = useState(false)
 
   const { messages, sendMessage, status, error } = useChat({
     transport: new DefaultChatTransport({
@@ -175,7 +183,7 @@ function ToolCallingChatbot() {
   const handleSubmit = () => {
     if (!input.trim()) return
 
-    sendMessage({ text: input })
+    sendMessage({ text: input }, { body: { webSearch } })
     setInput("")
   }
 
@@ -189,6 +197,9 @@ function ToolCallingChatbot() {
                 Try asking:
               </div>
               <ul className="list-inside list-disc space-y-1">
+                {webSearch && (
+                  <li>Find the official prompt-kit Source documentation.</li>
+                )}
                 <li>what's the current date?</li>
                 <li>what time is it in Tokyo?</li>
                 <li>give me the current time in Europe/Paris</li>
@@ -228,7 +239,15 @@ function ToolCallingChatbot() {
             />
 
             <PromptInputActions className="mt-3 flex w-full items-center justify-between gap-2 p-2">
-              <div />
+              <label className="flex cursor-pointer items-center gap-2 px-2 text-sm">
+                <input
+                  type="checkbox"
+                  checked={webSearch}
+                  disabled={status !== "ready" && status !== "error"}
+                  onChange={(event) => setWebSearch(event.target.checked)}
+                />
+                Web search
+              </label>
               <div className="flex items-center gap-2">
                 <Button
                   size="icon"
