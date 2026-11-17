@@ -57,6 +57,19 @@ export default function PrimitivesPage() {
         </div>
         <div>
           <h4>Tool calling</h4>
+          <p>
+            Enable Web search to find public documentation and answer with links
+            to the original sources. Search is off by default. The demo uses
+            Parallel MCP without a Parallel API key; your chat API key is still
+            required. Search sends its objective and queries to Parallel. See
+            the{" "}
+            <a href="https://docs.parallel.ai/integrations/mcp/quickstart">
+              Parallel MCP setup
+            </a>
+            . Try “Find the official prompt-kit Source documentation.” Source
+            badges open the returned URLs, with titles and excerpts on hover.
+            Empty searches and failures display a message so you can try again.
+          </p>
           <FullStackPreview
             url={`${baseUrl}/demo/tool-calling`}
             uiFilePath="components/demo/tool-calling.tsx"

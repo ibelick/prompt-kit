@@ -63,6 +63,7 @@ export const primitives = [
     description:
       "A chatbot with tool calling feature. It uses prompt-kit, shadcn/ui, and AI SDK V5.",
     dependencies: [
+      "@modelcontextprotocol/sdk@1.32.2",
       "ai",
       "@ai-sdk/openai",
       "zod",
@@ -80,8 +81,21 @@ export const primitives = [
       "textarea",
       "collapsible",
       "button",
+      "hover-card",
     ],
     files: [
+      {
+        path: "lib/web-search.ts",
+        type: "registry:file",
+      },
+      {
+        path: "components/primitives/tool-calling/search-results.tsx",
+        type: "registry:file",
+      },
+      {
+        path: "components/prompt-kit/source.tsx",
+        type: "registry:component",
+      },
       {
         path: "components/primitives/tool-calling.tsx",
         type: "registry:component",
